@@ -1,22 +1,29 @@
-import { useEffect } from 'react';
-import axios from 'axios';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Main from './pages/Main';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
 
 function App() {
-    const login = async () => {
-        const res = await axios.get(`http://13.124.47.91:8090/onlytest`).catch((err) => {
-            console.error(err);
-        });
-        if (res) console.log(res);
-    };
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <BrowserRouter>
+        {/*  <Header/> 넣으삼 */}
 
-    useEffect(() => {
-        login();
-    }, []);
-    return (
-        <div className="App">
-            <h1>hi ci/cd</h1>
-        </div>
-    );
+        <Routes>
+          <Route path="/" element={<Main />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
+  );
 }
 
 export default App;
