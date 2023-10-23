@@ -2,7 +2,25 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        transparent: 'transparent',
+        email: '#FFB900',
+        section: '#EFEFEF',
+        white: '#FFFFFF',
+        gray: '#898989',
+      },
+      width: {
+        PjtInfo: '612px',
+        PjtCard: '590px',
+        SectionW: '1200px',
+      },
+      height: {
+        PjtCard: '218px',
+        PjtInfo: '623px',
+        SectionH: '768px',
+      },
+    },
   },
   plugins: [],
 };
