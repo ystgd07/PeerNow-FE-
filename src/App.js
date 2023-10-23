@@ -12,7 +12,11 @@ function App() {
     useEffect(() => {
         login();
     }, []);
-    return <div className="App"></div>;
+    return (
+        <div className="App">
+            <h1>hi ci/cd</h1>
+        </div>
+    );
 }
 
 export default App;
