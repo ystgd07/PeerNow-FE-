@@ -51,6 +51,6 @@ jobs:
     - name: Deploy # Deploy to EC2
       run: aws deploy create-deployment
         --application-name PNdeploy
-        --deployment-config-name CodeDeployDefault.AllAtOnce
+        --deployment-config-name CodeDeployDefault.OneAtTime
         --deployment-group-name PNGP
         --s3-location bucket=cicdpeernow,key=build-fe.zip,bundleType=zip
