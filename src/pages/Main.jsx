@@ -7,12 +7,11 @@ import SideModal from '../features/newproject/SideModal';
 import { useProjectModal } from '../store/store';
 
 export default function Main() {
-
   const { setPjtModalFalse } = useProjectModal((state) => state);
 
   return (
     <div className={`relative flex flex-row justify-center h-full`}>
-      <div className={`flex flex-col `}>
+      <div className={`flex flex-col`}>
         <div className="flex flex-col w-3/4 ml-64 " onClick={setPjtModalFalse}>
           <Title />
           <div className="flex rl">
@@ -30,5 +29,4 @@ export default function Main() {
       </div>
     </div>
   );
-
 }
