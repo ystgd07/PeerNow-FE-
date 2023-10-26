@@ -10,18 +10,20 @@ export default function Main() {
   const { setPjtModalFalse } = useProjectModal((state) => state);
 
   return (
-    <div className={`relative flex flex-row justify-center h-full`}>
+    <div className={`relative flex flex-row justify-center`}>
       <div className={`flex flex-col`}>
-        <div className="flex flex-col w-3/4 ml-64 " onClick={setPjtModalFalse}>
+        <div
+          className="flex flex-col items-center justify-center"
+          onClick={setPjtModalFalse}
+        >
           <Title />
           <div className="flex rl">
-            <div className="h-PjtInfo ">
+            <div className="flex ">
               <MyProjectCard />
             </div>
             <PjtInfo />
           </div>
         </div>
-        <Button />
       </div>
 
       <div className="sticky top-0 right-0 z-50 w-full h-full">

@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import MyPage from './myPage/MyPage';
 import Snb from './ui/Snb';
 import Gnb from './ui/Gnb';
+import Home from './pages/Home';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,14 +20,16 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
-        <Gnb />
-        <div className="flex flex-row">
-          <Snb />
-          <Routes>
-            <Route path="/" element={<Main />} />
+        {/* <Gnb />
+        <div className="flex flex-row overflow-scroll">
+          <Snb /> */}
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route path="/main" element={<Main />} />
             <Route path="/mypage" element={<MyPage />} />
-          </Routes>
-        </div>
+          </Route>
+        </Routes>
+        {/* </div> */}
       </BrowserRouter>
     </QueryClientProvider>
   );

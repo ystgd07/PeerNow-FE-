@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import MyProjectCardTitle from './MyProjectCardTitle';
 import MyProjectCardFooter from './MyProjectCardFooter';
@@ -10,7 +10,7 @@ export default function MyProjectCard() {
 
   return (
     <div
-      className={`max-w-md p-4 bg-white border-gray-200 rounded-lg shadow-lg w-PjtCard h-PjtCard sm:p-8 dark:bg-gray-500 dark:border-gray-500 ${
+      className={`max-w-md bg-white border-gray-200 rounded-lg shadow-lg w-PjtCard h-PjtCard sm:p-8 dark:bg-gray-500 dark:border-gray-500 ${
         !pjtModal
           ? 'hover:bg-section hover:opacity-80 dark:hover:bg-gray-600 hover:scale-95'
           : ''

@@ -16,7 +16,7 @@ export default function Snb() {
       {isDrawerOpen ? (
         <div
           id="drawer-navigation"
-          className="left-0 z-20 w-64 h-screen p-4 overflow-y-auto  relative border-t-2 bg-white dark:bg-gray-800"
+          className="relative left-0 z-20 w-1/4 p-4 bg-white border-t-2 h-SectionH dark:bg-gray-800"
           tabIndex="1"
           aria-labelledby="drawer-navigation-label"
         >
