@@ -130,7 +130,7 @@ export default function Snb() {
       ) : (
         <div className="text-start">
           <button
-            className="text-white text-sm border-t-2 p-1 px-1.5 bg-gray-200 hover:bg-gray-400 focus:ring-3 focus:ring-gray-300 font-medium "
+            className="text-white text-sm border-t-2 p-1 px-1.5 bg-gray-200   "
             type="button"
             onClick={openDrawer}
           >
