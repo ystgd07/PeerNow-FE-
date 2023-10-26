@@ -12,11 +12,11 @@ export default function Snb() {
   };
 
   return (
-    <div>
+    <>
       {isDrawerOpen ? (
         <div
           id="drawer-navigation"
-          className="fixed left-0 z-50 w-64 h-screen p-4 overflow-y-auto border-t-2 bg-white dark:bg-gray-800"
+          className="left-0 z-20 w-64 h-screen p-4 overflow-y-auto  relative border-t-2 bg-white dark:bg-gray-800"
           tabIndex="1"
           aria-labelledby="drawer-navigation-label"
         >
@@ -138,6 +138,6 @@ export default function Snb() {
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 }
