@@ -2,7 +2,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
-import GlobalUI from './ui/GlobalUI';
+import MyPage from './myPage/MyPage';
+import Snb from './ui/Snb';
+import Gnb from './ui/Gnb';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,10 +19,14 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
-        <GlobalUI />
-        <Routes>
-          <Route path="/" element={<Main />} />
-        </Routes>
+        <Gnb />
+        <div className="flex flex-row">
+          <Snb />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/mypage" element={<MyPage />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </QueryClientProvider>
   );

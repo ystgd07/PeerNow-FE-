@@ -41,7 +41,7 @@ function Header() {
             {isDropdownOpen && (
               <div
                 id="dropdown"
-                className="z-10 absolute mt-2 mx-16 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                className="z-50 absolute mt-2 mx-16 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
               >
                 <ul
                   className="py-2 text-sm text-gray-700 dark:text-gray-200"

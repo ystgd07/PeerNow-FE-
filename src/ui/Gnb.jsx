@@ -46,9 +46,14 @@ export default function Gnb() {
             <a href="#" className="flex ml-2 md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                 <img src="/logo1.png" alt="로고" className="w-44 h-16" />
+                {/* 
+                  일반회원 : <img src="/logo1.png" alt="로고" className="w-44 h-16" />
+                  프리미엄 회원 : <img src="/logo2.png" alt="로고" className="w-44 h-16" /> 
+                 */}
               </span>
             </a>
           </div>
+          {/* 로그인 안되면 보여주면 안됨 */}
           <div className="flex items-center">
             <div className="flex items-center ml-3">
               <div ref={dropdownRef}>
