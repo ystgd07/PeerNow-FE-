@@ -52,19 +52,24 @@ export default function Gnb() {
           <div className="flex items-center">
             <div className="flex items-center ml-3">
               <div ref={dropdownRef}>
-                <button
-                  type="button"
-                  className="flex text-sm bg-gray-800 rounded-full focus-ring-4 focus-ring-gray-300"
-                  aria-expanded="false"
-                  onClick={toggleDropdown}
-                >
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    className="w-11 h-11 rounded-full"
-                    src="testImg.jpg"
-                    alt="user photo"
-                  />
-                </button>
+                <ui className="list-none flex items-center mr-3">
+                  <li>
+                    <button
+                      type="button"
+                      className="flex text-sm bg-gray-800 rounded-full focus-ring-4 focus-ring-gray-300"
+                      aria-expanded="false"
+                      onClick={toggleDropdown}
+                    >
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="w-11 h-11 rounded-full hover:bg-gray-400 focus:ring-3 focus:ring-gray-300 font-medium"
+                        src="testImg.jpg"
+                        alt="user photo"
+                      />
+                    </button>
+                  </li>
+                  <li className="pl-3 text-xl">이슬비</li>
+                </ui>
                 {isDropdownVisible && (
                   <div
                     className="z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow fixed right-2 top-16"
@@ -72,10 +77,10 @@ export default function Gnb() {
                   >
                     <div className="px-4 py-3" role="none">
                       <p
-                        className="font-bold text-gray-900 dark:text-white"
+                        className="text-gray-400 text-sm dark:text-white"
                         role="none"
                       >
-                        이슬비
+                        BTC 개발자반 3팀
                       </p>
                       <p
                         className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
