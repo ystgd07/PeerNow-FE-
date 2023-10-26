@@ -3,6 +3,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+
       colors: {
         transparent: 'transparent',
         email: '#FFB900',
@@ -17,6 +18,10 @@ module.exports = {
         PjtCard: '218px',
         PjtInfo: '623px',
         SectionH: '768px',
+
+      fontFamily: {
+        suite: ['SUITE', 'sans'],
+
       },
     },
   },
