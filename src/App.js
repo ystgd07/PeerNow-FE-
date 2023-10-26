@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
+import GlobalUI from './ui/GlobalUI';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,8 +17,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
-        {/*  <Header/> 넣으삼 */}
-
+        <GlobalUI />
         <Routes>
           <Route path="/" element={<Main />} />
         </Routes>
