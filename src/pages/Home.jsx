@@ -8,13 +8,11 @@ export default function Home() {
   return (
     <>
       <Gnb />
-      <div className="relative flex flex-row">
+      <div className="relative flex flex-row h-full">
         <Snb />
-
         <div className="flex flex-row w-3/4 ml-10">
           <Outlet />
         </div>
-
         <SideModal />
       </div>
     </>
