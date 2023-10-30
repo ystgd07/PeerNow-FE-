@@ -1,7 +1,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
+import MyPage from './myPage/MyPage';
+import Home from './pages/Home';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,10 +18,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
-        {/*  <Header/> 넣으삼 */}
-
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Home />}>
+            <Route path="/main" element={<Main />} />
+            <Route path="/mypage" element={<MyPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
