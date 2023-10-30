@@ -7,9 +7,9 @@ export default function PjtInfo() {
   const { hover } = useHover((state) => state);
 
   return (
-    <div className="ml-3 ">
+    <div className="ml-3">
       <div
-        className={`transition-all duration-200 max-w-md p-4  bg-white border-gray-200 rounded-lg shadow-lg t w-PjtInfo h-PjtInfo sm:p-8 dark:bg-gray-500 dark:border-gray-500 ${
+        className={`transition-all duration-200 max-w-md p-4   bg-white border-gray-200 rounded-lg shadow-lg t w-screen h-full sm:p-8 dark:bg-gray-500 dark:border-gray-500 ${
           hover ? 'opacity-100' : 'opacity-0'
         } `}
       >

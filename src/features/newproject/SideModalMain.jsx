@@ -12,10 +12,6 @@ export default function SideModalMain() {
             placeholder="* 프로젝트 이름은 무엇입니까?"
             required
           />
-          {/* <input
-            className="w-32 h-10 shadow-lg focus:ring-slate-00 rounded-xl bg-slate-400"
-            type="text"
-          ></input> */}
         </div>
         <div className="mb-6">
           <input

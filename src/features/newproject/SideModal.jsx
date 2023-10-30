@@ -8,7 +8,7 @@ export default function SideModal() {
 
   return (
     <div
-      className={`h-screen transition-all duration-200 z-10  p-5 bg-white border-l-8 shadow-lg w-96 rounded-xl ${
+      className={`transition-all h-screen duration-200 z-10 p-5 bg-white shadow-lg w-96 rounded-none ${
         pjtModal ? 'opacity-100' : 'opacity-0'
       }`}
     >
