@@ -8,7 +8,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-white">
+    <header className="bg-white shadow-sm">
       <div>
         <div className="container mx-auto flex justify-start items-center py-4">
           <div className="relative group">
