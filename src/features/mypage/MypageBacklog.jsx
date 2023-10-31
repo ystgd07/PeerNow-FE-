@@ -1,7 +1,5 @@
-import BackLogPageBtn from './BackLogPageBtn';
 import BacklogIcon from './BacklogIcon';
 import MypageBackLogTitle from './MypageBackLogTitle';
-import Title from './Title';
 
 export default function MypageBacklog() {
   return (
