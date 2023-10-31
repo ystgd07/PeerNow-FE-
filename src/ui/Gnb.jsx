@@ -31,7 +31,7 @@ export default function Gnb() {
   }, [isDropdownVisible]);
 
   return (
-    <header className="w-full bg-white pl-5 pr-5 p-1 justify-between items-center drop-shadow relative">
+    <header className="relative items-center justify-between w-full p-1 pl-5 pr-5 bg-white drop-shadow">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
@@ -45,10 +45,10 @@ export default function Gnb() {
             ></button>
             <a href="#" className="flex ml-2 md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                <img src="/logo1.png" alt="로고" className="w-44 h-16" />
+                <img src="/logo1.png" alt="로고" className="h-16 w-44" />
                 {/* 
-                  일반회원 : <img src="/logo1.png" alt="로고" className="w-44 h-16" />
-                  프리미엄 회원 : <img src="/logo2.png" alt="로고" className="w-44 h-16" /> 
+                  일반회원 : <img src="/logo1.png" alt="로고" className="h-16 w-44" />
+                  프리미엄 회원 : <img src="/logo2.png" alt="로고" className="h-16 w-44" /> 
                  */}
               </span>
             </a>
@@ -57,7 +57,7 @@ export default function Gnb() {
           <div className="flex items-center">
             <div className="flex items-center ml-3">
               <div ref={dropdownRef}>
-                <ui className="list-none flex items-center mr-3">
+                <ui className="flex items-center mr-3 list-none">
                   <li>
                     <button
                       type="button"
@@ -67,7 +67,7 @@ export default function Gnb() {
                     >
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="w-11 h-11 rounded-full hover:bg-gray-400 focus:ring-3 focus:ring-gray-300 font-medium"
+                        className="font-medium rounded-full w-11 h-11 hover:bg-gray-400 focus:ring-3 focus:ring-gray-300"
                         src="testImg.jpg"
                         alt="user photo"
                       />
@@ -77,12 +77,12 @@ export default function Gnb() {
                 </ui>
                 {isDropdownVisible && (
                   <div
-                    className="z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow fixed right-2 top-16"
+                    className="fixed z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow right-2 top-16"
                     id="dropdown-user"
                   >
                     <div className="px-4 py-3" role="none">
                       <p
-                        className="text-gray-400 text-sm dark:text-white"
+                        className="text-sm text-gray-400 dark:text-white"
                         role="none"
                       >
                         BTC 개발자반 3팀
