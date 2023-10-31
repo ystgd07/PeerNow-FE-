@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import ProjectList from '../features/header/ProjectList';
 
-function Header() {
+export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -19,6 +20,7 @@ function Header() {
               className="text-black bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-extrabold rounded-lg text-2xl mx-16 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
+              {/* 현재 프로젝트 */}
               SNOW
               <svg
                 className={`w-2.5 h-2.5 ml-2.5 transform ${
@@ -38,6 +40,7 @@ function Header() {
                 />
               </svg>
             </button>
+            {/* 프로젝트 선택 드롭박스 */}
             {isDropdownOpen && (
               <div
                 id="dropdown"
@@ -48,41 +51,16 @@ function Header() {
                   aria-labelledby="dropdownDefaultButton"
                 >
                   <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      WeaterNOW
-                    </a>
+                    <ProjectList />
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      SNOW
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      PeerNOW
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      NOW
-                    </a>
+                    <ProjectList />
                   </li>
                 </ul>
               </div>
             )}
           </div>
+          {/* 프로젝트 수정 */}
           <a
             href="#"
             className="flex justify-end mr-10 p-4 px-5"
@@ -95,5 +73,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
