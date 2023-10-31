@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
-import MyPage from './myPage/MyPage';
+import MyPage from './pages/MyPage';
 import Home from './pages/Home';
 
 const queryClient = new QueryClient({

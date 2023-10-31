@@ -1,7 +1,7 @@
 import Header from '../ui/Header';
-import MypageSprint from './MypageSprint';
-import MypageChart from './MypageChart';
-import MypageBacklog from './MypageBacklog';
+import MypageSprint from '../features/mypage/MypageSprint';
+import MypageChart from '../features/mypage/MypageChart';
+import MypageBacklog from '../features/mypage/MypageBacklog';
 
 export default function MyPage() {
   return (
@@ -17,9 +17,7 @@ export default function MyPage() {
           {/* 번다운 차트 burndown-chart */}
           <MypageChart />
           {/* 진행중인 백로그 back log */}
-          <div className="bg-white rounded-lg p-3">
-            <MypageBacklog />
-          </div>
+          <MypageBacklog />
         </div>
       </div>
     </>
