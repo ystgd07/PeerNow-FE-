@@ -1,6 +1,6 @@
 import Sprints from './Sprints';
-import NewCreateSprintBtn from './NewCreateSprintBtn';
 import Title from './Title';
+import NewSprintBtn from './NewSprintBtn';
 
 export default function MypageSprint() {
   return (
@@ -10,7 +10,7 @@ export default function MypageSprint() {
         <span className="text-3xl text-gray-500 mt-5">
           <Title value={'스프린트'} />
         </span>
-        <NewCreateSprintBtn />
+        <NewSprintBtn />
       </div>
       <Sprints />
     </>

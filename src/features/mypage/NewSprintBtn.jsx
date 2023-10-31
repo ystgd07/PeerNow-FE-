@@ -1,4 +1,4 @@
-export default function NewCreateSprintBtn() {
+export default function NewSprintBtn() {
   return (
     <>
       <button className="text-xl text-right -mb-4">
