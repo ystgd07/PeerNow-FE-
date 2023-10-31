@@ -5,7 +5,7 @@ export default function MypageBacklog() {
     <>
       {/* 진행중인 백로그 back log */}
       <div className="bg-white rounded-lg p-3">
-        <span className="text-xl text-gray-500">진행중인 백로그 (8)</span>
+        <span className="text-xl text-gray-500">진행중인 백로그 (3)</span>
         <a
           href="#"
           className="text-xl font-bold text-gray-500 float-right px-4"
