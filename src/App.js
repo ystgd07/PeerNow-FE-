@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Test from './features/newproject/Test';
 import Sprint from './pages/Sprint';
 import Kanban from './pages/Kanban';
+import BackLog from './pages/BackLog';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/sprint" element={<Sprint />} />
             <Route path="/kanban" element={<Kanban />} />
+            <Route path="/backlog" element={<BackLog />} />
             <Route path="/test" element={<Test />}></Route>
           </Route>
         </Routes>
