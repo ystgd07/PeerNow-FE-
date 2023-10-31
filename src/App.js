@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
 import MyPage from './myPage/MyPage';
 import Home from './pages/Home';
+import Test from './features/newproject/Test';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />}>
             <Route path="/main" element={<Main />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/test" element={<Test />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
