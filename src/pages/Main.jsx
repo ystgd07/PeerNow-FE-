@@ -5,7 +5,6 @@ import PjtInfo from '../features/newproject/PjtInfo';
 import { useProjectModal } from '../store/store';
 
 export default function Main() {
-
   const { setPjtModalFalse } = useProjectModal((state) => state);
 
   return (
@@ -26,5 +25,4 @@ export default function Main() {
       </div>
     </div>
   );
-
 }

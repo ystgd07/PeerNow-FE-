@@ -1,66 +1,64 @@
 import React, { useState } from 'react';
 import ButtonPakage from '../../ui/ButtonPakage';
+import Input from '../../ui/Input';
+import CalendarUI from '../../ui/CalendarUI';
+import { useCreatePjtOne } from '../../store/store';
+import { set } from 'date-fns';
+import SideModalList from './SideModalList';
+import SideModalSearchResult from './SideModalSearchResult';
+import InputSearch from '../../ui/InputSearch';
 
 export default function SideModalMain() {
   const [pjtName, setPjtName] = useState('');
   const [pjtValid, setPjtValid] = useState(true);
+  const { pjtObj, setIsValidPjt1, isValidPjt1, isValidPjt2 } = useCreatePjtOne(
+    (state) => state,
+  );
 
-  const mouseOutEvent = () => {
-    if (pjtName.length > 0) {
-      setPjtValid(true);
-    } else {
-      setPjtValid(false);
-    }
-  };
+  const { page, setNextPage, setPrevPage } = useCreatePjtOne((state) => state);
 
   return (
     <div>
-      <form>
-        <div className="mb-6">
-          <input
-            type="email"
-            id="email"
-            className={`shadow-sm bg-gray-50 border ${
-              pjtValid ? 'border-gray-300' : 'border-red-500'
-            } text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ${
-              pjtValid ? 'dark:focus:ring-blue-500' : 'dark:focus:ring-red-600'
-            } dark:focus:border-blue-500 dark:shadow-sm-light focus:outline-none focus:ring `}
-            placeholder="* 프로젝트 이름은 무엇입니까?"
-            value={pjtName}
-            onChange={(e) => setPjtName(e.target.value)}
-            onMouseOut={mouseOutEvent}
-            required
+      {page === 1 ? (
+        <form>
+          <Input
+            content={'*프로젝트 이름을 입력해 주세요.'}
+            title={'프로젝트 제목'}
           />
-          {pjtValid ? (
-            ''
+
+          <Input
+            content={'프로젝트에 대한 설명을 적어주세요.'}
+            title={'프로젝트 설명'}
+          />
+
+          <CalendarUI title={'프로젝트 시작'} titleColor={'text-green-500'} />
+          <CalendarUI title={'프로젝트 종료'} titleColor={'text-red-500'} />
+
+          {isValidPjt1 ? (
+            <ButtonPakage value={'다음'} event={setNextPage} disabled={false} />
           ) : (
-            <p class="mt-1 text-sm text-red-600 dark:text-red-500 p-1">
-              <span class="font-medium">Oh, snapp!</span> Some error message.
-            </p>
+            <ButtonPakage value={'다음'} disabled={true} />
           )}
-        </div>
-
-        <div className="mb-6">
-          <input
-            type="password"
-            id="password"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-200 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="프로젝트에 대한 설명을 적으세요."
-            required
+        </form>
+      ) : (
+        <form className="relative">
+          <InputSearch
+            content={'팀원의 성함을 입력해주세요.'}
+            title={'팀원 선택'}
           />
-        </div>
-        <div className="mb-6">
-          <input
-            type="password"
-            id="repeat-password"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="*기간을 설정해주세요."
-            required
-          />
-        </div>
+          <SideModalSearchResult />
+          <SideModalList />
+          <div className="flex flex-row gap-2">
+            <ButtonPakage value={'이전'} event={setPrevPage} disabled={false} />
 
-        <ButtonPakage value={'다음'} />
-      </form>
+            {isValidPjt2 ? (
+              <ButtonPakage value={'제출'} disabled={false} />
+            ) : (
+              <ButtonPakage value={'제출'} disabled={true} />
+            )}
+          </div>
+        </form>
+      )}
     </div>
   );
 }
