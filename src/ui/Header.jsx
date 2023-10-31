@@ -10,13 +10,13 @@ function Header() {
   return (
     <header className="bg-white shadow-sm">
       <div>
-        <div className="container mx-auto flex justify-start items-center py-4">
+        <div className="container flex items-center justify-start py-4 mx-auto">
           <div className="relative group">
             <div className="mx-10 text-gray-500">프로젝트명</div>
             <button
               id="dropdownDefaultButton"
               onClick={toggleDropdown}
-              className="text-black bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-extrabold rounded-lg text-2xl mx-16 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="inline-flex items-center mx-16 text-2xl font-extrabold text-center text-black bg-white rounded-lg focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
               SNOW
@@ -41,7 +41,7 @@ function Header() {
             {isDropdownOpen && (
               <div
                 id="dropdown"
-                className="z-50 absolute mt-2 mx-16 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                className="absolute z-50 mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
               >
                 <ul
                   className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -85,7 +85,7 @@ function Header() {
           </div>
           <a
             href="#"
-            className="flex justify-end mr-10 p-4 px-5"
+            className="flex justify-end p-4 px-5 mr-10"
             style={{ marginLeft: 'auto' }}
           >
             &#8942;
