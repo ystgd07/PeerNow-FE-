@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '../features/newproject/Title';
 import MyProjectCard from '../features/newproject/MyProjectCard';
 import PjtInfo from '../features/newproject/PjtInfo';
 import { useProjectModal } from '../store/store';
-import Button from '../features/newproject/Button';
+
 export default function Main() {
 
   const { setPjtModalFalse } = useProjectModal((state) => state);

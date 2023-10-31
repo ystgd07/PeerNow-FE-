@@ -7,7 +7,7 @@ export default function Button() {
 
   return (
     <HiPlusCircle
-      className={`ml-2 transition-all duration-200 cursor-pointer w-8 h-8 text-stone-800 z-50  `}
+      className={`ml-2 transition-all duration-200 cursor-pointer w-8 h-8 text-stone-800 z-50`}
       onClick={setPjtModal}
       style={{
         transform: `${pjtModal ? 'rotate(45deg)' : 'rotate(90deg)'} `,
