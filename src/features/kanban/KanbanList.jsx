@@ -1,6 +1,6 @@
-// import KanbanBorad from './KanbanBorad';
+import KanbanBorad from './KanbanBorad';
 import KanbanHeader from './KanbanHeader';
-import TestKanbanBoard from './TestKanbanBorad';
+// import TestKanbanBoard from './TestKanbanBorad';
 
 export default function KanbanList() {
   return (
@@ -10,8 +10,8 @@ export default function KanbanList() {
         <KanbanHeader />
         {/* 칸반보드 */}
         <div className="pb-5">
-          {/* <KanbanBorad /> */}
-          <TestKanbanBoard />
+          <KanbanBorad />
+          {/* <TestKanbanBoard /> */}
         </div>
       </div>
     </>
