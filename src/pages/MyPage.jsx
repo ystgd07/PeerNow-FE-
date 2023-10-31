@@ -1,7 +1,7 @@
 import Header from '../ui/Header';
-import MypageSprint from './MypageSprint';
-import MypageChart from './MypageChart';
-import MypageBacklog from './MypageBacklog';
+import MypageSprint from '../features/mypage/MypageSprint';
+import MypageChart from '../features/mypage/MypageChart';
+import MypageBacklog from '../features/mypage/MypageBacklog';
 import { useEffect } from 'react';
 import { useOpenMainPage, useOpenMypage } from '../store/store';
 
@@ -27,9 +27,7 @@ export default function MyPage() {
           {/* 번다운 차트 burndown-chart */}
           <MypageChart />
           {/* 진행중인 백로그 back log */}
-          <div className="p-3 bg-white rounded-lg">
-            <MypageBacklog />
-          </div>
+          <MypageBacklog />
         </div>
       </div>
     </>
