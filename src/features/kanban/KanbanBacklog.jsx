@@ -10,17 +10,17 @@ export default function KanbanBacklog() {
   return (
     <>
       {items.map((item) => (
-        <div className="border border-gray-300 rounded-md text-center py-2 w-11/12 mb-1">
-          <a href="#">
+        <div className="w-11/12 py-2 mb-1 text-center border border-gray-300 rounded-md">
+          <p>
             <span className="flex justify-center">
               <img
                 src="testImg.jpg"
                 alt="백로그_담당자_이미지"
-                className="rounded-full w-6 h-6"
+                className="w-6 h-6 rounded-full"
               />
               <span className="ml-1">{item.text}</span>
             </span>
-          </a>
+          </p>
         </div>
       ))}
     </>

@@ -61,13 +61,12 @@ export default function Header() {
             )}
           </div>
           {/* 프로젝트 수정 */}
-          <a
-            href="#"
+          <p
             className="flex justify-end p-4 px-5 mr-10"
             style={{ marginLeft: 'auto' }}
           >
             &#8942;
-          </a>
+          </p>
         </div>
       </div>
     </header>

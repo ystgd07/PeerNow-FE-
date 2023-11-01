@@ -43,7 +43,7 @@ export default function Gnb() {
               className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover-bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover-bg-gray-700 dark:focus:ring-gray-600"
               onClick={toggleDropdown}
             ></button>
-            <a href="#" className="flex ml-2 md:mr-24">
+            <p className="flex ml-2 md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                 <img src="/logo1.png" alt="로고" className="h-16 w-44" />
                 {/* 
@@ -51,7 +51,7 @@ export default function Gnb() {
                   프리미엄 회원 : <img src="/logo2.png" alt="로고" className="h-16 w-44" /> 
                  */}
               </span>
-            </a>
+            </p>
           </div>
           {/* 로그인 안되면 보여주면 안됨 */}
           <div className="flex items-center">
@@ -96,22 +96,20 @@ export default function Gnb() {
                     </div>
                     <ul className="py-1" role="none">
                       <li>
-                        <a
-                          href="#"
+                        <p
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover-bg-gray-600 dark:hover-text-white"
                           role="menuitem"
                         >
                           설정
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
-                          href="#"
+                        <p
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover-bg-gray-600 dark:hover-text-white"
                           role="menuitem"
                         >
                           로그아웃
-                        </a>
+                        </p>
                       </li>
                     </ul>
                   </div>
