@@ -6,6 +6,8 @@ import MyPage from './pages/MyPage';
 import Home from './pages/Home';
 import Test from './features/newproject/Test';
 import Sprint from './pages/Sprint';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,11 +23,13 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route path="/main" element={<Main />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/sprint" element={<Sprint />} />
-            <Route path="/test" element={<Test />}></Route>
+          <Route path="/" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/home" element={<Home />}>
+            <Route path="main" element={<Main />} />
+            <Route path="mypage" element={<MyPage />} />
+            <Route path="sprint" element={<Sprint />} />
+            <Route path="test" element={<Test />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

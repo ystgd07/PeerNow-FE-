@@ -5,6 +5,9 @@ module.exports = {
     './node_modules/react-tailwindcss-select/dist/index.esm.js',
   ],
   theme: {
+    backgroundImage: {
+      main: "url('./assets/images/office.jpg')",
+    },
     extend: {
       colors: {
         transparent: 'transparent',
@@ -27,5 +30,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('flowbite/plugin'), require('tailwind-scrollbar')],
 };
