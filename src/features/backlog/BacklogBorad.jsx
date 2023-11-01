@@ -8,7 +8,7 @@ export default function BacklogBorad() {
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <BacklogThead />
         </thead>
-        <tbody>
+        <tbody className="overflow-scroll">
           <BacklogTbody />
         </tbody>
       </table>
