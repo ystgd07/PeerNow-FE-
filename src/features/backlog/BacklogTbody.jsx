@@ -710,9 +710,9 @@ export default function BacklogTbody() {
             scope="row"
             className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap"
           >
-            <a href="#" className="font-medium hover:text-blue-600">
+            <p href="#" className="font-medium hover:text-blue-600">
               {item.title}
-            </a>
+            </p>
           </th>
           <td className="px-6 py-2">
             <BacklogSprint value={item.sprint} />
@@ -728,9 +728,9 @@ export default function BacklogTbody() {
             />
           </td>
           <td className="px-4 py-2 text-right">
-            <a href="#" className="font-medium text-xl text-blue-600">
+            <p href="#" className="text-xl font-medium text-blue-600">
               <AiOutlineDownload />
-            </a>
+            </p>
           </td>
         </tr>
       ))}

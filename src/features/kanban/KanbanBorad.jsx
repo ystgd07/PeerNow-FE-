@@ -73,18 +73,18 @@ export default function TestKanbanBoard() {
                   onDragStart(e, columnIndex, itemIndex);
                   console.log('onDragStart');
                 }}
-                className="border border-gray-300 rounded-md text-center py-2 w-11/12 mb-1"
+                className="w-11/12 py-2 mb-1 text-center border border-gray-300 rounded-md"
               >
-                <a href="#">
+                <p>
                   <span className="flex justify-center">
                     <img
                       src={item.imgSrc}
                       alt="백로그_담당자_이미지"
-                      className="rounded-full w-6 h-6"
+                      className="w-6 h-6 rounded-full"
                     />
                     <span className="ml-1">{item.text}</span>
                   </span>
-                </a>
+                </p>
               </div>
             ))}
         </div>

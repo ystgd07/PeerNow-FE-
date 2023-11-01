@@ -1,6 +1,39 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { loginApi } from '../apis/apiAuth';
+import { useLoginAndCreateAccount } from '../store/store';
 
 export default function FormButton({ checkValid, btnName, event }) {
+  const { loginObj, setId, setPassword } = useLoginAndCreateAccount(
+    (state) => state,
+  );
+
+  const { mutate: login, isLoading } = useQuery({
+    mutaitionFn: ({ id, password }) => loginApi({ id, password }),
+    onSuccess: (user) => {
+      console.log('Success', user);
+    },
+    onError: (error) => {
+      console.log('Error', error);
+    },
+  });
+
+  function handleLoginSubmit(e) {
+    e.preventDefault();
+    if (!loginObj.id || !loginObj.password) return;
+    const loginId = loginObj.id;
+    const loginPassword = loginObj.password;
+    login(
+      { loginId, loginPassword },
+      {
+        onSettled: () => {
+          setId('');
+          setPassword('');
+        },
+      },
+    );
+  }
+
   return (
     <div
       className={`w-full text-black bg-amber-400
@@ -13,7 +46,7 @@ export default function FormButton({ checkValid, btnName, event }) {
       checkValid ? 'cursor-pointer' : 'cursor-not-allowed'
     }`}
       disabled={checkValid}
-      onClick={event}
+      onClick={handleLoginSubmit}
     >
       <p className="text-lg font-bold text-white">{btnName}</p>
     </div>
