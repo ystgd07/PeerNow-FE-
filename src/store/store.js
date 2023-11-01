@@ -49,6 +49,7 @@ export const useCreatePjtOne = create((set) => ({
 
   setPjtObj: (pjtObj) => set((state) => ({ pjtObj })),
   setPeerName: (peerName) => set((state) => ({ peerName })),
+
   setIsValidPjt1: (pjtObj) =>
     set((state) => ({
       isValidPjt1:
@@ -64,4 +65,58 @@ export const useCreatePjtOne = create((set) => ({
 
   setNextPage: (page) => set((state) => ({ page: 2 })),
   setPrevPage: (page) => set((state) => ({ page: 1 })),
+}));
+
+export const useLoginAndCreateAccount = create((set) => ({
+  loginObj: {
+    id: '',
+    password: '',
+  },
+  createAccountObj: {
+    id: '',
+    password: '',
+    name: '',
+  },
+  checkPw: '',
+  isValidLogin: false,
+  isValidCreateAccount: false,
+  setPasswordCheck: false,
+
+  setLoginValid: (loginObj) =>
+    set((state) => ({
+      isValidLogin:
+        state.loginObj.id.length > 0 && state.loginObj.password.length > 0,
+    })),
+
+  setCreateAccountValid: (createAccountObj) =>
+    set((state) => ({
+      isValidCreateAccount:
+        state.createAccountObj.id.length > 0 &&
+        state.createAccountObj.password.length > 0 &&
+        state.createAccountObj.name.length > 0 &&
+        state.createAccountObj.password === state.checkPw,
+    })),
+
+  setId: (id) => set((state) => ({ loginObj: { ...state.loginObj, id } })),
+
+  setPassword: (password) =>
+    set((state) => ({ loginObj: { ...state.loginObj, password } })),
+
+  setAccountId: (id) =>
+    set((state) => ({ createAccountObj: { ...state.createAccountObj, id } })),
+
+  setAccountPassword: (password) =>
+    set((state) => ({
+      createAccountObj: { ...state.createAccountObj, password },
+    })),
+
+  setName: (name) =>
+    set((state) => ({ createAccountObj: { ...state.createAccountObj, name } })),
+
+  setCheckPw: (checkPw) => set((state) => ({ checkPw })),
+
+  setCheckPwVaild: (checkPw) =>
+    set((state) => ({
+      setPasswordCheck: state.createAccountObj.password === state.checkPw,
+    })),
 }));
