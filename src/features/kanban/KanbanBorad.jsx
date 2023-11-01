@@ -56,7 +56,10 @@ export default function TestKanbanBoard() {
         <div
           key={columnIndex}
           onDragOver={onDragOver}
-          onDrop={(e) => onDrop(e, columnIndex)}
+          onDrop={(e) => {
+            onDrop(e, columnIndex);
+            console.log('onDrop column', column);
+          }}
         >
           <h2>
             <Progress value={column.title} color={column.color} />
@@ -66,7 +69,10 @@ export default function TestKanbanBoard() {
               <div
                 key={item.id}
                 draggable
-                onDragStart={(e) => onDragStart(e, columnIndex, itemIndex)}
+                onDragStart={(e) => {
+                  onDragStart(e, columnIndex, itemIndex);
+                  console.log('onDragStart');
+                }}
                 className="border border-gray-300 rounded-md text-center py-2 w-11/12 mb-1"
               >
                 <a href="#">
