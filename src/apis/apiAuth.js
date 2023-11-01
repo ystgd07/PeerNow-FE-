@@ -11,14 +11,11 @@ export async function registApi({ id, password, name }) {
   return res.data;
 }
 
-export async function loginApi({ id, password }) {
-  const form = {
-    id: id,
-    pw: password,
-  };
+export async function loginApi(form) {
+  console.log('form', form);
 
   const res = await axios
-    .post(`/user/login`, form, {
+    .post(`/api/user/login`, form, {
       withCredentials: true,
     })
     .then((res) => {
