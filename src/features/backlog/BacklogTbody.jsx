@@ -715,10 +715,10 @@ export default function BacklogTbody() {
             </p>
           </th>
           <td className="px-6 py-2">
-            <BacklogSprint value={item.sprint} />
+            <BacklogStatus value={item.status} color={item.color} />
           </td>
           <td className="px-6 py-2">
-            <BacklogStatus value={item.status} color={item.color} />
+            <BacklogSprint value={item.sprint} />
           </td>
           <td className="px-6 py-2">
             <img
@@ -727,11 +727,19 @@ export default function BacklogTbody() {
               alt="백로그_담당자_이미지"
             />
           </td>
+          {/*
           <td className="px-4 py-2 text-right">
+<<<<<<< HEAD
+             <a href="#" className="font-medium text-xl text-blue-600">
+              <AiOutlineDownload />
+            </a> 
+=======
             <p href="#" className="text-xl font-medium text-blue-600">
               <AiOutlineDownload />
             </p>
+>>>>>>> 5d151d7a1598360e3e3d5b988bf1f4e8921504a3
           </td>
+          */}
         </tr>
       ))}
     </>
