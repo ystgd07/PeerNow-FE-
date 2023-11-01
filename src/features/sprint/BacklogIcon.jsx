@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function BacklogIcon() {
-  // Define an array of data for the items
   const items = [
     { id: 1, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
     { id: 2, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
@@ -41,22 +40,18 @@ export default function BacklogIcon() {
   return (
     <>
       {items.map((item) => (
-        <a
-          key={item.id}
-          href="#"
-          className="border border-gray-300 rounded-md text-center py-2"
-        >
-          <div className="flex justify-center">
-            <span>
+        <div className="border border-gray-300 rounded-md text-center py-2 w-11/12 mb-1">
+          <a href="#">
+            <span className="flex justify-center">
               <img
-                src={item.imgSrc}
-                alt={`백로그_담당자_이미지_${item.id}`}
+                src="testImg.jpg"
+                alt="백로그_담당자_이미지"
                 className="rounded-full w-6 h-6"
               />
+              <span className="ml-1">백로그 이름</span>
             </span>
-            <span className="ml-1">{item.text}</span>
-          </div>
-        </a>
+          </a>
+        </div>
       ))}
     </>
   );

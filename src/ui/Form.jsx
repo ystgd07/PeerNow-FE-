@@ -40,12 +40,6 @@ export default function Form({ btnName, link, title, checkValid, ...props }) {
                   <FormInput label1={item} key={index} title={title} />
                 ))}
 
-                {btnName === '로그인' && (
-                  <div className="flex items-center justify-between text-red-400">
-                    <Link to="/home/main">Forgot password?</Link>
-                  </div>
-                )}
-
                 {checkValid ? (
                   <FormButton
                     checkValid={checkValid}
@@ -56,7 +50,12 @@ export default function Form({ btnName, link, title, checkValid, ...props }) {
                   <FormButton checkValid={checkValid} btnName={btnName} />
                 )}
 
-                <div className="flex flex-row-reverse">
+                <div className="flex flex-row justify-between">
+                  {btnName === '로그인' && (
+                    <div className="flex items-center justify-between text-red-400">
+                      <Link to="/home/main">비밀번호 찾기</Link>
+                    </div>
+                  )}
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                     {btnName !== '계정생성' ? (
                       <Link to="/signup">회원가입</Link>
