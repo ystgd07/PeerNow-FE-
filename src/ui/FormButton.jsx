@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { loginApi } from '../apis/apiAuth';
 import { useLoginAndCreateAccount } from '../store/store';
@@ -8,31 +8,19 @@ export default function FormButton({ checkValid, btnName, event }) {
     (state) => state,
   );
 
-  const { mutate: login, isLoading } = useQuery({
-    mutaitionFn: ({ id, password }) => loginApi({ id, password }),
+  const queryClient = useQueryClient();
+
+  //   const query = useQuery({ queryKey: ['login'], queryFn: loginApi });
+
+  const mutation = useMutation({
+    mutationFn: loginApi,
     onSuccess: (user) => {
-      console.log('Success', user);
+      console.log('Success : ', user);
     },
     onError: (error) => {
       console.log('Error', error);
     },
   });
-
-  function handleLoginSubmit(e) {
-    e.preventDefault();
-    if (!loginObj.id || !loginObj.password) return;
-    const loginId = loginObj.id;
-    const loginPassword = loginObj.password;
-    login(
-      { loginId, loginPassword },
-      {
-        onSettled: () => {
-          setId('');
-          setPassword('');
-        },
-      },
-    );
-  }
 
   return (
     <div
@@ -46,7 +34,9 @@ export default function FormButton({ checkValid, btnName, event }) {
       checkValid ? 'cursor-pointer' : 'cursor-not-allowed'
     }`}
       disabled={checkValid}
-      onClick={handleLoginSubmit}
+      onClick={() => {
+        mutation.mutate(loginObj);
+      }}
     >
       <p className="text-lg font-bold text-white">{btnName}</p>
     </div>
