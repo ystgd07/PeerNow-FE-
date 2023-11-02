@@ -3,11 +3,17 @@ import { useCreatePjtOne } from '../store/store';
 
 export default function InputSearch({ content, title }) {
   const [pjtValid, setPjtValid] = useState(true);
-  const { pjtObj, peerName, setPeerName } = useCreatePjtOne((state) => state);
+  const {
+    pjtObj,
+    peerName,
+    setPeerName,
+    setIsSearchResultOpen,
+    isSearchResultOpen,
+  } = useCreatePjtOne((state) => state);
 
   const mouseOutEvent = () => {
-    if (title === '팀원선택') {
-      if (pjtObj.peer_id.length > 0) {
+    if (title === '팀원 선택') {
+      if (Object.keys(pjtObj.peer_id).length > 0) {
         setPjtValid(true);
       } else {
         setPjtValid(false);
@@ -17,13 +23,14 @@ export default function InputSearch({ content, title }) {
 
   const onChangeEventHandler = (e) => {
     setPeerName(e.target.value);
+    setIsSearchResultOpen();
   };
 
   return (
     <div className="mb-6 ">
       <p className="mb-4 font-semibold">{title}</p>
       <input
-        type="email"
+        type="text"
         id="email"
         className={`shadow-sm bg-gray-50 border ${
           pjtValid ? 'border-gray-300' : 'border-red-500'
@@ -40,8 +47,8 @@ export default function InputSearch({ content, title }) {
       {pjtValid ? (
         ''
       ) : (
-        <p class="mt-1 text-sm text-red-600 dark:text-red-500 p-1">
-          <span class="font-medium">필수 입력칸 입니다.</span> 입력해주세요.
+        <p className="p-1 mt-1 text-sm text-red-600 dark:text-red-500">
+          <span className="font-medium">필수 입력칸 입니다.</span> 입력해주세요.
         </p>
       )}
     </div>

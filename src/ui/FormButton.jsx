@@ -1,20 +1,32 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import React from 'react';
-import { loginApi } from '../apis/apiAuth';
+import { loginApi, registApi } from '../apis/apiAuth';
 import { useLoginAndCreateAccount } from '../store/store';
+import { useNavigate } from 'react-router-dom';
 
 export default function FormButton({ checkValid, btnName, event }) {
-  const { loginObj, setId, setpw } = useLoginAndCreateAccount((state) => state);
+  const { loginObj, setId, setpw, createAccountObj } = useLoginAndCreateAccount(
+    (state) => state,
+  );
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
-  //   const { query, isLoading } = useQuery({
-  //     queryKey: ['login'],
-  //     queryFn: loginApi,
-  //   });
-
-  const mutation = useMutation({
-    mutationFn: loginApi(loginObj),
+  const { mutate: login, isLoading } = useMutation(loginApi, {
     onSuccess: (user) => {
       console.log('Success : ', user);
+      queryClient.invalidateQueries();
+      navigate('/home');
+    },
+    onError: (error) => {
+      console.log('Error', error);
+    },
+  });
+
+  const { mutate: createAccount, isCreateLoading } = useMutation(registApi, {
+    onSuccess: (user) => {
+      console.log('Success : ', user);
+      queryClient.invalidateQueries();
+      navigate('/');
     },
     onError: (error) => {
       console.log('Error', error);
@@ -34,7 +46,9 @@ export default function FormButton({ checkValid, btnName, event }) {
     }`}
       disabled={checkValid}
       onClick={() => {
-        mutation.mutate(loginObj);
+        btnName === '로그인'
+          ? login(loginObj)
+          : createAccount(createAccountObj);
       }}
     >
       <p className="text-lg font-bold text-white">{btnName}</p>
