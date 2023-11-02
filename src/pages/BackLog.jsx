@@ -1,17 +1,10 @@
 import Header from '../ui/Header';
 import { useEffect } from 'react';
-import { useOpenMainPage, useOpenMypage } from '../store/store';
+import { useBackLogPage, useOpenMainPage, useOpenMypage } from '../store/store';
 import BacklogList from '../features/backlog/BacklogList';
 
 export default function BackLog() {
-  const { setOpenMainPage, openMainPage } = useOpenMainPage((state) => state);
-  const { setOpenMypage, openMypage } = useOpenMypage((state) => state);
-
-  useEffect(() => {
-    console.log('openMainPage', openMainPage);
-    setOpenMainPage(openMainPage);
-    setOpenMypage(openMypage);
-  }, []);
+  const { isBackLogModalOpen } = useBackLogPage((state) => state);
 
   return (
     <>
@@ -19,6 +12,7 @@ export default function BackLog() {
       <div className="w-full h-auto">
         <Header />
         <BacklogList />
+        {isBackLogModalOpen && <div>임시 모달</div>}
       </div>
     </>
   );
