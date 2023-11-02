@@ -1,10 +1,10 @@
 import axios from 'axios';
 const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
-export async function registApi({ id, password, name }) {
+export async function registApi({ id, pw, name }) {
   const res = await axios.post('/user/join', {
     id,
-    pw: password,
+    pw: pw,
     name: name,
   });
 

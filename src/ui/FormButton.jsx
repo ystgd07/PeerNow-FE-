@@ -4,11 +4,7 @@ import { loginApi } from '../apis/apiAuth';
 import { useLoginAndCreateAccount } from '../store/store';
 
 export default function FormButton({ checkValid, btnName, event }) {
-  const { loginObj, setId, setPassword } = useLoginAndCreateAccount(
-    (state) => state,
-  );
-
-  const queryClient = useQueryClient();
+  const { loginObj, setId, setpw } = useLoginAndCreateAccount((state) => state);
 
   //   const query = useQuery({ queryKey: ['login'], queryFn: loginApi });
 
