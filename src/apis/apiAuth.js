@@ -19,7 +19,8 @@ export async function loginApi(form) {
       withCredentials: true,
     })
     .then((res) => {
-      const { accessToken } = res.data.token.accessToken;
+      console.log('res', res);
+      const { accessToken } = res.data.tokenInfo.accessToken;
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     })
