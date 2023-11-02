@@ -82,7 +82,7 @@ export default function FormInput({ ...props }) {
         <input
           type={`${
             props.label1 === '패스워드 확인' || props.label1 === '패스워드'
-              ? 'pw'
+              ? 'password'
               : 'text'
           }`}
           name="email"

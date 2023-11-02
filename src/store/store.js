@@ -119,3 +119,10 @@ export const useLoginAndCreateAccount = create((set) => ({
       setpwCheck: state.createAccountObj.pw === state.checkPw,
     })),
 }));
+
+export const useBackLogPage = create((set) => ({
+  isBackLogModalOpen: false,
+  setBackLogModalOpen: (isBackLogModalOpen) =>
+    set((state) => ({ isBackLogModalOpen: !state.isBackLogModalOpen })),
+  setBackLogModalOpenFalse: () => set({ isBackLogModalOpen: false }),
+}));
