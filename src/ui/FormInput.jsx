@@ -5,16 +5,16 @@ export default function FormInput({ ...props }) {
   const {
     loginObj,
     setId,
-    setPassword,
+    setpw,
     setLoginValid,
-    setPasswordCheck,
+    setpwCheck,
     createAccountObj,
     setCreateAccountValid,
     setName,
     checkPw,
     setCheckPw,
     setCheckPwVaild,
-    setAccountPassword,
+    setAccountpw,
     setAccountName,
     setAccountId,
     isValidCreateAccount,
@@ -24,7 +24,7 @@ export default function FormInput({ ...props }) {
     console.log('create validate', isValidCreateAccount);
     if (props.title === '로그인') {
       if (props.label1 === '패스워드') {
-        setPassword(e.target.value);
+        setpw(e.target.value);
         setLoginValid();
       }
 
@@ -41,7 +41,7 @@ export default function FormInput({ ...props }) {
       }
 
       if (props.label1 === '패스워드') {
-        setAccountPassword(e.target.value);
+        setAccountpw(e.target.value);
         setCreateAccountValid();
       }
 
@@ -67,7 +67,7 @@ export default function FormInput({ ...props }) {
         <input
           type={`${
             props.label1 === '패스워드 확인' || props.label1 === '패스워드'
-              ? 'password'
+              ? 'pw'
               : 'text'
           }`}
           name="email"
@@ -76,7 +76,7 @@ export default function FormInput({ ...props }) {
           placeholder={`${props.label1.slice(0, 8)}`}
           required=""
           onChange={changeInputHandler}
-          value={props.label1 === '아이디' ? loginObj.id : loginObj.password}
+          value={props.label1 === '아이디' ? loginObj.id : loginObj.pw}
         />
       ) : (
         <input
@@ -88,7 +88,7 @@ export default function FormInput({ ...props }) {
           name="email"
           id="email"
           className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ${
-            !setPasswordCheck && props.label1 === '패스워드 확인'
+            !setpwCheck && props.label1 === '패스워드 확인'
               ? 'border-red-500'
               : 'border-gray-300'
           }  h-10`}
@@ -99,14 +99,14 @@ export default function FormInput({ ...props }) {
             props.label1 === '아이디'
               ? createAccountObj.id
               : props.label1 === '패스워드'
-              ? createAccountObj.password
+              ? createAccountObj.pw
               : props.label1 === '패스워드 확인'
               ? checkPw
               : createAccountObj.name
           }
         />
       )}
-      {!setPasswordCheck && props.label1 === '패스워드 확인' && (
+      {!setpwCheck && props.label1 === '패스워드 확인' && (
         <p className="p-1 text-xs text-red-500">
           비밀번호가 일치하지 않습니다.
         </p>

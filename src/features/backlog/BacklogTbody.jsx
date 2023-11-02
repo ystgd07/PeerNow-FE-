@@ -1,4 +1,4 @@
-import { AiOutlineDownload } from 'react-icons/ai';
+// import { AiOutlineDownload } from 'react-icons/ai';
 import BacklogStatus from './BacklogStatus';
 import BacklogSprint from './BacklogSprint';
 
@@ -729,15 +729,9 @@ export default function BacklogTbody() {
           </td>
           {/*
           <td className="px-4 py-2 text-right">
-<<<<<<< HEAD
-             <a href="#" className="font-medium text-xl text-blue-600">
-              <AiOutlineDownload />
-            </a> 
-=======
             <p href="#" className="text-xl font-medium text-blue-600">
               <AiOutlineDownload />
             </p>
->>>>>>> 5d151d7a1598360e3e3d5b988bf1f4e8921504a3
           </td>
           */}
         </tr>

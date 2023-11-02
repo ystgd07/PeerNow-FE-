@@ -4,16 +4,15 @@ import { loginApi } from '../apis/apiAuth';
 import { useLoginAndCreateAccount } from '../store/store';
 
 export default function FormButton({ checkValid, btnName, event }) {
-  const { loginObj, setId, setPassword } = useLoginAndCreateAccount(
-    (state) => state,
-  );
+  const { loginObj, setId, setpw } = useLoginAndCreateAccount((state) => state);
 
-  const queryClient = useQueryClient();
-
-  //   const query = useQuery({ queryKey: ['login'], queryFn: loginApi });
+  //   const { query, isLoading } = useQuery({
+  //     queryKey: ['login'],
+  //     queryFn: loginApi,
+  //   });
 
   const mutation = useMutation({
-    mutationFn: loginApi,
+    mutationFn: loginApi(loginObj),
     onSuccess: (user) => {
       console.log('Success : ', user);
     },
