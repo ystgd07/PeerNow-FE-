@@ -14,6 +14,7 @@ export default function SideModalMain() {
   const { pjtObj, setIsValidPjt1, isValidPjt1, isValidPjt2 } = useCreatePjtOne(
     (state) => state,
   );
+  console.log('내가 혹시 범인???... sideModalMain.js 1번째 줄');
 
   const { page, setNextPage, setPrevPage } = useCreatePjtOne((state) => state);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function ButtonPakage({ value, event, disabled }) {
-  console.log('ButtonPakage disabled', disabled);
+  console.log('ButtonPakage disabled value', value);
 
   return (
     <div

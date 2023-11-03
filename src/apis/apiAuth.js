@@ -1,27 +1,26 @@
 import axios from 'axios';
+
 const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
 export async function registApi({ id, pw, name }) {
-  const res = await axios.post('/user/join', {
+  const res = await axios.post('http://www.peernow.site/api/user/join', {
     id,
-    pw: pw,
-    name: name,
+    pw,
+    name,
   });
-
-  return res.data;
 }
 
 export async function loginApi(form) {
   console.log('form', form);
 
   const res = await axios
-    .post(`/api/user/login`, form, {
+    .post(`http://www.peernow.site/api/user/login`, form, {
       withCredentials: true,
     })
     .then((res) => {
       console.log('res', res);
-      const { accessToken } = res.data.tokenInfo.accessToken;
-
+      const accessToken = res.data.tokenInfo.accessToken;
+      console.log('accessToken', accessToken);
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     })
     .catch((err) => {
@@ -44,6 +43,4 @@ export async function loginApi(form) {
 
     setTimeout(onSilentRefresh, JWT_EXPIRY_TIME);
   };
-
-  return res.data;
 }
