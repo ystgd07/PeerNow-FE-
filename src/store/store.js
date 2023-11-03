@@ -124,5 +124,6 @@ export const useBackLogPage = create((set) => ({
   isBackLogModalOpen: false,
   setBackLogModalOpen: (isBackLogModalOpen) =>
     set((state) => ({ isBackLogModalOpen: !state.isBackLogModalOpen })),
+  // set((state) => ({ isBackLogModalOpen: !state.isBackLogModalOpen })),
   setBackLogModalOpenFalse: () => set({ isBackLogModalOpen: false }),
 }));

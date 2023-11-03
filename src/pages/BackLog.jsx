@@ -2,6 +2,7 @@ import Header from '../ui/Header';
 import { useBackLogPage } from '../store/store';
 import BacklogList from '../features/backlog/BacklogList';
 import TestModal from '../features/backlog/TestModal';
+import TestModal2 from '../features/backlog/TestModal2';
 
 export default function BackLog() {
   const { isBackLogModalOpen } = useBackLogPage((state) => state);
@@ -12,7 +13,7 @@ export default function BackLog() {
       <div className="w-full h-auto">
         <Header />
         <BacklogList />
-        {isBackLogModalOpen && <TestModal />}
+        {isBackLogModalOpen && <TestModal2 />}
       </div>
     </>
   );
