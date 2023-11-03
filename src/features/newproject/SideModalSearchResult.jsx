@@ -7,9 +7,7 @@ export default function SideModalSearchResult() {
   const {
     peerName,
     setPeerName,
-    userList,
     setSelectUser,
-    selectedUser,
     isSearchResultOpen,
     setIsSearchResultOpen,
   } = useCreatePjtOne((state) => state);
@@ -37,11 +35,12 @@ export default function SideModalSearchResult() {
     },
   );
   console.log('data : ', data);
+
   return (
     <div
-      className={`absolute z-50 ${
+      className={`scrollbar absolute z-50 scrollbar-thumb-amber-500  ${
         !peerName > 0 || !isSearchResultOpen ? 'hidden' : ''
-      } h-fit py-3 mt-8 overflow-y-scroll text-sm bg-white rounded-md w-full shadow-md top-11 right-0`}
+      } h-32 py-3 mt-8 overflow-y-scroll text-sm bg-white rounded-md w-full shadow-md top-11 right-0`}
     >
       {!isLoading &&
         data?.data?.datalist &&

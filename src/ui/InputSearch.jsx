@@ -3,13 +3,8 @@ import { useCreatePjtOne } from '../store/store';
 
 export default function InputSearch({ content, title }) {
   const [pjtValid, setPjtValid] = useState(true);
-  const {
-    pjtObj,
-    peerName,
-    setPeerName,
-    setIsSearchResultOpen,
-    isSearchResultOpen,
-  } = useCreatePjtOne((state) => state);
+  const { pjtObj, peerName, setPeerName, setIsSearchResultOpen } =
+    useCreatePjtOne((state) => state);
 
   const mouseOutEvent = () => {
     if (title === '팀원 선택') {
@@ -41,6 +36,7 @@ export default function InputSearch({ content, title }) {
         value={`${peerName}`}
         onChange={onChangeEventHandler}
         onMouseOut={mouseOutEvent}
+        autoComplete="off"
         required
       />
 

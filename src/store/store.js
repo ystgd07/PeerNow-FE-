@@ -32,7 +32,7 @@ export const useCreatePjtOne = create((set) => ({
     end_date: new Date(),
   },
   userList: [],
-  selectedUser: {},
+  selectedUser: [],
   isValidPjt1: false,
   isValidPjt2: false,
   isSearchResultOpen: false,
@@ -40,7 +40,12 @@ export const useCreatePjtOne = create((set) => ({
   page: 1,
   setIsSearchResultOpen: (isSearchResultOpen) =>
     set((state) => ({ isSearchResultOpen: !state.isSearchResultOpen })),
-  setSelectUser: (selectedUser) => set((state) => ({ selectedUser })),
+
+  setSelectUser: (selectedUser) =>
+    set((state) => ({
+      selectedUser: [...new Set(state.selectedUser.concat(selectedUser))],
+    })),
+
   setPjtTitle: (title) =>
     set((state) => ({ pjtObj: { ...state.pjtObj, title } })),
 
@@ -69,7 +74,12 @@ export const useCreatePjtOne = create((set) => ({
     set((state) => ({
       isValidPjt2: Object.keys(state.pjtObj.peer_id).length > 0,
     })),
-  setUserList: (userList) => set((state) => ({ userList })),
+
+  setUserList: (userList) =>
+    set((state) => ({
+      userList,
+    })),
+
   setNextPage: (page) => set((state) => ({ page: 2 })),
   setPrevPage: (page) => set((state) => ({ page: 1 })),
 }));
