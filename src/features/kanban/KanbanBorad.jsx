@@ -73,18 +73,21 @@ export default function TestKanbanBoard() {
                   onDragStart(e, columnIndex, itemIndex);
                   console.log('onDragStart');
                 }}
-                className="w-11/12 py-2 mb-1 text-center border border-gray-300 rounded-md"
+                className="w-11/12 py-1 mb-1 text-center"
               >
-                <p>
+                <div className="hover:cursor-move group max-w-xs mx-auto rounded-lg p-3 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-[#f7cc10] hover:ring-[#f7cc10]">
                   <span className="flex justify-center">
                     <img
-                      src={item.imgSrc}
+                      // src={item.imgSrc}
+                      src="https://source.unsplash.com/random/?"
                       alt="백로그_담당자_이미지"
-                      className="w-6 h-6 rounded-full"
+                      className="w-6 h-6 rounded-full mr-2"
                     />
-                    <span className="ml-1">{item.text}</span>
+                    <span class="text-slate-900 group-hover:text-white text-sm font-semibold">
+                      {item.text}
+                    </span>
                   </span>
-                </p>
+                </div>
               </div>
             ))}
         </div>
