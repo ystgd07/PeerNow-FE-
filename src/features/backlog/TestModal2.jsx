@@ -2,14 +2,17 @@ import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import ModalDetail from './ModalDetail';
+import { useBackLogPage } from '../../store/store';
 
-export default function TestModal() {
-  const [open, setOpen] = useState(true);
+export default function TestModal2() {
+  setBackLogModalOpen = false;
+  const { setBackLogModalOpen } = useBackLogPage((state) => state);
+  //   const [open, setOpen] = useState(true);
   //   setBackLogModalOpen = useState(true);
 
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={setBackLogModalOpen} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setBackLogModalOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -48,7 +51,7 @@ export default function TestModal() {
                       <button
                         type="button"
                         className="relative rounded-md text-gray-300 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
-                        onClick={() => setOpen(false)}
+                        onClick={() => setBackLogModalOpen}
                       >
                         <span className="absolute -inset-2.5" />
                         <span className="sr-only">Close panel</span>
