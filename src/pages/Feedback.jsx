@@ -1,3 +1,4 @@
+import FeedbackMain from '../features/feedback/FeedbackMain';
 import Header from '../ui/Header';
 
 export default function Feedback() {
@@ -6,6 +7,7 @@ export default function Feedback() {
       {/* 화면 틀 */}
       <div className="w-full h-auto">
         <Header />
+        <FeedbackMain />
       </div>
     </>
   );
