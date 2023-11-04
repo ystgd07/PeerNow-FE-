@@ -9,7 +9,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white shadow-md w-full">
       <div>
         <div className="container flex items-center justify-start py-4 mx-auto">
           <div className="relative group">
