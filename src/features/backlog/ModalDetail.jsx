@@ -25,10 +25,15 @@ export default function ModalDetail() {
             className="border-2 w-full  border-gray-300 p-2 mb-4 rounded-md"
             placeholder="설명을 입력할 수 있습니다"
           />
-          <input
-            className="border-2 w-full  border-gray-300 p-2 mb-4 rounded-md"
-            placeholder="파일 업로드 칸"
-          />
+          <div className="items-center">
+            <label className="block">
+              {/* <span class="sr-only">Choose profile photo</span> */}
+              <input
+                type="file"
+                className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
+              />
+            </label>
+          </div>
           <div className="float-right my-2">
             <CreateButton value={'완료'} />
           </div>
