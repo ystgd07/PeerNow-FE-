@@ -8,8 +8,7 @@ import { useOpenMainPage, useOpenMypage } from '../store/store';
 export default function Home() {
   const { openMainPage } = useOpenMainPage((state) => state);
   const { openMypage } = useOpenMypage((state) => state);
-  console.log('openMainPage in home', openMainPage);
-  console.log('내가 혹시 범인 ??home openMypage', openMypage);
+
   return (
     <>
       <Gnb />

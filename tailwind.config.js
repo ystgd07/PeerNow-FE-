@@ -27,5 +27,8 @@ module.exports = {
       },
     },
   },
+  variants: {
+    scrollbar: ['rounded'],
+  },
   plugins: [require('flowbite/plugin'), require('tailwind-scrollbar')],
 };

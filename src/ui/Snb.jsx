@@ -7,7 +7,7 @@ export default function Snb() {
     <>
       <div
         id="drawer-navigation"
-        className="relative left-0 z-20 w-1/4 h-screen p-5 bg-white border-t-2 dark:bg-gray-800"
+        className="relative left-0 z-20 w-1/6 h-screen p-5 bg-white border-t-2 dark:bg-gray-800"
         tabIndex="1"
         aria-labelledby="drawer-navigation-label"
       >

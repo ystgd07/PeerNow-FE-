@@ -38,7 +38,7 @@ export default function Main() {
           onClick={setPjtModalFalse}
         >
           <div className="flex rl">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col h-64 gap-3 p-6 overflow-y-scroll bg-white rounded-lg shadow-sm scrollbar-thumb-amber-400 scrollbar-thumb-rounded-full scrollbar-track-slate-50 scrollbar-thin ">
               {!isLoading &&
                 data?.data?.datalist?.map((res, idx) => (
                   <MyProjectCard res={res} key={idx} />
