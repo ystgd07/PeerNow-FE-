@@ -4,9 +4,10 @@ import MyProjectCardTitle from './MyProjectCardTitle';
 import MyProjectCardFooter from './MyProjectCardFooter';
 import { useHover, useProjectModal } from '../../store/store';
 
-export default function MyProjectCard() {
+export default function MyProjectCard({ res }) {
   const { setHover } = useHover((state) => state);
   const { pjtModal } = useProjectModal((state) => state);
+  const { setProjectNumber } = useProjectModal((state) => state);
 
   return (
     <div
@@ -15,10 +16,18 @@ export default function MyProjectCard() {
           ? 'hover:bg-section hover:opacity-80 dark:hover:bg-gray-600 hover:scale-95'
           : ''
       }`}
-      onClick={!pjtModal ? setHover : null}
+      onClick={
+        !pjtModal
+          ? () => {
+              setHover();
+              setProjectNumber(res.no);
+            }
+          : null
+      }
+      id={res.no}
     >
-      <MyProjectCardTitle />
-      <MyProjectCardFooter />
+      <MyProjectCardTitle title={res.title} />
+      <MyProjectCardFooter strDate={res.start_date} endDate={res.end_date} />
     </div>
   );
 }

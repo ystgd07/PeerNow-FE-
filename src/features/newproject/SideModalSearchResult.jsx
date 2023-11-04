@@ -10,6 +10,10 @@ export default function SideModalSearchResult() {
     setSelectUser,
     isSearchResultOpen,
     setIsSearchResultOpen,
+    setIsValidPjt2,
+    setSelectUserRequestPeerID,
+    setNoRequestPeerID,
+    selectedUser,
   } = useCreatePjtOne((state) => state);
 
   const { data, isLoading } = useQuery(
@@ -49,9 +53,12 @@ export default function SideModalSearchResult() {
             className="flex justify-start px-2 py-2 my-2 text-gray-700 rounded-md cursor-pointer hover:text-blue-400 hover:bg-blue-100"
             key={idx}
             onClick={() => {
-              setSelectUser(user);
+              setNoRequestPeerID(user);
               setIsSearchResultOpen();
               setPeerName('');
+              setIsValidPjt2();
+              setSelectUser(user.id);
+              // setSelectUserRequestPeerID(user.id);
             }}
           >
             <span className="w-2 h-2 m-2 bg-gray-400 rounded-full"></span>

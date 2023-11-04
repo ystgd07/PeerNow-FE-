@@ -7,14 +7,13 @@ import { set } from 'date-fns';
 import SideModalList from './SideModalList';
 import SideModalSearchResult from './SideModalSearchResult';
 import InputSearch from '../../ui/InputSearch';
+import { useMutation, useQueryClient } from 'react-query';
+import { createProjectApi } from '../../apis/apiAuth';
 
 export default function SideModalMain() {
-  const [pjtName, setPjtName] = useState('');
-  const [pjtValid, setPjtValid] = useState(true);
   const { pjtObj, setIsValidPjt1, isValidPjt1, isValidPjt2 } = useCreatePjtOne(
     (state) => state,
   );
-  console.log('내가 혹시 범인???... sideModalMain.js 1번째 줄');
 
   const { page, setNextPage, setPrevPage } = useCreatePjtOne((state) => state);
 

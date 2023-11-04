@@ -1,5 +1,26 @@
 import { create } from 'zustand';
 
+const initialCreatePjt = {
+  pjtObj: {
+    title: '',
+    detail: '',
+    peer_id: {},
+    start_date: new Date(),
+    end_date: new Date(),
+  },
+  noRequestPeerID: [],
+  userList: [],
+  selectedUser: {},
+  isValidPjt1: false,
+  isValidPjt2: false,
+  isSearchResultOpen: false,
+  peerName: '',
+  page: 1,
+};
+const initialPjtModal = {
+  pjtModal: false,
+};
+
 export const useHover = create((set) => ({
   hover: false,
   setHover: (hover) => set((state) => ({ hover: !state.hover })),
@@ -7,7 +28,25 @@ export const useHover = create((set) => ({
 
 export const useProjectModal = create((set) => ({
   pjtModal: false,
+  pjtModalData: {
+    no: 0,
+    user_id: '',
+    peer_id: {},
+    title: '',
+    detail: '',
+    start_date: '',
+    end_date: '',
+    reg_date: '',
+    mod_date: '',
+  },
+  projectNumber: '',
+  setProjectNumber: (projectNumber) => set((state) => ({ projectNumber })),
+
   setPjtModal: (pjtModal) => set((state) => ({ pjtModal: !state.pjtModal })),
+
+  setPjtModalData: (pjtModalData) =>
+    set((state) => ({ pjtModalData: pjtModalData })),
+
   setPjtModalFalse: () => set({ pjtModal: false }),
 }));
 
@@ -24,26 +63,42 @@ export const useOpenMypage = create((set) => ({
 }));
 
 export const useCreatePjtOne = create((set) => ({
-  pjtObj: {
-    title: '',
-    detail: '',
-    peer_id: {},
-    start_date: new Date(),
-    end_date: new Date(),
-  },
-  userList: [],
-  selectedUser: [],
-  isValidPjt1: false,
-  isValidPjt2: false,
-  isSearchResultOpen: false,
-  peerName: '',
-  page: 1,
+  // pjtObj: {
+  //   title: '',
+  //   detail: '',
+  //   peer_id: {},
+  //   start_date: new Date(),
+  //   end_date: new Date(),
+  // },
+  // noRequestPeerID: [],
+  // userList: [],
+  // selectedUser: {},
+  // isValidPjt1: false,
+  // isValidPjt2: false,
+  // isSearchResultOpen: false,
+  // peerName: '',
+  // page: 1,
+
+  ...initialCreatePjt,
   setIsSearchResultOpen: (isSearchResultOpen) =>
     set((state) => ({ isSearchResultOpen: !state.isSearchResultOpen })),
 
-  setSelectUser: (selectedUser) =>
+  setSelectUser: (peer_id) =>
     set((state) => ({
-      selectedUser: [...new Set(state.selectedUser.concat(selectedUser))],
+      pjtObj: {
+        ...state.pjtObj,
+        peer_id: Object.assign(state.pjtObj.peer_id, { [peer_id]: 'TM' }),
+      },
+    })),
+
+  setNoRequestPeerID: (peer_id) =>
+    set((state) => ({
+      noRequestPeerID: [...new Set(state.noRequestPeerID.concat(peer_id))],
+    })),
+
+  setSelectUserRequestPeerID: (user) =>
+    set((state) => ({
+      selectedUser: Object.assign(state.selectedUser, { [user]: 'TM' }),
     })),
 
   setPjtTitle: (title) =>
@@ -72,7 +127,7 @@ export const useCreatePjtOne = create((set) => ({
 
   setIsValidPjt2: (pjtObj) =>
     set((state) => ({
-      isValidPjt2: Object.keys(state.pjtObj.peer_id).length > 0,
+      isValidPjt2: state.noRequestPeerID.length > 0,
     })),
 
   setUserList: (userList) =>
@@ -80,6 +135,9 @@ export const useCreatePjtOne = create((set) => ({
       userList,
     })),
 
+  reset: () => {
+    set(initialCreatePjt);
+  },
   setNextPage: (page) => set((state) => ({ page: 2 })),
   setPrevPage: (page) => set((state) => ({ page: 1 })),
 }));

@@ -1,6 +1,35 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import { useProjectModal } from '../../store/store';
+import axios from 'axios';
 
 export default function PjtInfoMain() {
+  const { setPjtModalData, projectNumber } = useProjectModal((state) => state);
+
+  const { data, isLoading } = useQuery(
+    ['pjtModalData', projectNumber],
+    async () => {
+      const res = await axios.get(
+        `http://www.peernow.site/api/project?projectNumber=${projectNumber}`,
+        {
+          withCredentials: true,
+        },
+      );
+      return res.data;
+    },
+    {
+      enabled: !!projectNumber,
+      onSuccess: (data) => {
+        console.log('undefined log : ', data);
+      },
+      onError: (error) => {
+        console.log('error : ', error);
+      },
+      refetchOnWindowFocus: false,
+    },
+  );
+  console.log('pjtModalData data : ', data);
+
   return (
     <li className="py-3 sm:py-4">
       <div className="flex items-center space-x-4">
