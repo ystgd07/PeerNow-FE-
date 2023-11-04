@@ -28,7 +28,7 @@ export default function MyProjectCard({ res }) {
       id={res.no}
     >
       <div className="flex justify-between p-5">
-        <MyProjectCardTitle title={res.title} />
+        <MyProjectCardTitle title={res.title} res={res} />
         <MyProjectCardContent content={res.detail} />
         <MyProjectCardFooter strDate={res.start_date} endDate={res.end_date} />
       </div>
