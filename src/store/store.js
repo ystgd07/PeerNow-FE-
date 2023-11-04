@@ -21,6 +21,26 @@ const initialPjtModal = {
   pjtModal: false,
 };
 
+export const useOepnUpdateModal = create((set) => ({
+  requestData: {},
+  startDate: new Date(),
+  endDate: new Date(),
+  openUpdateModal: false,
+  dateChangeValid: false,
+
+  setRequestData: (requestData) => set((state) => ({ requestData })),
+
+  setOpenUpdateModal: (openUpdateModal) =>
+    set((state) => ({ openUpdateModal: !state.openUpdateModal })),
+
+  setStartDate: (startDate) => set((state) => ({ startDate })),
+
+  setEndDate: (endDate) => set((state) => ({ endDate })),
+
+  setDateChangeValid: (dateChangeValid) =>
+    set((state) => ({ dateChangeValid: state.startDate < state.endDate })),
+}));
+
 export const useHover = create((set) => ({
   hover: false,
   setHover: (hover) => set((state) => ({ hover: !state.hover })),
@@ -40,7 +60,11 @@ export const useProjectModal = create((set) => ({
     mod_date: '',
   },
   projectNumber: '',
+  projectUserId: '',
   setProjectNumber: (projectNumber) => set((state) => ({ projectNumber })),
+
+  setProjectUserId: (projectUserId) =>
+    set((state) => ({ projectUserId: projectUserId })),
 
   setPjtModal: (pjtModal) => set((state) => ({ pjtModal: !state.pjtModal })),
 

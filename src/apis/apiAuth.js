@@ -47,6 +47,15 @@ export async function loginApi(form) {
   };
 }
 
+export const updateApi = async (projectNumber, data) => {
+  console.log('projectNumberdata', data);
+
+  const res = await axios.put(
+    `http://www.peernow.site/api/project/change?projectNumber=${projectNumber}`,
+    data,
+  );
+};
+
 //프로젝트 생성 api(post)
 
 export async function createProjectApi(pjtObj) {

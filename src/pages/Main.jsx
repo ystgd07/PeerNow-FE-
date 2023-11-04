@@ -7,7 +7,9 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 export default function Main() {
-  const { setPjtModalFalse } = useProjectModal((state) => state);
+  const { setPjtModalFalse, setPjtModalData } = useProjectModal(
+    (state) => state,
+  );
 
   const { data, isLoading } = useQuery(
     ['pjtCard'],
