@@ -1,43 +1,38 @@
 export default function BacklogIcon() {
+  const items = [
+    {
+      text: '화면 설계서 만들기',
+      imageSrc: 'https://source.unsplash.com/random/?woman',
+    },
+    {
+      text: 'AWS 아키텍처 설계',
+      imageSrc: 'https://source.unsplash.com/random/?dog',
+    },
+    {
+      text: 'FE - 로그인페이지',
+      imageSrc: 'https://source.unsplash.com/random/?man',
+    },
+  ];
+
   return (
     <>
-      <p className="py-2 text-center border border-gray-300 rounded-md">
-        <div className="flex justify-center">
-          <span className="">
-            <img
-              src="testImg.jpg"
-              alt="백로그_담당자_이미지"
-              className="w-6 h-6 rounded-full"
-            />
-          </span>
-          <span className="ml-1">화면 설계서 만들기</span>
-        </div>
-      </p>
-      {/* 반복문 */}
-      <p className="py-2 text-center border border-gray-300 rounded-md">
-        <div className="flex justify-center">
-          <span className="">
-            <img
-              src="testImg.jpg"
-              alt="백로그_담당자_이미지"
-              className="w-6 h-6 rounded-full"
-            />
-          </span>
-          <span className="ml-1">AWS 아키텍처 설계</span>
-        </div>
-      </p>
-      <p className="py-2 text-center border border-gray-300 rounded-md">
-        <div className="flex justify-center">
-          <span className="">
-            <img
-              src="testImg.jpg"
-              alt="백로그_담당자_이미지"
-              className="w-6 h-6 rounded-full"
-            />
-          </span>
-          <span className="ml-1">FE - 로그인페이지</span>
-        </div>
-      </p>
+      {items.map((item, index) => (
+        <p
+          key={index}
+          className="py-2 text-center border border-gray-300 rounded-md"
+        >
+          <div className="flex justify-center">
+            <span className="">
+              <img
+                src={item.imageSrc}
+                alt={`백로그_담당자_이미지_${index}`}
+                className="w-6 h-6 rounded-full"
+              />
+            </span>
+            <span className="ml-1">{item.text}</span>
+          </div>
+        </p>
+      ))}
     </>
   );
 }
