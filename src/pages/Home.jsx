@@ -18,10 +18,10 @@ export default function Home() {
   return (
     <>
       <Gnb />
-      <div className="relative flex flex-row h-full">
+      <div className="relative flex flex-row h-screen">
         <Snb />
 
-        <div className={`flex flex-row w-3/4 ${openMypage ? '' : 'ml-10'}`}>
+        <div className={`flex flex-row  w-3/4 ${openMypage ? '' : 'ml-10'}`}>
           <Outlet />
           {openUpdateModal && <ModifyModal />}
         </div>
