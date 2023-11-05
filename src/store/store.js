@@ -17,6 +17,7 @@ const initialCreatePjt = {
   peerName: '',
   page: 1,
 };
+
 const initialPjtModal = {
   pjtModal: false,
 };
@@ -87,25 +88,17 @@ export const useOpenMypage = create((set) => ({
 }));
 
 export const useCreatePjtOne = create((set) => ({
-  // pjtObj: {
-  //   title: '',
-  //   detail: '',
-  //   peer_id: {},
-  //   start_date: new Date(),
-  //   end_date: new Date(),
-  // },
-  // noRequestPeerID: [],
-  // userList: [],
-  // selectedUser: {},
-  // isValidPjt1: false,
-  // isValidPjt2: false,
-  // isSearchResultOpen: false,
-  // peerName: '',
-  // page: 1,
-
   ...initialCreatePjt,
   setIsSearchResultOpen: (isSearchResultOpen) =>
     set((state) => ({ isSearchResultOpen: !state.isSearchResultOpen })),
+
+  setPerrIdOfPjtObj: (peer_id) =>
+    set((state) => ({
+      pjtObj: {
+        ...state.pjtObj,
+        peer_id: {},
+      },
+    })),
 
   setSelectUser: (peer_id) =>
     set((state) => ({
@@ -137,7 +130,7 @@ export const useCreatePjtOne = create((set) => ({
   setPjtEndDate: (end_date) =>
     set((state) => ({ pjtObj: { ...state.pjtObj, end_date } })),
 
-  setPjtObj: (pjtObj) => set((state) => ({ pjtObj })),
+  setPjtObj: (pjtObj) => set((state) => ({ pjtObj: initialCreatePjt.pjtObj })),
 
   setPeerName: (peerName) => set((state) => ({ peerName })),
 
@@ -223,6 +216,6 @@ export const useBackLogPage = create((set) => ({
   isBackLogModalOpen: false,
   setBackLogModalOpen: (isBackLogModalOpen) =>
     set((state) => ({ isBackLogModalOpen: !state.isBackLogModalOpen })),
-  // set((state) => ({ isBackLogModalOpen: !state.isBackLogModalOpen })),
+
   setBackLogModalOpenFalse: () => set({ isBackLogModalOpen: false }),
 }));

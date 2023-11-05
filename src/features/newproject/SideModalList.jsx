@@ -2,15 +2,7 @@ import React, { useState } from 'react';
 import { useCreatePjtOne } from '../../store/store';
 
 export default function SideModalList() {
-  const {
-    peerName,
-    setPeerName,
-    userList,
-    selectedUser,
-    setSelectUser,
-    pjtObj,
-    noRequestPeerID,
-  } = useCreatePjtOne((state) => state);
+  const { noRequestPeerID } = useCreatePjtOne((state) => state);
 
   return (
     <>

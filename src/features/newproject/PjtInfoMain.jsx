@@ -1,7 +1,4 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import { useProjectModal } from '../../store/store';
-import axios from 'axios';
 import { AiOutlineUser } from 'react-icons/ai';
 
 export default function PjtInfoMain({ workerList }) {

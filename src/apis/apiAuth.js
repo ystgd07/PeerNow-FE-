@@ -59,6 +59,7 @@ export const updateApi = async (projectNumber, data) => {
 //프로젝트 생성 api(post)
 
 export async function createProjectApi(pjtObj) {
+  console.log('pjtObj입니다.', pjtObj);
   pjtObj.start_date = format(pjtObj.start_date, 'yyyy-MM-dd');
   pjtObj.end_date = format(pjtObj.end_date, 'yyyy-MM-dd');
   const res = await axios.post('http://www.peernow.site/api/project', pjtObj);

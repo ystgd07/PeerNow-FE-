@@ -4,8 +4,8 @@ import PjtInfoMain from './PjtInfoMain';
 import { useHover, useProjectModal } from '../../store/store';
 import PjtinfoDetail from './PjtinfoDetail';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import { format } from 'date-fns';
+import axios from 'axios';
 
 export default function PjtInfo() {
   const { projectNumber, projectUserId, pjtModalData, setPjtModalData } =

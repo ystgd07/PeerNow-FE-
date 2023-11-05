@@ -3,19 +3,18 @@ import ButtonPakage from '../../ui/ButtonPakage';
 import Input from '../../ui/Input';
 import CalendarUI from '../../ui/CalendarUI';
 import { useCreatePjtOne } from '../../store/store';
-import { set } from 'date-fns';
 import SideModalList from './SideModalList';
 import SideModalSearchResult from './SideModalSearchResult';
 import InputSearch from '../../ui/InputSearch';
-import { useMutation, useQueryClient } from 'react-query';
-import { createProjectApi } from '../../apis/apiAuth';
 
 export default function SideModalMain() {
   const { pjtObj, setIsValidPjt1, isValidPjt1, isValidPjt2 } = useCreatePjtOne(
     (state) => state,
   );
 
-  const { page, setNextPage, setPrevPage } = useCreatePjtOne((state) => state);
+  const { page, setNextPage, setPrevPage, setPerrIdOfPjtObj } = useCreatePjtOne(
+    (state) => state,
+  );
 
   return (
     <div>
@@ -35,7 +34,14 @@ export default function SideModalMain() {
           <CalendarUI title={'프로젝트 종료'} titleColor={'text-red-500'} />
 
           {isValidPjt1 ? (
-            <ButtonPakage value={'다음'} event={setNextPage} disabled={false} />
+            <ButtonPakage
+              value={'다음'}
+              event={() => {
+                setNextPage();
+                setPerrIdOfPjtObj();
+              }}
+              disabled={false}
+            />
           ) : (
             <ButtonPakage value={'다음'} disabled={true} />
           )}
