@@ -73,6 +73,7 @@ export default function PjtInfo() {
         <PjtinfoTitle
           startDate={pjtDetail?.data?.start_date}
           endDate={pjtDetail?.data?.end_date}
+          title={pjtDetail?.data?.title}
         />
         <div className="flow-root">
           <ul role="list" className="divide-gray-200 dark:divide-gray-700">
