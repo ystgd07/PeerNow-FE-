@@ -14,9 +14,9 @@ export default function PjtInfoMain({ workerList }) {
           <p className="mt-2 mb-1 text-lg font-thin text-slate-500">팀원</p>
         </div>
       </div>
-      {workerList?.map((data, idx) => (
-        <li className="py-3 sm:py-4 ">
-          <div className="flex items-center p-3 space-x-4">
+      <li className="h-56 overflow-y-auto divide-y scrollbar-thumb-amber-400 scrollbar-thin">
+        {workerList?.map((data, idx) => (
+          <div className="flex items-center p-4 space-x-4">
             <div className="flex-shrink-0 ">
               <img
                 className="w-8 h-8 rounded-full"
@@ -36,8 +36,8 @@ export default function PjtInfoMain({ workerList }) {
               </div>
             </div>
           </div>
-        </li>
-      ))}
+        ))}
+      </li>
     </div>
   );
 }
