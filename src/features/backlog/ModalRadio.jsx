@@ -1,6 +1,6 @@
 // import { RadioGroup } from '@headlessui/react';
-import Radio from './Radio';
-import RadioGroup from './RadioGroup';
+import Radio from '../../ui/Radio';
+import RadioGroup from '../../ui/RadioGroup';
 
 export default function ModalRadio() {
   return (
