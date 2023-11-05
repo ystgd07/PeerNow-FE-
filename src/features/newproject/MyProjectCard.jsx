@@ -19,7 +19,7 @@ export default function MyProjectCard({ res }) {
   const { setRequestData } = useOepnUpdateModal((state) => state);
   return (
     <div
-      className={`max-w-md justify-center items-center bg-white border-gray-200 rounded-lg shadow-lg w-PjtCard h-16  dark:bg-gray-500 dark:border-gray-500 ${
+      className={`border-2 max-w-md justify-center items-center bg-white border-gray-200 rounded-lg shadow-lg w-PjtCard h-16  dark:bg-gray-500 dark:border-gray-500 ${
         !pjtModal
           ? 'hover:bg-section hover:opacity-80 dark:hover:bg-gray-600 hover:scale-95'
           : ''
