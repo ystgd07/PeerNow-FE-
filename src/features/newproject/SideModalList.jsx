@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { useCreatePjtOne } from '../../store/store';
 
 export default function SideModalList() {
-  const { peerName, setPeerName, userList, selectedUser, setSelectUser } =
-    useCreatePjtOne((state) => state);
+  const { noRequestPeerID } = useCreatePjtOne((state) => state);
 
   return (
     <>
       <li className="py-3 list-none sm:py-4">
-        {selectedUser.length > 0 &&
-          selectedUser.map((user, idx) => (
+        {noRequestPeerID.length > 0 &&
+          noRequestPeerID?.map((user, idx) => (
             <div className="flex items-center space-x-4" key={idx}>
               <div className="flex-shrink-0">
                 <img

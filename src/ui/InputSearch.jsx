@@ -3,12 +3,18 @@ import { useCreatePjtOne } from '../store/store';
 
 export default function InputSearch({ content, title }) {
   const [pjtValid, setPjtValid] = useState(true);
-  const { pjtObj, peerName, setPeerName, setIsSearchResultOpen } =
-    useCreatePjtOne((state) => state);
+  const {
+    pjtObj,
+    peerName,
+    setPeerName,
+    setIsSearchResultOpen,
+    selectedUser,
+    noRequestPeerID,
+  } = useCreatePjtOne((state) => state);
 
   const mouseOutEvent = () => {
     if (title === '팀원 선택') {
-      if (Object.keys(pjtObj.peer_id).length > 0) {
+      if (noRequestPeerID.length > 0) {
         setPjtValid(true);
       } else {
         setPjtValid(false);
