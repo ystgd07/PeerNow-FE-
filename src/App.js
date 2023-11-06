@@ -12,9 +12,14 @@ import SignUp from './pages/SignUp';
 
 import Kanban from './pages/Kanban';
 import BackLog from './pages/BackLog';
+
 import PjtDetail from './pages/PjtDetail';
 import ModifyModal from './ui/ModifyModal';
 import UserMain from './pages/UserMain';
+
+import Feedback from './pages/Feedback';
+import PeerFeedback from './pages/PeerFeedback';
+
 
 const queryClient = new QueryClient();
 
@@ -35,6 +40,8 @@ function App() {
             <Route path="test" element={<Test />} />
             <Route path="kanban" element={<Kanban />} />
             <Route path="backlog" element={<BackLog />} />
+            <Route path="feedback" element={<Feedback />} />
+            <Route path="feedback2" element={<PeerFeedback />} />
           </Route>
         </Routes>
       </BrowserRouter>

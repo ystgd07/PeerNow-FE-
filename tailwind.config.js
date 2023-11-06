@@ -21,11 +21,11 @@ module.exports = {
         PjtCard: '218px',
         PjtInfo: '623px',
         SectionH: '768px',
-
-        fontFamily: {
-          suite: ['SUITE', 'sans'],
-        },
       },
+      fontFamily: {
+        suite: ['SUITE', 'sans'],
+      },
+      customScrollbar: ['scrollBar'],
     },
   },
   variants: {
