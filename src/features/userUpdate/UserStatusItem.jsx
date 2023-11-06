@@ -13,7 +13,7 @@ export default function UserStatusItem() {
             />
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-xl font-bold">양성수</p>
+            <p className="text-xl font-bold">양성수(PM)</p>
             <p className="text-sm font-semibold text-slate-400">btc 개발자</p>
           </div>
         </div>

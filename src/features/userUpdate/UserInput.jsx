@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function UserInput() {
   return (
-    <div className="p-5">
+    <div className="p-5 ">
       <div className="mt-2 mb-3 text-xl font-bold text-slate-500">
         <p>이메일</p>
       </div>
