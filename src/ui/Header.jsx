@@ -9,7 +9,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white shadow-md w-full">
       <div>
         <div className="container flex items-center justify-start py-4 mx-auto">
           <div className="relative group">
@@ -44,7 +44,7 @@ export default function Header() {
             {isDropdownOpen && (
               <div
                 id="dropdown"
-                className="absolute mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                className="absolute mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 duration-1000"
               >
                 <ul
                   className="py-2 text-sm text-gray-700 dark:text-gray-200"
