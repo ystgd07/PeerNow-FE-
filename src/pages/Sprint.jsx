@@ -5,18 +5,28 @@ import Title from '../features/mypage/Title';
 import NewSprintCreatePage from '../features/sprint/NewSprintCreatePage';
 import Button from '../features/sprint/Button';
 import { PjtNumNow } from '../store/header/store';
+import { useQuery } from 'react-query';
+import { useProjectInBackLog } from '../store/BackLogStore/store';
+import { fetchBackLogPjtData } from '../apis/backLogApis';
 
 export default function Sprint() {
+  // Header용
+  const { setPjtDetailData, setPjtData } = useProjectInBackLog(
+    (state) => state,
+  );
+  const { data: PjtData, isLoading: pjtDataLoading } = useQuery(
+    ['fechingPjtDataInB'],
+    fetchBackLogPjtData,
+    {
+      onSuccess: (data) => {
+        console.log('data :', data);
+        setPjtData(data.data.datalist);
+      },
+    },
+  );
+
   const { setOpenMainPage, openMainPage } = useOpenMainPage((state) => state);
   const { setOpenMypage, openMypage } = useOpenMypage((state) => state);
-  // 헤더 프로젝트 번호
-  const { nowNum } = PjtNumNow((state) => state);
-
-  useEffect(() => {
-    console.log('openMainPage', openMainPage);
-    setOpenMainPage(openMainPage);
-    setOpenMypage(openMypage);
-  }, []);
 
   return (
     <>
