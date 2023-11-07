@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectList from '../features/header/ProjectList';
+import { useProjectInBackLog } from '../store/BackLogStore/store';
+import { PjtNumNow } from '../store/header/store';
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { pjtData } = useProjectInBackLog((state) => state);
+  const { nowNum, setNowNum } = PjtNumNow();
+
+  useEffect(() => {
+    if (pjtData.length > 0) {
+      setNowNum(pjtData[0].no);
+    }
+  }, [pjtData]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const handleProjectSelect = (project) => {
+    setNowNum(project.no);
+    setIsDropdownOpen(false);
+  };
+
+  console.log('[Header] nowNum ===> ', nowNum);
 
   return (
     <header className="bg-white shadow-md w-full">
@@ -20,8 +37,9 @@ export default function Header() {
               className="inline-flex items-center mx-16 text-2xl font-extrabold text-center text-black bg-white rounded-lg focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
-              {/* 현재 프로젝트 */}
-              SNOW
+              {pjtData && pjtData.length > 0
+                ? pjtData[nowNum - 1]?.title
+                : '프로젝트 선택'}
               <svg
                 className={`w-2.5 h-2.5 ml-2.5 transform ${
                   isDropdownOpen ? 'rotate-180' : 'rotate-0'
@@ -33,9 +51,9 @@ export default function Header() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m1 1 4 4 4-4"
                 />
               </svg>
@@ -50,12 +68,13 @@ export default function Header() {
                   className="py-2 text-sm text-gray-700 dark:text-gray-200"
                   aria-labelledby="dropdownDefaultButton"
                 >
-                  <li>
-                    <ProjectList />
-                  </li>
-                  <li>
-                    <ProjectList />
-                  </li>
+                  {pjtData?.map((e, idx) => (
+                    <ProjectList
+                      key={idx}
+                      pjt={e}
+                      onSelect={() => handleProjectSelect(e)}
+                    />
+                  ))}
                 </ul>
               </div>
             )}

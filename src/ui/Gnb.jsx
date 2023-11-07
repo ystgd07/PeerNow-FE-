@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function Gnb() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef();
 
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);

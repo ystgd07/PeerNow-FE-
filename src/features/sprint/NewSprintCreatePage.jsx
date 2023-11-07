@@ -1,7 +1,44 @@
+import { createSprint } from '../../store/SprintStore/store';
+import { useMutation, useQueryClient } from 'react-query';
 import Checkbox from './Checkbox';
+import axios from 'axios';
 import Input from './Input';
+import { createSprintApi } from '../../apis/sprintApis';
+import { PjtNumNow } from '../../store/header/store';
 
 export default function NewSprintCreatePage() {
+  // 헤더 프로젝트 번호
+  const { nowNum } = PjtNumNow((state) => state);
+  console.log('[BacklogTbody] nowNum 번호 ====> ', nowNum);
+
+  // 스프린트 생성
+  const {
+    setTitle,
+    setDetail,
+    setBacklogNo,
+    setStartDate,
+    setEndDate,
+    addBacklogs,
+    sprintBacklogDto,
+    backlogs,
+  } = createSprint((state) => state);
+
+  const queryClient = useQueryClient();
+
+  const { mutate: createAccount, isCreateLoading } = useMutation(
+    createSprintApi(sprintBacklogDto),
+    {
+      onSuccess: (user) => {
+        console.log('Success : ', user);
+
+        queryClient.invalidateQueries();
+      },
+      onError: (error) => {
+        console.log('Error', error);
+      },
+    },
+  );
+
   return (
     <>
       <div className="bg-white rounded-lg w-full h-auto my-2 p-5">

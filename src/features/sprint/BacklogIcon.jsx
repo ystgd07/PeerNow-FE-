@@ -1,54 +1,49 @@
 import React from 'react';
+import { sprintBacklogApi } from '../../apis/sprintApis';
+import { useQuery } from 'react-query';
+import { PjtNumNow } from '../../store/header/store';
+import { addNoSprintBacklogs } from '../../store/SprintStore/store';
 
 export default function BacklogIcon() {
-  const items = [
-    { id: 1, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 2, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 3, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 4, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 5, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 6, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 7, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 8, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 9, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 10, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 11, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 12, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 13, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 14, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 15, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 16, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 17, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 18, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 19, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 20, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 21, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 22, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 23, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 24, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 25, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 26, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 27, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 28, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 29, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 30, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 31, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 32, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-    { id: 33, text: '화면 설계서 만들기', imgSrc: 'testImg.jpg' },
-  ];
+  // 헤더 프로젝트 번호
+  const { nowNum } = PjtNumNow((state) => state);
+  console.log('[BacklogIcon] nowNum 번호 ====> ', nowNum);
+  // 스프린트 없는 백로그
+  const { noSprintBacklog, setNoSprintBacklog } = addNoSprintBacklogs(
+    (state) => state,
+  );
+  noSprintBacklog.project_no = nowNum;
+  console.log(
+    '[BacklogIcon] noSprintBacklog.project_no 번호 ====> ',
+    noSprintBacklog.project_no,
+  );
+
+  const { data: sbData, isLoading: sbDataLoading } = useQuery(
+    ['sprintBacklogApi', nowNum],
+    () => sprintBacklogApi(nowNum),
+    {
+      onSuccess: (data) => {
+        console.log('data :', data);
+        setNoSprintBacklog(data?.data?.datalist);
+      },
+    },
+  );
 
   return (
     <>
-      {items.map((item) => (
-        <div className="w-11/12 py-2 mb-1 text-center border border-gray-300 rounded-md">
+      {noSprintBacklog.map((item, idx) => (
+        <div
+          key={idx}
+          className="w-11/12 py-2 mb-1 text-center border border-gray-300 rounded-md"
+        >
           <p>
             <span className="flex justify-center">
               <img
-                src="testImg.jpg"
+                src={item.image}
                 alt="백로그_담당자_이미지"
                 className="w-6 h-6 rounded-full"
               />
-              <span className="ml-1">백로그 이름</span>
+              <span className="ml-1">{item.title}</span>
             </span>
           </p>
         </div>

@@ -1,16 +1,10 @@
+import { useQuery } from 'react-query';
+
 export default function BacklogIcon() {
   const items = [
     {
       text: '화면 설계서 만들기',
       imageSrc: 'https://source.unsplash.com/random/?woman',
-    },
-    {
-      text: 'AWS 아키텍처 설계',
-      imageSrc: 'https://source.unsplash.com/random/?dog',
-    },
-    {
-      text: 'FE - 로그인페이지',
-      imageSrc: 'https://source.unsplash.com/random/?man',
     },
   ];
 
