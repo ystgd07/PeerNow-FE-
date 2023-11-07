@@ -1,15 +1,27 @@
 import { create } from 'zustand';
 
 // [sprint : NewSprintCreatePage.jsx] 스프린트 생성
+// const initialSprintBackLog = {
+//   sprintBacklogDto: {
+//     title: '',
+//     detail: '',
+//     backlog_no: [],
+//     start_date: '',
+//     end_date: '',
+//   },
+//   backlogs: [],
+// };
+
 const initialSprintBackLog = {
-  sprintBacklogDto: {
-    title: '',
-    detail: '',
-    backlog_no: [],
-    start_date: '',
-    end_date: '',
+  sprintDto: {
+    title: 'JWT 생성',
+    detail: 'spring security 공부',
+    start_date: '2023-10-23',
+    end_date: '2023-10-30',
   },
-  backlogs: [],
+  backlogDto: [
+    // { no: 1 }, { no: 2 }
+  ],
 };
 
 export const createSprint = create((set) => ({
@@ -23,10 +35,6 @@ export const createSprint = create((set) => ({
     set((state) => ({
       sprintBacklogDto: { ...state.sprintBacklogDto, detail },
     })),
-  setBacklogNo: (backlog_no) =>
-    set((state) => ({
-      sprintBacklogDto: { ...state.sprintBacklogDto, backlog_no },
-    })),
   setStartDate: (start_date) =>
     set((state) => ({
       sprintBacklogDto: { ...state.sprintBacklogDto, start_date },
@@ -35,21 +43,20 @@ export const createSprint = create((set) => ({
     set((state) => ({
       sprintBacklogDto: { ...state.sprintBacklogDto, end_date },
     })),
-
-  // backlogs
-  //   addBacklogs: (no) =>
-  //     set((state) => ({
-  //       backlogs: [...state.backlogs, { no }],
-  //     })),
+  //   backlogs
+  setBacklogs: (no) =>
+    set((state) => ({
+      backlogDto: [...state.backlogDto, { no }],
+    })),
 }));
 
 // [sprint : BacklogIcon.jsx] 스프린트에 미등록된 백로그 목록
 const initialnoSprintBacklog = {
-  noSprintBacklog: [
+  datalist: [
     {
-      no: 0,
-      project_no: 0,
-      sprint_no: 0,
+      no: null,
+      project_no: null,
+      sprint_no: null,
       user_id: '',
       title: '',
       detail: '',
@@ -62,5 +69,6 @@ const initialnoSprintBacklog = {
 
 export const addNoSprintBacklogs = create((set) => ({
   ...initialnoSprintBacklog,
-  setNoSprintBacklog: (res) => set((state) => ({ noSprintBacklog: res })),
+
+  setDatalist: (res) => set((state) => ({ datalist: res })),
 }));

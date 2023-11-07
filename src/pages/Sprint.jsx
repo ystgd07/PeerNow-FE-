@@ -4,10 +4,13 @@ import { useOpenMainPage, useOpenMypage } from '../store/store';
 import Title from '../features/mypage/Title';
 import NewSprintCreatePage from '../features/sprint/NewSprintCreatePage';
 import Button from '../features/sprint/Button';
+import { PjtNumNow } from '../store/header/store';
 
 export default function Sprint() {
   const { setOpenMainPage, openMainPage } = useOpenMainPage((state) => state);
   const { setOpenMypage, openMypage } = useOpenMypage((state) => state);
+  // 헤더 프로젝트 번호
+  const { nowNum } = PjtNumNow((state) => state);
 
   useEffect(() => {
     console.log('openMainPage', openMainPage);
