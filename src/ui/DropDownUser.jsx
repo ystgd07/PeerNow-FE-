@@ -2,10 +2,11 @@ import React from 'react';
 import { GrUserSettings } from 'react-icons/gr';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
 import { useUserMain } from '../store/UserMain/store';
+import { useNavigate } from 'react-router-dom';
 
 export default function DropDownUser() {
   const { userMainData, setIsOpenDropdown } = useUserMain((state) => state);
-
+  const navigate = useNavigate();
   return (
     <div
       className="absolute top-0 right-0 w-48 p-4 bg-white border-2 divide-y rounded-md shadow-md cursor-pointer"
@@ -20,7 +21,8 @@ export default function DropDownUser() {
             className="mt-3 text-sm font-bold "
             onClick={(e) => {
               e.stopPropagation();
-              console.log('설정');
+              navigate('/home/main/usermain');
+              setIsOpenDropdown();
             }}
           >
             설정

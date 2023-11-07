@@ -1,6 +1,8 @@
 import React from 'react';
+import { useUserMain } from '../../store/UserMain/store';
 
 export default function UserHeader() {
+  const { userMainData, setIsOpenDropdown } = useUserMain((state) => state);
   return (
     <>
       <p className="mb-3 text-xl font-bold">프로필 사진</p>
@@ -13,9 +15,11 @@ export default function UserHeader() {
           />
         </div>
         <div className="flex flex-row-reverse p-3">
-          <div className="mt-3">
-            <p>프로필 사진</p>
-            <p>프로필 수정</p>
+          <div className="flex flex-row items-center mt-3">
+            <p className="mr-3 text-lg font-bold">
+              {userMainData.name.toUpperCase()}
+            </p>
+            <p className="text-sm font-semibold">({userMainData.mail})</p>
           </div>
         </div>
       </div>
