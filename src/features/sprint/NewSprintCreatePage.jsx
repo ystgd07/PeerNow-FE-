@@ -1,9 +1,13 @@
+import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { createSprint } from '../../store/SprintStore/store';
 import { useMutation, useQueryClient } from 'react-query';
 import Checkbox from './Checkbox';
 import Input from './Input';
 import { createSprintApi } from '../../apis/sprintApis';
 import { PjtNumNow } from '../../store/header/store';
+import { ko } from 'date-fns/esm/locale';
 
 export default function NewSprintCreatePage() {
   // 헤더 프로젝트 번호
@@ -20,6 +24,35 @@ export default function NewSprintCreatePage() {
     setEndDate,
     setBacklogs,
   } = createSprint((state) => state);
+
+  // date picker
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  // "YYYY-MM-DD"
+  const formatDate = (date) => {
+    if (date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+    return '';
+  };
+  // setStartDate, setEndDate
+  const handleStartDateChange = (date) => {
+    setSelectedStartDate(date);
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date) => {
+    setSelectedEndDate(date);
+    setEndDate(date);
+  };
+
+  // setBacklogs
+  const handleBacklogSelection = (selectedBacklogs) => {
+    setBacklogs(selectedBacklogs);
+  };
 
   const queryClient = useQueryClient();
 
@@ -46,13 +79,25 @@ export default function NewSprintCreatePage() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </span>
-          <Input
-            value={' * 시간 기간을 설정해주세요'}
-            onChange={(e) => setStartDate(e.target.value)}
+          <DatePicker
+            minDate={new Date()}
+            locale={ko}
+            selected={selectedStartDate}
+            onChange={handleStartDateChange}
+            dateFormat="yyyy-MM-dd"
+            isClearable
+            placeholderText=" * 시작 시간을 설정해주세요"
+            className="border-gray-300 rounded-md border-2 w-full custom-datepicker"
           />
-          <Input
-            value={' * 종료 기간을 설정해주세요'}
-            onChange={(e) => setEndDate(e.target.value)}
+          <DatePicker
+            minDate={new Date()}
+            locale={ko}
+            selected={selectedEndDate}
+            onChange={handleEndDateChange}
+            dateFormat="yyyy-MM-dd"
+            isClearable
+            placeholderText=" * 종료 기간을 설정해주세요"
+            className="border-gray-300 rounded-md border-2 w-full custom-datepicker"
           />
           <span className="col-span-2">
             <Input
@@ -62,7 +107,7 @@ export default function NewSprintCreatePage() {
           </span>
         </div>
         {/* 백로그 선택 칸 - 모든 백로그 */}
-        <Checkbox />
+        <Checkbox handleBacklogSelection={handleBacklogSelection} />
       </div>
     </>
   );

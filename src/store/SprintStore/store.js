@@ -14,10 +14,10 @@ import { create } from 'zustand';
 
 const initialSprintBackLog = {
   sprintDto: {
-    title: 'JWT 생성',
-    detail: 'spring security 공부',
-    start_date: '2023-10-23',
-    end_date: '2023-10-30',
+    title: '',
+    detail: '',
+    start_date: '',
+    end_date: '',
   },
   backlogDto: [
     // { no: 1 }, { no: 2 }
