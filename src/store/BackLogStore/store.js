@@ -94,11 +94,6 @@ export const createBackLog = create((set) => ({
     })),
 }));
 
-// [mypage : MypageBackLogTitle.jsx] 진행중인 백로그 갯수
-// const countBacklog = {
-
-// }
-
 // [mypage : BacklogIcon.jsx] 진행중인 백로그 아이콘
 const initialBacklogIconForMypage = {
   success: true,
@@ -128,9 +123,11 @@ const initialAllBacklog = {
       user_id: '',
       title: '',
       detail: '',
+      image: '',
       status: '',
       reg_date: '',
       mod_date: '',
+      image: '',
     },
   ],
 };

@@ -1,6 +1,5 @@
 import Sprints from './Sprints';
 import Title from './Title';
-import CreateButton from '../../ui/CreateButton';
 import { Link } from 'react-router-dom';
 
 export default function MypageSprint() {

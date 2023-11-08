@@ -3,7 +3,7 @@ export default function ProjectList({ pjt, onSelect }) {
     <>
       <p
         href="#"
-        className="block px-4 py-2 mb-1 hover:bg-gray-100"
+        className="block px-4 py-2 mb-1 hover:bg-gray-100 cursor-pointer"
         onSelect={onSelect}
       >
         {/* 제목 */}

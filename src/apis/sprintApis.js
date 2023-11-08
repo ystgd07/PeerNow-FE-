@@ -1,29 +1,34 @@
 import axios from 'axios';
 
 // 스프린트 생성
-export async function createSprintApi(
-  pjtNum,
-  { title, detail, backlog_no, start_date, end_date },
-  backlogDto,
-) {
+export async function createSprintApi(pjtNum, sprintDto, backlogDto) {
+  const formData = new FormData();
+
+  const sprintBlob = new Blob([JSON.stringify(sprintDto)], {
+    type: 'application/json',
+  });
+  const backBlob = new Blob([JSON.stringify(backlogDto)], {
+    type: 'application/json',
+  });
+
+  formData.append('sprintDto', sprintBlob);
+  formData.append('backlogDto', backBlob);
+
+  console.log('sprintDto :', sprintDto);
+  console.log('backBlob', backlogDto);
+
   const res = await axios.post(
-    `https://www.peernow.site/api/project/sprint?project_no=${pjtNum}`,
-    {
-      title,
-      detail,
-      backlog_no,
-      start_date,
-      end_date,
-    },
-    backlogDto,
+    `http://www.peernow.site/api/project/sprint?project_no=${pjtNum}`,
+    formData,
   );
-  return res.data; // API 응답 데이터 반환
+
+  return res;
 }
 
-// 미등록 백로그 가져오기
-export const sprintBacklogApi = async (pjtNum) => {
+// 스프린트 내용(전체 스프린트)
+export const fetchAllSprints = async (pjtNum) => {
   const res = await axios.get(
-    `https://www.peernow.site/api/kanban/others?project_no=${pjtNum}`,
+    `http://www.peernow.site/api/project/sprint/list?project_no=${pjtNum}`,
     {
       withCredentials: true,
     },

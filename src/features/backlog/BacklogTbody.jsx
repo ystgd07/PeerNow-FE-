@@ -27,7 +27,7 @@ export default function BacklogTbody() {
     () => fetchBackLogList(nowNum),
     {
       onSuccess: (data) => {
-        console.log('data :', data);
+        console.log('fetchBackLogList :', data);
         setBacklogData(data?.data?.datalist);
       },
     },

@@ -1,50 +1,27 @@
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
-import { PjtNumNow } from '../../store/header/store';
 import { AllBacklogOfThisPjt } from '../../store/BackLogStore/store';
-import { fetchBackLogList } from '../../apis/backLogApis';
+import { createSprint } from '../../store/SprintStore/store';
 
 export default function BacklogIcon() {
-  const { nowNum } = PjtNumNow((state) => state);
-
+  const { backlogDto, setRemoveBackLog } = createSprint((state) => state);
+  const { backlogData } = AllBacklogOfThisPjt((state) => state);
   // 초기 선택 상태를 설정
-  const [selectedBacklogs, setSelectedBacklogs] = useState([]);
-
+  console.log('내가 선택한 백로그를 보여드리겠습니다요! : ', backlogDto);
   const handleBacklogClick = (item) => {
-    if (selectedBacklogs.includes(item.no)) {
-      const updatedSelectedBacklogs = selectedBacklogs.filter(
-        (backlog) => backlog !== item.no,
-      );
-      setSelectedBacklogs(updatedSelectedBacklogs);
-    } else {
-      setSelectedBacklogs((prevSelected) => [...prevSelected, item.no]);
-    }
+    // setBacklogs(item.no);
+    setRemoveBackLog(item.no);
   };
 
-  // 전체 백로그 확인
-  const { backlogData, setBacklogData } = AllBacklogOfThisPjt((state) => state);
-  console.log('[BacklogIcon] 전체 백로그 확인, backlogData', backlogData);
-
+  // 스프린트 번호가 없는 백로그
   const filteredBacklogs = backlogData.filter((item) => item.sprint_no === 0);
 
-  const { data: bData, isLoading: bDataLoading } = useQuery(
-    ['fetchBackLogList', nowNum],
-    () => fetchBackLogList(nowNum),
-    {
-      onSuccess: (data) => {
-        console.log('data :', data);
-        setBacklogData(data?.data?.datalist);
-      },
-    },
-  );
-
+  console.log('backlogDto : ', backlogDto);
   return (
     <>
       {filteredBacklogs.map((item, idx) => (
         <div
           key={idx}
           className={`w-11/12 py-2 mb-1 text-center border border-gray-300 rounded-md cursor-pointer ${
-            selectedBacklogs.includes(item.no)
+            backlogDto.length !== 0 && backlogDto?.includes(item.no)
               ? 'bg-yellow-300 border-yellow-300 text-white font-semibold'
               : ''
           }`}

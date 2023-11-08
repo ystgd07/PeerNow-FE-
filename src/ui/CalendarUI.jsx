@@ -18,6 +18,7 @@ export default function CalendarUI({ title, titleColor }) {
       setPjtEndDate(date);
       setIsValidPjt1(pjtObj);
     }
+    console.log('datatatata', pjtObj.start_date);
   };
 
   registerLocale('ko', ko);
