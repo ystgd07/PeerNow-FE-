@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import ProjectList from '../features/header/ProjectList';
-import { useProjectInBackLog } from '../store/BackLogStore/store';
+import {
+  useBackLogPageRes,
+  useProjectInBackLog,
+} from '../store/BackLogStore/store';
 import { PjtNumNow } from '../store/header/store';
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { pjtData } = useProjectInBackLog((state) => state);
-  const { nowNum, setNowNum } = PjtNumNow();
-
-  useEffect(() => {
-    if (pjtData.length > 0) {
-      setNowNum(pjtData[0].no);
-    }
-  }, [pjtData]);
+  const { nowNum, setNowNum } = PjtNumNow((state) => state);
+  const { currentProjectNumber } = useBackLogPageRes((state) => state);
+  // useEffect(() => {
+  //   if (pjtData.length > 0) {
+  //     setNowNum(pjtData[0].no);
+  //   }
+  // }, [pjtData]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleProjectSelect = (project) => {
-    setNowNum(project.no);
-    setIsDropdownOpen(false);
-  };
+  // const handleProjectSelect = (project) => {
+  //   setNowNum(project.no);
+  //   setIsDropdownOpen(false);
+  // };
 
   console.log('[Header] nowNum ===> ', nowNum);
-
+  console.log('currentProjectNumber  :', currentProjectNumber);
   return (
     <header className="bg-white shadow-md w-full">
       <div>
@@ -37,9 +40,11 @@ export default function Header() {
               className="inline-flex items-center mx-16 text-2xl font-extrabold text-center text-black bg-white rounded-lg focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
-              {pjtData && pjtData.length > 0
-                ? pjtData[nowNum - 1]?.title
-                : '프로젝트 선택'}
+              <p>
+                {currentProjectNumber === 1
+                  ? pjtData[0].title
+                  : pjtData[currentProjectNumber - 1].title}
+              </p>
               <svg
                 className={`w-2.5 h-2.5 ml-2.5 transform ${
                   isDropdownOpen ? 'rotate-180' : 'rotate-0'
@@ -69,11 +74,7 @@ export default function Header() {
                   aria-labelledby="dropdownDefaultButton"
                 >
                   {pjtData?.map((e, idx) => (
-                    <ProjectList
-                      key={idx}
-                      pjt={e}
-                      onSelect={() => handleProjectSelect(e)}
-                    />
+                    <ProjectList key={idx} pjt={e} />
                   ))}
                 </ul>
               </div>

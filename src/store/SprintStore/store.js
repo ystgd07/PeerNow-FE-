@@ -6,7 +6,7 @@ const initialSprintBackLog = {
   sprintDto: {
     title: '',
     detail: '',
-    start_date: new Date(),
+    start_date: format(new Date(), 'yyyy-MM-dd'),
     end_date: new Date(),
   },
   backlogDto: [
@@ -67,8 +67,8 @@ export const createSprint = create((set) => ({
 const initialSprints = {
   datalist: [
     {
-      no: null,
-      project_no: null,
+      no: '',
+      project_no: '',
       user_id: '',
       title: '',
       detail: '',
@@ -84,4 +84,19 @@ export const AllThisSprints = create((set) => ({
   ...initialSprints,
 
   setDatalist: (res) => set((state) => ({ datalist: res })),
+}));
+
+export const useSelectedSprint = create((set) => ({
+  projectNo: 0,
+  sprintNo: 0,
+  selectedSprintTitle: '',
+  selectedValidate: false,
+  // setSprintTitle: (data) => set((state) => ({ selectedSprintTitle: state })),
+  // setProjectNo: (data) => set((state) => ({ projectNo: state })),
+  // setSprintNo: (data) => set((state) => ({ sprintNo: state })),
+  setSprintTitle: (data) => set((state) => ({ selectedSprintTitle: data })),
+  setProjectNo: (data) => set((state) => ({ projectNo: data })),
+  setSprintNo: (data) => set((state) => ({ sprintNo: data })),
+  setSelectedValidate: (data) =>
+    set((state) => ({ selectedValidate: !state.selectedValidate })),
 }));

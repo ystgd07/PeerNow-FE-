@@ -1,15 +1,33 @@
 import axios from 'axios';
 
 // 백로그 생성
-export const createBackLogApi = async (data) => {
-  axios.post('https://www.peernow.site/api/project/backlog', data);
+export const createBackLogApi = async (backlogDto, backFileDto, test) => {
+  console.log('api call currentProjectNumber : ', backFileDto);
+
+  const formData = new FormData();
+
+  formData.append(
+    'backlogDto',
+    new Blob([JSON.stringify(backlogDto)], { type: 'application/json' }),
+  );
+
+  formData.append(
+    'fileDto',
+    new Blob([JSON.stringify(backFileDto)], { type: 'multipart/form-data' }),
+  );
+
+  const res = axios.post(
+    `http://www.peernow.site/api/project/backlog?project_no=${test}`,
+    formData,
+  );
+  return res;
 };
 
 // 진행중인 백로그 가져오기
 export const fetchBacklogTitle = async () => {
   try {
     const response = await axios.get(
-      'https://www.peernow.site/api/project/backlog/ing',
+      'http://www.peernow.site/api/project/backlog/ing',
       // https://www.peernow.site/api/project/backlog/ing?sprint_no=1
     );
     return response.data;
@@ -18,7 +36,7 @@ export const fetchBacklogTitle = async () => {
   }
 };
 
-// 프로젝트 번호
+// 스프린트 번호
 export const fetchBackLogPjtData = async () => {
   const res = await axios.get(`http://www.peernow.site/api/project/list`, {
     withCredentials: true,

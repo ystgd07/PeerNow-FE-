@@ -1,10 +1,18 @@
-export default function CreateButton({ value, option, event, dto }) {
+export default function CreateButton({
+  value,
+  option,
+  event,
+  backlogdto,
+  backFileDto,
+}) {
+  console.log('createButton : ', backFileDto);
+  console.log('createButton BackLogDto : ', backlogdto);
   return (
     <>
       <button
         className="text-right mr-1 -mb-6"
         onClick={() => {
-          event(dto);
+          event(backlogdto, backFileDto);
         }}
       >
         <span

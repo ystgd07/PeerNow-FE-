@@ -2,52 +2,69 @@ import Header from '../ui/Header';
 import { useBackLogPage } from '../store/store';
 import BacklogList from '../features/backlog/BacklogList';
 import BacklogModal from '../features/backlog/BacklogModal';
-import { useProjectInBackLog } from '../store/BackLogStore/store';
-import { useQuery } from 'react-query';
 import {
-  fetchBackLogPjtData,
-  fetchBackLogPjtDetailData,
-} from '../apis/backLogApis';
+  useBackLogPageRes,
+  useProjectInBackLog,
+} from '../store/BackLogStore/store';
+import { useQuery } from 'react-query';
+import { fetchBackLogPjtData } from '../apis/backLogApis';
+import axios from 'axios';
 
 export default function BackLog() {
   const { isBackLogModalOpen } = useBackLogPage((state) => state);
-  const { setPjtDetailData, setPjtData } = useProjectInBackLog(
+  const { setPjtDetailData, setPjtData, pjtData } = useProjectInBackLog(
+    (state) => state,
+  );
+  const { currentProjectNumber, currentProjectData } = useBackLogPageRes(
     (state) => state,
   );
 
+  //  user_id
   const { data: PjtData, isLoading: pjtDataLoading } = useQuery(
     ['fechingPjtDataInB'],
     fetchBackLogPjtData,
     {
       onSuccess: (data) => {
-        console.log('data :', data);
+        console.log('data PjtData :', data);
         setPjtData(data.data.datalist);
       },
     },
   );
 
-  // const { data: PjtDetailData, isLoading: pjtDetailDataLoading } = useQuery(
-  //   [
-  //     'fechingPjtDetailDataInB',
-  //     PjtData?.data?.datalist?.no,
-  //     PjtData?.data?.datalist?.user_id,
-  //   ],
-  //   fetchBackLogPjtDetailData,
-  //   {
-  //     enabled: !!PjtData,
+  console.log('setPjtDetailData:', currentProjectData);
 
-  //     onSuccess: (data) => {
-  //       console.log('data2 :', data);
-  //       // setPjtData(data.datalist);
-  //     },
-  //   },
-  // );
+  const { data: PjtDetailData, isLoading: pjtDetailDataLoading } = useQuery(
+    [
+      'fechingPjtDetailDataInB',
+      currentProjectNumber,
+      currentProjectData.user_id,
+    ],
+    async () => {
+      const res = await axios.get(
+        `http://www.peernow.site/api/project/peerlist?projectNumber=${currentProjectNumber}&owner=${currentProjectData.user_id}`,
+        {
+          withCredentials: true,
+        },
+      );
+
+      return res;
+    },
+    {
+      enabled: !!PjtData,
+
+      onSuccess: (data) => {
+        console.log('data2 :', data);
+        setPjtDetailData(data?.data?.datalist);
+      },
+    },
+  );
 
   return (
     <>
       {/* 화면 틀 */}
       <div className="w-full h-auto">
         <Header />
+        {/* 2 currentPjtNum이 변경되면 BackLogList를 재랜더링 */}
         <BacklogList />
         {isBackLogModalOpen && <BacklogModal />}
       </div>

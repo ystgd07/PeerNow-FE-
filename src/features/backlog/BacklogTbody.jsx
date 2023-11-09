@@ -3,11 +3,11 @@ import BacklogStatus from './BacklogStatus';
 import BacklogSprint from './BacklogSprint';
 import {
   AllBacklogOfThisPjt,
+  useBackLogPageRes,
   useProjectInBackLog,
 } from '../../store/BackLogStore/store';
 import { fetchBackLogList } from '../../apis/backLogApis';
 import { useQuery } from 'react-query';
-import { PjtNumNow } from '../../store/header/store';
 
 export default function BacklogTbody() {
   // 전체 백로그 확인
@@ -17,14 +17,14 @@ export default function BacklogTbody() {
   const { pjtData } = useProjectInBackLog((state) => state);
   console.log('[BacklogTbody] 프로젝트 번호, pjtData', pjtData);
   // 헤더 프로젝트 번호
-  const { nowNum } = PjtNumNow((state) => state);
-  backlogData.no = nowNum;
-  console.log('[BacklogTbody] nowNum 번호 ====> ', nowNum);
+  const { currentProjectNumber } = useBackLogPageRes((state) => state);
+
+  console.log('[BacklogTbody] nowNum 번호 ====> ', currentProjectNumber);
   console.log('[BacklogTbody] backlogData.no 번호 ====> ', backlogData.no);
 
   const { data: bData, isLoading: bDataLoading } = useQuery(
-    ['fetchBackLogList', nowNum],
-    () => fetchBackLogList(nowNum),
+    ['fetchBackLogList', currentProjectNumber],
+    () => fetchBackLogList(currentProjectNumber),
     {
       onSuccess: (data) => {
         console.log('fetchBackLogList :', data);

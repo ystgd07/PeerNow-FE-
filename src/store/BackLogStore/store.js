@@ -68,7 +68,7 @@ const initialBackLog = {
     user_id: '',
     title: '',
     detail: '',
-    status: '',
+    status: 'todo',
   },
   backFileDto: [
     //  {"name":"정해누기.png"}, {"name":"열.jpeg"}
@@ -86,11 +86,10 @@ export const createBackLog = create((set) => ({
     set((state) => ({ backlogDto: { ...state.backlogDto, detail } })),
   setStatus: (status) =>
     set((state) => ({ backlogDto: { ...state.backlogDto, status } })),
-
   // backFileDto
   addFileName: (name) =>
     set((state) => ({
-      backFileDto: [...state.backFileDto, { name }],
+      backFileDto: [name],
     })),
 }));
 
@@ -135,4 +134,29 @@ export const AllBacklogOfThisPjt = create((set) => ({
   ...initialAllBacklog,
 
   setBacklogData: (res) => set((state) => ({ backlogData: res })),
+}));
+
+// 백로그 페이지 현재 번호
+export const useBackLogPageRes = create((set) => ({
+  currentProjectNumber: 1,
+  currentProjectData: {},
+  currentSearchUser: false,
+  currentBackLogMananger: '',
+  currentBackLogImage: '',
+  currentBackLogTeam: '',
+
+  setCurrentPjtNumber: (data) =>
+    set((state) => ({ currentProjectNumber: data })),
+
+  setCurrentPjtOwner: (data) => set((state) => ({ currentProjectOwner: data })),
+
+  setCurrentSearcUser: (data) =>
+    set((state) => ({ currentSearchUser: !state.currentSearchUser })),
+
+  setCurrentBackLogManager: (data) =>
+    set((state) => ({ currentBackLogMananger: data })),
+  setCurrentBackLogImage: (data) =>
+    set((state) => ({ currentBackLogImage: data })),
+  setCurrentBackLogTeam: (data) =>
+    set((state) => ({ currentBackLogTeam: data })),
 }));
