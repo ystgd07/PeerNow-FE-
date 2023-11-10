@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { format } from 'date-fns';
 
 const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
+//로그인,계정생성 api
 export async function registApi({ id, pw, name }) {
   const res = await axios.post('http://www.peernow.site/api/user/join', {
     id,
@@ -43,4 +45,22 @@ export async function loginApi(form) {
 
     setTimeout(onSilentRefresh, JWT_EXPIRY_TIME);
   };
+}
+
+export const updateApi = async (projectNumber, data) => {
+  console.log('projectNumberdata', data);
+
+  const res = await axios.put(
+    `http://www.peernow.site/api/project/change?projectNumber=${projectNumber}`,
+    data,
+  );
+};
+
+//프로젝트 생성 api(post)
+
+export async function createProjectApi(pjtObj) {
+  console.log('pjtObj입니다.', pjtObj);
+  pjtObj.start_date = format(pjtObj.start_date, 'yyyy-MM-dd');
+  pjtObj.end_date = format(pjtObj.end_date, 'yyyy-MM-dd');
+  const res = await axios.post('http://www.peernow.site/api/project', pjtObj);
 }

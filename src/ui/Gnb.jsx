@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useUserMain } from '../store/UserMain/store';
+import { GrUserSettings } from 'react-icons/gr';
+import { RiLogoutBoxRLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 export default function Gnb() {
+<<<<<<< HEAD
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const dropdownRef = useRef();
 
@@ -29,9 +34,17 @@ export default function Gnb() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isDropdownVisible]);
+=======
+  const { userMainData, setIsOpenDropdown } = useUserMain((state) => state);
+>>>>>>> 6e88d95a405aac268948db45e0389679d3de5170
 
   return (
-    <header className="relative items-center justify-between w-full p-1 pl-5 pr-5 bg-white drop-shadow">
+    <header
+      className="relative items-center justify-between w-full p-1 pl-5 pr-5 bg-white cursor-pointer drop-shadow"
+      onClick={() => {
+        setIsOpenDropdown();
+      }}
+    >
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
@@ -41,7 +54,6 @@ export default function Gnb() {
               aria-controls="logo-sidebar"
               type="button"
               className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover-bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover-bg-gray-700 dark:focus:ring-gray-600"
-              onClick={toggleDropdown}
             ></button>
             <p className="flex ml-2 md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
@@ -56,14 +68,13 @@ export default function Gnb() {
           {/* 로그인 안되면 보여주면 안됨 */}
           <div className="flex items-center">
             <div className="flex items-center ml-3">
-              <div ref={dropdownRef}>
+              <div>
                 <ui className="flex items-center mr-3 list-none">
                   <li>
                     <button
                       type="button"
                       className="flex text-sm bg-gray-800 rounded-full focus-ring-4 focus-ring-gray-300"
                       aria-expanded="false"
-                      onClick={toggleDropdown}
                     >
                       <span className="sr-only">Open user menu</span>
                       <img
@@ -73,47 +84,8 @@ export default function Gnb() {
                       />
                     </button>
                   </li>
-                  <li className="pl-3 text-xl">이슬비</li>
+                  <li className="pl-3 text-xl">{userMainData.name}</li>
                 </ui>
-                {isDropdownVisible && (
-                  <div
-                    className="fixed z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow right-2 top-16"
-                    id="dropdown-user"
-                  >
-                    <div className="px-4 py-3" role="none">
-                      <p
-                        className="text-sm text-gray-400 dark:text-white"
-                        role="none"
-                      >
-                        BTC 개발자반 3팀
-                      </p>
-                      <p
-                        className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
-                        role="none"
-                      >
-                        iolagvi28@gmail.com
-                      </p>
-                    </div>
-                    <ul className="py-1" role="none">
-                      <li>
-                        <p
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover-bg-gray-600 dark:hover-text-white"
-                          role="menuitem"
-                        >
-                          설정
-                        </p>
-                      </li>
-                      <li>
-                        <p
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover-bg-gray-600 dark:hover-text-white"
-                          role="menuitem"
-                        >
-                          로그아웃
-                        </p>
-                      </li>
-                    </ul>
-                  </div>
-                )}
               </div>
             </div>
           </div>
