@@ -14,6 +14,7 @@ import Kanban from './pages/Kanban';
 import BackLog from './pages/BackLog';
 import Feedback from './pages/Feedback';
 import PeerFeedback from './pages/PeerFeedback';
+import MyFeedbackPage from './features/feedback/MyFeedbackPage';
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="backlog" element={<BackLog />} />
             <Route path="feedback" element={<Feedback />} />
             <Route path="feedback2" element={<PeerFeedback />} />
+            <Route path="feedback3" element={<MyFeedbackPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -5,9 +5,9 @@ import {
   AllThisSprints,
   useSelectedSprint,
 } from '../../store/SprintStore/store';
-import { useQuery } from 'react-query';
-import { fetchKanbanList } from '../../apis/kanbanApis';
-import { useKanbanData } from '../../store/KanbanStore/sotre';
+import { useMutation, useQuery } from 'react-query';
+import { fetchKanbanList, updateKanbanList } from '../../apis/kanbanApis';
+import { useKanbanCloums, useKanbanData } from '../../store/KanbanStore/sotre';
 
 export default function KanbanBoard() {
   // 헤더 프로젝트 번호
@@ -22,24 +22,34 @@ export default function KanbanBoard() {
   //
   const { datalist: Kanban } = useKanbanData((state) => state);
   //
+  const {
+    setColums,
+    colums,
+    setNewColums,
+    expecting,
+    setCurrentSelectedBackLog,
+    currentSelectedBackLogNo,
+    setCurrentStatus,
+    currentStatus,
+  } = useKanbanCloums((state) => state);
 
-  const [columns, setColumns] = useState([
-    {
-      status: '진행 예정',
-      color: 'bg-red-500',
-      items: Kanban.filter((item) => item.status === 'todo'),
-    },
-    {
-      status: '진행 중',
-      color: 'bg-blue-500',
-      items: Kanban.filter((item) => item.status === 'ing'),
-    },
-    {
-      status: '완료',
-      color: 'bg-green-500',
-      items: Kanban.filter((item) => item.status === 'done'),
-    },
-  ]);
+  // const [columns, setColumns] = useState([
+  //   {
+  //     status: '진행 예정',
+  //     color: 'bg-red-500',
+  //     items: Kanban?.filter((item) => item.status === 'todo'),
+  //   },
+  //   {
+  //     status: '진행 중',
+  //     color: 'bg-blue-500',
+  //     items: Kanban?.filter((item) => item.status === 'ing'),
+  //   },
+  //   {
+  //     status: '완료',
+  //     color: 'bg-green-500',
+  //     items: Kanban?.filter((item) => item.status === 'done'),
+  //   },
+  // ]);
 
   const onDragStart = (e, columnIndex, itemIndex) => {
     e.dataTransfer.setData('columnIndex', columnIndex);
@@ -50,35 +60,61 @@ export default function KanbanBoard() {
     e.preventDefault();
   };
 
+  const { mutate: updateKanbanData, isLoading } = useMutation(
+    ({ currentSelectedBackLogNo, cStatus }) =>
+      updateKanbanList(currentSelectedBackLogNo, cStatus),
+    {
+      onSuccess: (user) => {
+        console.log('Success : ', user);
+        // queryClient.invalidateQueries();
+        // navigate('/home');
+      },
+      onError: (error) => {
+        console.log('Error', error);
+      },
+    },
+  );
+
   const onDrop = (e, columnIndex) => {
+    console.log('coumlIndex test:', columnIndex);
     const sourceColumnIndex = e.dataTransfer.getData('columnIndex');
     const itemIndex = e.dataTransfer.getData('itemIndex');
 
     if (sourceColumnIndex === columnIndex) return;
 
-    const newColumns = [...columns];
+    const newColumns = [...colums];
     const [draggedItem] = newColumns[sourceColumnIndex].items.splice(
       itemIndex,
       1,
     );
     newColumns[columnIndex].items.push(draggedItem);
-    setColumns(newColumns);
+    setNewColums(newColumns);
   };
+
+  console.log('column :', colums);
 
   return (
     <div className="grid grid-cols-3 m-4 ml-8">
-      {columns.map((column, columnIndex) => (
+      {colums?.map((column, columnIndex) => (
         <div
           key={columnIndex}
           onDragOver={onDragOver}
           onDrop={(e) => {
             onDrop(e, columnIndex);
-            console.log('onDrop column', column);
+            console.log('column status:', column.status);
+            // setCurrentStatus(column.status);
+            updateKanbanData({
+              currentSelectedBackLogNo,
+              cStatus: column.status,
+            });
+
+            console.log('onDrop column', column.status);
           }}
         >
           <h2>
-            <Progress value={column.status} color={column.color} />
+            <Progress value={column?.status} color={column?.color} />
           </h2>
+
           {column.items &&
             column.items.map((item, itemIndex) => (
               <div
@@ -86,7 +122,8 @@ export default function KanbanBoard() {
                 draggable
                 onDragStart={(e) => {
                   onDragStart(e, columnIndex, itemIndex);
-                  console.log('onDragStart');
+                  console.log('onDragStart', item);
+                  setCurrentSelectedBackLog(item.no);
                 }}
                 className="w-11/12 py-1 mb-1 text-center"
               >

@@ -8,7 +8,7 @@ import KanbanBorad from './KanbanBorad';
 import KanbanHeader from './KanbanHeader';
 import { fetchAllSprints } from '../../apis/sprintApis';
 import { fetchKanbanList } from '../../apis/kanbanApis';
-import { useKanbanData } from '../../store/KanbanStore/sotre';
+import { useKanbanCloums, useKanbanData } from '../../store/KanbanStore/sotre';
 
 export default function KanbanList() {
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
@@ -21,8 +21,13 @@ export default function KanbanList() {
     setSelectedValidate,
     setSprintNo,
   } = useSelectedSprint((state) => state);
+
   const { setKanbanData } = useKanbanData((state) => state);
   console.log('sprint no: ', sprintNo);
+
+  const { setComplete, setProcessing, setExpecting, setColums } =
+    useKanbanCloums((state) => state);
+
   const { data: allSprintData, isLoading: isAllSprintData } = useQuery(
     ['fetchAllSprints', currentProjectNumber],
     () => fetchAllSprints(currentProjectNumber),
@@ -30,7 +35,7 @@ export default function KanbanList() {
       onSuccess: (data) => {
         console.log('fetchAllSprints :', data);
         setDatalist(data?.data?.datalist);
-        setSprintNo(data?.data?.datalist[0].project_no);
+        setSprintNo(data?.data?.datalist[0].no);
       },
     },
   );
@@ -43,6 +48,10 @@ export default function KanbanList() {
       onSuccess: (data) => {
         console.log('fetchKanbanList :', data);
         setKanbanData(data?.data?.datalist);
+        setExpecting(data?.data?.datalist);
+        setProcessing(data?.data?.datalist);
+        setComplete(data?.data?.datalist);
+        setColums();
       },
     },
   );
