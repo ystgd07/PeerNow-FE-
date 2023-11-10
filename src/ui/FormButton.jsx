@@ -36,6 +36,7 @@ export default function FormButton({ checkValid, btnName, event }) {
 
   return (
     <div
+      tabIndex="0"
       className={`w-full text-black bg-amber-400
         ${
           checkValid
@@ -50,6 +51,15 @@ export default function FormButton({ checkValid, btnName, event }) {
         btnName === '로그인'
           ? login(loginObj)
           : createAccount(createAccountObj);
+      }}
+      onKeyDown={(e) => {
+        console.log('E', e.key);
+        if (e.key === 'Enter') {
+          console.log('Enter');
+          btnName === '로그인'
+            ? login(loginObj)
+            : createAccount(createAccountObj);
+        }
       }}
     >
       <p className="text-lg font-bold text-white">{btnName}</p>
