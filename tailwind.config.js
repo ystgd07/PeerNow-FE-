@@ -16,16 +16,17 @@ module.exports = {
         PjtInfo: '612px',
         PjtCard: '590px',
         SectionW: '100%',
+        Profile: '734px',
       },
       height: {
         PjtCard: '218px',
         PjtInfo: '623px',
         SectionH: '768px',
+        Profile: '182px',
+        fontFamily: {
+          suite: ['SUITE', 'sans'],
+        },
       },
-      fontFamily: {
-        suite: ['SUITE', 'sans'],
-      },
-      customScrollbar: ['scrollBar'],
     },
   },
   variants: {

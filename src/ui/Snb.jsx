@@ -89,6 +89,12 @@ export default function Snb() {
                 <span className="ml-3">동료 평가</span>
               </p>
             </li>
+            <li>
+              <Link to={'/home/burndown'}>
+                {' '}
+                <p>burnDown</p>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

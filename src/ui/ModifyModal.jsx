@@ -13,8 +13,6 @@ export default function ModifyModal() {
     endDate,
     setStartDate,
     setEndDate,
-    pjtObj,
-    pjtModalData,
     setDateChangeValid,
   } = useOepnUpdateModal((state) => state);
 
