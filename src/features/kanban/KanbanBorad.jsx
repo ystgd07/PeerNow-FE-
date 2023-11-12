@@ -10,46 +10,12 @@ import { fetchKanbanList, updateKanbanList } from '../../apis/kanbanApis';
 import { useKanbanCloums, useKanbanData } from '../../store/KanbanStore/sotre';
 
 export default function KanbanBoard() {
-  // 헤더 프로젝트 번호
-  const { currentProjectNumber } = useBackLogPageRes((state) => state);
-  // 현재 프로젝트, 스프린트, 스프린트 제목에 대한 데이터
-  const { projectNo, sprintNo, selectedSprintTitle } = useSelectedSprint(
-    (state) => state,
-  );
-  //데이터들 ~_~
-  const { datalist, setDatalist } = AllThisSprints((state) => state);
-
-  //
-  const { datalist: Kanban } = useKanbanData((state) => state);
-  //
   const {
-    setColums,
     colums,
     setNewColums,
-    expecting,
     setCurrentSelectedBackLog,
     currentSelectedBackLogNo,
-    setCurrentStatus,
-    currentStatus,
   } = useKanbanCloums((state) => state);
-
-  // const [columns, setColumns] = useState([
-  //   {
-  //     status: '진행 예정',
-  //     color: 'bg-red-500',
-  //     items: Kanban?.filter((item) => item.status === 'todo'),
-  //   },
-  //   {
-  //     status: '진행 중',
-  //     color: 'bg-blue-500',
-  //     items: Kanban?.filter((item) => item.status === 'ing'),
-  //   },
-  //   {
-  //     status: '완료',
-  //     color: 'bg-green-500',
-  //     items: Kanban?.filter((item) => item.status === 'done'),
-  //   },
-  // ]);
 
   const onDragStart = (e, columnIndex, itemIndex) => {
     e.dataTransfer.setData('columnIndex', columnIndex);
@@ -87,7 +53,7 @@ export default function KanbanBoard() {
       itemIndex,
       1,
     );
-    newColumns[columnIndex].items.push(draggedItem);
+    newColumns[columnIndex]?.items?.push(draggedItem);
     setNewColums(newColumns);
   };
 

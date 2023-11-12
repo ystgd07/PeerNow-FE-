@@ -18,7 +18,7 @@ export default function KanbanBacklog() {
                 alt="백로그_담당자_이미지"
                 className="w-6 h-6 rounded-full"
               />
-              <span className="ml-1">{item.text}</span>
+              <span className="ml-1">{item?.text}</span>
             </span>
           </p>
         </div>

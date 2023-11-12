@@ -5,42 +5,11 @@ import { RiLogoutBoxRLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 export default function Gnb() {
-<<<<<<< HEAD
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const dropdownRef = useRef();
-
-  const toggleDropdown = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
-
-  const closeDropdown = () => {
-    setIsDropdownVisible(false);
-  };
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        closeDropdown();
-      }
-    }
-
-    if (isDropdownVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isDropdownVisible]);
-=======
   const { userMainData, setIsOpenDropdown } = useUserMain((state) => state);
->>>>>>> 6e88d95a405aac268948db45e0389679d3de5170
 
   return (
     <header
-      className="relative items-center justify-between w-full p-1 pl-5 pr-5 bg-white cursor-pointer drop-shadow"
+      className="relative items-center justify-between w-full  p-1 pl-5 pr-5 bg-white cursor-pointer border-slate-300 border-b-2"
       onClick={() => {
         setIsOpenDropdown();
       }}

@@ -1,33 +1,16 @@
 import React from 'react';
+import MyFeedbackDetail1 from './MyFeedbackDetail1';
+import MyFeedbackDetail2 from './MyFeedbackDetail2';
 
 export default function MyFeedback() {
-  const items = [
-    {
-      name: '멋집니다',
-    },
-    {
-      name: '잘합니다',
-    },
-    {
-      name: '죠습니다',
-    },
-  ];
-
   return (
     <>
-      <div className="bg-white rounded-md mt-5">
-        <div className="p-2 flex flex-row items-center">
-          <div className="border-r-2">
-            <div>🤗</div>
-            {items.map((item, index) => (
-              <div className="text-center text-base m-3">
-                <ul>
-                  <li className="font-semibold">{item.name}</li>
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div>🧐</div>
+      <div className="p-2 flex flex-row items-center">
+        <div className="mr-10  w-1/2">
+          <MyFeedbackDetail1 />
+        </div>
+        <div className="w-1/2">
+          <MyFeedbackDetail2 />
         </div>
       </div>
     </>

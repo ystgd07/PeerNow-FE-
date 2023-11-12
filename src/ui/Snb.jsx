@@ -6,7 +6,7 @@ export default function Snb() {
     <>
       <div
         id="drawer-navigation"
-        className="relative left-0 z-20 w-1/6 h-screen p-5 bg-white border-t-2 dark:bg-gray-800"
+        className="relative left-0   z-20 w-1/6 h-full p-5 bg-slate-200  border-slate-300 border-r-2 "
         tabIndex="1"
         aria-labelledby="drawer-navigation-label"
       >
@@ -78,7 +78,6 @@ export default function Snb() {
               </li>
             </Link>
             {/* 동료 평가 */}
-<<<<<<< HEAD
             <Link to={'/home/feedback'}>
               <li>
                 <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
@@ -95,47 +94,17 @@ export default function Snb() {
                 </p>
               </li>
             </Link>
-
-            {/*  */}
-            {/* 마이페이지 */}
-            <Link to={'/home/mypage'}>
-              <li>
-                <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
-                  <span className="ml-3">마이 페이지</span>
-                </p>
-              </li>
-            </Link>
-            {/* 스프린트 생성 */}
-            <Link to={'/home/sprint'}>
-              <li>
-                <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
-                  <span className="ml-3">스프린트 생성</span>
-                </p>
-              </li>
-            </Link>
-            {/*  */}
-=======
-            <li>
-              <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
-                <svg
-                  className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover-text-gray-900 dark-group-hover-text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 22 21"
-                >
-                  <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                </svg>
-                <span className="ml-3">동료 평가</span>
-              </p>
-            </li>
             <li>
               <Link to={'/home/burndown'}>
                 {' '}
                 <p>burnDown</p>
               </Link>
             </li>
->>>>>>> 6e88d95a405aac268948db45e0389679d3de5170
+            <li>
+              <Link to={'/home/MyPage'}>
+                <p>MyPage</p>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

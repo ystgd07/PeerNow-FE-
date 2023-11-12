@@ -29,8 +29,8 @@ export default function KanbanHeader() {
             type="button"
           >
             {/* 현재 스프린트 */}
-            {selectedSprintTitle.length === 0
-              ? datalist[0].title
+            {selectedSprintTitle?.length === 0
+              ? datalist[0]?.title
               : selectedSprintTitle}
             <svg
               className={`w-2.5 h-2.5 ml-2.5 transform ${

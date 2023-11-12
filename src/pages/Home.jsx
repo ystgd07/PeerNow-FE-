@@ -41,9 +41,8 @@ export default function Home() {
       <div className="relative flex flex-row h-screen">
         <Snb />
 
-        <div className={`flex flex-row  w-3/4 ${openMypage ? '' : 'ml-10'} `}>
+        <div className={`flex flex-row  w-full ${openMypage ? '' : ''} `}>
           <Outlet />
-
           {openUpdateModal && <ModifyModal />}
         </div>
 

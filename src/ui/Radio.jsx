@@ -4,9 +4,10 @@ export default function Radio({
   name,
   defaultChecked,
   disabled,
+  event,
 }) {
   return (
-    <label>
+    <label className="mr-3" onClick={() => event(value)}>
       <input
         type="radio"
         value={value}

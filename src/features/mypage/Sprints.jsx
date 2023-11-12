@@ -1,4 +1,8 @@
 import { fetchAllSprints } from '../../apis/sprintApis';
+import {
+  useBackLogPageRes,
+  useProjectInBackLog,
+} from '../../store/BackLogStore/store';
 import { AllThisSprints } from '../../store/SprintStore/store';
 import { PjtNumNow } from '../../store/header/store';
 import { useQuery } from 'react-query';
@@ -6,10 +10,12 @@ import { useQuery } from 'react-query';
 export default function Sprints() {
   const { nowNum } = PjtNumNow((state) => state);
   const { datalist, setDatalist } = AllThisSprints((state) => state);
+  const { pjtData } = useProjectInBackLog((state) => state);
+  const { currentProjectNumber } = useBackLogPageRes((state) => state);
 
   const { data: allSprintData, isLoading: isAllSprintData } = useQuery(
-    ['fetchAllSprints', nowNum],
-    () => fetchAllSprints(nowNum),
+    ['fetchAllSprints', pjtData[currentProjectNumber]?.no],
+    () => fetchAllSprints(pjtData[currentProjectNumber]?.no),
     {
       onSuccess: (data) => {
         console.log('fetchAllSprints :', data);

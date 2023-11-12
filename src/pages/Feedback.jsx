@@ -23,7 +23,7 @@ export default function Feedback() {
   return (
     <>
       {/* 화면 틀 */}
-      <div className="w-full h-auto">
+      <div className="w-full h-5/6">
         <Header />
         <FeedbackMain />
       </div>

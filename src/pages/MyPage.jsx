@@ -59,7 +59,7 @@ export default function MyPage() {
   return (
     <>
       {/* 화면 틀 */}
-      <div className="w-full">
+      <div className="w-full overflow-y-auto">
         <Header />
         <div className="grid grid-cols-2 gap-4 mx-10 mt-3">
           {/* 스프린트 sprint */}

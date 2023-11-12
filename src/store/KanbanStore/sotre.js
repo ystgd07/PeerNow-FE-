@@ -45,7 +45,7 @@ export const useKanbanCloums = create((set) => ({
   currentSelectedBackLogNo: 0,
   setColums: (data) =>
     set((state) => ({
-      colums: new Array(state.complete, state.processing, state.expecting),
+      colums: new Array(state.expecting, state.processing, state.complete),
     })),
   setCurrentStatus: (data) => set((state) => ({ currentStatus: data })),
   setNewColums: (data) =>

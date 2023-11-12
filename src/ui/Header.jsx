@@ -9,27 +9,17 @@ import { PjtNumNow } from '../store/header/store';
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { pjtData } = useProjectInBackLog((state) => state);
-  const { nowNum, setNowNum } = PjtNumNow((state) => state);
+
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
-  // useEffect(() => {
-  //   if (pjtData.length > 0) {
-  //     setNowNum(pjtData[0].no);
-  //   }
-  // }, [pjtData]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // const handleProjectSelect = (project) => {
-  //   setNowNum(project.no);
-  //   setIsDropdownOpen(false);
-  // };
-
-  console.log('[Header] nowNum ===> ', nowNum);
   console.log('currentProjectNumber  :', currentProjectNumber);
+
   return (
-    <header className="bg-white shadow-md w-full">
+    <header className="bg-white shadow-md w-full  border-black ">
       <div>
         <div className="container flex items-center justify-start py-4 mx-auto">
           <div className="relative group">
@@ -42,8 +32,10 @@ export default function Header() {
             >
               <p>
                 {currentProjectNumber === 1
-                  ? pjtData[0].title
-                  : pjtData[currentProjectNumber - 1].title}
+                  ? pjtData[1]?.title
+                  : currentProjectNumber === 0
+                  ? pjtData[0]?.title
+                  : pjtData[currentProjectNumber]?.title}
               </p>
               <svg
                 className={`w-2.5 h-2.5 ml-2.5 transform ${
@@ -74,7 +66,7 @@ export default function Header() {
                   aria-labelledby="dropdownDefaultButton"
                 >
                   {pjtData?.map((e, idx) => (
-                    <ProjectList key={idx} pjt={e} />
+                    <ProjectList key={idx} pjt={e} index={idx} />
                   ))}
                 </ul>
               </div>

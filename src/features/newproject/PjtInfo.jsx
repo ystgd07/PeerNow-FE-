@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PjtinfoTitle from './PjtinfoTitle';
 import PjtInfoMain from './PjtInfoMain';
 import { useHover, useProjectModal } from '../../store/store';
 import PjtinfoDetail from './PjtinfoDetail';
 import { useQuery } from 'react-query';
 import { format } from 'date-fns';
+import ContentLoader, { Facebook } from 'react-content-loader';
 import axios from 'axios';
 
 export default function PjtInfo() {
@@ -34,7 +35,11 @@ export default function PjtInfo() {
     },
   );
 
-  const { data: pjtDetail, isLoading: isPjtDetailLoading } = useQuery(
+  const {
+    data: pjtDetail,
+    isLoading: isPjtDetailLoading,
+    refetch: pjtDetailRefatch,
+  } = useQuery(
     ['pjtModalData', projectNumber],
     async () => {
       const res = await axios.get(
@@ -48,6 +53,7 @@ export default function PjtInfo() {
     },
     {
       enabled: !!userListData,
+      // enabled: false,
       onSuccess: (data) => {
         console.log('undefined log : ', data);
       },
@@ -70,11 +76,15 @@ export default function PjtInfo() {
           hover ? 'opacity-100' : 'hidden opacity-0'
         } `}
       >
-        <PjtinfoTitle
-          startDate={pjtDetail?.data?.start_date}
-          endDate={pjtDetail?.data?.end_date}
-          title={pjtDetail?.data?.title}
-        />
+        {pjtDetail ? (
+          <PjtinfoTitle
+            startDate={pjtDetail?.data?.start_date}
+            endDate={pjtDetail?.data?.end_date}
+            title={pjtDetail?.data?.title}
+          />
+        ) : (
+          <Facebook />
+        )}
         <div className="flow-root">
           <ul role="list" className="divide-gray-200 dark:divide-gray-700">
             <div className="flex flex-row-reverse">
@@ -98,11 +108,17 @@ export default function PjtInfo() {
                 </div>
               </div>
             </div>
-            <PjtinfoDetail detail={pjtDetail?.data?.detail} />
-            <PjtInfoMain
-              workerList={userListData?.datalist}
-              title={pjtDetail?.data?.title}
-            />
+            {pjtDetail ? (
+              <>
+                <PjtinfoDetail detail={pjtDetail?.data?.detail} />
+                <PjtInfoMain
+                  workerList={userListData?.datalist}
+                  title={pjtDetail?.data?.title}
+                />
+              </>
+            ) : (
+              <Facebook />
+            )}
           </ul>
         </div>
       </div>

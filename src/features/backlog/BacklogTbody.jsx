@@ -6,6 +6,7 @@ import {
   useBackLogPageRes,
   useProjectInBackLog,
 } from '../../store/BackLogStore/store';
+
 import { fetchBackLogList } from '../../apis/backLogApis';
 import { useQuery } from 'react-query';
 
@@ -23,8 +24,8 @@ export default function BacklogTbody() {
   console.log('[BacklogTbody] backlogData.no 번호 ====> ', backlogData.no);
 
   const { data: bData, isLoading: bDataLoading } = useQuery(
-    ['fetchBackLogList', currentProjectNumber],
-    () => fetchBackLogList(currentProjectNumber),
+    ['fetchBackLogList', pjtData[currentProjectNumber].no],
+    () => fetchBackLogList(pjtData[currentProjectNumber].no),
     {
       onSuccess: (data) => {
         console.log('fetchBackLogList :', data);

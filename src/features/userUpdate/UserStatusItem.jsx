@@ -39,23 +39,25 @@ export default function UserStatusItem({ item }) {
   );
 
   return (
-    <div className="p-8">
-      <div className="flex items-center border-b-2 h-fit border-slate-300">
+    <div className=" mb-5">
+      <div className="flex items-centerh-fit border-slate-300 ">
         <div className="flex flex-row items-center w-2/5">
           <div className="mr-4">
             <img
-              className="rounded-full w-11 h-11"
+              className="rounded-full border-2 border-black w-10 h-10"
               src="/img/je.jfif"
               alt="Neil image"
             />
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-xl font-bold">{item.owner_id}(PM)</p>
+            <p className="text-xl font-semibold">
+              {item.owner_name}({item.role})
+            </p>
           </div>
         </div>
         <div className="flex flex-row items-center justify-center w-2/5">
           <div className="flex flex-col items-center">
-            <p className="text-xl font-bold">PeerNow</p>
+            <p className="text-xl font-semibold">PeerNow</p>
             <p className="text-sm font-semibold truncate text-slate-400">
               {item.project_title}
             </p>
@@ -74,7 +76,7 @@ export default function UserStatusItem({ item }) {
           ) : (
             item.status === 'ACCEPT' && (
               <div className="flex justify-center w-full">
-                <FaUserCheck className="text-3xl text-green-500"></FaUserCheck>
+                <FaUserCheck className="text-2xl text-[#c1f5b4]"></FaUserCheck>
               </div>
             )
           )}

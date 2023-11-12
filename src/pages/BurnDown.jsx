@@ -1,10 +1,8 @@
 import React from 'react';
-import BurnDownHeader from '../features/burndown/BurnDownHeader';
-import BurnDownMain from '../features/burndown/BurnDownMain';
 import { Chart, Doughnut, Line } from 'react-chartjs-2';
 import { BiLineChartDown, BiSolidPieChart } from 'react-icons/bi';
 import { TiArrowBackOutline } from 'react-icons/ti';
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,9 +15,12 @@ import {
   ArcElement,
 } from 'chart.js';
 import { useQuery } from 'react-query';
-import { fetchBurnDownData } from '../apis/apiBurnDown';
 import { useBurnDown } from '../store/BurnDownStore/store';
 import axios from 'axios';
+import {
+  useBackLogPageRes,
+  useProjectInBackLog,
+} from '../store/BackLogStore/store';
 
 ChartJS.register(
   CategoryScale,
@@ -31,58 +32,9 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-x: auto;
-  width: 100%;
-`;
-const ContainerBox = styled.div`
-  /* overflow-x: scroll;
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 2px;
-    background: #d4d4d4;
-  } */
-  width: 400px;
-  height: 50%;
-  max-width: 50%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-// const data = {
-//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-//   datasets: [
-//     {
-//       type: 'line',
-//       label: 'Dataset 1',
-//       borderColor: 'rgb(54, 162, 235)',
-//       borderWidth: 2,
-//       data: [1, 2, 3, 4, 5],
-//     },
-//     {
-//       type: 'bar',
-//       label: 'Dataset 2',
-//       backgroundColor: 'rgb(255, 99, 132)',
-//       data: [1, 2, 3, 4, 5, 6],
-//       borderColor: 'red',
-//       borderWidth: 2,
-//     },
-//     {
-//       type: 'bar',
-//       label: 'Dataset 3',
-//       backgroundColor: 'rgb(75, 192, 192)',
-//       data: [1, 2, 3, 4, 5, 6],
-//     },
-//   ],
-// };
 
 export default function BurnDown() {
+  const navigate = useNavigate();
   const donutData = {
     labels: ['입출금', '증권', '기타'],
     datasets: [
@@ -95,13 +47,15 @@ export default function BurnDown() {
   };
 
   const { burnDownObj, setBurnDownObj } = useBurnDown((state) => state);
+  const { pjtData } = useProjectInBackLog((state) => state);
+  const { currentProjectNumber } = useBackLogPageRes((state) => state);
   console.log('Store sprint_no:', burnDownObj.sprint_no);
 
   const { data: burnDownData, isLoading: burnDownLoading } = useQuery(
     ['getBurnDown', burnDownObj.sprint_no],
     async () => {
       const res = await axios.get(
-        `http://www.peernow.site/api/kanban/burndown?sprint_no=${burnDownObj.sprint_no}`,
+        `http://www.peernow.site/api/kanban/allburndown?project_no=${pjtData[currentProjectNumber].no}`,
       );
       return res.data;
     },
@@ -117,8 +71,11 @@ export default function BurnDown() {
   const Options = {};
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex flex-row-reverse items-center">
+    <div className="flex flex-col w-full p-5">
+      <div
+        className="flex flex-row-reverse items-center"
+        onClick={() => navigate(-1)}
+      >
         <p className="p-1 mt-2 font-bold hover:scale-105">뒤로가기</p>
         <TiArrowBackOutline className="cursor-pointer w-7 h-7 hover:scale-125"></TiArrowBackOutline>
       </div>

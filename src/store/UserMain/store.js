@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 // /api/user/detail
+
 const initialUserMain = {
   userMainData: {
     id: '',
@@ -95,6 +96,19 @@ export const useStatusUpdate = create((set) => ({
       statusUpdateData: {
         ...state.statusUpdateData,
         declineStatus: declineStatus,
+      },
+    })),
+}));
+
+export const useImage = create((set) => ({
+  stateImageData: {
+    userImg: '',
+  },
+
+  setUserImg: (imgFile) =>
+    set((state) => ({
+      stateImageData: {
+        userImg: imgFile,
       },
     })),
 }));

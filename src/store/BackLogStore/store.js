@@ -100,8 +100,8 @@ const initialBacklogIconForMypage = {
   message: '',
   datalist: [
     {
-      no: null,
-      sprint_no: null,
+      no: '',
+      sprint_no: '',
       user_id: '',
       title: '',
       status: '',
@@ -118,7 +118,7 @@ const initialAllBacklog = {
   backlogData: [
     {
       no: 0,
-      sprint_no: null,
+      sprint_no: '',
       user_id: '',
       title: '',
       detail: '',
@@ -138,12 +138,13 @@ export const AllBacklogOfThisPjt = create((set) => ({
 
 // 백로그 페이지 현재 번호
 export const useBackLogPageRes = create((set) => ({
-  currentProjectNumber: 1,
+  currentProjectNumber: 0,
   currentProjectData: {},
   currentSearchUser: false,
   currentBackLogMananger: '',
   currentBackLogImage: '',
   currentBackLogTeam: '',
+  currentProjectOwner: '',
 
   setCurrentPjtNumber: (data) =>
     set((state) => ({ currentProjectNumber: data })),
@@ -155,8 +156,10 @@ export const useBackLogPageRes = create((set) => ({
 
   setCurrentBackLogManager: (data) =>
     set((state) => ({ currentBackLogMananger: data })),
+
   setCurrentBackLogImage: (data) =>
     set((state) => ({ currentBackLogImage: data })),
+
   setCurrentBackLogTeam: (data) =>
     set((state) => ({ currentBackLogTeam: data })),
 }));

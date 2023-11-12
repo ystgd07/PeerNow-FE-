@@ -2,6 +2,7 @@ import {
   UseBackLog,
   createBackLog,
   useBackLogPageRes,
+  useProjectInBackLog,
 } from '../../store/BackLogStore/store';
 import { useMutation, useQueryClient } from 'react-query';
 import ModalRadio from './ModalRadio';
@@ -33,11 +34,18 @@ export default function ModalDetail() {
     currentBackLogMananger,
   } = useBackLogPageRes((state) => state);
 
+  const { pjtData } = useProjectInBackLog((state) => state);
+
   console.log('currentProjectNumber :', currentProjectNumber);
 
   const { mutate: createMutateOfBackLog, isLoading: isCreateBackLog } =
     useMutation(
-      () => createBackLogApi(backlogDto, backFileDto, currentProjectNumber),
+      () =>
+        createBackLogApi(
+          backlogDto,
+          backFileDto,
+          pjtData[currentProjectNumber]?.no,
+        ),
       {
         onSuccess: (user) => {
           console.log('Success backLog : ', user);

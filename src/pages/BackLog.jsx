@@ -31,17 +31,15 @@ export default function BackLog() {
     },
   );
 
-  console.log('setPjtDetailData:', currentProjectData);
-
   const { data: PjtDetailData, isLoading: pjtDetailDataLoading } = useQuery(
     [
       'fechingPjtDetailDataInB',
-      currentProjectNumber,
-      currentProjectData.user_id,
+      pjtData[currentProjectNumber].no,
+      pjtData[currentProjectNumber].user_id,
     ],
     async () => {
       const res = await axios.get(
-        `http://www.peernow.site/api/project/peerlist?projectNumber=${currentProjectNumber}&owner=${currentProjectData.user_id}`,
+        `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber].no}&owner=${pjtData[currentProjectNumber].user_id}`,
         {
           withCredentials: true,
         },
