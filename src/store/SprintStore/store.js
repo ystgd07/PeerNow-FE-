@@ -6,8 +6,10 @@ const initialSprintBackLog = {
   sprintDto: {
     title: '',
     detail: '',
-    start_date: format(new Date(), 'yyyy-MM-dd'),
-    end_date: new Date(),
+    // start_date: format(new Date(), 'yyyy-MM-dd'),
+    // end_date: new Date(),
+    startDate: new Date(),
+    end_date: null,
   },
   backlogDto: [
     // {1},{no:2}
@@ -61,6 +63,13 @@ export const createSprint = create((set) => ({
         ? state.backlogDto.filter((e) => e !== data)
         : state.backlogDto.concat(data),
     })),
+  handleDateChange: (dates) => {
+    const [start_date, end_date] = dates;
+    set({
+      start_date: format(start_date, 'yyyy-MM-dd'),
+      end_date: end_date ? format(end_date, 'yyyy-MM-dd') : null,
+    });
+  },
 }));
 
 // [sprint : Sprints.jsx] 스프린트 내용(전체 스프린트)
@@ -113,4 +122,12 @@ export const useSelectedSprint = create((set) => ({
   setSprintNo: (data) => set((state) => ({ sprintNo: data })),
   setSelectedValidate: (data) =>
     set((state) => ({ selectedValidate: !state.selectedValidate })),
+}));
+
+// 스프린트 날짜선택
+export const useDateRangeStore = create((set) => ({
+  handleDateChange: (dates) => {
+    const [start, end] = dates;
+    set({ startDate: start, endDate: end });
+  },
 }));

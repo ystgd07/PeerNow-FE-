@@ -76,3 +76,15 @@ export const fetchBacklogDetail = async (BackNum) => {
 
   return res;
 };
+
+// 백로그 수정
+export const updateBacklog = async (backNum, selectedBackObj) => {
+  const res = await axios.put(
+    `http://www.peernow.site/api/project/backlog?no=${backNum}`,
+    selectedBackObj,
+    {
+      withCredentials: true,
+    },
+  );
+  return res;
+};

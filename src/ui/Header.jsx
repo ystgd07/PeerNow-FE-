@@ -4,17 +4,16 @@ import {
   useBackLogPageRes,
   useProjectInBackLog,
 } from '../store/BackLogStore/store';
-import { PjtNumNow } from '../store/header/store';
+import { PjtNumNow, toggleDropdown } from '../store/header/store';
 
 export default function Header() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { pjtData } = useProjectInBackLog((state) => state);
 
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  const { selectedDtopdownOfHeader, setSelectedDtopdownOfHeader } =
+    toggleDropdown((state) => state);
 
   console.log('currentProjectNumber  :', currentProjectNumber);
 
@@ -26,7 +25,7 @@ export default function Header() {
             <div className="mx-10 text-gray-500">프로젝트명</div>
             <button
               id="dropdownDefaultButton"
-              onClick={toggleDropdown}
+              onClick={setSelectedDtopdownOfHeader}
               className="inline-flex items-center mx-16 text-2xl font-extrabold text-center text-black bg-white rounded-lg focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
@@ -39,7 +38,7 @@ export default function Header() {
               </p>
               <svg
                 className={`w-2.5 h-2.5 ml-2.5 transform ${
-                  isDropdownOpen ? 'rotate-180' : 'rotate-0'
+                  selectedDtopdownOfHeader ? 'rotate-180' : 'rotate-0'
                 }`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +55,7 @@ export default function Header() {
               </svg>
             </button>
             {/* 프로젝트 선택 드롭박스 */}
-            {isDropdownOpen && (
+            {selectedDtopdownOfHeader && (
               <div
                 id="dropdown"
                 className="absolute mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 duration-1000"

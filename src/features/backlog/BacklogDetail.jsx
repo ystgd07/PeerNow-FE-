@@ -12,15 +12,20 @@ import { fetchBacklogDetail } from '../../apis/backLogApis';
 import ModalSearch from './ModalSearch';
 
 export default function BacklogDetail() {
+  const { queryClient } = useQueryClient();
+
   // 백로그 유저 서치
   const { setSearchRes, searchUser, setSearchUser, searchRes } = UseBackLog(
     (state) => state,
   );
 
   // 헤더 프로젝트 번호
-  const { currentProjectNumber, currentSearchUser } = useBackLogPageRes(
-    (state) => state,
-  );
+  const {
+    currentProjectNumber,
+    currentSearchUser,
+    setCurrentSearcUser,
+    currentBackLogMananger,
+  } = useBackLogPageRes((state) => state);
 
   // 전체 백로그 확인
   const { backlogData } = AllBacklogOfThisPjt((state) => state);
@@ -49,32 +54,42 @@ export default function BacklogDetail() {
     {
       enabled: !!backNum,
       onSuccess: (data) => {
-        console.log('data :', data);
         setBacklogDetailData(data?.data?.datalist);
       },
     },
   );
   console.log('backlogDetailData~ : ', backlogDetailData);
 
+  // 백로그 수정
+  const { mutate: updateBacklog, isLoading: isUpdateBacklogLoading } =
+    useMutation(() => updateBacklog(backNum, selectedBackObj), {
+      onSuccess: (user) => {
+        console.log('Success updateBacklog : ', user);
+        queryClient.invalidateQueries('fetchBacklogDetail');
+      },
+      onError: (error) => {
+        console.log('Error', error);
+      },
+    });
+
   return (
     <>
       <div>
         <div className="relative mt-6 flex-1 px-4 sm:px-6">
-          <ModalRadio />
+          <ModalRadio onChange={(e) => setSelectedStatus(e.target.value)} />
           <input
             name="title"
             className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
             placeholder=" *무엇을 해야합니까"
-            value={selectedBackObj.title}
+            value={selectedBackObj?.title}
             onChange={(e) => setSelectedTitle(e.target.value)}
           />
 
-          {/* <div>{currentBackLogMananger}</div> */}
           <input
-            placeholder=" *담당자를 선택할 수 있습니다"
             className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
-            value={selectedBackObj.user_id}
+            value={selectedBackObj?.user_id}
             onChange={(e) => setSelectedUserID(e.target.value)}
+            onClick={() => setCurrentSearcUser(true)}
           />
           <ModalSearch visible={currentSearchUser} />
 
@@ -83,7 +98,7 @@ export default function BacklogDetail() {
             // onChange={(e) => setDetail(e.target.value)}
             className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
             placeholder="설명을 입력할 수 있습니다"
-            value={selectedBackObj.detail}
+            value={selectedBackObj?.detail}
             onChange={(e) => setSelectedDetail(e.target.value)}
           />
           <div className="items-center">
@@ -100,17 +115,13 @@ export default function BacklogDetail() {
             <button
               className="text-right mr-1 -mb-6"
               onClick={() => {
-                // createMutateOfBackLog(
-                //   backlogDto,
-                //   backFileDto,
-                //   currentProjectNumber,
-                // );
+                updateBacklog(backNum, selectedBackObj);
               }}
             >
               <span
                 className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400 `}
               >
-                수정
+                {isUpdateBacklogLoading ? '수정 중...' : '수정'}
               </span>
             </button>
           </div>

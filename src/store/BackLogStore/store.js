@@ -202,6 +202,13 @@ export const useBackNumStore = create((set) => ({
       },
     })),
 
+  // setSelectedStatus: (status) =>
+  //   set((state) => ({
+  //     selectedBackObj: {
+  //       status: status,
+  //     },
+  //   })),
+
   setSelectedTitle: (title) =>
     set((state) => ({
       selectedBackObj: {
@@ -214,6 +221,7 @@ export const useBackNumStore = create((set) => ({
         user_id: user_id,
       },
     })),
+
   setSelectedDetail: (detail) =>
     set((state) => ({
       selectedBackObj: {
