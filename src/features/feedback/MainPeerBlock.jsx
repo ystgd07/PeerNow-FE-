@@ -29,7 +29,7 @@ export default function MainPeerBlock() {
       ],
       async () => {
         const res = await axios.get(
-          `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber]?.no}&owner=${pjtData[currentProjectNumber]?.user_id}`,
+          `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber]?.no}`,
           {
             withCredentials: true,
           },
@@ -68,7 +68,8 @@ export default function MainPeerBlock() {
             >
               <img
                 // src={item.imageSrc}
-                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                // src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                src={`data:image/*;base64,${item.image}`}
                 className="w-full h-56 object-cover object-center"
               />
 

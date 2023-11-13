@@ -16,7 +16,9 @@ export default function PjtInfo() {
     ['pjtModalData', projectNumber, projectUserId],
     async () => {
       const res = await axios.get(
-        `http://www.peernow.site/api/project/peerlist?projectNumber=${projectNumber}&owner=${projectUserId}`,
+        // `http://www.peernow.site/api/project/peerlist?projectNumber=${projectNumber}&owner=${projectUserId}`,
+        // 변경사항 추후 적용
+        `http://www.peernow.site/api/project/peerlist?projectNumber=${projectNumber}`,
         {
           withCredentials: true,
         },

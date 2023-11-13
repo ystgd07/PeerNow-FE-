@@ -16,6 +16,7 @@ export default function FormButton({ checkValid, btnName, event }) {
     onSuccess: (user) => {
       console.log('Success : ', user);
       queryClient.invalidateQueries();
+
       navigate('/home');
     },
     onError: (error) => {

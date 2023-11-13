@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-export async function fetchStatusUpdateData(status, pjtNo) {
+export async function fetchStatusUpdateData(status, pjtNo, role) {
   console.log('pjtNo Fetch', pjtNo);
 
   const res = '';
 
   if (status === 'ACCEPT') {
     const res = await axios.put(
-      `http://www.peernow.site/api/project/accept?projectNumber=${pjtNo}`,
+      `http://www.peernow.site/api/project/accept?projectNumber=${pjtNo}&role=${role}`,
     );
 
     return res?.data;

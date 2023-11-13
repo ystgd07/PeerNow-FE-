@@ -9,7 +9,9 @@ import { useQuery } from 'react-query';
 
 export default function Sprints() {
   const { nowNum } = PjtNumNow((state) => state);
-  const { datalist, setDatalist } = AllThisSprints((state) => state);
+  const { datalist, setDatalist, recentDate, setRecentDate } = AllThisSprints(
+    (state) => state,
+  );
   const { pjtData } = useProjectInBackLog((state) => state);
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
 
@@ -20,17 +22,18 @@ export default function Sprints() {
       onSuccess: (data) => {
         console.log('fetchAllSprints :', data);
         setDatalist(data?.data?.datalist);
+        setRecentDate();
       },
     },
   );
 
   console.log('왜안되노 : ', datalist);
-
+  console.log('왜 안되긴! :', recentDate);
   return (
     <>
       <div className="gap-4 mt-3">
         <div className="bg-white rounded-lg p-3 grid grid-cols-2 gap-3">
-          {datalist.map((item, idx) => (
+          {datalist?.map((item, idx) => (
             <div key={idx} className="p-1 px-5">
               <div className="text-xl">
                 <span className="text-gray-400">{idx + 1} </span> {item.title}

@@ -27,7 +27,6 @@ export default function Kanban() {
     refetch,
   } = useQuery(['fechingPjtDataInB'], fetchBackLogPjtData, {
     onSuccess: (data) => {
-      console.log('data :', data);
       setPjtData(data?.data?.datalist);
     },
   });

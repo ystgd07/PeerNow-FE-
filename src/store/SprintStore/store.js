@@ -82,13 +82,27 @@ const initialSprints = {
 
 export const AllThisSprints = create((set) => ({
   ...initialSprints,
-
+  recentDate: '',
   setDatalist: (res) => set((state) => ({ datalist: res })),
+  setRecentDate: (date) =>
+    set((state) => ({
+      recentDate: state?.datalist?.reduce((prev, curr) => {
+        return new Date(prev?.end_date).getTime() <=
+          new Date(curr?.end_date).getTime()
+          ? curr
+          : prev;
+      }).end_date,
+      //   recentDate:
+      //     new Date(state.datalist[0].end_date).getTime() <=
+      //     new Date(state.datalist[1].end_date).getTime()
+      //       ? state.datalist[0].end_date
+      //       : state.datalist[1].end_date,
+    })),
 }));
 
 export const useSelectedSprint = create((set) => ({
   projectNo: 0,
-  sprintNo: 0,
+  sprintNo: null,
   selectedSprintTitle: '',
   selectedValidate: false,
   // setSprintTitle: (data) => set((state) => ({ selectedSprintTitle: state })),

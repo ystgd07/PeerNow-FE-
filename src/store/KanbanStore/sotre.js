@@ -4,8 +4,8 @@ import { create } from 'zustand';
 const initialKanbanData = {
   datalist: [
     {
-      no: 0,
-      sprint_no: 0,
+      no: null,
+      sprint_no: null,
       user_id: '',
       title: '',
       detail: '',

@@ -48,7 +48,7 @@ export default function Main() {
         >
           {data !== undefined ? (
             <div className="flex rl">
-              <div className="flex flex-col h-64 gap-3 p-6 overflow-y-scroll bg-slate-100 shadow-lg rounded-lg  scrollbar-thumb-amber-400 scrollbar-thumb-rounded-full scrollbar-track-slate-50 scrollbar-thin ">
+              <div className="flex flex-col h-pjtCardSection border-2 border-slate-200 gap-3 p-6 overflow-y-scroll bg-slate-50 shadow-lg rounded-lg  scrollbar-thumb-amber-400 scrollbar-thumb-rounded-full scrollbar-track-slate-50 scrollbar-thin ">
                 {!isLoading &&
                   data?.data?.datalist?.map((res, idx) => (
                     <MyProjectCard res={res} key={idx} />

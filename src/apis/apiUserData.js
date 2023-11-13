@@ -23,3 +23,20 @@ export async function fetchUserUpdateData({ data, userMainDataid }) {
   console.log('res', res);
   return res.data;
 }
+
+export async function updateUserImg(file, id, filename) {
+  console.log('updateUserImg:file', file);
+  const formData = new FormData();
+
+  const imgBlob = new Blob([JSON.stringify(file)], {
+    type: 'multipart/form-data',
+  });
+
+  formData.append('image', file);
+
+  const res = await axios.put(
+    `http://www.peernow.site/api/user/imagechange?id=${id}&fileName=${filename}`,
+    formData,
+  );
+  return res.data;
+}

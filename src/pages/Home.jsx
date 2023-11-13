@@ -13,13 +13,20 @@ import { useQuery } from 'react-query';
 import { fetchUserData } from '../apis/apiUserData';
 import { useUserMain } from '../store/UserMain/store';
 import DropDownUser from '../ui/DropDownUser';
+import { getUserImg } from '../apis/apiAuth';
+import { useBackNumStore } from '../store/BackLogStore/store';
 
 export default function Home() {
   const { openMainPage } = useOpenMainPage((state) => state);
   const { openMypage } = useOpenMypage((state) => state);
   const { openUpdateModal } = useOepnUpdateModal((state) => state);
-  const { setUserMainData, userMainData, setIsOpenDropdown, isOpenDropdown } =
-    useUserMain((state) => state);
+  const {
+    setUserMainData,
+    userMainData,
+    setIsOpenDropdown,
+    isOpenDropdown,
+    setImageOfUser,
+  } = useUserMain((state) => state);
 
   const { data: userData, isLoadingUserData } = useQuery(
     ['userData'],
@@ -34,7 +41,23 @@ export default function Home() {
       },
     },
   );
-  console.log('isOpenDropdown : ', isOpenDropdown);
+
+  const { data: userImage2 } = useQuery(['userImg'], getUserImg, {
+    enabled: !!userData,
+
+    onSuccess: (data) => {
+      // const reader = new FileReader();
+      // reader.readAsBinaryString(data);
+      console.log('userImg :', data);
+
+      setImageOfUser(data?.data?.image);
+    },
+    onError: (error) => {
+      console.log('error:', error);
+    },
+  });
+
+  // console.log('userImage : ', userImage);
   return (
     <>
       <Gnb />

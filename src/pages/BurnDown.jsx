@@ -49,10 +49,10 @@ export default function BurnDown() {
   const { burnDownObj, setBurnDownObj } = useBurnDown((state) => state);
   const { pjtData } = useProjectInBackLog((state) => state);
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
-  console.log('Store sprint_no:', burnDownObj.sprint_no);
+  console.log('Store sprint_no:', burnDownObj?.sprint_no);
 
   const { data: burnDownData, isLoading: burnDownLoading } = useQuery(
-    ['getBurnDown', burnDownObj.sprint_no],
+    ['getBurnDown', burnDownObj?.sprint_no],
     async () => {
       const res = await axios.get(
         `http://www.peernow.site/api/kanban/allburndown?project_no=${pjtData[currentProjectNumber].no}`,

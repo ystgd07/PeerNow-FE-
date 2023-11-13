@@ -17,7 +17,9 @@ export default function NewSprintCreatePage() {
     setTitle,
     setDetail,
     setStartDate,
+    start_date,
     setEndDate,
+    end_date,
     setBacklogs,
     sprintDto,
   } = createSprint((state) => state);
@@ -71,6 +73,7 @@ export default function NewSprintCreatePage() {
               />
             </div>
             <div className="w-1/2">
+              {}
               <DatePicker
                 minDate={sprintDto.start_date || new Date()}
                 locale={ko}

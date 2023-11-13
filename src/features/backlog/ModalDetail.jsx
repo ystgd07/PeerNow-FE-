@@ -8,7 +8,6 @@ import { useMutation, useQueryClient } from 'react-query';
 import ModalRadio from './ModalRadio';
 import { createBackLogApi } from '../../apis/backLogApis';
 import ModalSearch from './ModalSearch';
-import axios from 'axios';
 
 export default function ModalDetail() {
   // 백로그 유저 서치
@@ -62,6 +61,7 @@ export default function ModalDetail() {
         <div className="relative mt-6 flex-1 px-4 sm:px-6">
           <ModalRadio onChange={(e) => setStatus(e.target.value)} />
           <input
+            type="text"
             name="title"
             onChange={(e) => setTitle(e.target.value)}
             className="border-2 w-full  border-gray-300 p-2 mb-4 rounded-md"
@@ -69,14 +69,21 @@ export default function ModalDetail() {
             value={backlogDto.title}
           />
           <div
+            type="text"
             name="user_id"
             className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
+            placeholder=" *담당자를 선택할 수 있습니다"
             onClick={setCurrentSearcUser}
           >
-            <div>{currentBackLogMananger}</div>
+            {currentBackLogMananger ? (
+              <div>{currentBackLogMananger}</div>
+            ) : (
+              <p className="text-gray-500"> *담당자를 선택할 수 있습니다 </p>
+            )}
           </div>
           <ModalSearch visible={currentSearchUser} />
           <input
+            type="text"
             name="detail"
             onChange={(e) => setDetail(e.target.value)}
             className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
@@ -110,7 +117,7 @@ export default function ModalDetail() {
               <span
                 className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400 `}
               >
-                완료
+                생성
               </span>
             </button>
           </div>

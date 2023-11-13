@@ -38,7 +38,8 @@ export default function ModalSearch({ visible }) {
             <div className="text-lg font-bold flex items-center px-4 py-2 ">
               <img
                 className="w-6 h-6 mr-2 rounded-full"
-                src={e.image}
+                // src={e.image}
+                src={`data:image/*;base64,${e.image}`}
                 alt={e.name}
               />
               {e.name}

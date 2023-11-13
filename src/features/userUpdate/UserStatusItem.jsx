@@ -11,7 +11,7 @@ export default function UserStatusItem({ item }) {
     useStatusUpdate((state) => state);
 
   const { mutate: statusAccepUpdate, isAccepLoading } = useMutation(
-    () => fetchStatusUpdateData('ACCEPT', item.project_number),
+    () => fetchStatusUpdateData('ACCEPT', item?.project_number, item?.role),
     {
       onSuccess: (user) => {
         console.log('Success : ', user);
@@ -25,7 +25,7 @@ export default function UserStatusItem({ item }) {
   );
 
   const { mutate: statusDeclineUpdate, isDeclineLoading } = useMutation(
-    () => fetchStatusUpdateData('DECLINE', item.project_number),
+    () => fetchStatusUpdateData('DECLINE', item?.project_number),
     {
       onSuccess: (user) => {
         console.log('Success : ', user);
@@ -45,13 +45,14 @@ export default function UserStatusItem({ item }) {
           <div className="mr-4">
             <img
               className="rounded-full border-2 border-black w-10 h-10"
-              src="/img/je.jfif"
+              // src="/img/je.jfif"
+              src={`data:image/*;base64,${item?.image}`}
               alt="Neil image"
             />
           </div>
           <div className="flex flex-col items-center">
             <p className="text-xl font-semibold">
-              {item.owner_name}({item.role})
+              {item?.owner_name}({item?.role})
             </p>
           </div>
         </div>
@@ -59,13 +60,13 @@ export default function UserStatusItem({ item }) {
           <div className="flex flex-col items-center">
             <p className="text-xl font-semibold">PeerNow</p>
             <p className="text-sm font-semibold truncate text-slate-400">
-              {item.project_title}
+              {item?.project_title}
             </p>
           </div>
         </div>
         <div className="flex justify-center w-1/5">
-          {statusUpdateData.acceptStatus === 'success' ||
-          item.status === 'WAIT' ? (
+          {statusUpdateData?.acceptStatus === 'success' ||
+          item?.status === 'WAIT' ? (
             <button
               type="button"
               className="inline-flex items-center justify-center w-full gap-2 px-4 py-2 mr-5 text-sm font-semibold text-white transition-all bg-green-400 border border-transparent rounded-md hover:text-white hover:bg-green-500 focus:outline-none focus:ring-2 ring-offset-white focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
@@ -74,13 +75,13 @@ export default function UserStatusItem({ item }) {
               승낙
             </button>
           ) : (
-            item.status === 'ACCEPT' && (
+            item?.status === 'ACCEPT' && (
               <div className="flex justify-center w-full">
                 <FaUserCheck className="text-2xl text-[#c1f5b4]"></FaUserCheck>
               </div>
             )
           )}
-          {item.status === 'WAIT' ? (
+          {item?.status === 'WAIT' ? (
             <button
               type="button"
               className="inline-flex items-center justify-center w-full gap-2 px-4 py-2 text-sm font-semibold text-white transition-all bg-red-400 border border-transparent rounded-md hover:text-white hover:bg-red-500 focus:outline-none focus:ring-2 ring-offset-white focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
@@ -89,7 +90,7 @@ export default function UserStatusItem({ item }) {
               취소
             </button>
           ) : (
-            item.status === 'DECLINE' && (
+            item?.status === 'DECLINE' && (
               <div className="flex gap-3">
                 <FaUserTimes className="text-2xl text-red-600"></FaUserTimes>
                 <p className="font-bold">(거절)</p>

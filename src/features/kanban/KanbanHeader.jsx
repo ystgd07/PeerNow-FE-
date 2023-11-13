@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ProjectList from '../header/ProjectList';
 import {
   AllThisSprints,
   useSelectedSprint,
@@ -63,11 +62,6 @@ export default function KanbanHeader() {
                 {datalist?.map((e, idx) => (
                   <KanbanListOfSprint key={idx} list={e} />
                 ))}
-
-                {/* <ProjectList /> */}
-                {/*                   {pjtData?.map((e, idx) => (
-                    <ProjectList key={idx} pjt={e} />
-                  ))} */}
               </ul>
             </div>
           )}

@@ -60,7 +60,8 @@ export default function Column({ column, columns, setColumns, columnIndex }) {
                 <p href="#">
                   <span className="flex justify-center">
                     <img
-                      src={item.imgSrc}
+                      // src={item.imgSrc}
+                      src={`data:image/*;base64,${item.image}`}
                       alt="백로그_담당자_이미지"
                       className="w-6 h-6 rounded-full"
                     />

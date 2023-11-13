@@ -27,7 +27,7 @@ export default function MyPage() {
     {
       onSuccess: (data) => {
         console.log('data :', data);
-        setPjtData(data.data.datalist);
+        setPjtData(data?.data?.datalist);
       },
     },
   );

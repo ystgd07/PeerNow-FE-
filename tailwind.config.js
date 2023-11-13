@@ -24,6 +24,7 @@ module.exports = {
         PjtInfo: '623px',
         SectionH: '768px',
         Profile: '182px',
+        pjtCardSection: '510px',
         fontFamily: {
           suite: ['SUITE', 'sans'],
         },

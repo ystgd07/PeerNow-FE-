@@ -30,7 +30,8 @@ export default function BacklogIcon() {
           <p>
             <span className="flex justify-center">
               <img
-                src={item.image}
+                // src={item.image}
+                src={`data:image/*;base64,${item?.image}`}
                 alt="백로그_담당자_이미지"
                 className="w-6 h-6 rounded-full"
               />

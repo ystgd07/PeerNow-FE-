@@ -28,7 +28,6 @@ export const fetchBacklogTitle = async () => {
   try {
     const response = await axios.get(
       'http://www.peernow.site/api/project/backlog/ing',
-      // https://www.peernow.site/api/project/backlog/ing?sprint_no=1
     );
     return response.data;
   } catch (error) {
@@ -47,12 +46,9 @@ export const fetchBackLogPjtData = async () => {
 
 // 프로젝트 유저
 export const fetchBackLogPjtDetailData = async (pjtNum, owner) => {
-  const res = await axios.get(
-    `/project/peerlist?projectNumber=${pjtNum}&owner=${owner}`,
-    {
-      withCredentials: true,
-    },
-  );
+  const res = await axios.get(`/project/peerlist?projectNumber=${pjtNum}`, {
+    withCredentials: true,
+  });
 
   return res;
 };
@@ -61,6 +57,18 @@ export const fetchBackLogPjtDetailData = async (pjtNum, owner) => {
 export const fetchBackLogList = async (pjtNum) => {
   const res = await axios.get(
     `http://www.peernow.site/api/project/backlog/all?project_no=${pjtNum}`,
+    {
+      withCredentials: true,
+    },
+  );
+
+  return res;
+};
+
+// 백로그 상세 페이지
+export const fetchBacklogDetail = async (BackNum) => {
+  const res = await axios.get(
+    `http://www.peernow.site/api/project/backlog?no=${BackNum}`,
     {
       withCredentials: true,
     },

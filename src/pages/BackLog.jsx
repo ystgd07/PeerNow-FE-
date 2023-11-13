@@ -39,7 +39,7 @@ export default function BackLog() {
     ],
     async () => {
       const res = await axios.get(
-        `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber].no}&owner=${pjtData[currentProjectNumber].user_id}`,
+        `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber].no}`,
         {
           withCredentials: true,
         },

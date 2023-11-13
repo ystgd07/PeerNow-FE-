@@ -1,6 +1,8 @@
 import { FaCrown } from 'react-icons/fa';
+import { usePeerEv } from '../../store/PeerStore/store';
 
 export default function MainBPBlock() {
+  const { setPeerEvDto, peerEvDto } = usePeerEv((state) => state);
   return (
     <>
       <div className="flex flex-col items-center justify-center">
@@ -14,7 +16,7 @@ export default function MainBPBlock() {
             alt="최고의동료_이미지"
             className="text-sm mr-2 w-10 h-10 rounded-full"
           />
-          <span className="text-3xl font-semibold">최현희</span>
+          <span className="text-3xl font-semibold">{peerEvDto.best_name}</span>
         </div>
       </div>
     </>

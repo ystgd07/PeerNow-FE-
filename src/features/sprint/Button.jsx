@@ -3,10 +3,13 @@ import { createSprint } from '../../store/SprintStore/store';
 import { useMutation, useQueryClient } from 'react-query';
 import { createSprintApi } from '../../apis/sprintApis';
 import { PjtNumNow } from '../../store/header/store';
+import { useNavigate } from 'react-router-dom';
 
 export default function Button() {
   const { nowNum } = PjtNumNow((state) => state);
   const { sprintDto, backlogDto } = createSprint((state) => state);
+  const navigate = useNavigate();
+
   console.log('[Sprint] Button - sprintDto ::: ', sprintDto);
   console.log('[Sprint] Button - backlogDto ::: ', backlogDto);
 
@@ -17,6 +20,7 @@ export default function Button() {
       onSuccess: (user) => {
         console.log('Success : ', user);
         queryClient.invalidateQueries();
+        navigate('/home/MyPage');
       },
       onError: (error) => {
         console.log('Error', error);

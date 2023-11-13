@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useUserMain } from '../store/UserMain/store';
+import { useImage, useUserMain } from '../store/UserMain/store';
 import { GrUserSettings } from 'react-icons/gr';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 export default function Gnb() {
-  const { userMainData, setIsOpenDropdown } = useUserMain((state) => state);
-
+  const { userMainData, setIsOpenDropdown, headerUserImg } = useUserMain(
+    (state) => state,
+  );
+  const { setUserImg, stateImageData } = useImage((state) => state);
+  console.log('headerUserImg', headerUserImg);
   return (
     <header
       className="relative items-center justify-between w-full  p-1 pl-5 pr-5 bg-white cursor-pointer border-slate-300 border-b-2"
@@ -46,11 +49,21 @@ export default function Gnb() {
                       aria-expanded="false"
                     >
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="font-medium rounded-full w-11 h-11 hover:bg-gray-400 focus:ring-3 focus:ring-gray-300"
-                        src="testImg.jpg"
-                        alt="user photo"
-                      />
+                      {stateImageData.userImg !== '' ? (
+                        <img
+                          className="font-medium rounded-full w-11 h-11 hover:bg-gray-400 focus:ring-3 focus:ring-gray-300"
+                          // src="testImg.jpg"
+                          src={stateImageData.userImg}
+                          alt="user photo"
+                        />
+                      ) : (
+                        <img
+                          className="font-medium rounded-full w-11 h-11 hover:bg-gray-400 focus:ring-3 focus:ring-gray-300"
+                          // src="testImg.jpg"
+                          src={`data:image/*;base64,${headerUserImg}`}
+                          alt="user photo"
+                        />
+                      )}
                     </button>
                   </li>
                   <li className="pl-3 text-xl">{userMainData.name}</li>

@@ -1,16 +1,14 @@
-import { Fragment } from 'react';
+import React from 'react';
+import { useBackLogDetailPage } from '../../store/store';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import ModalDetail from './ModalDetail';
-import { useBackLogPage } from '../../store/store';
-import { UseBackLog } from '../../store/BackLogStore/store';
+import { Fragment } from 'react';
 import BacklogResult from './BacklogResult';
+import ModalDetail from './ModalDetail';
+import BacklogDetail from './BacklogDetail';
 
-export default function BacklogModal() {
-  const { isBackLogModalOpen, setBackLogModalOpen } = useBackLogPage(
-    (state) => state,
-  );
-  const { setSearchRes, searchUser, setSearchUser, searchRes } = UseBackLog(
+export default function BacklogDetailModal() {
+  const { isBackLogModalOpen, setBackLogModalOpen } = useBackLogDetailPage(
     (state) => state,
   );
 
@@ -65,10 +63,10 @@ export default function BacklogModal() {
                   </Transition.Child>
                   <div className="flex flex-col h-full py-6 overflow-y-scroll bg-white shadow-xl">
                     <Dialog.Title className="px-4 text-lg font-semibold leading-6 text-gray-900">
-                      이슈 생성
+                      백로그 상세
                     </Dialog.Title>
                     <BacklogResult />
-                    <ModalDetail />
+                    <BacklogDetail />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

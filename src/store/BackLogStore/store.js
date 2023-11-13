@@ -163,3 +163,61 @@ export const useBackLogPageRes = create((set) => ({
   setCurrentBackLogTeam: (data) =>
     set((state) => ({ currentBackLogTeam: data })),
 }));
+
+// 프로젝트에 속한 전체 백로그 불러오기
+const initialBacklogDetail = {
+  backlogDetailData: [
+    {
+      no: 0,
+      sprint_no: '',
+      user_id: '',
+      title: '',
+      detail: '',
+      image: '',
+      status: '',
+      reg_date: '',
+      mod_date: '',
+      image: '',
+    },
+  ],
+};
+export const BacklogDetailData = create((set) => ({
+  ...initialBacklogDetail,
+
+  setBacklogDetailData: (res) => set((state) => ({ backlogDetailData: res })),
+}));
+
+// 백로그 번호 상태
+export const useBackNumStore = create((set) => ({
+  backNum: '',
+  selectedBackObj: {},
+
+  setSelectedBackObj: (obj) => set({ selectedBackObj: obj }),
+  setBackNum: (newBackNum) => set({ backNum: newBackNum }),
+
+  setSelectedStatus: (inputStatus) =>
+    set((state) => ({
+      selectedBackObj: {
+        status: inputStatus,
+      },
+    })),
+
+  setSelectedTitle: (title) =>
+    set((state) => ({
+      selectedBackObj: {
+        title: title,
+      },
+    })),
+  setSelectedUserID: (user_id) =>
+    set((state) => ({
+      selectedBackObj: {
+        user_id: user_id,
+      },
+    })),
+  setSelectedDetail: (detail) =>
+    set((state) => ({
+      selectedBackObj: {
+        detail: detail,
+      },
+    })),
+}));

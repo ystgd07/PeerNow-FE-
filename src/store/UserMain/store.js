@@ -48,6 +48,7 @@ export const useProject = create((set) => ({
 
 export const useUserMain = create((set) => ({
   ...initialUserMain,
+  headerUserImg: '',
 
   setModalState: (modalState) => set((state) => ({ modalState: modalState })),
 
@@ -70,6 +71,11 @@ export const useUserMain = create((set) => ({
   setUpdateTeam: (updateTeam) =>
     set((state) => ({
       updateTeam: updateTeam,
+    })),
+
+  setImageOfUser: (userImg) =>
+    set((state) => ({
+      headerUserImg: userImg,
     })),
 
   setUserMainData: (userMainData) =>
