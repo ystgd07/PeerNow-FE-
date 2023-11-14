@@ -141,7 +141,9 @@ export const useBackLogPageRes = create((set) => ({
   currentProjectNumber: 0,
   currentProjectData: {},
   currentSearchUser: false,
+  currentModifySearchUser: false,
   currentBackLogMananger: '',
+  currentModiftBackLogMananger: '',
   currentBackLogImage: '',
   currentBackLogTeam: '',
   currentProjectOwner: '',
@@ -153,6 +155,14 @@ export const useBackLogPageRes = create((set) => ({
 
   setCurrentSearcUser: (data) =>
     set((state) => ({ currentSearchUser: !state.currentSearchUser })),
+
+  setCurrentModifySearchUser: (data) =>
+    set((state) => ({
+      currentModifySearchUser: !state.currentModifySearchUser,
+    })),
+
+  setCurrentModiftBackLogMananger: (data) =>
+    set((state) => ({ currentModiftBackLogMananger: data })),
 
   setCurrentBackLogManager: (data) =>
     set((state) => ({ currentBackLogMananger: data })),

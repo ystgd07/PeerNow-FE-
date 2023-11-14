@@ -10,9 +10,12 @@ import {
 } from '../store/BackLogStore/store';
 import { fetchBackLogList, fetchBackLogPjtData } from '../apis/backLogApis';
 import { TiArrowBackOutline } from 'react-icons/ti';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Sprint() {
+  //
+  const navigate = useNavigate();
+
   // Header용
   const { setPjtDetailData, setPjtData } = useProjectInBackLog(
     (state) => state,
@@ -52,13 +55,16 @@ export default function Sprint() {
         <Header />
         {/* 제목 */}
         <div className="mx-10">
-          <div className="text-3xl text-gray-500 my-5 flex justify-between">
+          <div className="text-3xl text-gray-500 mt-4 flex justify-between">
             <Title value={'스프린트 생성'} />
-            <Link to="/home/mypage">
-              <TiArrowBackOutline className="cursor-pointer hover:scale-125" />
-            </Link>
+            <a
+              href="javascript:window.history.back();"
+              className="p-1 mt-2 text-base hover:scale-105 flex items-center mr-6"
+            >
+              <TiArrowBackOutline className="cursor-pointer w-7 h-7 mr-1"></TiArrowBackOutline>
+              뒤로가기
+            </a>
           </div>
-
           {/* 생성 페이지 */}
           <NewSprintCreatePage />
           {/* 생성 버튼 */}

@@ -59,7 +59,7 @@ export default function SideModalSearchResult() {
             }}
           >
             <span className="w-2 h-2 m-2 bg-gray-400 rounded-full"></span>
-            <div className="flex-grow px-2 font-medium">{user.name}</div>
+            <div className="flex-grow px-2 font-medium">{user?.name}</div>
             <div className="text-sm font-normal tracking-wide text-gray-500">
               {user.team ? user?.team : '무소속'}
             </div>

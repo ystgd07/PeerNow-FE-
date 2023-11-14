@@ -27,7 +27,9 @@ export default function BacklogTbody() {
     (state) => state,
   );
   //
-  const { backNum, setBackNum, setSelectedBackObj } = useBackNumStore();
+  const { backNum, setBackNum, setSelectedBackObj } = useBackNumStore(
+    (state) => state,
+  );
 
   console.log('[BacklogTbody] nowNum 번호 ====> ', currentProjectNumber);
   console.log('[BacklogTbody] backlogData.no 번호 ====> ', backlogData.no);

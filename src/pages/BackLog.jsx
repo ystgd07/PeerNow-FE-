@@ -32,11 +32,7 @@ export default function BackLog() {
   );
 
   const { data: PjtDetailData, isLoading: pjtDetailDataLoading } = useQuery(
-    [
-      'fechingPjtDetailDataInB',
-      pjtData[currentProjectNumber].no,
-      pjtData[currentProjectNumber].user_id,
-    ],
+    ['fechingPjtDetailDataInB', pjtData[currentProjectNumber].no],
     async () => {
       const res = await axios.get(
         `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber].no}`,

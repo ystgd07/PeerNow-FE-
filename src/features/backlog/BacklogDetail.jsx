@@ -5,15 +5,18 @@ import {
   AllBacklogOfThisPjt,
   BacklogDetailData,
   UseBackLog,
+  createBackLog,
   useBackLogPageRes,
   useBackNumStore,
 } from '../../store/BackLogStore/store';
-import { fetchBacklogDetail } from '../../apis/backLogApis';
+import { fetchBacklogDetail, updateBacklogData } from '../../apis/backLogApis';
 import ModalSearch from './ModalSearch';
 
 export default function BacklogDetail() {
   const { queryClient } = useQueryClient();
-
+  const { backlogDto, addFileName, backFileDto } = createBackLog(
+    (state) => state,
+  );
   // 백로그 유저 서치
   const { setSearchRes, searchUser, setSearchUser, searchRes } = UseBackLog(
     (state) => state,
@@ -62,15 +65,18 @@ export default function BacklogDetail() {
 
   // 백로그 수정
   const { mutate: updateBacklog, isLoading: isUpdateBacklogLoading } =
-    useMutation(() => updateBacklog(backNum, selectedBackObj), {
-      onSuccess: (user) => {
-        console.log('Success updateBacklog : ', user);
-        queryClient.invalidateQueries('fetchBacklogDetail');
+    useMutation(
+      () => updateBacklogData(backNum, selectedBackObj, backFileDto),
+      {
+        onSuccess: (user) => {
+          console.log('Success updateBacklog : ', user);
+          queryClient.invalidateQueries('fetchBacklogDetail');
+        },
+        onError: (error) => {
+          console.log('Error', error);
+        },
       },
-      onError: (error) => {
-        console.log('Error', error);
-      },
-    });
+    );
 
   return (
     <>
@@ -87,7 +93,7 @@ export default function BacklogDetail() {
 
           <input
             className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
-            value={selectedBackObj?.user_id}
+            value={backlogDto?.user_id}
             onChange={(e) => setSelectedUserID(e.target.value)}
             onClick={() => setCurrentSearcUser(true)}
           />
@@ -105,9 +111,9 @@ export default function BacklogDetail() {
             <input
               type="file"
               name="name"
-              //   onChange={(e) => {
-              //     addFileName(e.target.files[0]);
-              //   }}
+              onChange={(e) => {
+                addFileName(e?.target?.files[0]);
+              }}
               className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
             />
           </div>
@@ -115,7 +121,7 @@ export default function BacklogDetail() {
             <button
               className="text-right mr-1 -mb-6"
               onClick={() => {
-                updateBacklog(backNum, selectedBackObj);
+                updateBacklog(backNum, selectedBackObj, backFileDto);
               }}
             >
               <span

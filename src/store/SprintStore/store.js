@@ -6,14 +6,13 @@ const initialSprintBackLog = {
   sprintDto: {
     title: '',
     detail: '',
-    // start_date: format(new Date(), 'yyyy-MM-dd'),
-    // end_date: new Date(),
-    startDate: new Date(),
-    end_date: null,
+    start_date: format(new Date(), 'yyyy-MM-dd'),
+    // end_date: start_date,
+    end_date: new Date(),
+    // start_date: new Date(),
+    // end_date: null,
   },
-  backlogDto: [
-    // {1},{no:2}
-  ],
+  backlogDto: [],
   selectedBackLog: false,
 };
 
@@ -31,6 +30,7 @@ export const createSprint = create((set) => ({
       sprintDto: { ...state.sprintDto, detail },
     })),
 
+  //ori
   setStartDate: (start_date) =>
     set((state) => ({
       sprintDto: {
@@ -46,6 +46,7 @@ export const createSprint = create((set) => ({
         end_date: end_date,
       },
     })),
+
   //   backlogs
   setBacklogs: (no) =>
     set((state) => ({
@@ -63,12 +64,17 @@ export const createSprint = create((set) => ({
         ? state.backlogDto.filter((e) => e !== data)
         : state.backlogDto.concat(data),
     })),
+
+  //
   handleDateChange: (dates) => {
     const [start_date, end_date] = dates;
-    set({
-      start_date: format(start_date, 'yyyy-MM-dd'),
-      end_date: end_date ? format(end_date, 'yyyy-MM-dd') : null,
-    });
+    set((state) => ({
+      sprintDto: {
+        ...state.sprintDto,
+        start_date: format(start_date, 'yyyy-MM-dd'),
+        end_date: end_date ? format(end_date, 'yyyy-MM-dd') : null,
+      },
+    }));
   },
 }));
 

@@ -15,7 +15,10 @@ export default function MypageChart() {
             <Title value={'번다운 차트'} />
           </span>
           <Link to={'/home/burndown'}>
-            <GiEntryDoor className="text-xl cursor-pointer hover:scale-125 text-slate-600"></GiEntryDoor>
+            {/* <GiEntryDoor className="text-xl cursor-pointer hover:scale-125 text-slate-600"></GiEntryDoor> */}
+            <a className="float-right px-4 text-xl font-bold text-gray-500">
+              &rarr;
+            </a>
           </Link>
         </div>
         <div className="h-52">

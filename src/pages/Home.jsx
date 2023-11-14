@@ -42,6 +42,8 @@ export default function Home() {
     },
   );
 
+  console.log('userDatauserData', userData);
+
   const { data: userImage2 } = useQuery(['userImg'], getUserImg, {
     enabled: !!userData,
 

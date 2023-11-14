@@ -5,12 +5,15 @@ export default function MainBPBlock() {
   const { setPeerEvDto, peerEvDto } = usePeerEv((state) => state);
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-row items-center justify-center">
         <div className="flex items-center ml-4">
-          <FaCrown className="font-bold text-3xl text-amber-500"></FaCrown>
-          <p className="ml-5 font-semibold mt-2">최고의 동료</p>
+          <FaCrown className="mt-3 font-bold text-3xl text-[#FFBE0A]"></FaCrown>
+
+          <p className="ml-3 text-lg font-semibold mt-5 mr-6 items-center text-gray-700">
+            최고의 동료
+          </p>
         </div>
-        <div className="text-right flex justify-center items-center  mt-1">
+        <div className="text-right flex justify-center items-center mt-3">
           <img
             src="https://source.unsplash.com/random/?"
             alt="최고의동료_이미지"

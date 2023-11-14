@@ -2,11 +2,13 @@ import React from 'react';
 import {
   createBackLog,
   useBackLogPageRes,
+  useBackNumStore,
   useProjectInBackLog,
 } from '../../store/BackLogStore/store';
 
 export default function ModalSearch({ visible }) {
   const { pjtDetailData } = useProjectInBackLog((state) => state);
+  const { setCurrentModiftBackLogMananger } = useBackNumStore((state) => state);
   const {
     setCurrentSearcUser,
     setCurrentBackLogManager,

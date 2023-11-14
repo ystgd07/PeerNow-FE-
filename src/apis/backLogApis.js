@@ -78,10 +78,26 @@ export const fetchBacklogDetail = async (BackNum) => {
 };
 
 // 백로그 수정
-export const updateBacklog = async (backNum, selectedBackObj) => {
+export const updateBacklogData = async (
+  backNum,
+  selectedBackObj,
+  backFileDto,
+) => {
+  const formData = new FormData();
+
+  formData.append(
+    'backlogDto',
+    new Blob([JSON.stringify(selectedBackObj)], { type: 'application/json' }),
+  );
+
+  formData.append(
+    'fileDto',
+    new Blob([JSON.stringify(backFileDto)], { type: 'multipart/form-data' }),
+  );
+
   const res = await axios.put(
     `http://www.peernow.site/api/project/backlog?no=${backNum}`,
-    selectedBackObj,
+    formData,
     {
       withCredentials: true,
     },

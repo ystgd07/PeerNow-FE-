@@ -9,7 +9,7 @@ export default function FeedbackDetail() {
 
   return (
     <>
-      <div className="m-2">
+      <div className="m-5">
         <FeedbackDetailTitle />
         <div className="m-10 float-left">
           <PeerName />

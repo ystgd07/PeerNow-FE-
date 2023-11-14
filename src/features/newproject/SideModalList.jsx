@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useCreatePjtOne } from '../../store/store';
 import Radio from '../../ui/Radio';
+import { useUserMain } from '../../store/UserMain/store';
 
 export default function SideModalList() {
   const { noRequestPeerID } = useCreatePjtOne((state) => state);
-
+  const { userMainData, setIsOpenDropdown, headerUserImg } = useUserMain(
+    (state) => state,
+  );
   return (
     <>
       <li className="py-3 list-none sm:py-4">
@@ -15,7 +18,7 @@ export default function SideModalList() {
                 <img
                   className="w-8 h-8 rounded-full"
                   // src="/img/je.jfif"
-                  src={`data:image/*;base64,${user?.image}`}
+                  src={`data:image/*;base64,${headerUserImg}`}
                   alt="Neil"
                 />
               </div>

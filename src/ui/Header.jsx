@@ -18,7 +18,7 @@ export default function Header() {
   console.log('currentProjectNumber  :', currentProjectNumber);
 
   return (
-    <header className="bg-white shadow-md w-full  border-black ">
+    <header className="z-50 bg-white shadow-md w-full  border-black ">
       <div>
         <div className="container flex items-center justify-start py-4 mx-auto">
           <div className="relative group">
@@ -26,10 +26,10 @@ export default function Header() {
             <button
               id="dropdownDefaultButton"
               onClick={setSelectedDtopdownOfHeader}
-              className="inline-flex items-center mx-16 text-2xl font-extrabold text-center text-black bg-white rounded-lg focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="inline-flex items-center mx-16 text-2xl font-extrabold text-center text-gray-800 bg-white rounded-lg focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
-              <p>
+              <p className="text-3xl mt-1">
                 {currentProjectNumber === 1
                   ? pjtData[1]?.title
                   : currentProjectNumber === 0
@@ -58,10 +58,10 @@ export default function Header() {
             {selectedDtopdownOfHeader && (
               <div
                 id="dropdown"
-                className="absolute mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 duration-1000"
+                className="z-50 absolute mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 duration-1000"
               >
                 <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                  className="py-2 text-base text-gray-800 dark:text-gray-200"
                   aria-labelledby="dropdownDefaultButton"
                 >
                   {pjtData?.map((e, idx) => (

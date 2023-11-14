@@ -50,15 +50,15 @@ export default function MainPeerBlock() {
 
   return (
     <>
-      <p className="m-2 ml-3 mb-5 border-b-2 border-slate-100">
-        함께한 동료에 대해 평가해주세요
+      <p className="m-2 ml-3 mb-5 border-b-2 border-slate-100 text-lg font-semibold text-gray-700">
+        함께한 <span className="font-extrabold">동료</span>에 대해 평가해주세요
       </p>
-      <div className="grid grid-cols-5 gap-3 text-center text-base ">
+      <div className="grid grid-cols-6 gap-4 text-center text-base p-4">
         {useListForPeer1 ? (
           useListForPeer1?.datalist.map((item, index) => (
             <div
               key={index}
-              className="cursor-pointer max-w-sm bg-white shadow-lg rounded-lg overflow-hidden h-80 hover:scale-95"
+              className="cursor-pointer max-w-sm bg-white shadow-xl rounded-lg overflow-hidden h-60 hover:scale-95"
               onClick={(e) => {
                 console.log('제발 projectNumber', item.id);
                 setSelectedName(item.name);
@@ -67,26 +67,26 @@ export default function MainPeerBlock() {
               }}
             >
               <img
-                // src={item.imageSrc}
-                // src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
                 src={`data:image/*;base64,${item.image}`}
-                className="w-full h-56 object-cover object-center"
+                className="w-full h-48 object-cover object-center"
               />
-
-              <div class="flex items-center px-6 py-3 bg-gray-900 ">
+              {/* <div class="flex items-center px-4 py-2 bg-[#FFD232]">
                 <svg
-                  class="h-6 w-6 text-white fill-current"
+                  class="h-5 w-5 text-white fill-current"
                   viewBox="0 0 512 512"
                 >
                   <path d="M256 48C150 48 64 136.2 64 245.1v153.3c0 36.3 28.6 65.7 64 65.7h64V288h-85.3v-42.9c0-84.7 66.8-153.3 149.3-153.3s149.3 68.5 149.3 153.3V288H320v176h64c35.4 0 64-29.3 64-65.7V245.1C448 136.2 362 48 256 48z" />
                 </svg>
-                <h1 class="mx-3 text-white font-semibold text-lg">
+                <h1 class="mx-3 text-white font-semibold text-base">
                   {item?.roll ? item?.roll : 'TM'}
                 </h1>
-              </div>
-              <div className="p-2">
+              </div> */}
+              <div className="p-1">
                 <div className="mb-10 flex justify-center items-center gap-2">
-                  <h1 className="text-2xl font-semibold text-gray-800">
+                  <span className="rounded-full font-black p-2 text-[#FFA500]">
+                    {item?.roll ? item?.roll : 'TM'}
+                  </span>
+                  <h1 className="text-lg font-semibold text-gray-870">
                     {item.name}
                   </h1>
                   <p>( {item.id.toUpperCase()} )</p>

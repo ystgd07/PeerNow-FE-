@@ -18,7 +18,7 @@ export default function KanbanHeader() {
   } = useSelectedSprint((state) => state);
 
   return (
-    <div className="h-auto">
+    <div className="h-auto z-30">
       <div className="container mx-auto flex justify-start items-center py-4">
         <div className="relative group">
           <button
@@ -53,7 +53,7 @@ export default function KanbanHeader() {
           {selectedValidate && (
             <div
               id="dropdown"
-              className="z-50 absolute mt-2 mx-16 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+              className="z-30 absolute mt-2 mx-16 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
             >
               <ul
                 className="py-2 text-sm text-gray-700 dark:text-gray-200"

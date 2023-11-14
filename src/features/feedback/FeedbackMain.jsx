@@ -47,33 +47,45 @@ export default function FeedbackMain() {
 
   return (
     <>
-      <div className="flex flex-col  m-1 mt-2 gap-2 text-lg h-full">
+      <div className="flex flex-col m-5 mt-5 gap-4 h-full">
         <div className="flex items-center flex-row justify-between gap-3">
-          <div className="bg-white rounded-lg p-3 w-3/5 shadow-md">
+          <div className="bg-white rounded-lg p-3 w-3/5 shadow-md border-2 border-stone-100">
             <MainMyScoreBlock />
           </div>
           <div className="w-2/5 h-full">
-            <div className="bg-white rounded-md shadow-md text-center p-3 w-full h-1/2 ">
-              {/* <Link to="/home/feedback3">
+            <div className="flex flex-row mb-4 mt-1">
+              <div className="cursor-pointer bg-[white] rounded-md shadow-md text-center p-3 w-full h-1/2 mr-3 border-2 border-stone-100 hover:bg-[#F0FFF0]">
+                {/* <Link to="/home/feedback3">
                 <MainMyFBBlock />
-              </Link> */}
-              <div className="flex justify-center items-center mb-3 cursor-pointer hover:scale-110">
-                <p className="font-bold text-green-400 ">지지적 피드백</p>
-                <FaHeartCirclePlus className="ml-3 text-green-500" />
+                 </Link> */}
+                <div className="flex justify-center items-center m-3 cursor-pointer hover:scale-110">
+                  <p className="font-bold text-lg text-gray-700 ">
+                    지지적 피드백
+                  </p>
+                  <FaHeartCirclePlus className="ml-3 text-[#80E12A]" />
+                </div>
               </div>
-              <div className="font-bold text-red-500 flex justify-center items-center cursor-pointer hover:scale-110">
-                <p className="font-bold text-red-500 ">교정적 피드백</p>
-                <FaHeartCircleMinus className="ml-3 text-orange-500" />
+              <div className="cursor-pointer bg-white rounded-md shadow-md text-center p-3 w-full h-1/2 border-2 border-stone-100 hover:bg-[#FFF0F5]">
+                {/* <Link to="/home/feedback3">
+                <MainMyFBBlock />
+                 </Link> */}
+                <div className="flex justify-center items-center m-3 cursor-pointer hover:scale-110">
+                  <p className="font-bold bold text-lg text-gray-700 ">
+                    교정적 피드백
+                  </p>
+                  <FaHeartCircleMinus className="ml-3 text-[#FF5675] " />
+                </div>
               </div>
             </div>
-            <div className="bg-white rounded-md w-full p-3 h-1/2 mt-2 shadow-md">
+
+            <div className="bg-white rounded-md w-full p-3 h-1/2 mt-2 shadow-md border-2 border-stone-100">
               {/* 페이지 */}
               <MainBPBlock />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-md p-3 h-full mt-2 shadow-lg">
+        <div className="bg-white rounded-md p-3 h-full mt-2 shadow-lg mb-10 border-2 border-stone-100">
           <MainPeerBlock />
         </div>
       </div>
