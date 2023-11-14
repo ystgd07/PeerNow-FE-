@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 // /api/user/detail
+
 const initialUserMain = {
   userMainData: {
     id: '',
@@ -47,6 +48,7 @@ export const useProject = create((set) => ({
 
 export const useUserMain = create((set) => ({
   ...initialUserMain,
+  headerUserImg: '',
 
   setModalState: (modalState) => set((state) => ({ modalState: modalState })),
 
@@ -69,6 +71,11 @@ export const useUserMain = create((set) => ({
   setUpdateTeam: (updateTeam) =>
     set((state) => ({
       updateTeam: updateTeam,
+    })),
+
+  setImageOfUser: (userImg) =>
+    set((state) => ({
+      headerUserImg: userImg,
     })),
 
   setUserMainData: (userMainData) =>
@@ -95,6 +102,19 @@ export const useStatusUpdate = create((set) => ({
       statusUpdateData: {
         ...state.statusUpdateData,
         declineStatus: declineStatus,
+      },
+    })),
+}));
+
+export const useImage = create((set) => ({
+  stateImageData: {
+    userImg: '',
+  },
+
+  setUserImg: (imgFile) =>
+    set((state) => ({
+      stateImageData: {
+        userImg: imgFile,
       },
     })),
 }));

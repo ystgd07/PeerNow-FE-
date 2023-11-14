@@ -1,15 +1,20 @@
-import { Fragment, useState } from 'react';
+import React from 'react';
+import { useBackLogDetailPage } from '../../store/store';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { Fragment } from 'react';
+import BacklogResult from './BacklogResult';
 import ModalDetail from './ModalDetail';
+import BacklogDetail from './BacklogDetail';
 
-export default function TestModal() {
-  const [open, setOpen] = useState(true);
-  //   setBackLogModalOpen = useState(true);
+export default function BacklogDetailModal() {
+  const { isBackLogModalOpen, setBackLogModalOpen } = useBackLogDetailPage(
+    (state) => state,
+  );
 
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={isBackLogModalOpen} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setBackLogModalOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -47,8 +52,8 @@ export default function TestModal() {
                     <div className="absolute top-0 left-0 flex pt-4 pr-2 -ml-8 sm:-ml-10 sm:pr-4">
                       <button
                         type="button"
-                        className="relative text-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
-                        onClick={() => setOpen(false)}
+                        className="relative rounded-md text-gray-300 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+                        onClick={() => setBackLogModalOpen()}
                       >
                         <span className="absolute -inset-2.5" />
                         <span className="sr-only">Close panel</span>
@@ -60,7 +65,8 @@ export default function TestModal() {
                     <Dialog.Title className="px-4 text-lg font-semibold leading-6 text-gray-900">
                       백로그 상세
                     </Dialog.Title>
-                    <ModalDetail />
+                    <BacklogResult />
+                    <BacklogDetail />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

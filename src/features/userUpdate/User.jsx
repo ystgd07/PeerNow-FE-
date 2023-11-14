@@ -9,10 +9,16 @@ export default function User() {
   const { isOpenUpdateModal } = useUserMain((state) => state);
   return (
     <>
-      <div className="w-full h-full p-10 overflow-y-auto bg-white border-2 rounded-lg shadow-md border-amber-500 scrollbar-thin scrollbar-thumb-amber-500">
+      <div className="w-full h-full p-10 overflow-y-auto bg-white border-2 shadow-md scrollBar scrollbar-thin scrollbar-thumb-amber-500">
         <UserHeader />
-        <UserMainCmp />
-        <UserStatusOfPjt />
+        <div className="flex mt-3">
+          <div className="w-1/2 mr-4">
+            <UserMainCmp />
+          </div>
+          <div className="w-1/2">
+            <UserStatusOfPjt />
+          </div>
+        </div>
       </div>
       {isOpenUpdateModal && <UserUpdateModal />}
     </>

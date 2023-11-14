@@ -108,6 +108,14 @@ export const useCreatePjtOne = create((set) => ({
       },
     })),
 
+  setSelectUserRole: (peer_id, role) =>
+    set((state) => ({
+      pjtObj: {
+        ...state.pjtObj,
+        peer_id: Object.assign(state.pjtObj.peer_id, { [peer_id]: role }),
+      },
+    })),
+
   setNoRequestPeerID: (peer_id) =>
     set((state) => ({
       noRequestPeerID: [...new Set(state.noRequestPeerID.concat(peer_id))],
@@ -212,6 +220,7 @@ export const useLoginAndCreateAccount = create((set) => ({
     })),
 }));
 
+// 백로그 이슈만들기 모달
 export const useBackLogPage = create((set) => ({
   isBackLogModalOpen: false,
   setBackLogModalOpen: (isBackLogModalOpen) =>
@@ -219,3 +228,14 @@ export const useBackLogPage = create((set) => ({
 
   setBackLogModalOpenFalse: () => set({ isBackLogModalOpen: false }),
 }));
+
+// 백로그 상세페이지 모달
+export const useBackLogDetailPage = create((set) => ({
+  isBackLogModalOpen: false,
+  setBackLogModalOpen: (isBackLogModalOpen) =>
+    set((state) => ({ isBackLogModalOpen: !state.isBackLogModalOpen })),
+
+  setBackLogModalOpenFalse: () => set({ isBackLogModalOpen: false }),
+}));
+
+// 로그아웃

@@ -1,28 +1,48 @@
+import { fetchAllSprints } from '../../apis/sprintApis';
+import {
+  useBackLogPageRes,
+  useProjectInBackLog,
+} from '../../store/BackLogStore/store';
+import { AllThisSprints } from '../../store/SprintStore/store';
+import { PjtNumNow } from '../../store/header/store';
+import { useQuery } from 'react-query';
+
 export default function Sprints() {
+  const { nowNum } = PjtNumNow((state) => state);
+  const { datalist, setDatalist, recentDate, setRecentDate } = AllThisSprints(
+    (state) => state,
+  );
+  const { pjtData } = useProjectInBackLog((state) => state);
+  const { currentProjectNumber } = useBackLogPageRes((state) => state);
+
+  const { data: allSprintData, isLoading: isAllSprintData } = useQuery(
+    ['fetchAllSprints', pjtData[currentProjectNumber]?.no],
+    () => fetchAllSprints(pjtData[currentProjectNumber]?.no),
+    {
+      onSuccess: (data) => {
+        console.log('fetchAllSprints :', data);
+        setDatalist(data?.data?.datalist);
+        setRecentDate();
+      },
+    },
+  );
+
+  console.log('왜안되노 : ', datalist);
+  console.log('왜 안되긴! :', recentDate);
   return (
     <>
       <div className="gap-4 mt-3">
         <div className="bg-white rounded-lg p-3 grid grid-cols-2 gap-3">
-          <div className="p-1 px-5">
-            <div className="text-xl">프로젝트 기획</div>
-            <div className="text-left text-xs">2023-09-17 ~ 2023-09-23</div>
-          </div>
-          <div className="p-1 px-5">
-            <div className="text-xl">화면 구성, 컴포넌트 설계</div>
-            <div className="text-left text-xs">2023-09-24 ~ 2023-09-30</div>
-          </div>
-          <div className="p-1 px-5">
-            <div className="text-xl">UI 작업</div>
-            <div className="text-left text-xs">2023-10-01 ~ 2023-10-07</div>
-          </div>
-          <div className="p-1 px-5">
-            <div className="text-xl">주요 기능 구현</div>
-            <div className="text-left text-xs">2023-10-08 ~ 2023-10-15</div>
-          </div>
-          <div className="p-1 px-5">
-            <div className="text-xl">트러블 슈팅, 이슈 체크</div>
-            <div className="text-left text-xs">2023-10-08 ~ 2023-10-15</div>
-          </div>
+          {datalist?.map((item, idx) => (
+            <div key={idx} className="p-1 px-5">
+              <div className="text-xl">
+                <span className="text-gray-400">{idx + 1} </span> {item.title}
+              </div>
+              <div className="text-left text-xs">
+                {item.start_date} ~ {item.end_date}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>

@@ -1,62 +1,125 @@
-import { UseBackLog } from '../../store/BackLogStore/store';
-import CreateButton from '../../ui/CreateButton';
-import axios from 'axios';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import {
+  UseBackLog,
+  createBackLog,
+  useBackLogPageRes,
+  useProjectInBackLog,
+} from '../../store/BackLogStore/store';
+import { useMutation, useQueryClient } from 'react-query';
 import ModalRadio from './ModalRadio';
 import { createBackLogApi } from '../../apis/backLogApis';
+import ModalSearch from './ModalSearch';
 
 export default function ModalDetail() {
+  // 백로그 유저 서치
   const { setSearchRes, searchUser, setSearchUser, searchRes } = UseBackLog(
     (state) => state,
   );
+  // 백로그 생성
+  const {
+    setUserId,
+    setStatus,
+    setTitle,
+    setDetail,
+    addFileName,
+    backlogDto,
+    backFileDto,
+  } = createBackLog((state) => state);
 
-  const queryClient = useQueryClient();
+  // 현재 프로젝트
+  const {
+    currentProjectNumber,
+    currentSearchUser,
+    setCurrentSearcUser,
+    currentBackLogMananger,
+  } = useBackLogPageRes((state) => state);
 
-  const { mutate: createAccount, isCreateLoading } = useMutation(
-    createBackLogApi,
-    {
-      onSuccess: (user) => {
-        console.log('Success : ', user);
-        queryClient.invalidateQueries();
+  const { pjtData } = useProjectInBackLog((state) => state);
+
+  console.log('currentProjectNumber :', currentProjectNumber);
+
+  const { mutate: createMutateOfBackLog, isLoading: isCreateBackLog } =
+    useMutation(
+      () =>
+        createBackLogApi(
+          backlogDto,
+          backFileDto,
+          pjtData[currentProjectNumber]?.no,
+        ),
+      {
+        onSuccess: (user) => {
+          console.log('Success backLog : ', user);
+        },
+        onError: (error) => {
+          console.log('Error', error);
+        },
       },
-      onError: (error) => {
-        console.log('Error', error);
-      },
-    },
-  );
+    );
 
   return (
     <>
       <div>
         <div className="relative mt-6 flex-1 px-4 sm:px-6">
-          <ModalRadio />
+          <ModalRadio onChange={(e) => setStatus(e.target.value)} />
           <input
+            type="text"
+            name="title"
+            onChange={(e) => setTitle(e.target.value)}
             className="border-2 w-full  border-gray-300 p-2 mb-4 rounded-md"
             placeholder=" *무엇을 해야합니까"
+            value={backlogDto.title}
           />
+          <div
+            type="text"
+            name="user_id"
+            className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
+            placeholder=" *담당자를 선택할 수 있습니다"
+            onClick={setCurrentSearcUser}
+          >
+            {currentBackLogMananger ? (
+              <div>{currentBackLogMananger}</div>
+            ) : (
+              <p className="text-gray-500"> *담당자를 선택할 수 있습니다 </p>
+            )}
+          </div>
+          <ModalSearch visible={currentSearchUser} />
           <input
-            className="border-2 w-full  border-gray-300 p-2 mb-4 rounded-md"
-            placeholder=" *담당자를 선택해주세요"
-            onChange={(e) => {
-              setSearchUser(e.target.value);
-            }}
-          />
-
-          <input
-            className="border-2 w-full  border-gray-300 p-2 mb-4 rounded-md"
+            type="text"
+            name="detail"
+            onChange={(e) => setDetail(e.target.value)}
+            className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
             placeholder="설명을 입력할 수 있습니다"
+            value={backlogDto.detail}
           />
           <div className="items-center">
-            <label className="block">
-              {/* <span class="sr-only">Choose profile photo</span> */}
-              <input
-                type="file"
-                className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
-              />
-            </label>
+            <input
+              type="file"
+              name="name"
+              onChange={(e) => {
+                addFileName(e.target.files[0]);
+              }}
+              className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
+            />
           </div>
           <div className="float-right my-2">
-            <CreateButton value={'완료'} event={createAccount} />
+            <button
+              className="text-right mr-1 -mb-6"
+              onClick={() => {
+                console.log('check file111: ', backFileDto);
+                console.log('currentProjectNumber1 :', currentProjectNumber);
+
+                createMutateOfBackLog(
+                  backlogDto,
+                  backFileDto,
+                  currentProjectNumber,
+                );
+              }}
+            >
+              <span
+                className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400 `}
+              >
+                생성
+              </span>
+            </button>
           </div>
         </div>
       </div>

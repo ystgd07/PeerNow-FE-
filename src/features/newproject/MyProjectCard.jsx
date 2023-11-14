@@ -33,7 +33,7 @@ export default function MyProjectCard({ res }) {
               setProjectUserId(res.user_id);
               setRequestData(res);
             }
-          : null
+          : ''
       }
       id={res.no}
     >

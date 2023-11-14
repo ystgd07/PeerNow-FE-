@@ -15,7 +15,6 @@ export default function SideModalSearchResult() {
     pjtObj,
   } = useCreatePjtOne((state) => state);
 
-  console.log('명수를 찾겠습니다 peerName : ', peerName);
   const { data, isLoading } = useQuery(
     ['userList', peerName],
     async () => {
@@ -38,13 +37,12 @@ export default function SideModalSearchResult() {
       refetchOnWindowFocus: false,
     },
   );
-  console.log('data : ', data);
 
   return (
     <div
       className={`scrollbar absolute z-50 scrollbar-thumb-amber-500  ${
         !peerName > 0 || !isSearchResultOpen ? 'hidden' : ''
-      } h-32 py-3 mt-8 overflow-y-scroll text-sm bg-white rounded-md w-full shadow-md top-11 right-0`}
+      } h-32 py-3 mt-5 overflow-y-scroll text-sm bg-white rounded-md w-full shadow-md top-11 right-0`}
     >
       {!isLoading &&
         data?.data?.datalist &&
@@ -53,21 +51,17 @@ export default function SideModalSearchResult() {
             className="flex justify-start px-2 py-2 my-2 text-gray-700 rounded-md cursor-pointer hover:text-blue-400 hover:bg-blue-100"
             key={idx}
             onClick={() => {
-              console.log(
-                '명수찾으로 왔습니다 여기는 사이드 모달 리절트: ',
-                pjtObj,
-              );
               setNoRequestPeerID(user);
               setIsSearchResultOpen();
               setPeerName('');
               setIsValidPjt2();
-              setSelectUser(user.id);
+              setSelectUser(user?.id);
             }}
           >
             <span className="w-2 h-2 m-2 bg-gray-400 rounded-full"></span>
-            <div className="flex-grow px-2 font-medium">{user.name}</div>
+            <div className="flex-grow px-2 font-medium">{user?.name}</div>
             <div className="text-sm font-normal tracking-wide text-gray-500">
-              {user.team ? user.team : '무소속'}
+              {user.team ? user?.team : '무소속'}
             </div>
           </div>
         ))}

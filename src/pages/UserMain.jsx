@@ -6,7 +6,7 @@ import PjtInfo from '../features/newproject/PjtInfo';
 
 export default function UserMain() {
   return (
-    <div className="flex justify-center w-4/5 mx-auto my-7 h-4/5">
+    <div className="flex justify-center w-full h-full">
       <User />
     </div>
   );

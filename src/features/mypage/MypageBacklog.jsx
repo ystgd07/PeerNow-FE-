@@ -5,7 +5,7 @@ export default function MypageBacklog() {
   return (
     <>
       {/* 진행중인 백로그 back log */}
-      <div className="bg-white rounded-lg p-3">
+      <div className="scrollBar bg-white h-72 rounded-lg p-3 overflow-y-scroll  scrollbar-thumb-black scrollbar-thumb-rounded-full scrollbar-thin scrollbar-track-slate-100">
         <div>
           <MypageBackLogTitle />
         </div>

@@ -1,55 +1,102 @@
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { usePeerEv, useTogetherPeerEv } from '../../store/PeerStore/store';
+import {
+  useBackLogPageRes,
+  useProjectInBackLog,
+} from '../../store/BackLogStore/store';
+import { useNavigate } from 'react-router-dom';
+import CreatePjtSkeleton from '../../skeleTon/CreatePjtSkeleton';
+
 export default function MainPeerBlock() {
-  const items = [
-    {
-      name: '최현희',
-      imageSrc: 'https://source.unsplash.com/random/?woman',
-    },
-    {
-      name: '양성수',
-      imageSrc: 'https://source.unsplash.com/random/?dog',
-    },
-    {
-      name: '정현욱',
-      imageSrc: 'https://source.unsplash.com/random/?man',
-    },
-    {
-      name: '김란희',
-      imageSrc: 'https://source.unsplash.com/random/?egg',
-    },
-    {
-      name: '이은지',
-      imageSrc: 'https://source.unsplash.com/random/?love',
-    },
-    {
-      name: '이유빈',
-      imageSrc: 'https://source.unsplash.com/random/?kid',
-    },
-    {
-      name: '조하민',
-      imageSrc: 'https://source.unsplash.com/random/?rabbit',
-    },
-    {
-      name: '이시영',
-      imageSrc: 'https://source.unsplash.com/random/?quokka',
-    },
-  ];
+  const { currentProjectNumber, currentProjectOwner } = useBackLogPageRes(
+    (state) => state,
+  );
+  const { setPeerList } = usePeerEv((state) => state);
+  const navigate = useNavigate();
+
+  const { setSelectedPeerId, setSelectedName } = useTogetherPeerEv(
+    (state) => state,
+  );
+  const { pjtData } = useProjectInBackLog((state) => state);
+
+  const { data: useListForPeer1, isLoading: isLoadingUseListForPeer } =
+    useQuery(
+      [
+        'pjtModalData',
+        pjtData[currentProjectNumber]?.no,
+        pjtData[currentProjectNumber]?.user_id,
+      ],
+      async () => {
+        const res = await axios.get(
+          `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber]?.no}`,
+          {
+            withCredentials: true,
+          },
+        );
+        return res.data;
+      },
+      {
+        onSuccess: (data) => {
+          console.log('undefined log : ', data);
+          setPeerList(data?.datalist);
+        },
+        onError: (error) => {
+          console.log('error : ', error);
+        },
+        refetchOnWindowFocus: false,
+      },
+    );
 
   return (
     <>
-      <p className="m-2 ml-3 mb-5">함께한 동료에 대해 평가해주세요</p>
-      <div className="grid grid-cols-5 gap-4 text-center text-base">
-        {items.map((item, index) => (
-          <a key={index} href="#">
-            <div className="flex justify-center">
+      <p className="m-2 ml-3 mb-5 border-b-2 border-slate-100 text-lg font-semibold text-gray-700">
+        함께한 <span className="font-extrabold">동료</span>에 대해 평가해주세요
+      </p>
+      <div className="grid grid-cols-6 gap-4 text-center text-base p-4">
+        {useListForPeer1 ? (
+          useListForPeer1?.datalist.map((item, index) => (
+            <div
+              key={index}
+              className="cursor-pointer max-w-sm bg-white shadow-xl rounded-lg overflow-hidden h-60 hover:scale-95"
+              onClick={(e) => {
+                console.log('제발 projectNumber', item.id);
+                setSelectedName(item.name);
+                setSelectedPeerId(item.id);
+                navigate('/home/feedback2');
+              }}
+            >
               <img
-                src={item.imageSrc}
-                alt={`최고의동료_이미지${index}`}
-                className="text-sm mr-2 w-7 h-7 rounded-full"
+                src={`data:image/*;base64,${item.image}`}
+                className="w-full h-48 object-cover object-center"
               />
-              <span className="font-semibold">{item.name}</span>
+              {/* <div class="flex items-center px-4 py-2 bg-[#FFD232]">
+                <svg
+                  class="h-5 w-5 text-white fill-current"
+                  viewBox="0 0 512 512"
+                >
+                  <path d="M256 48C150 48 64 136.2 64 245.1v153.3c0 36.3 28.6 65.7 64 65.7h64V288h-85.3v-42.9c0-84.7 66.8-153.3 149.3-153.3s149.3 68.5 149.3 153.3V288H320v176h64c35.4 0 64-29.3 64-65.7V245.1C448 136.2 362 48 256 48z" />
+                </svg>
+                <h1 class="mx-3 text-white font-semibold text-base">
+                  {item?.roll ? item?.roll : 'TM'}
+                </h1>
+              </div> */}
+              <div className="p-1">
+                <div className="mb-10 flex justify-center items-center gap-2">
+                  <span className="rounded-full font-black p-2 text-[#FFA500]">
+                    {item?.roll ? item?.roll : 'TM'}
+                  </span>
+                  <h1 className="text-lg font-semibold text-gray-870">
+                    {item.name}
+                  </h1>
+                  <p>( {item.id.toUpperCase()} )</p>
+                </div>
+              </div>
             </div>
-          </a>
-        ))}
+          ))
+        ) : (
+          <CreatePjtSkeleton />
+        )}
       </div>
     </>
   );

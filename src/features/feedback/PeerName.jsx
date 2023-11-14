@@ -1,4 +1,7 @@
+import { useTogetherPeerEv } from '../../store/PeerStore/store';
+
 export default function PeerName() {
+  const { selectedName } = useTogetherPeerEv((state) => state);
   return (
     <>
       <div className="">
@@ -8,7 +11,7 @@ export default function PeerName() {
             alt="평가할_동료_이미지"
             className="w-11 h-11 rounded-full mr-1"
           />
-          <span className="ml-1 text-2xl mt-1.5">최현희</span>
+          <span className="ml-1 text-2xl mt-1.5">{selectedName}</span>
         </span>
       </div>
     </>
