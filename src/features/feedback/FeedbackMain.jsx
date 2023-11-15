@@ -24,7 +24,7 @@ export default function FeedbackMain() {
     ['feedBackList', pjtData[currentProjectNumber].no],
     async () => {
       const res = await axios.get(
-        `/api/peer?projectNumber=${pjtData[currentProjectNumber].no}`,
+        `${process.env.REACT_APP_API_DOMAIN}/api/peer?projectNumber=${pjtData[currentProjectNumber].no}`,
         {
           withCredentials: true,
         },

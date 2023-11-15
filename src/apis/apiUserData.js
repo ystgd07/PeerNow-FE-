@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export async function fetchUserData() {
-  const res = await axios.get('/api/user/detail');
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/api/user/detail`,
+  );
   console.log('res', res);
   return res.data;
 }
@@ -16,7 +18,7 @@ export async function fetchUserUpdateData({ data, userMainDataid }) {
 
   console.log('formData', formData);
   const res = await axios.put(
-    `/api/user/change?id=${userMainDataid}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/user/change?id=${userMainDataid}`,
     formData,
   );
 
@@ -35,7 +37,7 @@ export async function updateUserImg(file, id, filename) {
   formData.append('image', file);
 
   const res = await axios.put(
-    `/api/user/imagechange?id=${id}&fileName=${filename}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/user/imagechange?id=${id}&fileName=${filename}`,
     formData,
   );
   return res.data;

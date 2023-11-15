@@ -12,6 +12,20 @@ export default function Radio({
 }) {
   const { setSelectedStatus } = useBackNumStore();
   const { setSelectUserRole } = useCreatePjtOne((state) => state);
+  const {
+    selectPeerId,
+    setSelectedScore1,
+    score1,
+    setSelectedScore2,
+    score2,
+    setSelectedScore3,
+    setSelectedScore4,
+    setSelectedScore5,
+    setComment1,
+    comment1,
+    setComment2,
+    togetherPeerDto,
+  } = useTogetherPeerEv((state) => state);
 
   return (
     <label className="mr-3">
@@ -25,6 +39,11 @@ export default function Radio({
         onChange={(e) => {
           setSelectedStatus(e.target.value);
           setSelectUserRole(id, value);
+          setSelectedScore1(e.target.value);
+          setSelectedScore2(e.target.value);
+          setSelectedScore3(e.target.value);
+          setSelectedScore4(e.target.value);
+          setSelectedScore5(e.target.value);
         }}
       />
       {children}

@@ -11,9 +11,12 @@ export default function BacklogResult() {
   const { data: backLogUserList, isLoading } = useQuery(
     ['userList', searchUser],
     async () => {
-      const res = await axios.get(`/api/project/peer?peerName=${searchUser}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_DOMAIN}/api/project/peer?peerName=${searchUser}`,
+        {
+          withCredentials: true,
+        },
+      );
       return res;
     },
     {

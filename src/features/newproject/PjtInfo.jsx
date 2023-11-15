@@ -18,7 +18,7 @@ export default function PjtInfo() {
       const res = await axios.get(
         // `/api/project/peerlist?projectNumber=${projectNumber}&owner=${projectUserId}`,
         // 변경사항 추후 적용
-        `/api/project/peerlist?projectNumber=${projectNumber}`,
+        `${process.env.REACT_APP_API_DOMAIN}/api/project/peerlist?projectNumber=${projectNumber}`,
         {
           withCredentials: true,
         },
@@ -45,7 +45,7 @@ export default function PjtInfo() {
     ['pjtModalData', projectNumber],
     async () => {
       const res = await axios.get(
-        `/api/project?projectNumber=${projectNumber}
+        `${process.env.REACT_APP_API_DOMAIN}/api/project?projectNumber=${projectNumber}
         `,
         {
           withCredentials: true,

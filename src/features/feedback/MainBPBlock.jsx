@@ -21,7 +21,7 @@ export default function MainBPBlock() {
           ) : (
             <div className="flex flex-row">
               <img
-                src={peerEvDto.best_image}
+                src={`data:image/*;base64,${peerEvDto.best_image}`}
                 alt="최고의동료_이미지"
                 className="text-sm mr-2 w-9 h-9 rounded-full"
               />
