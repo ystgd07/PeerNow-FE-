@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useTogetherPeerEv } from '../../store/PeerStore/store';
-import RadioGroup from '../../ui/RadioGroup';
-
 import ScoreRadio from './ScoreRadio';
 import {
   useBackLogPageRes,
@@ -9,7 +7,7 @@ import {
 } from '../../store/BackLogStore/store';
 import { useMutation } from 'react-query';
 import { postEvData } from '../../apis/apiPeer';
-import ScoreRadio2 from './ScoreRadio2';
+// import ScoreRadio2 from './ScoreRadio2';
 
 export default function FeedbackQuestion() {
   const {

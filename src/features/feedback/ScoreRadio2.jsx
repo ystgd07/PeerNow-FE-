@@ -1,4 +1,6 @@
 import React from 'react';
+import RadioGroup from '../../ui/RadioGroup';
+import Radio from '../../ui/Radio';
 
 export default function ScoreRadio2({ name }) {
   return (
