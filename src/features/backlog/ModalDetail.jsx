@@ -10,6 +10,8 @@ import { createBackLogApi } from '../../apis/backLogApis';
 import ModalSearch from './ModalSearch';
 
 export default function ModalDetail() {
+  //
+  const queryClient = useQueryClient();
   // 백로그 유저 서치
   const { setSearchRes, searchUser, setSearchUser, searchRes } = UseBackLog(
     (state) => state,
@@ -37,7 +39,7 @@ export default function ModalDetail() {
 
   console.log('currentProjectNumber :', currentProjectNumber);
 
-  const { mutate: createMutateOfBackLog, isLoading: isCreateBackLog } =
+  const { mutate: createMutateOfBackLog, isLoading: isLoadingCreateBackLog } =
     useMutation(
       () =>
         createBackLogApi(
@@ -48,6 +50,9 @@ export default function ModalDetail() {
       {
         onSuccess: (user) => {
           console.log('Success backLog : ', user);
+          queryClient.invalidateQueries(
+            'queryClient.invalidateQueries : createMutateOfBackLog',
+          );
         },
         onError: (error) => {
           console.log('Error', error);
@@ -117,7 +122,7 @@ export default function ModalDetail() {
               <span
                 className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400 `}
               >
-                생성
+                {isLoadingCreateBackLog ? '생성 중..' : '생성'}
               </span>
             </button>
           </div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export async function fetchUserData() {
-  const res = await axios.get('http://www.peernow.site/api/user/detail');
+  const res = await axios.get('/api/user/detail');
   console.log('res', res);
   return res.data;
 }
@@ -16,7 +16,7 @@ export async function fetchUserUpdateData({ data, userMainDataid }) {
 
   console.log('formData', formData);
   const res = await axios.put(
-    `http://www.peernow.site/api/user/change?id=${userMainDataid}`,
+    `/api/user/change?id=${userMainDataid}`,
     formData,
   );
 
@@ -35,7 +35,7 @@ export async function updateUserImg(file, id, filename) {
   formData.append('image', file);
 
   const res = await axios.put(
-    `http://www.peernow.site/api/user/imagechange?id=${id}&fileName=${filename}`,
+    `/api/user/imagechange?id=${id}&fileName=${filename}`,
     formData,
   );
   return res.data;

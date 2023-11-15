@@ -15,9 +15,8 @@ export default function MainPeerBlock() {
   const { setPeerList } = usePeerEv((state) => state);
   const navigate = useNavigate();
 
-  const { setSelectedPeerId, setSelectedName } = useTogetherPeerEv(
-    (state) => state,
-  );
+  const { setSelectedPeerId, setSelectedName, setSelectedImg } =
+    useTogetherPeerEv((state) => state);
   const { pjtData } = useProjectInBackLog((state) => state);
 
   const { data: useListForPeer1, isLoading: isLoadingUseListForPeer } =
@@ -29,7 +28,7 @@ export default function MainPeerBlock() {
       ],
       async () => {
         const res = await axios.get(
-          `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber]?.no}`,
+          `/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber]?.no}`,
           {
             withCredentials: true,
           },
@@ -49,11 +48,11 @@ export default function MainPeerBlock() {
     );
 
   return (
-    <>
+    <div className="p-1">
       <p className="m-2 ml-3 mb-5 border-b-2 border-slate-100 text-lg font-semibold text-gray-700">
         함께한 <span className="font-extrabold">동료</span>에 대해 평가해주세요
       </p>
-      <div className="grid grid-cols-6 gap-4 text-center text-base p-4">
+      <div className="h-full grid grid-cols-6 gap-4 text-center text-base p-4 scrollBar">
         {useListForPeer1 ? (
           useListForPeer1?.datalist.map((item, index) => (
             <div
@@ -63,6 +62,8 @@ export default function MainPeerBlock() {
                 console.log('제발 projectNumber', item.id);
                 setSelectedName(item.name);
                 setSelectedPeerId(item.id);
+                setSelectedImg(item.image);
+                // setSelectedImg(`data:image/*;base64,${item.image}`);
                 navigate('/home/feedback2');
               }}
             >
@@ -98,6 +99,6 @@ export default function MainPeerBlock() {
           <CreatePjtSkeleton />
         )}
       </div>
-    </>
+    </div>
   );
 }

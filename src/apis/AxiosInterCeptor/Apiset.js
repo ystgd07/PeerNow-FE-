@@ -3,7 +3,7 @@ import { response } from 'express';
 import { getCookie, setCookie } from '../../Cookies/cookie';
 
 // export const privateApi = axios.create({
-//   baseURL: 'http://www.peernow.site',
+//   baseURL: '',
 // });
 
 // export async function postRefreshToken() {

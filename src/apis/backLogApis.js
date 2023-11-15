@@ -16,19 +16,14 @@ export const createBackLogApi = async (backlogDto, backFileDto, test) => {
     new Blob([JSON.stringify(backFileDto)], { type: 'multipart/form-data' }),
   );
 
-  const res = axios.post(
-    `http://www.peernow.site/api/project/backlog?project_no=${test}`,
-    formData,
-  );
+  const res = axios.post(`/api/project/backlog?project_no=${test}`, formData);
   return res;
 };
 
 // 진행중인 백로그 가져오기
 export const fetchBacklogTitle = async () => {
   try {
-    const response = await axios.get(
-      'http://www.peernow.site/api/project/backlog/ing',
-    );
+    const response = await axios.get('/api/project/backlog/ing');
     return response.data;
   } catch (error) {
     throw error;
@@ -37,7 +32,7 @@ export const fetchBacklogTitle = async () => {
 
 // 스프린트 번호
 export const fetchBackLogPjtData = async () => {
-  const res = await axios.get(`http://www.peernow.site/api/project/list`, {
+  const res = await axios.get(`/api/project/list`, {
     withCredentials: true,
   });
 
@@ -55,24 +50,18 @@ export const fetchBackLogPjtDetailData = async (pjtNum, owner) => {
 
 // 현재 프로젝트의 모든 백로그
 export const fetchBackLogList = async (pjtNum) => {
-  const res = await axios.get(
-    `http://www.peernow.site/api/project/backlog/all?project_no=${pjtNum}`,
-    {
-      withCredentials: true,
-    },
-  );
+  const res = await axios.get(`/api/project/backlog/all?project_no=${pjtNum}`, {
+    withCredentials: true,
+  });
 
   return res;
 };
 
 // 백로그 상세 페이지
 export const fetchBacklogDetail = async (BackNum) => {
-  const res = await axios.get(
-    `http://www.peernow.site/api/project/backlog?no=${BackNum}`,
-    {
-      withCredentials: true,
-    },
-  );
+  const res = await axios.get(`/api/project/backlog?no=${BackNum}`, {
+    withCredentials: true,
+  });
 
   return res;
 };
@@ -95,12 +84,17 @@ export const updateBacklogData = async (
     new Blob([JSON.stringify(backFileDto)], { type: 'multipart/form-data' }),
   );
 
-  const res = await axios.put(
-    `http://www.peernow.site/api/project/backlog?no=${backNum}`,
-    formData,
-    {
-      withCredentials: true,
-    },
-  );
+  const res = await axios.put(`/api/project/backlog?no=${backNum}`, formData, {
+    withCredentials: true,
+  });
+  return res;
+};
+
+// 백로그 삭제
+export const deleteBacklog = async (BackNum) => {
+  const res = await axios.delete(`//api/project/backlog?no=${BackNum}`, {
+    withCredentials: true,
+  });
+
   return res;
 };
