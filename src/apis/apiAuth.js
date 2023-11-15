@@ -6,18 +6,21 @@ const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
 //로그인,계정생성 api
 export async function registApi({ id, pw, name }) {
-  const res = await axios.post('/api/user/join', {
-    id,
-    pw,
-    name,
-  });
+  const res = await axios.post(
+    `${process.env.REACT_APP_API_DOMAIN}/api/user/join`,
+    {
+      id,
+      pw,
+      name,
+    },
+  );
 }
 
 export async function loginApi(form) {
   console.log('form', form);
-
+  console.log('envvalue', process.env.REACT_APP_API_DOMAIN);
   const res = await axios
-    .post(`/api/user/login`, form, {
+    .post(`${process.env.REACT_APP_API_DOMAIN}/api/user/login`, form, {
       withCredentials: true,
     })
     .then((res) => {
@@ -54,7 +57,7 @@ export const updateApi = async (projectNumber, data) => {
   console.log('projectNumberdata', data);
 
   const res = await axios.put(
-    `/api/project/change?projectNumber=${projectNumber}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/change?projectNumber=${projectNumber}`,
     data,
   );
 };
@@ -64,12 +67,17 @@ export async function createProjectApi(pjtObj) {
   console.log('pjtObj입니다.', pjtObj);
   pjtObj.start_date = format(pjtObj.start_date, 'yyyy-MM-dd');
   pjtObj.end_date = format(pjtObj.end_date, 'yyyy-MM-dd');
-  const res = await axios.post('/api/project', pjtObj);
+  const res = await axios.post(
+    `${process.env.REACT_APP_API_DOMAIN}/api/project`,
+    pjtObj,
+  );
 }
 
 // 이미지 가져오기 - 파일 객체 자체를 던져줌요
 export const getUserImg = async () => {
-  const res = await axios.get(`/api/user/userimg`);
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/api/user/userimg`,
+  );
   return res;
 };
 
@@ -77,7 +85,7 @@ export const getUserImg = async () => {
 export async function logoutApi() {
   try {
     await axios.post(
-      '/api/user/logout_info',
+      `${process.env.REACT_APP_API_DOMAIN}/api/user/logout_info`,
       {},
       {
         withCredentials: true,

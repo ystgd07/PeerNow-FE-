@@ -17,7 +17,7 @@ export const postEvData = async (
   // console.log('formDataformData', formData);
 
   const res = await axios.post(
-    `/api/peer/evaluation?projectNumber=${currentProjectNumber}&peerId=${selectPeerId}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/peer/evaluation?projectNumber=${currentProjectNumber}&peerId=${selectPeerId}`,
     togetherPeerDto,
     // formData,
     {

@@ -28,7 +28,7 @@ export default function MainPeerBlock() {
       ],
       async () => {
         const res = await axios.get(
-          `/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber]?.no}`,
+          `${process.env.REACT_APP_API_DOMAIN}/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber]?.no}`,
           {
             withCredentials: true,
           },

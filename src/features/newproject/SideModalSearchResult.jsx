@@ -18,9 +18,12 @@ export default function SideModalSearchResult() {
   const { data, isLoading } = useQuery(
     ['userList', peerName],
     async () => {
-      const res = await axios.get(`/api/project/peer?peerName=${peerName}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_DOMAIN}/api/project/peer?peerName=${peerName}`,
+        {
+          withCredentials: true,
+        },
+      );
       return res;
     },
     {
