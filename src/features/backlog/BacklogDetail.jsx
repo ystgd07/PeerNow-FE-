@@ -70,7 +70,9 @@ export default function BacklogDetail() {
       {
         onSuccess: (user) => {
           console.log('Success updateBacklog : ', user);
-          queryClient.invalidateQueries('fetchBacklogDetail');
+          queryClient.invalidateQueries(
+            'queryClient.invalidateQueries : pdateBacklog',
+          );
         },
         onError: (error) => {
           console.log('Error', error);

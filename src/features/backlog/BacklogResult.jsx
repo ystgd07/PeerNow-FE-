@@ -11,12 +11,9 @@ export default function BacklogResult() {
   const { data: backLogUserList, isLoading } = useQuery(
     ['userList', searchUser],
     async () => {
-      const res = await axios.get(
-        `http://www.peernow.site/api/project/peer?peerName=${searchUser}`,
-        {
-          withCredentials: true,
-        },
-      );
+      const res = await axios.get(`/api/project/peer?peerName=${searchUser}`, {
+        withCredentials: true,
+      });
       return res;
     },
     {

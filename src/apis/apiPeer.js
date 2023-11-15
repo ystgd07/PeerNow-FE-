@@ -1,8 +1,25 @@
 import axios from 'axios';
 
-export const postEvData = async (currentProjectNumber, selectPeerId) => {
+export const postEvData = async (
+  // togetherPeerDto,
+  currentProjectNumber,
+  selectPeerId,
+  togetherPeerDto,
+) => {
+  // const formData = new FormData();
+  console.log('togetherPeerDtotogetherPeerDto', togetherPeerDto);
+
+  // formData.append(
+  //   'togetherPeerDto',
+  //   new Blob([JSON.stringify(togetherPeerDto)], { type: 'application/json' }),
+  // );
+
+  // console.log('formDataformData', formData);
+
   const res = await axios.post(
-    `http://www.peernow.site/api/peer/evaluation?projectNumber=${currentProjectNumber}&peerId=${selectPeerId}`,
+    `/api/peer/evaluation?projectNumber=${currentProjectNumber}&peerId=${selectPeerId}`,
+    togetherPeerDto,
+    // formData,
     {
       withCredentials: true,
     },

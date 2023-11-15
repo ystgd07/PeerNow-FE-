@@ -73,7 +73,7 @@ export default function NewSprintCreatePage() {
     }
   };
 
-  //   // 6개월 후의 날짜 계산
+  //  6개월 후의 날짜 계산
   const sixMonthsLater = addMonths(new Date(), 6);
 
   // setBacklogs

@@ -35,7 +35,7 @@ export default function BackLog() {
     ['fechingPjtDetailDataInB', pjtData[currentProjectNumber].no],
     async () => {
       const res = await axios.get(
-        `http://www.peernow.site/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber].no}`,
+        `/api/project/peerlist?projectNumber=${pjtData[currentProjectNumber].no}`,
         {
           withCredentials: true,
         },

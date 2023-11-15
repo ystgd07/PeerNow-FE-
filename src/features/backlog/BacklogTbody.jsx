@@ -1,4 +1,4 @@
-import { AiOutlineDownload } from 'react-icons/ai';
+import { MdDelete } from 'react-icons/md';
 import BacklogStatus from './BacklogStatus';
 import BacklogSprint from './BacklogSprint';
 import {
@@ -7,9 +7,9 @@ import {
   useBackNumStore,
   useProjectInBackLog,
 } from '../../store/BackLogStore/store';
-
-import { fetchBackLogList } from '../../apis/backLogApis';
-import { useQuery } from 'react-query';
+import { FcDownload } from 'react-icons/fc';
+import { deleteBacklog, fetchBackLogList } from '../../apis/backLogApis';
+import { useMutation, useQuery } from 'react-query';
 import { useBackLogDetailPage } from '../../store/store';
 import BacklogDetailModal from './BacklogDetailModal';
 
@@ -30,11 +30,17 @@ export default function BacklogTbody() {
   const { backNum, setBackNum, setSelectedBackObj } = useBackNumStore(
     (state) => state,
   );
+  //
 
   console.log('[BacklogTbody] nowNum 번호 ====> ', currentProjectNumber);
   console.log('[BacklogTbody] backlogData.no 번호 ====> ', backlogData.no);
 
-  const { data: bData, isLoading: bDataLoading } = useQuery(
+  // 백로그 데이터 받아오기
+  const {
+    data: bData,
+    isLoading: bDataLoading,
+    // refetch: Backlogs,
+  } = useQuery(
     ['fetchBackLogList', pjtData[currentProjectNumber].no],
     () => fetchBackLogList(pjtData[currentProjectNumber].no),
     {
@@ -45,6 +51,15 @@ export default function BacklogTbody() {
     },
   );
 
+  // 백로그 삭제
+  const { mutate: deleteBacklog, isLoading: isDeleteBacklogLoading } =
+    useMutation((backNum) => deleteBacklog(backNum), {
+      onSuccess: (data) => {
+        console.log('fetchBackLogList :', data);
+        setBacklogData(data?.data?.datalist);
+      },
+    });
+
   return (
     <>
       {isBackLogModalOpen && <BacklogDetailModal />}
@@ -52,7 +67,7 @@ export default function BacklogTbody() {
         <tr key={idx} className="bg-white border-b">
           <th
             scope="row"
-            className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap"
+            className="pl-6 py-2 font-medium text-gray-900 whitespace-nowrap flex flex-row"
           >
             <button
               className="font-medium hover:text-blue-600 cursor-pointer"
@@ -65,7 +80,11 @@ export default function BacklogTbody() {
             >
               {item.title}
             </button>
+            <button className="ml-2">
+              <FcDownload />
+            </button>
           </th>
+          {/* <th className="py-2"></th> */}
           <td className="px-6 py-2">
             <BacklogStatus
               value={
@@ -89,7 +108,7 @@ export default function BacklogTbody() {
               value={item.sprint_no === 0 ? '-' : item.sprint_no}
             />
           </td>
-          <td className="px-6 py-2">
+          <td className="px-4 py-2">
             <span className="flex">
               <img
                 // src={item.image}
@@ -100,13 +119,14 @@ export default function BacklogTbody() {
               <span className="ml-1">{item.user_id}</span>
             </span>
           </td>
-          {/* <td className="px-4 py-2 text-right">
-              <a href={item.downloadLink} target="_blank" rel="noreferrer">
-                <p className="text-xl font-medium text-blue-600">
-                  <AiOutlineDownload />
-                </p>
-              </a>
-            </td> */}
+          <td className="px-2 py-2">
+            <button
+              onClick={() => deleteBacklog(item.no)}
+              className="text-xl font-medium text-gray-400 hover:text-red-600"
+            >
+              <MdDelete />
+            </button>
+          </td>
         </tr>
       ))}
     </>

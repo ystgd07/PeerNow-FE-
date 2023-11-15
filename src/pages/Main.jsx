@@ -16,7 +16,7 @@ export default function Main() {
   const { data, isLoading, refetch } = useQuery(
     ['pjtCard'],
     async () => {
-      const res = await axios.get(`http://www.peernow.site/api/project/list`, {
+      const res = await axios.get(`/api/project/list`, {
         withCredentials: true,
       });
       return res;
