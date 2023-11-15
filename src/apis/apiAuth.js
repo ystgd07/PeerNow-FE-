@@ -17,7 +17,7 @@ export async function loginApi(form) {
   console.log('form', form);
 
   const res = await axios
-    .post(`https://www.peernow.site/api/user/login`, form, {
+    .post(`/api/user/login`, form, {
       withCredentials: true,
     })
     .then((res) => {
