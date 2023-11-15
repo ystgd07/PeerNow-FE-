@@ -6,11 +6,19 @@ const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
 //로그인,계정생성 api
 export async function registApi({ id, pw, name }) {
-  const res = await axios.post('http://www.peernow.site/api/user/join', {
-    id,
-    pw,
-    name,
-  });
+  console.log('id..pw...name..', id, pw, name);
+  const formData = new FormData();
+  formData.append(
+    'userMemberDto',
+    new Blob([JSON.stringify({ id, pw, name })], { type: 'application/json' }),
+  );
+
+  const res = await axios.post(
+    'http://www.peernow.site/api/user/join',
+    formData,
+  );
+
+  return res;
 }
 
 export async function loginApi(form) {

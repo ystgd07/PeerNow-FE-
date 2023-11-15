@@ -33,7 +33,7 @@ export default function UserHeader() {
         <ImProfile className="text-3xl" />
         <p className="text-xl font-bold">프로필 사진</p>
       </div>
-      <div className="border-2 border-collapse border-slate-200 rounded-md shadow-lg h-Profile w-full bg-white">
+      <div className="w-full bg-white border-2 border-collapse rounded-md shadow-lg border-slate-200 h-Profile">
         <div className="relative w-full h-3/5 bg-gradient-to-r from-peerColor to-slate-50">
           {/* */}
           <input
@@ -57,11 +57,11 @@ export default function UserHeader() {
                 setUserImg(reader.result);
               };
             }}
-            className="absolute top-2/3 left-2 h-24 z-20 opacity-0"
+            className="absolute z-20 h-24 opacity-0 top-2/3 left-2"
           />
 
           <img
-            className="absolute w-24 h-24 object-cover border-2 z-10 border-white rounded-full cursor-pointer top-1/3 left-10"
+            className="absolute z-10 object-cover w-24 h-24 border-2 border-white rounded-full cursor-pointer top-1/3 left-10"
             src={`${
               stateImageData.userImg === ''
                 ? 'data:image/*;base64,' + headerUserImg

@@ -3,7 +3,6 @@ import React from 'react';
 import { loginApi, registApi } from '../apis/apiAuth';
 import { useLoginAndCreateAccount } from '../store/store';
 import { useNavigate } from 'react-router-dom';
-import { fetchUserData } from '../apis/apiUserData';
 
 export default function FormButton({ checkValid, btnName, event }) {
   const { loginObj, setId, setpw, createAccountObj } = useLoginAndCreateAccount(
@@ -24,16 +23,19 @@ export default function FormButton({ checkValid, btnName, event }) {
     },
   });
 
-  const { mutate: createAccount, isCreateLoading } = useMutation(registApi, {
-    onSuccess: (user) => {
-      console.log('Success : ', user);
-      queryClient.invalidateQueries();
-      navigate('/');
+  const { mutate: createAccount, isCreateLoading } = useMutation(
+    () => registApi(createAccountObj),
+    {
+      onSuccess: (user) => {
+        console.log('Success : ', user);
+        queryClient.invalidateQueries();
+        navigate('/');
+      },
+      onError: (error) => {
+        console.log('Error', error);
+      },
     },
-    onError: (error) => {
-      console.log('Error', error);
-    },
-  });
+  );
 
   return (
     <div

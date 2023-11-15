@@ -3,7 +3,11 @@ import MypageSprint from '../features/mypage/MypageSprint';
 import MypageChart from '../features/mypage/MypageChart';
 import MypageBacklog from '../features/mypage/MypageBacklog';
 import { useEffect } from 'react';
-import { useOpenMainPage, useOpenMypage } from '../store/store';
+import {
+  useOpenMainPage,
+  useOpenMypage,
+  useProjectModal,
+} from '../store/store';
 import { PjtNumNow } from '../store/header/store';
 import { useQuery } from 'react-query';
 import { fetchBackLogList, fetchBackLogPjtData } from '../apis/backLogApis';
@@ -17,6 +21,7 @@ export default function MyPage() {
   const { setPjtDetailData, setPjtData } = useProjectInBackLog(
     (state) => state,
   );
+  const { setPjtModal, pjtModal } = useProjectModal((state) => state);
 
   // 현재 프로젝트 번호
   const { nowNum } = PjtNumNow((state) => state);

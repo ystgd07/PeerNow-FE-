@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useOpenMainPage } from '../store/store';
 
 export default function Snb() {
   return (
     <>
       <div
         id="drawer-navigation"
-        className="relative left-0   z-20 w-1/6 h-full p-5 bg-slate-200  border-slate-300 border-r-2 "
+        className="relative left-0 z-20 w-1/6 h-full p-5 border-r-2 bg-slate-200 border-slate-300 "
         tabIndex="1"
         aria-labelledby="drawer-navigation-label"
       >

@@ -25,27 +25,32 @@ export default function DropDownUser() {
 
   return (
     <div
-      className="absolute top-0 right-0 w-48 p-4 bg-white border-2 divide-y rounded-md shadow-md cursor-pointer"
+      className="absolute top-0 right-0 w-48 p-4 bg-white border-2 divide-y rounded-md shadow-md cursor-pointer bg-sl"
       onClick={() => {
         console.log('hihihi');
       }}
     >
       <p className="mb-3 text-xs truncate">{userMainData.mail}</p>
       <div>
-        <div className="flex flex-row items-center gap-2 cursor-pointer">
-          <p
-            className="mt-3 text-sm font-bold "
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate('/home/main/usermain');
-              setIsOpenDropdown();
-            }}
-          >
-            설정
-          </p>
+        <div
+          className="flex flex-row-reverse items-center justify-center gap-2 p-2 cursor-pointer hover:bg-slate-100 "
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate('/home/main/usermain');
+            setIsOpenDropdown();
+          }}
+        >
+          <p className="mt-3 text-sm font-bold ">설정</p>
           <GrUserSettings className="mt-3"></GrUserSettings>
         </div>
-        <div className="flex flex-row items-center gap-2 cursor-pointer">
+        <div
+          className="flex flex-row-reverse items-center justify-center gap-2 p-3 cursor-pointer hover:bg-slate-100 "
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate('/home/main/usermain');
+            setIsOpenDropdown();
+          }}
+        >
           <p
             className="mt-3 text-sm font-bold "
             onClick={(e) => {

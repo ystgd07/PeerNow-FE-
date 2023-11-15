@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useImage, useUserMain } from '../store/UserMain/store';
 import { GrUserSettings } from 'react-icons/gr';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Gnb() {
   const { userMainData, setIsOpenDropdown, headerUserImg } = useUserMain(
@@ -10,13 +10,9 @@ export default function Gnb() {
   );
   const { setUserImg, stateImageData } = useImage((state) => state);
   console.log('headerUserImg', headerUserImg);
+  const navigate = useNavigate();
   return (
-    <header
-      className="relative items-center justify-between w-full  p-1 pl-5 pr-5 bg-white cursor-pointer border-slate-300 border-b-2"
-      onClick={() => {
-        setIsOpenDropdown();
-      }}
-    >
+    <header className="relative items-center justify-between w-full p-1 pl-5 pr-5 bg-white border-b-2 cursor-pointer border-slate-300">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
@@ -29,7 +25,14 @@ export default function Gnb() {
             ></button>
             <p className="flex ml-2 md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                <img src="/logo1.png" alt="로고" className="h-16 w-44" />
+                <img
+                  src="/logo1.png"
+                  alt="로고"
+                  className="h-16 w-44"
+                  onClick={() => {
+                    navigate('/home/main');
+                  }}
+                />
                 {/* 
                   일반회원 : <img src="/logo1.png" alt="로고" className="h-16 w-44" />
                   프리미엄 회원 : <img src="/logo2.png" alt="로고" className="h-16 w-44" /> 
@@ -40,7 +43,11 @@ export default function Gnb() {
           {/* 로그인 안되면 보여주면 안됨 */}
           <div className="flex items-center">
             <div className="flex items-center ml-3">
-              <div>
+              <div
+                onClick={() => {
+                  setIsOpenDropdown();
+                }}
+              >
                 <ui className="flex items-center mr-3 list-none">
                   <li>
                     <button

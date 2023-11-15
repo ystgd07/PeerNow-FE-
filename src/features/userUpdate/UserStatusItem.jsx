@@ -6,7 +6,7 @@ import { useStatusUpdate } from '../../store/UserMain/store';
 import { FaUserCheck } from 'react-icons/fa';
 import { FaUserTimes } from 'react-icons/fa';
 
-export default function UserStatusItem({ item }) {
+export default function UserStatusItem({ item, refetch }) {
   const { setStatusUpdateData, setUpdateDeclineStatus, statusUpdateData } =
     useStatusUpdate((state) => state);
 
@@ -15,7 +15,7 @@ export default function UserStatusItem({ item }) {
     {
       onSuccess: (user) => {
         console.log('Success : ', user);
-
+        refetch();
         setStatusUpdateData(user);
       },
       onError: (error) => {
@@ -29,7 +29,7 @@ export default function UserStatusItem({ item }) {
     {
       onSuccess: (user) => {
         console.log('Success : ', user);
-
+        refetch();
         setUpdateDeclineStatus(user);
       },
       onError: (error) => {
@@ -37,16 +37,16 @@ export default function UserStatusItem({ item }) {
       },
     },
   );
-
+  console.log('UserStatusItem : ', item);
   return (
-    <div className=" mb-5">
+    <div className="mb-5 ">
       <div className="flex items-centerh-fit border-slate-300 ">
         <div className="flex flex-row items-center w-2/5">
           <div className="mr-4">
             <img
-              className="rounded-full border-2 border-black w-10 h-10"
+              className="w-10 h-10 border-2 border-black rounded-full"
               // src="/img/je.jfif"
-              src={`data:image/*;base64,${item?.image}`}
+              src={`data:image/*;base64,${item?.owner_image}`}
               alt="Neil image"
             />
           </div>
@@ -93,7 +93,6 @@ export default function UserStatusItem({ item }) {
             item?.status === 'DECLINE' && (
               <div className="flex gap-3">
                 <FaUserTimes className="text-2xl text-red-600"></FaUserTimes>
-                <p className="font-bold">(거절)</p>
               </div>
             )
           )}
