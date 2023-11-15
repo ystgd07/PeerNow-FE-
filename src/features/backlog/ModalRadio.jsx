@@ -9,10 +9,10 @@ export default function ModalRadio() {
   return (
     <div className="text-center mb-4">
       <RadioGroup>
-        {selectedBackObj.status === 'todo' ? (
+        {selectedBackObj.status === 'done' ? (
           <>
             <span className="mr-6">
-              <Radio name="status" value="todo" defaultChecked>
+              <Radio name="status" value="todo">
                 &nbsp;진행 예정
               </Radio>
             </span>
@@ -22,7 +22,7 @@ export default function ModalRadio() {
               </Radio>
             </span>
             <span className="mr-6">
-              <Radio name="status" value="done">
+              <Radio name="status" value="done" defaultChecked>
                 &nbsp;완료
               </Radio>
             </span>
@@ -48,7 +48,7 @@ export default function ModalRadio() {
         ) : (
           <>
             <span className="mr-6">
-              <Radio name="status" value="todo">
+              <Radio name="status" value="todo" defaultChecked>
                 &nbsp;진행 예정
               </Radio>
             </span>
@@ -58,7 +58,7 @@ export default function ModalRadio() {
               </Radio>
             </span>
             <span className="mr-6">
-              <Radio name="status" value="done" defaultChecked>
+              <Radio name="status" value="done">
                 &nbsp;완료
               </Radio>
             </span>

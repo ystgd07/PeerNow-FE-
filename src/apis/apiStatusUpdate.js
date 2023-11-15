@@ -7,14 +7,14 @@ export async function fetchStatusUpdateData(status, pjtNo, role) {
 
   if (status === 'ACCEPT') {
     const res = await axios.put(
-      `http://www.peernow.site/api/project/accept?projectNumber=${pjtNo}&role=${role}`,
+      `${process.env.REACT_APP_API_DOMAIN}/api/project/accept?projectNumber=${pjtNo}&role=${role}`,
     );
 
     return res?.data;
   }
   if (status === 'DECLINE') {
     const res = await axios.put(
-      `http://www.peernow.site/api/project/decline?projectNumber=${pjtNo}`,
+      `${process.env.REACT_APP_API_DOMAIN}/api/project/decline?projectNumber=${pjtNo}`,
     );
 
     return res?.data;

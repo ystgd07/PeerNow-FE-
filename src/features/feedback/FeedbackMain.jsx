@@ -24,7 +24,7 @@ export default function FeedbackMain() {
     ['feedBackList', pjtData[currentProjectNumber].no],
     async () => {
       const res = await axios.get(
-        `http://www.peernow.site/api/peer?projectNumber=${pjtData[currentProjectNumber].no}`,
+        `${process.env.REACT_APP_API_DOMAIN}/api/peer?projectNumber=${pjtData[currentProjectNumber].no}`,
         {
           withCredentials: true,
         },
@@ -85,9 +85,10 @@ export default function FeedbackMain() {
           </div>
         </div>
 
-        <div className="bg-white rounded-md p-3 h-full mt-2 shadow-lg mb-10 border-2 border-stone-100">
+        <div className="bg-white rounded-md p-3 h-full mt-2 shadow-lg mb-16 border-2 border-stone-100">
           <MainPeerBlock />
         </div>
+        <div className="p-3"></div>
       </div>
     </>
   );

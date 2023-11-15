@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export async function fetchInviteProject() {
-  const res = await axios.get('http://www.peernow.site/api/project/invitation');
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/invitation`,
+  );
   console.log('res', res);
   return res.data;
 }

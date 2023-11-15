@@ -3,7 +3,7 @@ import axios from 'axios';
 // 칸반보드
 export const fetchKanbanList = async (SprintNum) => {
   const res = await axios.get(
-    `http://www.peernow.site/api/kanban?sprint_no=${SprintNum}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/kanban?sprint_no=${SprintNum}`,
     {
       withCredentials: true,
     },
@@ -20,7 +20,7 @@ export const updateKanbanList = async (no, status) => {
   if (status === '진행 중') real = 'ing';
   if (status === '완료') real = 'done';
   const res = await axios.put(
-    `http://www.peernow.site/api/project/backlog/status?no=${no}&status=${real}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog/status?no=${no}&status=${real}`,
     {
       withCredentials: true,
     },

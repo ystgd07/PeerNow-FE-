@@ -19,7 +19,7 @@ export default function SideModalSearchResult() {
     ['userList', peerName],
     async () => {
       const res = await axios.get(
-        `http://www.peernow.site/api/project/peer?peerName=${peerName}`,
+        `${process.env.REACT_APP_API_DOMAIN}/api/project/peer?peerName=${peerName}`,
         {
           withCredentials: true,
         },

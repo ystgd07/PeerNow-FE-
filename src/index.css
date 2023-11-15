@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* 'SUITE' 폰트 스타일  */
-@import url('https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/static/woff2/SUITE.css');
+@import url('http://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/static/woff2/SUITE.css');
 /* body {
   font-family: 'SUITE', sans-serif;
   background-color: #efefef;

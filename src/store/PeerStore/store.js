@@ -52,16 +52,17 @@ export const usePeerEv = create((set) => ({
 
 export const useTogetherPeerEv = create((set) => ({
   togetherPeerDto: {
-    score1: null,
-    score2: null,
-    score3: null,
-    score4: null,
-    score5: null,
+    score1: 1,
+    score2: 1,
+    score3: 1,
+    score4: 1,
+    score5: 1,
     comment1: '',
     comment2: '',
   },
   selectPeerId: '',
   selectedName: '',
+  selectedImg: '',
 
   setSelectedPeerId: (peerId) =>
     set((state) => ({
@@ -71,6 +72,11 @@ export const useTogetherPeerEv = create((set) => ({
   setSelectedName: (sName) =>
     set((state) => ({
       selectedName: sName,
+    })),
+
+  setSelectedImg: (img) =>
+    set((state) => ({
+      selectImg: img,
     })),
 
   setSelectedScore1: (selectedNum) =>

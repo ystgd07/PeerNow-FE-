@@ -12,7 +12,7 @@ export default function BacklogResult() {
     ['userList', searchUser],
     async () => {
       const res = await axios.get(
-        `http://www.peernow.site/api/project/peer?peerName=${searchUser}`,
+        `${process.env.REACT_APP_API_DOMAIN}/api/project/peer?peerName=${searchUser}`,
         {
           withCredentials: true,
         },
