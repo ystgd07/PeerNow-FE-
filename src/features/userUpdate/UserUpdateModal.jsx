@@ -5,30 +5,39 @@ import { fetchUserData, fetchUserUpdateData } from '../../apis/apiUserData';
 import { useForm } from 'react-hook-form';
 export default function UserUpdateModal() {
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      userMemberDto: {
-        name: '',
-        image: '',
-        mail: '',
-        phone: '',
-        team: '',
-      },
-    },
-  });
-  const {
     setIsOpenUpdateModal,
     userMainData,
     modalState,
     updateTeam,
     updatePhone,
     updateMail,
+    setUpdateMail,
+    setUpdatePhone,
+    setUpdateTeam,
+    setUserMailOfMainData,
+    setUserPhoneOfMainData,
+    setUserTeamOfMainData,
+    userMainUpdateData,
   } = useUserMain((state) => state);
-  const queryClient = new QueryClient();
+  console.log('userMainUpdateData', userMainData);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      userMemberDto: {
+        name: userMainData.name,
+        image: userMainData.image,
+        mail: userMainData.mail,
+        phone: userMainData.phone,
+        team: userMainData.team,
+      },
+    },
+  });
 
+  const queryClient = new QueryClient();
+  console.log('userMainData1', userMainData);
   const stateQuarter =
     modalState === '이메일'
       ? updateMail
@@ -44,12 +53,13 @@ export default function UserUpdateModal() {
       : userMainData.team;
 
   const { mutate: updateUserData, isUpdateLoading } = useMutation(
-    fetchUserUpdateData,
+    ({ data, id }) => fetchUserUpdateData(data, id),
     {
       onSuccess: (user) => {
         console.log('Success : ', user);
         fetchUserData();
         queryClient.invalidateQueries();
+        setIsOpenUpdateModal();
       },
       onError: (error) => {
         console.log('Error', error);
@@ -91,21 +101,59 @@ export default function UserUpdateModal() {
           </button>
           <form
             onSubmit={handleSubmit((data) => {
-              console.log('form datatype : ', typeof data);
-              updateUserData({ data, userMainDataid: userMainData.id });
-              console.log('userMainData.id : ', userMainData.id);
+              console.log(
+                'form datatype : ',
+                data,
+                'form modalState :',
+                modalState,
+              );
+
+              updateUserData({ data, id: userMainData?.id });
+
+              console.log('userMainData.id : ', userMainData?.id);
             })}
             className="px-6 py-6 lg:px-8"
           >
-            <h2 className="mb-4 text-xl font-medium text-gray-900 underline dark:text-white">
+            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
               {modalState} 수정
             </h2>
-            <input
-              defaultValue="test"
-              {...register('userMemberDto.mail')}
-              type={`${modalState === '이메일' ? 'email' : 'text'}`}
-              placeholder={placeholderStatus}
-            ></input>
+            {modalState === '이메일' ? (
+              <input
+                defaultValue="test"
+                {...register('userMemberDto.mail')}
+                type={`${modalState === '이메일' ? 'email' : 'text'}`}
+                placeholder={placeholderStatus}
+                className="w-full"
+                onChange={(e) => {
+                  setUpdateMail(e.target.value);
+                }}
+                value={updateMail}
+              ></input>
+            ) : modalState === '전화번호' ? (
+              <input
+                defaultValue="test"
+                {...register('userMemberDto.phone')}
+                type={`${modalState === '이메일' ? 'email' : 'text'}`}
+                placeholder={placeholderStatus}
+                value={updatePhone}
+                onChange={(e) => {
+                  setUpdatePhone(e.target.value);
+                }}
+                className="w-full"
+              ></input>
+            ) : (
+              <input
+                defaultValue="test"
+                {...register('userMemberDto.team')}
+                type={`${modalState === '이메일' ? 'email' : 'text'}`}
+                placeholder={placeholderStatus}
+                className="w-full"
+                onChange={(e) => {
+                  setUpdateTeam(e.target.value);
+                }}
+                value={updateTeam}
+              ></input>
+            )}
 
             <div className="flex justify-center">
               <input

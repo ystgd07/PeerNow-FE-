@@ -14,6 +14,7 @@ import { fetchKanbanList } from '../../apis/kanbanApis';
 import { useKanbanCloums, useKanbanData } from '../../store/KanbanStore/sotre';
 import { useEffect } from 'react';
 import ContentLoader, { Instagram } from 'react-content-loader';
+import toast from 'react-hot-toast';
 
 export default function KanbanList() {
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
@@ -52,9 +53,11 @@ export default function KanbanList() {
     isLoading: isSprintBacklogData,
     refetch: kanbanRefetch,
   } = useQuery(['fetchKanbanList', sprintNo], () => fetchKanbanList(sprintNo), {
+    refetchOnWindowFocus: false,
     enabled: !!allSprintData,
     onSuccess: (data) => {
       // console.log('fetchKanbanList :', data);
+      toast.success(`칸반보드를 불러왔습니다.`);
       setKanbanData(data?.data?.datalist);
       setExpecting(data?.data?.datalist);
       setProcessing(data?.data?.datalist);
@@ -72,13 +75,13 @@ export default function KanbanList() {
 
   return (
     <>
-      <div className="bg-white rounded-lg m-6">
+      <div className="m-6 bg-white rounded-lg">
         {sprintKanbanData && !isSprintBacklogData ? (
           <>
             {/* 스프린트 해더 */}
             <KanbanHeader />
             {/* 칸반보드 */}
-            <div className="pb-5">
+            <div className="pb-5 overflow-y-scroll h-96">
               <KanbanBorad />
             </div>
           </>

@@ -77,7 +77,7 @@ export default function Home() {
         </div>
 
         {isOpenDropdown && <DropDownUser />}
-        {openMainPage ? <SideModal /> : ''}
+        {/* {openMainPage ? <SideModal /> : ''} */}
       </div>
     </>
   );

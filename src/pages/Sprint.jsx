@@ -11,7 +11,8 @@ import {
 } from '../store/BackLogStore/store';
 import { fetchBackLogList, fetchBackLogPjtData } from '../apis/backLogApis';
 import { TiArrowBackOutline } from 'react-icons/ti';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export default function Sprint() {
   //
@@ -29,8 +30,13 @@ export default function Sprint() {
     fetchBackLogPjtData,
     {
       onSuccess: (data) => {
+        // toast.success('백로그를 불러왔습니다.');
+        toast.error('백로그를 불러오지 못했습니다.');
         console.log('data :', data);
         setPjtData(data.data.datalist);
+      },
+      onError: (data) => {
+        toast.error('백로그를 불러오지 못했습니다.');
       },
     },
   );
@@ -56,13 +62,13 @@ export default function Sprint() {
         <Header />
         {/* 제목 */}
         <div className="mx-10">
-          <div className="text-3xl text-gray-500 mt-4 flex justify-between">
+          <div className="flex justify-between mt-4 text-3xl text-gray-500">
             <Title value={'스프린트 생성'} />
             <a
               href="javascript:window.history.back();"
-              className="p-1 mt-2 text-base hover:scale-105 flex items-center mr-6"
+              className="flex items-center p-1 mt-2 mr-6 text-base hover:scale-105"
             >
-              <TiArrowBackOutline className="cursor-pointer w-7 h-7 mr-1"></TiArrowBackOutline>
+              <TiArrowBackOutline className="mr-1 cursor-pointer w-7 h-7"></TiArrowBackOutline>
               뒤로가기
             </a>
           </div>

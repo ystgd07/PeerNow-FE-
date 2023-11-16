@@ -88,7 +88,7 @@ export default function MainPeerBlock() {
 
   return (
     <div className="p-1">
-      <p className="mt-2 ml-3 mb-5 border-b-2 border-slate-100 text-lg font-semibold text-gray-700">
+      <p className="mt-2 mb-5 ml-3 text-lg font-semibold text-gray-700 border-b-2 border-slate-100">
         함께한 <span className="font-extrabold">동료</span>에 대해{' '}
         <span className="underline">평가</span>해주세요
       </p>
@@ -112,36 +112,36 @@ export default function MainPeerBlock() {
             >
               <img
                 src={`data:image/*;base64,${item?.peer_image}`}
-                className="w-full h-48 object-cover object-center"
+                className="object-cover object-center w-full h-48"
               />
               <div className="absolute top-0 left-0 w-full h-full font-semibold">
-                <span className="flex flex-row justify-start items-center">
+                <span className="flex flex-row items-center justify-start">
                   <span className="rounded-tl-lg font-black p-1 text-[#FFA500]">
                     {item?.peer_role}
                   </span>
                 </span>
               </div>
               <div className="p-1">
-                <div className="mb-10 flex justify-center items-center gap-2 text-center">
+                <div className="flex items-center justify-center gap-2 mb-10 text-center">
                   {/* <span className="rounded-full font-black p-2 pr-1 text-[#FFA500]">
                     {item?.peer_role}
                   </span> */}
-                  <h1 className="text-xl font-bold text-gray-800 -mr-1">
+                  <h1 className="-mr-1 text-xl font-bold text-gray-800">
                     {item?.peer_name}
                   </h1>
                   {/* <p className="text-base text-gray-600">
                     ({item?.peer_id.toUpperCase()})
                   </p> */}
-                  <span className="flex flex-row justify-end items-center ml-2">
+                  <span className="flex flex-row items-center justify-end ml-2">
                     <span className="text-xs font-bold">
                       <SlNote />
                     </span>
                     {item?.score === 0 ? (
-                      <span className="font-extrabold mx-1">-</span>
+                      <span className="mx-1 font-extrabold">-</span>
                     ) : (
-                      <span className="font-bold  mx-1">{item?.score}</span>
+                      <span className="mx-1 font-bold">{item?.score}</span>
                     )}
-                    <span className="text-gray-500 text-xs items-center mt-1">
+                    <span className="items-center mt-1 text-xs text-gray-500">
                       /50
                     </span>
                   </span>

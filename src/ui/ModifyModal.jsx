@@ -33,6 +33,7 @@ export default function ModifyModal() {
       onSuccess: (user) => {
         console.log('Success updateDate : ', updateDate);
         queryClient.invalidateQueries();
+        setOpenUpdateModal();
       },
       onError: (error) => {
         console.log('Error', error);

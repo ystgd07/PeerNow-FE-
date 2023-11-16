@@ -14,6 +14,13 @@ const initialUserMain = {
     reg_date: new Date(),
     mod_date: new Date(),
   },
+  userMainUpdateData: {
+    name: '',
+    mail: '',
+    phone: '',
+    team: '',
+    image: '',
+  },
   updateMail: '',
   updatePhone: '',
   updateTeam: '',
@@ -49,7 +56,11 @@ export const useProject = create((set) => ({
 export const useUserMain = create((set) => ({
   ...initialUserMain,
   headerUserImg: '',
+  setUpdateDataOfUser: (updateDataOfUser) =>
+    set((state) => ({ updateDataOfUser })),
 
+  setUserMainUpdateData: (userMainUpdateData) =>
+    set((state) => ({ userMainUpdateData: userMainUpdateData })),
   setModalState: (modalState) => set((state) => ({ modalState: modalState })),
 
   setIsOpenUpdateModal: (isOpenUpdateModal) =>
@@ -80,6 +91,30 @@ export const useUserMain = create((set) => ({
 
   setUserMainData: (userMainData) =>
     set((state) => ({ userMainData: userMainData })),
+
+  setUserMailOfMainData: (mail) =>
+    set((state) => ({
+      userMainData: {
+        ...state.userMainData,
+        mail: mail,
+      },
+    })),
+
+  setUserPhoneOfMainData: (phone) =>
+    set((state) => ({
+      userMainData: {
+        ...state.userMainData,
+        phone: phone,
+      },
+    })),
+
+  setUserTeamOfMainData: (team) =>
+    set((state) => ({
+      userMainData: {
+        ...state.userMainData,
+        team: team,
+      },
+    })),
 
   reset: () => set((state) => ({ ...initialUserMain })),
 }));

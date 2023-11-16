@@ -3,7 +3,11 @@ import MypageSprint from '../features/mypage/MypageSprint';
 import MypageChart from '../features/mypage/MypageChart';
 import MypageBacklog from '../features/mypage/MypageBacklog';
 import { useEffect } from 'react';
-import { useOpenMainPage, useOpenMypage } from '../store/store';
+import {
+  useOpenMainPage,
+  useOpenMypage,
+  useProjectModal,
+} from '../store/store';
 import { PjtNumNow } from '../store/header/store';
 import { useQuery } from 'react-query';
 import { fetchBackLogList, fetchBackLogPjtData } from '../apis/backLogApis';
@@ -11,12 +15,14 @@ import {
   AllBacklogOfThisPjt,
   useProjectInBackLog,
 } from '../store/BackLogStore/store';
+import toast from 'react-hot-toast';
 
 export default function MyPage() {
   // Header용
   const { setPjtDetailData, setPjtData } = useProjectInBackLog(
     (state) => state,
   );
+  const { setPjtModal, pjtModal } = useProjectModal((state) => state);
 
   // 현재 프로젝트 번호
   const { nowNum } = PjtNumNow((state) => state);
@@ -40,6 +46,7 @@ export default function MyPage() {
     {
       enabled: !!PjtData,
       onSuccess: (data) => {
+        toast.success('백로그를 불러왔습니다.');
         console.log('data :', data);
         setBacklogData(data?.data?.datalist);
       },

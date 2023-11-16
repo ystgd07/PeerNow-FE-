@@ -7,11 +7,12 @@ import { useQuery } from 'react-query';
 import { format } from 'date-fns';
 import ContentLoader, { Facebook } from 'react-content-loader';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export default function PjtInfo() {
   const { projectNumber, projectUserId, pjtModalData, setPjtModalData } =
     useProjectModal((state) => state);
-
+  const notify = () => toast.success('프로젝트 정보를 불러왔습니다.');
   const { data: userListData, isLoading: isLoadingListData } = useQuery(
     ['pjtModalData', projectNumber, projectUserId],
     async () => {
@@ -57,6 +58,7 @@ export default function PjtInfo() {
       enabled: !!userListData,
       // enabled: false,
       onSuccess: (data) => {
+        notify();
         console.log('undefined log : ', data);
       },
       onError: (error) => {

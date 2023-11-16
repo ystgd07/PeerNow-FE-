@@ -8,12 +8,21 @@ export async function fetchUserData() {
   return res.data;
 }
 
-export async function fetchUserUpdateData({ data, userMainDataid }) {
-  console.log('data type: ', data.userMemberDto);
+export async function fetchUserUpdateData(data, userMainDataid) {
+  // console.log('updatedate!!', data);
   const formData = new FormData();
-  const jsonBlob = new Blob([JSON.stringify(data.userMemberDto)], {
+  const obj = {
+    mail: data.userMemberDto.mail,
+    image: data.userMemberDto.image,
+    name: data.userMemberDto.name,
+    phone: data.userMemberDto.phone,
+    team: data.userMemberDto.team,
+  };
+  console.log('updatate2', obj);
+  const jsonBlob = new Blob([JSON.stringify(obj)], {
     type: 'application/json',
   });
+
   formData.append('userMemberDto', jsonBlob);
 
   console.log('formData', formData);
