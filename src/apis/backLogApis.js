@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 백로그 생성
 export const createBackLogApi = async (backlogDto, backFileDto, test) => {
-  console.log('api call currentProjectNumber : ', backFileDto);
+  console.log('api call currentProjectNumber : ', backFileDto.length);
 
   const formData = new FormData();
 
@@ -11,13 +11,14 @@ export const createBackLogApi = async (backlogDto, backFileDto, test) => {
     new Blob([JSON.stringify(backlogDto)], { type: 'application/json' }),
   );
 
-  formData.append(
-    'fileDto',
-    new Blob([JSON.stringify(backFileDto)], { type: 'multipart/form-data' }),
-  );
+  backFileDto.length !== 0 &&
+    formData.append(
+      'fileDto',
+      new Blob([JSON.stringify(backFileDto)], { type: 'multipart/form-data' }),
+    );
 
   const res = axios.post(
-    `https://www.peernow.site/api/project/backlog?project_no=${test}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog?project_no=${test}`,
     formData,
   );
   return res;
@@ -27,7 +28,7 @@ export const createBackLogApi = async (backlogDto, backFileDto, test) => {
 export const fetchBacklogTitle = async () => {
   try {
     const response = await axios.get(
-      'https://www.peernow.site/api/project/backlog/ing',
+      `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog/ing`,
     );
     return response.data;
   } catch (error) {
@@ -37,18 +38,24 @@ export const fetchBacklogTitle = async () => {
 
 // 스프린트 번호
 export const fetchBackLogPjtData = async () => {
-  const res = await axios.get(`https://www.peernow.site/api/project/list`, {
-    withCredentials: true,
-  });
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/list`,
+    {
+      withCredentials: true,
+    },
+  );
 
   return res;
 };
 
 // 프로젝트 유저
 export const fetchBackLogPjtDetailData = async (pjtNum, owner) => {
-  const res = await axios.get(`/project/peerlist?projectNumber=${pjtNum}`, {
-    withCredentials: true,
-  });
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/project/peerlist?projectNumber=${pjtNum}`,
+    {
+      withCredentials: true,
+    },
+  );
 
   return res;
 };
@@ -56,7 +63,7 @@ export const fetchBackLogPjtDetailData = async (pjtNum, owner) => {
 // 현재 프로젝트의 모든 백로그
 export const fetchBackLogList = async (pjtNum) => {
   const res = await axios.get(
-    `https://www.peernow.site/api/project/backlog/all?project_no=${pjtNum}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog/all?project_no=${pjtNum}`,
     {
       withCredentials: true,
     },
@@ -68,7 +75,7 @@ export const fetchBackLogList = async (pjtNum) => {
 // 백로그 상세 페이지
 export const fetchBacklogDetail = async (BackNum) => {
   const res = await axios.get(
-    `http://www.peernow.site/api/project/backlog?no=${BackNum}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog?no=${BackNum}`,
     {
       withCredentials: true,
     },
@@ -96,11 +103,24 @@ export const updateBacklogData = async (
   );
 
   const res = await axios.put(
-    `http://www.peernow.site/api/project/backlog?no=${backNum}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog?no=${backNum}`,
     formData,
     {
       withCredentials: true,
     },
   );
+  return res;
+};
+
+// 백로그 삭제
+export const deleteBacklog = async (BackNum) => {
+  console.log('deleteBacklog333');
+  const res = await axios.delete(
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog?no=${BackNum}`,
+    {
+      withCredentials: true,
+    },
+  );
+
   return res;
 };

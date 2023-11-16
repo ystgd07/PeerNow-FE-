@@ -88,7 +88,8 @@ export default function KanbanList() {
         ) : sprintNo !== null ? (
           <Instagram />
         ) : (
-          <div>없습니다용~!</div>
+          // <div>없습니다용~!</div>
+          <Instagram />
         )}
       </div>
     </>

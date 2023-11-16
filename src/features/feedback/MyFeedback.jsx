@@ -1,17 +1,15 @@
 import React from 'react';
-import MyFeedbackDetail1 from './MyFeedbackDetail1';
-import MyFeedbackDetail2 from './MyFeedbackDetail2';
+import FeedbackOne from './FeedbackOne';
+import FeedbackTwo from './FeedbackTwo';
 
 export default function MyFeedback() {
   return (
     <>
-      <div className="p-2 flex flex-row items-center">
-        <div className="mr-10  w-1/2">
-          <MyFeedbackDetail1 />
-        </div>
-        <div className="w-1/2">
-          <MyFeedbackDetail2 />
-        </div>
+      <div className="flex flex-row mb-4 mt-1">
+        {/* 지지적 피드백 */}
+        <FeedbackOne />
+        {/* 교정적 피드백 */}
+        <FeedbackTwo />
       </div>
     </>
   );

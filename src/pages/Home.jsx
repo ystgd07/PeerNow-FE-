@@ -11,15 +11,20 @@ import {
 import ModifyModal from '../ui/ModifyModal';
 import { useQuery } from 'react-query';
 import { fetchUserData } from '../apis/apiUserData';
-import { useUserMain } from '../store/UserMain/store';
+import { useMyRole, useUserMain } from '../store/UserMain/store';
 import DropDownUser from '../ui/DropDownUser';
-import { getUserImg } from '../apis/apiAuth';
-import { useBackNumStore } from '../store/BackLogStore/store';
+import { fetchMyRole, getUserImg } from '../apis/apiAuth';
+import {
+  useBackLogPageRes,
+  useBackNumStore,
+  useProjectInBackLog,
+} from '../store/BackLogStore/store';
 
 export default function Home() {
   const { openMainPage } = useOpenMainPage((state) => state);
   const { openMypage } = useOpenMypage((state) => state);
   const { openUpdateModal } = useOepnUpdateModal((state) => state);
+
   const {
     setUserMainData,
     userMainData,

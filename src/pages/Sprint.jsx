@@ -6,6 +6,7 @@ import { PjtNumNow } from '../store/header/store';
 import { useQuery } from 'react-query';
 import {
   AllBacklogOfThisPjt,
+  useBackLogPageRes,
   useProjectInBackLog,
 } from '../store/BackLogStore/store';
 import { fetchBackLogList, fetchBackLogPjtData } from '../apis/backLogApis';
