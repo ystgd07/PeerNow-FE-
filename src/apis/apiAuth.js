@@ -95,3 +95,12 @@ export async function logoutApi() {
     console.error('로그아웃 중 에러 발생', error);
   }
 }
+
+// 권한 받기 /api/user/authority?project_no=project_no
+export async function fetchMyRole(currentProjectNumber) {
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/api/user/authority?project_no=${currentProjectNumber}`,
+  );
+  console.log('res', res);
+  return res.data;
+}

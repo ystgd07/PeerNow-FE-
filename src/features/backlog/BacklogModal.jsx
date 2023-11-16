@@ -3,7 +3,11 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import ModalDetail from './ModalDetail';
 import { useBackLogPage } from '../../store/store';
-import { UseBackLog } from '../../store/BackLogStore/store';
+import {
+  UseBackLog,
+  createBackLog,
+  useBackLogPageRes,
+} from '../../store/BackLogStore/store';
 import BacklogResult from './BacklogResult';
 
 export default function BacklogModal() {
@@ -13,10 +17,30 @@ export default function BacklogModal() {
   const { setSearchRes, searchUser, setSearchUser, searchRes } = UseBackLog(
     (state) => state,
   );
+  const { setUserId, setStatus, setTitle, setDetail } = createBackLog(
+    (state) => state,
+  );
 
+  const { setCurrentBackLogManager } = useBackLogPageRes((state) => state);
+
+  // 초기화 핸들러
+  const handleDialogClose = () => {
+    setStatus('todo');
+    setTitle('');
+    setUserId('');
+    setDetail('');
+    setCurrentBackLogManager('');
+  };
   return (
     <Transition.Root show={isBackLogModalOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setBackLogModalOpen}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={() => {
+          setBackLogModalOpen(false);
+          handleDialogClose();
+        }}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -55,7 +79,14 @@ export default function BacklogModal() {
                       <button
                         type="button"
                         className="relative rounded-md text-gray-300 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
-                        onClick={() => setBackLogModalOpen()}
+                        onClick={() => {
+                          setBackLogModalOpen();
+                          setStatus('todo');
+                          setTitle('');
+                          setUserId('');
+                          setDetail('');
+                          setCurrentBackLogManager('');
+                        }}
                       >
                         <span className="absolute -inset-2.5" />
                         <span className="sr-only">Close panel</span>
@@ -65,7 +96,7 @@ export default function BacklogModal() {
                   </Transition.Child>
                   <div className="flex flex-col h-full py-6 overflow-y-scroll bg-white shadow-xl">
                     <Dialog.Title className="px-4 text-lg font-semibold leading-6 text-gray-900">
-                      이슈 생성
+                      백로그 생성
                     </Dialog.Title>
                     <BacklogResult />
                     <ModalDetail />

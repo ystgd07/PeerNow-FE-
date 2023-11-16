@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 백로그 생성
 export const createBackLogApi = async (backlogDto, backFileDto, test) => {
-  console.log('api call currentProjectNumber : ', backFileDto);
+  console.log('api call currentProjectNumber : ', backFileDto.length);
 
   const formData = new FormData();
 
@@ -11,10 +11,11 @@ export const createBackLogApi = async (backlogDto, backFileDto, test) => {
     new Blob([JSON.stringify(backlogDto)], { type: 'application/json' }),
   );
 
-  formData.append(
-    'fileDto',
-    new Blob([JSON.stringify(backFileDto)], { type: 'multipart/form-data' }),
-  );
+  backFileDto.length !== 0 &&
+    formData.append(
+      'fileDto',
+      new Blob([JSON.stringify(backFileDto)], { type: 'multipart/form-data' }),
+    );
 
   const res = axios.post(
     `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog?project_no=${test}`,
@@ -113,6 +114,7 @@ export const updateBacklogData = async (
 
 // 백로그 삭제
 export const deleteBacklog = async (BackNum) => {
+  console.log('deleteBacklog333');
   const res = await axios.delete(
     `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog?no=${BackNum}`,
     {

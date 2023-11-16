@@ -9,7 +9,7 @@ export default function FeedbackDetail() {
 
   return (
     <>
-      <div className="m-5">
+      <div className="h-[40rem] scroll overflow-y-scroll scrollBar">
         <FeedbackDetailTitle />
         <div className="m-10 float-left">
           <PeerName />

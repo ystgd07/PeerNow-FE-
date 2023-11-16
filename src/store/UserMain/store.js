@@ -118,3 +118,32 @@ export const useImage = create((set) => ({
       },
     })),
 }));
+
+// 권한 받기
+const initialMyRole = {
+  myRoleDataList: {
+    id: '',
+    pw: null,
+    name: null,
+    mail: null,
+    phone: null,
+    team: null,
+    image: null,
+    grade: null,
+    reg_date: null,
+    mod_date: null,
+    role: '',
+    status: null,
+  },
+};
+
+export const useMyRole = create((set) => ({
+  ...initialMyRole,
+
+  setMyRole: (role) =>
+    set((state) => ({
+      role: role,
+    })),
+  setMyRoleDataList: (myRoleDataList) =>
+    set((state) => ({ myRoleDataList: myRoleDataList })),
+}));

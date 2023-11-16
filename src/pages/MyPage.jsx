@@ -59,17 +59,20 @@ export default function MyPage() {
   return (
     <>
       {/* 화면 틀 */}
-      <div className="w-full overflow-y-auto">
+      <div className="w-full">
         <Header />
-        <div className="grid grid-cols-2 gap-4 mx-10 mt-3">
-          {/* 스프린트 sprint */}
-          <div className="col-span-2">
-            <MypageSprint />
+        <div className="overflow-y-scroll h-[40rem]">
+          <div className="grid grid-cols-2 gap-4 mx-10 mt-3 m-5">
+            {/* 스프린트 sprint */}
+            <div className="col-span-2">
+              <MypageSprint />
+            </div>
+            {/* 번다운 차트 burndown-chart */}
+            <MypageChart />
+            {/* 진행중인 백로그 back log */}
+            <MypageBacklog />
           </div>
-          {/* 번다운 차트 burndown-chart */}
-          <MypageChart />
-          {/* 진행중인 백로그 back log */}
-          <MypageBacklog />
+          <div className="p-5"></div>
         </div>
       </div>
     </>

@@ -5,9 +5,9 @@ export default function PeerFeedback() {
   return (
     <>
       {/* 화면 틀 */}
-      <div className="w-full h-auto">
+      <div className="w-full">
         <Header />
-        <FeedbackDetail />
+        <FeedbackDetail className="h-[40rem] scroll overflow-y-scroll" />
       </div>
     </>
   );

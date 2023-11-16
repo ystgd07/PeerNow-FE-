@@ -1,28 +1,29 @@
 import axios from 'axios';
 
 export const postEvData = async (
-  // togetherPeerDto,
   currentProjectNumber,
   selectPeerId,
   togetherPeerDto,
 ) => {
-  // const formData = new FormData();
   console.log('togetherPeerDtotogetherPeerDto', togetherPeerDto);
-
-  // formData.append(
-  //   'togetherPeerDto',
-  //   new Blob([JSON.stringify(togetherPeerDto)], { type: 'application/json' }),
-  // );
-
-  // console.log('formDataformData', formData);
-
   const res = await axios.post(
     `${process.env.REACT_APP_API_DOMAIN}/api/peer/evaluation?projectNumber=${currentProjectNumber}&peerId=${selectPeerId}`,
     togetherPeerDto,
-    // formData,
     {
       withCredentials: true,
     },
   );
   return res;
+};
+
+// 나의 피드백
+export const getMyFeedback = async (currentProjectNumber) => {
+  console.log('dfdfdfdfdfdfdfdf : 나여ㄱ;ㅣ');
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/api/peer/feedback?projectNumber=${currentProjectNumber}`,
+    {
+      withCredentials: true,
+    },
+  );
+  return res.data;
 };
