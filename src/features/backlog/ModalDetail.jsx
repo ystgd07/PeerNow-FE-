@@ -8,8 +8,11 @@ import { useMutation, useQueryClient } from 'react-query';
 import ModalRadio from './ModalRadio';
 import { createBackLogApi } from '../../apis/backLogApis';
 import ModalSearch from './ModalSearch';
+import { useBackLogPage } from '../../store/store';
 
 export default function ModalDetail() {
+  const { setBackLogModalOpen } = useBackLogPage((state) => state);
+
   //
   const queryClient = useQueryClient();
   // 백로그 유저 서치
@@ -33,6 +36,7 @@ export default function ModalDetail() {
     currentSearchUser,
     setCurrentSearcUser,
     currentBackLogMananger,
+    setCurrentBackLogManager,
   } = useBackLogPageRes((state) => state);
 
   const { pjtData } = useProjectInBackLog((state) => state);
@@ -49,16 +53,23 @@ export default function ModalDetail() {
         ),
       {
         onSuccess: (user) => {
-          console.log('Success backLog : ', user);
+          console.log('Success backLog111 : ', user);
           queryClient.invalidateQueries(
             'queryClient.invalidateQueries : createMutateOfBackLog',
           );
+          setBackLogModalOpen();
+          setStatus('todo');
+          setTitle('');
+          setUserId('');
+          setDetail('');
+          setCurrentBackLogManager('');
         },
         onError: (error) => {
           console.log('Error', error);
         },
       },
     );
+  console.log('Success backLog222', createMutateOfBackLog);
 
   return (
     <>

@@ -55,7 +55,8 @@ export default function BacklogTbody() {
   const { mutate: deleteBacklog, isLoading: isDeleteBacklogLoading } =
     useMutation((backNum) => deleteBacklog(backNum), {
       onSuccess: (data) => {
-        console.log('fetchBackLogList :', data);
+        console.log('deleteBacklog111');
+        console.log('deleteBacklog222 :', data);
         setBacklogData(data?.data?.datalist);
       },
     });
@@ -80,9 +81,13 @@ export default function BacklogTbody() {
             >
               {item.title}
             </button>
-            <button className="ml-2">
-              <FcDownload />
-            </button>
+            {backlogData?.image !== null ? (
+              <button className="ml-2">
+                <FcDownload />
+              </button>
+            ) : (
+              ''
+            )}
           </th>
           {/* <th className="py-2"></th> */}
           <td className="px-6 py-2">

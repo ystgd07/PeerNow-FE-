@@ -5,17 +5,41 @@ import {
   useProjectInBackLog,
 } from '../store/BackLogStore/store';
 import { PjtNumNow, toggleDropdown } from '../store/header/store';
+import { fetchMyRole } from '../apis/apiAuth';
+import { useMyRole } from '../store/UserMain/store';
+import { useQuery } from 'react-query';
 
 export default function Header() {
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { pjtData } = useProjectInBackLog((state) => state);
-
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
-
   const { selectedDtopdownOfHeader, setSelectedDtopdownOfHeader } =
     toggleDropdown((state) => state);
 
   console.log('currentProjectNumber  :', currentProjectNumber);
+
+  // 권한 받기
+  const { setMyRole, setMyRoleDataList, myRoleDataList, role } = useMyRole(
+    (state) => state,
+  );
+  const { data: myRoleData, isLoading: yRoleDataLoading } = useQuery(
+    ['fetchMyRole', pjtData[currentProjectNumber].no],
+    () => fetchMyRole(pjtData[currentProjectNumber].no),
+    {
+      onSuccess: (data) => {
+        console.log('fetchMyRole :', data);
+        setMyRoleDataList(data?.data);
+        setMyRole(data?.data?.role);
+        console.log(
+          'fetchMyRolefetchMyRolefetchMyRolefetchMyRole :',
+          data?.data?.role,
+        );
+      },
+    },
+  );
+  console.log('myRoleDatamyRoleData1111 : ', myRoleData);
+  console.log('myRoleDatamyRoleData2222 : ', myRoleDataList);
+  console.log('myRoleDatamyRoleData3333 : ', role);
 
   return (
     <header className="z-50 bg-white shadow-md w-full  border-black ">

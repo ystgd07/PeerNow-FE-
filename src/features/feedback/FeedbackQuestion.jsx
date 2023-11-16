@@ -13,14 +13,11 @@ export default function FeedbackQuestion() {
   const {
     selectPeerId,
     setSelectedScore1,
-    score1,
     setSelectedScore2,
-    score2,
     setSelectedScore3,
     setSelectedScore4,
     setSelectedScore5,
     setComment1,
-    comment1,
     setComment2,
     togetherPeerDto,
   } = useTogetherPeerEv((state) => state);
@@ -39,7 +36,6 @@ export default function FeedbackQuestion() {
     useMutation(
       ({ currentProjectNumber, selectPeerId, togetherPeerDto }) =>
         postEvData(
-          // togetherPeerDto,
           pjtData[currentProjectNumber].no,
           selectPeerId,
           togetherPeerDto,
@@ -48,6 +44,11 @@ export default function FeedbackQuestion() {
         onSuccess: (user) => {
           console.log('postPeerEvData : ', user);
           // queryClient.invalidateQueries();
+          setSelectedScore1('');
+          setSelectedScore2('');
+          setSelectedScore3('');
+          setSelectedScore4('');
+          setSelectedScore5('');
           setComment1('');
           setComment2('');
           navigate('/home/feedback');
@@ -69,11 +70,7 @@ export default function FeedbackQuestion() {
               value={togetherPeerDto.score1}
               onChange={(e) => setSelectedScore1(e.target.value)}
             /> */}
-            <ScoreRadio2
-              name={'score1'}
-              value={togetherPeerDto.score1}
-              onChange={(e) => setSelectedScore1(e.target.value)}
-            />
+            <ScoreRadio2 name={'score1'} value={togetherPeerDto.score1} />
           </p>
         </div>
         <div className="m-2 mb-4">
@@ -86,11 +83,7 @@ export default function FeedbackQuestion() {
                 setSelectedScore2(e.target.value);
               }}
             /> */}
-            <ScoreRadio2
-              name={'score2'}
-              value={togetherPeerDto.score2}
-              onChange={(e) => setSelectedScore2(e.target.value)}
-            />
+            <ScoreRadio2 name={'score2'} value={togetherPeerDto.score2} />
           </p>
         </div>
         <div className="m-2 mb-4">
@@ -101,11 +94,7 @@ export default function FeedbackQuestion() {
               value={togetherPeerDto.score3}
               onChange={(e) => setSelectedScore3(e.target.value)}
             /> */}
-            <ScoreRadio2
-              name={'score3'}
-              value={togetherPeerDto.score3}
-              onChange={(e) => setSelectedScore3(e.target.value)}
-            />
+            <ScoreRadio2 name={'score3'} value={togetherPeerDto.score3} />
           </p>
         </div>
         <div className="m-2 mb-4">
@@ -116,11 +105,7 @@ export default function FeedbackQuestion() {
               value={togetherPeerDto.score4}
               onChange={(e) => setSelectedScore4(e.target.value)}
             /> */}
-            <ScoreRadio2
-              name={'score4'}
-              value={togetherPeerDto.score4}
-              onChange={(e) => setSelectedScore4(e.target.value)}
-            />
+            <ScoreRadio2 name={'score4'} value={togetherPeerDto.score4} />
           </p>
         </div>
         <div className="m-2 mb-4">
@@ -131,11 +116,7 @@ export default function FeedbackQuestion() {
               value={togetherPeerDto.score5}
               onChange={(e) => setSelectedScore5(e.target.value)}
             /> */}
-            <ScoreRadio2
-              name={'score5'}
-              value={togetherPeerDto.score5}
-              onChange={(e) => setSelectedScore5(e.target.value)}
-            />
+            <ScoreRadio2 name={'score5'} value={togetherPeerDto.score5} />
           </p>
         </div>
       </div>
@@ -163,7 +144,11 @@ export default function FeedbackQuestion() {
         <button
           className="text-right mr-1 -mb-6"
           onClick={() => {
-            postPeerEvData({ currentProjectNumber, selectPeerId });
+            postPeerEvData({
+              currentProjectNumber,
+              selectPeerId,
+              togetherPeerDto,
+            });
           }}
         >
           <span

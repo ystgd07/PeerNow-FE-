@@ -6,11 +6,12 @@ import { PjtNumNow } from '../store/header/store';
 import { useQuery } from 'react-query';
 import {
   AllBacklogOfThisPjt,
+  useBackLogPageRes,
   useProjectInBackLog,
 } from '../store/BackLogStore/store';
 import { fetchBackLogList, fetchBackLogPjtData } from '../apis/backLogApis';
 import { TiArrowBackOutline } from 'react-icons/ti';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Sprint() {
   //

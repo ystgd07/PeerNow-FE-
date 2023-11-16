@@ -39,11 +39,12 @@ export default function Radio({
         onChange={(e) => {
           setSelectedStatus(e.target.value);
           setSelectUserRole(id, value);
-          setSelectedScore1(e.target.value);
-          setSelectedScore2(e.target.value);
-          setSelectedScore3(e.target.value);
-          setSelectedScore4(e.target.value);
-          setSelectedScore5(e.target.value);
+          console.log('iinRadioName :', e.target.value);
+          if (name === 'score1') setSelectedScore1(e.target.value);
+          else if (name === 'score2') setSelectedScore2(e.target.value);
+          else if (name === 'score3') setSelectedScore3(e.target.value);
+          else if (name === 'score4') setSelectedScore4(e.target.value);
+          else if (name === 'score5') setSelectedScore5(e.target.value);
         }}
       />
       {children}

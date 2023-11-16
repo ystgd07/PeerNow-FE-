@@ -8,8 +8,10 @@ import {
 import { useQuery } from 'react-query';
 import { getMyFeedback } from '../../apis/apiPeer';
 
-export default function FeedBackModal() {
-  const { isOpenPeerModal, setIsOpenPeerModal } = usePeerMain((state) => state);
+export default function FeedBackModalTwo() {
+  const { isOpenPeerModal2, setIsOpenPeerModal2 } = usePeerMain(
+    (state) => state,
+  );
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
   const { pjtData } = useProjectInBackLog((state) => state);
   const { myFeedbackDto, setMyFeedbackData } = useMyFeedback((state) => state);
@@ -46,7 +48,7 @@ export default function FeedBackModal() {
               type="button"
               className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
               data-modal-hide="authentication-modal"
-              onClick={setIsOpenPeerModal}
+              onClick={setIsOpenPeerModal2}
             >
               <svg
                 className="w-3 h-3"
@@ -69,19 +71,19 @@ export default function FeedBackModal() {
             <div className="h-auto p-4">
               <div className="text-gray-700">
                 <div className="text-center text-2xl font-bold">
-                  지지적 피드백
+                  교정적 피드백
                 </div>
                 <div className="mt-5">
                   {myFeedbackComment?.datalist?.map((e, idx) => (
                     <p className="border-b-2 m-1 py-1 flex" key={idx}>
-                      <span className="text-[#80E12A]">
+                      {/* <span className="text-[#80E12A]">
                         <FaCheck className="mr-2" />
                       </span>
-                      <span className="item-center">{e?.comment1}</span>
-                      {/* <span className="text-[#FF5675]">
+                      <span className="item-center">{e?.comment1}</span> */}
+                      <span className="text-[#FF5675]">
                         <FaCheck className="mr-2" />
                       </span>
-                      <span className="item-center">{e?.comment2}</span> */}
+                      <span className="item-center">{e?.comment2}</span>
                     </p>
                   ))}
                 </div>
