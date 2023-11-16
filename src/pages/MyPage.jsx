@@ -15,6 +15,7 @@ import {
   AllBacklogOfThisPjt,
   useProjectInBackLog,
 } from '../store/BackLogStore/store';
+import toast from 'react-hot-toast';
 
 export default function MyPage() {
   // Header용
@@ -45,6 +46,7 @@ export default function MyPage() {
     {
       enabled: !!PjtData,
       onSuccess: (data) => {
+        toast.success('백로그를 불러왔습니다.');
         console.log('data :', data);
         setBacklogData(data?.data?.datalist);
       },

@@ -7,6 +7,7 @@ import {
 } from '../../store/BackLogStore/store';
 import { useNavigate } from 'react-router-dom';
 import CreatePjtSkeleton from '../../skeleTon/CreatePjtSkeleton';
+import toast from 'react-hot-toast';
 
 export default function MainPeerBlock() {
   const { currentProjectNumber, currentProjectOwner } = useBackLogPageRes(
@@ -39,6 +40,7 @@ export default function MainPeerBlock() {
         onSuccess: (data) => {
           console.log('undefined log : ', data);
           setPeerList(data?.datalist);
+          toast.success('동료평가 목록을 불러왔습니다.');
         },
         onError: (error) => {
           console.log('error : ', error);
@@ -49,15 +51,15 @@ export default function MainPeerBlock() {
 
   return (
     <div className="p-1">
-      <p className="m-2 ml-3 mb-5 border-b-2 border-slate-100 text-lg font-semibold text-gray-700">
+      <p className="m-2 mb-5 ml-3 text-lg font-semibold text-gray-700 border-b-2 border-slate-100">
         함께한 <span className="font-extrabold">동료</span>에 대해 평가해주세요
       </p>
-      <div className="h-full grid grid-cols-6 gap-4 text-center text-base p-4 scrollBar">
+      <div className="grid h-full grid-cols-6 gap-4 p-4 text-base text-center scrollBar">
         {useListForPeer1 ? (
           useListForPeer1?.datalist.map((item, index) => (
             <div
               key={index}
-              className="cursor-pointer max-w-sm bg-white shadow-xl rounded-lg overflow-hidden h-60 hover:scale-95"
+              className="max-w-sm overflow-hidden bg-white rounded-lg shadow-xl cursor-pointer h-60 hover:scale-95"
               onClick={(e) => {
                 console.log('제발 projectNumber', item.id);
                 setSelectedName(item.name);
@@ -69,7 +71,7 @@ export default function MainPeerBlock() {
             >
               <img
                 src={`data:image/*;base64,${item.image}`}
-                className="w-full h-48 object-cover object-center"
+                className="object-cover object-center w-full h-48"
               />
               {/* <div class="flex items-center px-4 py-2 bg-[#FFD232]">
                 <svg
@@ -83,7 +85,7 @@ export default function MainPeerBlock() {
                 </h1>
               </div> */}
               <div className="p-1">
-                <div className="mb-10 flex justify-center items-center gap-2">
+                <div className="flex items-center justify-center gap-2 mb-10">
                   <span className="rounded-full font-black p-2 text-[#FFA500]">
                     {item?.roll ? item?.roll : 'TM'}
                   </span>

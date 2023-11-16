@@ -2,22 +2,26 @@ import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { createProjectApi } from '../apis/apiAuth';
 import { useCreatePjtOne, useProjectModal } from '../store/store';
+import toast from 'react-hot-toast';
 
 export default function ButtonPakage({ value, event, disabled }) {
   const { pjtObj, setPjtObj, reset } = useCreatePjtOne((state) => state);
   const { setPjtModalFalse } = useProjectModal((state) => state);
+
   console.log('명수를 찾겠습니다 pjtObj : ', pjtObj);
   const queryClient = useQueryClient();
 
   const { mutate: createPjt, isCreateLoading } = useMutation(
-    () => createProjectApi(pjtObj),
+    () => {
+      createProjectApi(pjtObj);
+    },
     {
       onSuccess: (user) => {
         console.log('Success : ', user);
         setPjtObj();
         reset();
         setPjtModalFalse();
-
+        toast.success('프로젝트가 생성되었습니다.');
         queryClient.invalidateQueries();
       },
       onError: (error) => {
@@ -25,6 +29,7 @@ export default function ButtonPakage({ value, event, disabled }) {
       },
     },
   );
+
   console.log('reset이 먹히는가?:', pjtObj);
 
   return (

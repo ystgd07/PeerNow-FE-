@@ -12,13 +12,13 @@ export async function fetchUserUpdateData(data, userMainDataid) {
   // console.log('updatedate!!', data);
   const formData = new FormData();
   const obj = {
-    mail: data.mail,
-    image: data.image,
-    name: data.name,
-    phone: data.phone,
-    team: data.team,
+    mail: data.userMemberDto.mail,
+    image: data.userMemberDto.image,
+    name: data.userMemberDto.name,
+    phone: data.userMemberDto.phone,
+    team: data.userMemberDto.team,
   };
-  console.log('updatate2', data);
+  console.log('updatate2', obj);
   const jsonBlob = new Blob([JSON.stringify(obj)], {
     type: 'application/json',
   });

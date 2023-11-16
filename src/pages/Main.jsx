@@ -5,10 +5,10 @@ import PjtInfo from '../features/newproject/PjtInfo';
 import { useOpenMainPage, useProjectModal } from '../store/store';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import CreatePjtSkeleton from '../skeleTon/CreatePjtSkeleton';
-import Skeleton from 'react-loading-skeleton';
 import ContentLoader, { Instagram } from 'react-content-loader';
 import SideModal from '../features/newproject/SideModal';
+import toast, { Toaster } from 'react-hot-toast';
+
 export default function Main() {
   const { setPjtModalFalse, setPjtModalData } = useProjectModal(
     (state) => state,

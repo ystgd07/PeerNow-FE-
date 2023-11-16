@@ -12,6 +12,7 @@ import { deleteBacklog, fetchBackLogList } from '../../apis/backLogApis';
 import { useMutation, useQuery } from 'react-query';
 import { useBackLogDetailPage } from '../../store/store';
 import BacklogDetailModal from './BacklogDetailModal';
+import toast from 'react-hot-toast';
 
 export default function BacklogTbody() {
   // 전체 백로그 확인
@@ -45,6 +46,7 @@ export default function BacklogTbody() {
     () => fetchBackLogList(pjtData[currentProjectNumber].no),
     {
       onSuccess: (data) => {
+        toast.success('백로그를 불러왔습니다.');
         console.log('fetchBackLogList :', data);
         setBacklogData(data?.data?.datalist);
       },
@@ -67,10 +69,10 @@ export default function BacklogTbody() {
         <tr key={idx} className="bg-white border-b">
           <th
             scope="row"
-            className="pl-6 py-2 font-medium text-gray-900 whitespace-nowrap flex flex-row"
+            className="flex flex-row py-2 pl-6 font-medium text-gray-900 whitespace-nowrap"
           >
             <button
-              className="font-medium hover:text-blue-600 cursor-pointer"
+              className="font-medium cursor-pointer hover:text-blue-600"
               onClick={() => {
                 setBackLogModalOpen();
                 setBackNum(item.no);
