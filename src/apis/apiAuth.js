@@ -108,8 +108,6 @@ export async function fetchMyRole(currentProjectNumber) {
 
   let acc = res.headers.get('newaccesstoken');
   axios.defaults.headers.common['Authorization'] = `Bearer ${acc}`;
-  // 헐 짱신기 ~
-  console.log('accccscs', acc);
-  console.log('ressadasdasdsa', res);
+
   return res.data;
 }
