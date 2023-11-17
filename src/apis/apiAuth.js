@@ -100,18 +100,15 @@ export async function logoutApi() {
 
 // 권한 받기 /api/user/authority?project_no=project_no
 export async function fetchMyRole(currentProjectNumber) {
-  const res = await axios
-    .get(
-      `${process.env.REACT_APP_API_DOMAIN}/api/user/authority?project_no=${currentProjectNumber}`,
-      { headers: { project_no: currentProjectNumber } }, // 권한받기용 헤더에 현재 프넘 보내깅깅이
-    )
-    .then((res) => {
-      console.log('accccscs', acc);
-    });
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/api/user/authority?project_no=${currentProjectNumber}`,
+    { headers: { project_no: currentProjectNumber } }, // 권한받기용 헤더에 현재 프넘 보내깅깅이
+  );
+
   let acc = res.headers.get('newaccesstoken');
   axios.defaults.headers.common['Authorization'] = `Bearer ${acc}`;
   // 헐 짱신기 ~
-
+  console.log('accccscs', acc);
   console.log('ressadasdasdsa', res);
   return res.data;
 }

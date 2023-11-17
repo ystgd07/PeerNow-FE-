@@ -176,10 +176,6 @@ const initialMyRole = {
 export const useMyRole = create((set) => ({
   ...initialMyRole,
 
-  setMyRole: (role) =>
-    set((state) => ({
-      role: role,
-    })),
-  setMyRoleDataList: (myRoleDataList) =>
-    set((state) => ({ myRoleDataList: myRoleDataList })),
+  setMyRole: (data) => set((state) => ({ role: data })),
+  setMyRoleDataList: (res) => set((state) => ({ myRoleDataList: res })),
 }));
