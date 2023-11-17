@@ -27,13 +27,10 @@ export default function Header() {
     () => fetchMyRole(pjtData[currentProjectNumber].no),
     {
       onSuccess: (data) => {
-        console.log('fetchMyRole :', data);
+        console.log('fetchMyRole11 :', data);
+        console.log('fetchMyRole22 :', data?.data);
         setMyRoleDataList(data?.data);
         setMyRole(data?.data?.role);
-        console.log(
-          'fetchMyRolefetchMyRolefetchMyRolefetchMyRole :',
-          data?.data?.role,
-        );
       },
     },
   );

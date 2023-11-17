@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { useTogetherPeerEv } from '../../store/PeerStore/store';
 import ScoreRadio from './ScoreRadio';
 import {
   useBackLogPageRes,
@@ -8,6 +7,11 @@ import {
 import { useMutation } from 'react-query';
 import { postEvData } from '../../apis/apiPeer';
 import ScoreRadio2 from './ScoreRadio2';
+import {
+  usePeerEv,
+  usePeerList,
+  useTogetherPeerEv,
+} from '../../store/PeerStore/store';
 
 export default function FeedbackQuestion() {
   const {
@@ -22,22 +26,25 @@ export default function FeedbackQuestion() {
     togetherPeerDto,
   } = useTogetherPeerEv((state) => state);
 
+  const { peer_id, peerDatalistDto } = usePeerList((state) => state);
+  console.log('gldrnfl:::asdfasdfasdfasdf', peerDatalistDto.peer_id);
+
   console.log(
     'FeedbackQuestion: score1, score2, comment1, togetherPeerDto :',
     togetherPeerDto,
   );
 
-  //
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
   const { pjtData } = useProjectInBackLog((state) => state);
   const navigate = useNavigate();
 
+  console.log('selectPeerIdselectPeerId :', peerDatalistDto.peer_id);
   const { mutate: postPeerEvData, isLoading: isLodingPostPeerEvData } =
     useMutation(
-      ({ currentProjectNumber, selectPeerId, togetherPeerDto }) =>
+      ({ currentProjectNumber, peer_id, togetherPeerDto }) =>
         postEvData(
           pjtData[currentProjectNumber].no,
-          selectPeerId,
+          peerDatalistDto.peer_id,
           togetherPeerDto,
         ),
       {
@@ -55,6 +62,9 @@ export default function FeedbackQuestion() {
         },
         onError: (error) => {
           console.log('Error', error);
+          setComment1('');
+          setComment2('');
+          navigate('/home/feedback');
         },
       },
     );
@@ -153,6 +163,11 @@ export default function FeedbackQuestion() {
         >
           <span
             className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400 mb-10`}
+            onClick={() => {
+              setComment1('');
+              setComment2('');
+              navigate('/home/feedback');
+            }}
           >
             {isLodingPostPeerEvData ? '제출 중 ..' : '제출'}
           </span>
