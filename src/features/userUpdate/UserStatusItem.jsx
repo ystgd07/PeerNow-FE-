@@ -59,7 +59,7 @@ export default function UserStatusItem({ item, refetch }) {
         </div>
         <div className="flex flex-row items-center justify-center w-2/5">
           <div className="flex flex-col items-center">
-            <p className="text-xl font-extrabold text-[#f7cc10] ">
+            <p className="text-xl font-extrabold text-[#ac9325] ">
               {item?.project_title}
             </p>
             <p className="text-sm font-semibold truncate text-slate-400">

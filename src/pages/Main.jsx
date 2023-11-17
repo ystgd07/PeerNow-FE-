@@ -54,7 +54,7 @@ export default function Main() {
             <div className="flex rl">
               <div className="flex flex-col gap-3 p-6 overflow-y-scroll border-2 rounded-lg shadow-lg h-pjtCardSection border-slate-200 bg-slate-50 scrollbar-thumb-amber-400 scrollbar-thumb-rounded-full scrollbar-track-slate-50 scrollbar-thin ">
                 {!isLoading &&
-                  data?.data?.datalist?.map((res, idx) => (
+                  pjtObj?.map((res, idx) => (
                     <MyProjectCard res={res} key={idx} />
                   ))}
               </div>
