@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import { updateApi } from '../apis/apiAuth';
 import { useMutation, useQueryClient } from 'react-query';
 import { format } from 'date-fns';
+import toast from 'react-hot-toast';
 
 export default function ModifyModal() {
   const {
@@ -34,6 +35,14 @@ export default function ModifyModal() {
         console.log('Success updateDate : ', updateDate);
         queryClient.invalidateQueries();
         setOpenUpdateModal();
+        toast(`수정완료!`, {
+          icon: '👏',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        });
       },
       onError: (error) => {
         console.log('Error', error);

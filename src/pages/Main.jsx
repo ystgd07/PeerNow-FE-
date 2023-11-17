@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import Title from '../features/newproject/Title';
 import MyProjectCard from '../features/newproject/MyProjectCard';
 import PjtInfo from '../features/newproject/PjtInfo';
-import { useOpenMainPage, useProjectModal } from '../store/store';
+import {
+  useCreatePjtOne,
+  useOpenMainPage,
+  useProjectModal,
+} from '../store/store';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import ContentLoader, { Instagram } from 'react-content-loader';
@@ -14,6 +18,7 @@ export default function Main() {
     (state) => state,
   );
   const { openMainPage } = useOpenMainPage((state) => state);
+  const { pjtObj, setPjtObj } = useCreatePjtOne((state) => state);
   const { data, isLoading, refetch } = useQuery(
     ['pjtCard'],
     async () => {
@@ -28,6 +33,7 @@ export default function Main() {
     {
       onSuccess: (data) => {
         console.log('undefined log : ', data);
+        setPjtObj(data?.data?.datalist);
       },
       onError: (error) => {
         console.log('error : ', error);
@@ -35,11 +41,6 @@ export default function Main() {
       refetchOnWindowFocus: false,
     },
   );
-
-  useEffect(() => {
-    setTimeout(refetch, 1000);
-  }, []);
-  console.log('pjtCard : ', data);
 
   return (
     <div className={`relative flex flex-row justify-center ml-5 w-full`}>

@@ -18,7 +18,7 @@ export async function createSprintApi(pjtNum, sprintDto, backlogDto) {
   console.log('backBlob', backlogDto);
 
   const res = await axios.post(
-    `${process.env.REACT_APP_API_DOMAIN}/api/project/sprint?project_no=${pjtNum}`,
+    `https://www.peernow.site/api/project/sprint?project_no=${pjtNum}`,
     formData,
   );
 
@@ -29,7 +29,7 @@ export async function createSprintApi(pjtNum, sprintDto, backlogDto) {
 export const fetchAllSprints = async (pjtNum) => {
   console.log('프로젝트넘버입니다요!', pjtNum);
   const res = await axios.get(
-    `${process.env.REACT_APP_API_DOMAIN}/api/project/sprint/list?project_no=${pjtNum}`,
+    `https://www.peernow.site/api/project/sprint/list?project_no=${pjtNum}`,
     {
       withCredentials: true,
     },

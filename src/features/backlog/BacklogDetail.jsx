@@ -11,6 +11,7 @@ import {
 } from '../../store/BackLogStore/store';
 import { fetchBacklogDetail, updateBacklogData } from '../../apis/backLogApis';
 import ModalSearch from './ModalSearch';
+import toast from 'react-hot-toast';
 
 export default function BacklogDetail() {
   const { queryClient } = useQueryClient();
@@ -61,7 +62,7 @@ export default function BacklogDetail() {
       },
     },
   );
-  console.log('backlogDetailData~ : ', backlogDetailData);
+  console.log('backlogDetailData~ : ', selectedBackObj);
 
   // 백로그 수정
   const { mutate: updateBacklog, isLoading: isUpdateBacklogLoading } =
@@ -70,9 +71,8 @@ export default function BacklogDetail() {
       {
         onSuccess: (user) => {
           console.log('Success updateBacklog : ', user);
-          queryClient.invalidateQueries(
-            'queryClient.invalidateQueries : pdateBacklog',
-          );
+
+          toast.success('백로그가 업데이트 되었습니다');
         },
         onError: (error) => {
           console.log('Error', error);
@@ -83,18 +83,18 @@ export default function BacklogDetail() {
   return (
     <>
       <div>
-        <div className="relative mt-6 flex-1 px-4 sm:px-6">
+        <div className="relative flex-1 px-4 mt-6 sm:px-6">
           <ModalRadio onChange={(e) => setSelectedStatus(e.target.value)} />
           <input
             name="title"
-            className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
+            className="w-full p-2 mb-4 border-2 border-gray-300 rounded-md"
             placeholder=" *무엇을 해야합니까"
             value={selectedBackObj?.title}
             onChange={(e) => setSelectedTitle(e.target.value)}
           />
 
           <input
-            className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
+            className="w-full p-2 mb-4 border-2 border-gray-300 rounded-md"
             value={backlogDto?.user_id}
             onChange={(e) => setSelectedUserID(e.target.value)}
             onClick={() => setCurrentSearcUser(true)}
@@ -104,7 +104,7 @@ export default function BacklogDetail() {
           <input
             name="detail"
             // onChange={(e) => setDetail(e.target.value)}
-            className="border-2 w-full border-gray-300 p-2 mb-4 rounded-md"
+            className="w-full p-2 mb-4 border-2 border-gray-300 rounded-md"
             placeholder="설명을 입력할 수 있습니다"
             value={selectedBackObj?.detail}
             onChange={(e) => setSelectedDetail(e.target.value)}
@@ -121,7 +121,7 @@ export default function BacklogDetail() {
           </div>
           <div className="float-right my-2">
             <button
-              className="text-right mr-1 -mb-6"
+              className="mr-1 -mb-6 text-right"
               onClick={() => {
                 updateBacklog(backNum, selectedBackObj, backFileDto);
               }}

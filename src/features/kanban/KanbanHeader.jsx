@@ -4,23 +4,26 @@ import {
   useSelectedSprint,
 } from '../../store/SprintStore/store';
 import KanbanListOfSprint from './KanbanListOfSprint';
+import { useNavigate } from 'react-router-dom';
+import { TiArrowBackOutline } from 'react-icons/ti';
 
 export default function KanbanHeader() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { datalist, setDatalist } = AllThisSprints((state) => state);
+  const navigate = useNavigate();
 
   const { selectedSprintTitle, selectedValidate, setSelectedValidate } =
     useSelectedSprint((state) => state);
 
   return (
-    <div className="h-auto z-30">
-      <div className="container mx-auto flex justify-start items-center py-4">
+    <div className="z-30 h-auto">
+      <div className="container flex items-center justify-between py-4 mx-auto">
         <div className="relative group">
           <div className="text-gray-500">현재의 스프린트</div>
           <button
             id="dropdownDefaultButton"
             onClick={setSelectedValidate}
-            className="text-slate-800 bg-white mt-1 focus:ring-4 focus:outline-none focus:ring-gray-300 font-extrabold rounded-lg text-3xl mx-6 text-center inline-flex items-center"
+            className="inline-flex items-center mx-6 mt-1 text-3xl font-extrabold text-center bg-white rounded-lg text-slate-800 focus:ring-4 focus:outline-none focus:ring-gray-300"
             type="button"
           >
             {/* 현재 스프린트 */}
@@ -45,11 +48,12 @@ export default function KanbanHeader() {
               />
             </svg>
           </button>
+
           {/* 프로젝트 선택 드롭박스 */}
           {selectedValidate && (
             <div
               id="dropdown"
-              className="z-30 absolute mt-2 mx-16 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+              className="absolute z-30 mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
             >
               <ul
                 className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -61,6 +65,13 @@ export default function KanbanHeader() {
               </ul>
             </div>
           )}
+        </div>
+        <div
+          className="flex flex-row-reverse items-center mr-3 text-gray-600"
+          onClick={() => navigate(-1)}
+        >
+          <p className="p-1 mt-2 font-bold hover:scale-105">뒤로가기</p>
+          <TiArrowBackOutline className="cursor-pointer w-7 h-7 hover:scale-125"></TiArrowBackOutline>
         </div>
       </div>
     </div>
