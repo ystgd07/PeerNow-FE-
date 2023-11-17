@@ -235,8 +235,8 @@ export default function BurnDown() {
           <div className="mt-1 mb-3 text-xl font-bold">
             <p>스프린트별 번다운 차트</p>
           </div>
-          <div className="grid grid-cols-4 gap-x-3 gap-y-5 w-full overflow-y-scroll scrollBar">
-            {/* <div className="flex gap-x-3 gap-y-5 w-full h-96 overflow-x-scroll scrollBar"> */}
+          {/* <div className="grid grid-cols-4 gap-x-3 gap-y-5 w-full overflow-y-scroll scrollBar"> */}
+          <div className="flex gap-x-3 gap-y-5 w-full h-96 overflow-x-scroll scrollBar">
             {filterArr?.map((e, idx) => (
               <>
                 <div>

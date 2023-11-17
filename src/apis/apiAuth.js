@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { getCookie, setCookie } from '../Cookies/cookie';
 
 const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
+let accessToken = '';
 
 //로그인,계정생성 api
 export async function registApi({ id, pw, name }) {
@@ -25,7 +26,8 @@ export async function loginApi(form) {
     })
     .then((res) => {
       console.log('res', res);
-      const accessToken = res.data.tokenInfo.accessToken;
+      // const accessToken = res.data.tokenInfo.accessToken;
+      accessToken = res.data.tokenInfo.accessToken;
       console.log('accessToken', accessToken);
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       let cookie = getCookie('refreshToken');
@@ -98,9 +100,18 @@ export async function logoutApi() {
 
 // 권한 받기 /api/user/authority?project_no=project_no
 export async function fetchMyRole(currentProjectNumber) {
-  const res = await axios.get(
-    `${process.env.REACT_APP_API_DOMAIN}/api/user/authority?project_no=${currentProjectNumber}`,
-  );
-  console.log('res', res);
+  const res = await axios
+    .get(
+      `${process.env.REACT_APP_API_DOMAIN}/api/user/authority?project_no=${currentProjectNumber}`,
+      { headers: { project_no: currentProjectNumber } }, // 권한받기용 헤더에 현재 프넘 보내깅깅이
+    )
+    .then((res) => {
+      console.log('accccscs', acc);
+    });
+  let acc = res.headers.get('newaccesstoken');
+  axios.defaults.headers.common['Authorization'] = `Bearer ${acc}`;
+  // 헐 짱신기 ~
+
+  console.log('ressadasdasdsa', res);
   return res.data;
 }

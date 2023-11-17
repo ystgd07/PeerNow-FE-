@@ -61,7 +61,7 @@ export const useKanbanCloums = create((set) => ({
     set((state) => ({
       processing: {
         status: '진행 중',
-        color: 'bg-blue-500',
+        color: 'bg-[#CDECFA]',
         items: data?.filter((item) => item.status === 'ing'),
       },
     })),
@@ -70,7 +70,7 @@ export const useKanbanCloums = create((set) => ({
     set((state) => ({
       expecting: {
         status: '진행 예정',
-        color: 'bg-red-500',
+        color: 'bg-[#FAC8C8]',
         items: data?.filter((item) => item.status === 'todo'),
       },
     })),
@@ -79,7 +79,7 @@ export const useKanbanCloums = create((set) => ({
     set((state) => ({
       complete: {
         status: '완료',
-        color: 'bg-green-500',
+        color: 'bg-[#C8FAC8]',
         items: data?.filter((item) => item.status === 'done'),
       },
     })),

@@ -51,16 +51,16 @@ export default function UserStatusItem({ item, refetch }) {
             />
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-xl font-semibold">
-              {item?.owner_name}({item?.role})
-            </p>
+            <p className="text-xl font-semibold">{item?.owner_name}</p>
           </div>
         </div>
         <div className="flex flex-row items-center justify-center w-2/5">
           <div className="flex flex-col items-center">
-            <p className="text-xl font-semibold">PeerNow</p>
-            <p className="text-sm font-semibold truncate text-slate-400">
+            <p className="text-xl font-extrabold text-[#f7cc10] ">
               {item?.project_title}
+            </p>
+            <p className="text-sm font-semibold truncate text-slate-400">
+              권한 : {item?.role}
             </p>
           </div>
         </div>

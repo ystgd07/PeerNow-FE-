@@ -13,7 +13,7 @@ export default function MainBPBlock() {
           </p>
         </div>
         <div className="text-right flex justify-center items-center mt-3">
-          {peerEvDto.best_name == null && peerEvDto.best_image == null ? (
+          {peerEvDto.best_name == null ? (
             <div className="items-center -mt-1 text-gray-500">
               동료 평가 완료 후 공개 됩니다 !
             </div>

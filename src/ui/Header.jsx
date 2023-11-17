@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ProjectList from '../features/header/ProjectList';
 import {
   useBackLogPageRes,
   useProjectInBackLog,
 } from '../store/BackLogStore/store';
-import { PjtNumNow, toggleDropdown } from '../store/header/store';
+import { toggleDropdown } from '../store/header/store';
 import { fetchMyRole } from '../apis/apiAuth';
 import { useMyRole } from '../store/UserMain/store';
 import { useQuery } from 'react-query';
@@ -37,9 +37,6 @@ export default function Header() {
       },
     },
   );
-  console.log('myRoleDatamyRoleData1111 : ', myRoleData);
-  console.log('myRoleDatamyRoleData2222 : ', myRoleDataList);
-  console.log('myRoleDatamyRoleData3333 : ', role);
 
   return (
     <header className="z-50 bg-white shadow-md w-full  border-black ">
