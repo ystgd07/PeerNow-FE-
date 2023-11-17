@@ -9,22 +9,18 @@ export default function KanbanHeader() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { datalist, setDatalist } = AllThisSprints((state) => state);
 
-  const {
-    projectNo,
-    sprintNo,
-    selectedSprintTitle,
-    selectedValidate,
-    setSelectedValidate,
-  } = useSelectedSprint((state) => state);
+  const { selectedSprintTitle, selectedValidate, setSelectedValidate } =
+    useSelectedSprint((state) => state);
 
   return (
     <div className="h-auto z-30">
       <div className="container mx-auto flex justify-start items-center py-4">
         <div className="relative group">
+          <div className="text-gray-500">현재의 스프린트</div>
           <button
             id="dropdownDefaultButton"
             onClick={setSelectedValidate}
-            className="text-slate-800 bg-white mt-3 focus:ring-4 focus:outline-none focus:ring-gray-300 font-extrabold rounded-lg text-3xl mx-6 text-center inline-flex items-center"
+            className="text-slate-800 bg-white mt-1 focus:ring-4 focus:outline-none focus:ring-gray-300 font-extrabold rounded-lg text-3xl mx-6 text-center inline-flex items-center"
             type="button"
           >
             {/* 현재 스프린트 */}

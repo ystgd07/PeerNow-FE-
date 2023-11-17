@@ -81,14 +81,11 @@ export default function KanbanList() {
             {/* 스프린트 해더 */}
             <KanbanHeader />
             {/* 칸반보드 */}
-            <div className="pb-5 overflow-y-scroll h-96">
+            <div className="pb-5 overflow-y-scroll h-[30rem] scrollBar">
               <KanbanBorad />
             </div>
           </>
-        ) : sprintNo !== null ? (
-          <Instagram />
         ) : (
-          // <div>없습니다용~!</div>
           <Instagram />
         )}
       </div>

@@ -23,20 +23,16 @@ export default function Gnb() {
               type="button"
               className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover-bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover-bg-gray-700 dark:focus:ring-gray-600"
             ></button>
-            <p className="flex ml-2 md:mr-24">
+            <p className="flex md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                 <img
-                  src="/logo1.png"
+                  src="/gnbLogo.png"
                   alt="로고"
-                  className="h-16 w-44"
+                  className="h-16 w-59"
                   onClick={() => {
                     navigate('/home/main');
                   }}
                 />
-                {/* 
-                  일반회원 : <img src="/logo1.png" alt="로고" className="h-16 w-44" />
-                  프리미엄 회원 : <img src="/logo2.png" alt="로고" className="h-16 w-44" /> 
-                 */}
               </span>
             </p>
           </div>

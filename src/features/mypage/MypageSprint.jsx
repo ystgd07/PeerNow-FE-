@@ -29,7 +29,9 @@ export default function MypageSprint() {
           ''
         )}
       </div>
-      <Sprints />
+      <div className="">
+        <Sprints />
+      </div>
     </>
   );
 }
