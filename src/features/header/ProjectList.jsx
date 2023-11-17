@@ -8,9 +8,7 @@ export default function ProjectList({ index, pjt }) {
   const { setCurrentPjtNumber, currentProjectNumber, setCurrentPjtOwner } =
     useBackLogPageRes((state) => state);
 
-  const { setPjtDetailData, setPjtData, pjtData } = useProjectInBackLog(
-    (state) => state,
-  );
+  const { pjtData } = useProjectInBackLog((state) => state);
 
   const { selectedDtopdownOfHeader, setSelectedDtopdownOfHeader } =
     toggleDropdown((state) => state);
@@ -19,7 +17,7 @@ export default function ProjectList({ index, pjt }) {
     <>
       <p
         href="#"
-        className="block px-4 py-2 mb-1 hover:bg-gray-100 cursor-pointer"
+        className="block px-4 py-2 mb-1 cursor-pointer hover:bg-gray-100"
         onClick={() => {
           setSelectedDtopdownOfHeader();
           setCurrentPjtNumber(index);

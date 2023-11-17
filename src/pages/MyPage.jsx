@@ -32,7 +32,7 @@ export default function MyPage() {
     fetchBackLogPjtData,
     {
       onSuccess: (data) => {
-        console.log('data :', data);
+        console.log('dataset :', data);
         setPjtData(data?.data?.datalist);
       },
     },
@@ -69,7 +69,7 @@ export default function MyPage() {
       <div className="w-full">
         <Header />
         <div className="overflow-y-scroll h-[40rem]">
-          <div className="grid grid-cols-2 gap-4 mx-10 mt-3 m-5">
+          <div className="grid grid-cols-2 gap-4 m-5 mx-10 mt-3">
             {/* 스프린트 sprint */}
             <div className="col-span-2">
               <MypageSprint />

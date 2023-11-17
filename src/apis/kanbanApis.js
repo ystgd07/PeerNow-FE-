@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // 칸반보드
 export const fetchKanbanList = async (SprintNum) => {
+  console.log('SprintNum: ', SprintNum);
   const res = await axios.get(
     `https://www.peernow.site/api/kanban?sprint_no=${SprintNum}`,
     {

@@ -33,7 +33,7 @@ export default function Sprint() {
         toast.success('백로그를 불러왔습니다.');
 
         console.log('data :', data);
-        setPjtData(data.data.datalist);
+        setPjtData(data?.data?.datalist);
       },
       onError: (data) => {
         toast.error('백로그를 불러오지 못했습니다.');

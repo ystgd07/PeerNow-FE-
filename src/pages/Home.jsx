@@ -13,7 +13,7 @@ import { useQuery } from 'react-query';
 import { fetchUserData } from '../apis/apiUserData';
 import { useMyRole, useUserMain } from '../store/UserMain/store';
 import DropDownUser from '../ui/DropDownUser';
-import { fetchMyRole, getUserImg } from '../apis/apiAuth';
+import { getUserImg } from '../apis/apiAuth';
 import {
   useBackLogPageRes,
   useBackNumStore,
