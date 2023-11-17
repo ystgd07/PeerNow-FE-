@@ -27,26 +27,26 @@ export default function KanbanList() {
   const { setComplete, setProcessing, setExpecting, setColums } =
     useKanbanCloums((state) => state);
 
-  const {
-    data: allSprintData,
-    isLoading: isAllSprintData,
-    refetch: KanBanSprints,
-  } = useQuery(
-    ['fetchAllSprints', pjtData[currentProjectNumber]?.no],
-    () => fetchAllSprints(pjtData[currentProjectNumber]?.no),
-    {
-      enabled: false,
-      onSuccess: (data) => {
-        console.log('sprintData :', data);
-        data?.data?.datalist !== null && setDatalist(data?.data?.datalist);
-        data?.data?.datalist !== null &&
-          setSprintNo(data?.data?.datalist[0]?.no);
-      },
-      onError: (error) => {
-        console.log('error in AllSprints : ', error);
-      },
-    },
-  );
+  // const {
+  //   data: allSprintData,
+  //   isLoading: isAllSprintData,
+  //   refetch: KanBanSprints,
+  // } = useQuery(
+  //   ['fetchAllSprints', pjtData[currentProjectNumber]?.no],
+  //   () => fetchAllSprints(pjtData[currentProjectNumber]?.no),
+  //   {
+  //     enabled: false,
+  //     onSuccess: (data) => {
+  //       console.log('sprintData :', data);
+  //       data?.data?.datalist !== null && setDatalist(data?.data?.datalist);
+  //       data?.data?.datalist !== null &&
+  //         setSprintNo(data?.data?.datalist[0]?.no);
+  //     },
+  //     onError: (error) => {
+  //       console.log('error in AllSprints : ', error);
+  //     },
+  //   },
+  // );
 
   const {
     data: sprintKanbanData,
@@ -54,7 +54,7 @@ export default function KanbanList() {
     refetch: kanbanRefetch,
   } = useQuery(['fetchKanbanList', sprintNo], () => fetchKanbanList(sprintNo), {
     refetchOnWindowFocus: false,
-    enabled: !!allSprintData,
+    // enabled: !!allSprintData,
     onSuccess: (data) => {
       // console.log('fetchKanbanList :', data);
       toast.success(`칸반보드를 불러왔습니다.`);
@@ -69,9 +69,9 @@ export default function KanbanList() {
     },
   });
 
-  useEffect(() => {
-    setTimeout(KanBanSprints, 1300);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(KanBanSprints, 1300);
+  // }, []);
 
   return (
     <>

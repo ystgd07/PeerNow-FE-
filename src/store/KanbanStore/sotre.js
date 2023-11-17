@@ -43,6 +43,10 @@ export const useKanbanCloums = create((set) => ({
   },
   currentStatus: '',
   currentSelectedBackLogNo: 0,
+  currentSelectedBackLogitem: '',
+  currentSelectedUserImg: '',
+  currentSelectedStatus: '',
+  prevSelectedStatus: '',
   setColums: (data) =>
     set((state) => ({
       colums: new Array(state.expecting, state.processing, state.complete),
@@ -55,6 +59,23 @@ export const useKanbanCloums = create((set) => ({
   setCurrentSelectedBackLog: (data) =>
     set((state) => ({
       currentSelectedBackLogNo: data,
+    })),
+  setCurrentSelectedStatus: (data) =>
+    set((state) => ({
+      currentSelectedStatus: data,
+    })),
+  setPrevSelectedStatus: (data) =>
+    set((state) => ({
+      prevSelectedStatus: data,
+    })),
+  setCurrentSelectedImg: (data) =>
+    set((state) => ({
+      currentSelectedUserImg: data,
+    })),
+
+  setCurrentSelectedBackLogitem: (data) =>
+    set((state) => ({
+      currentSelectedBackLogitem: data,
     })),
 
   setProcessing: (data) =>
