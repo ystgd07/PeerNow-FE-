@@ -33,8 +33,6 @@ export default function Sprints() {
     },
   );
 
-  console.log('왜 안되노 : ', datalist);
-  console.log('왜 안되긴! :', recentDate);
   return (
     <>
       <Link to={`/home/kanban`}>
@@ -46,8 +44,8 @@ export default function Sprints() {
               return (
                 <div
                   key={idx}
-                  // className="p-4 border rounded-lg shadow-md transition-transform transform hover:scale-105"
-                  className="p-4 border rounded-lg transition-transform transform hover:scale-105"
+                  // className="p-4 transition-transform transform border rounded-lg shadow-md hover:scale-105"
+                  className="p-4 transition-transform transform border rounded-lg hover:scale-105"
                   onClick={() => {
                     setProjectNo(item?.project_no);
                     setSprintNo(item?.no);
@@ -55,14 +53,14 @@ export default function Sprints() {
                     // setSelectedValidate();
                   }}
                 >
-                  <div className="text-xl font-semibold mb-2">
+                  <div className="mb-2 text-xl font-semibold">
                     <span className="text-gray-400">{idx + 1} </span>{' '}
                     {item?.title}
                   </div>
-                  <div className="text-left text-xs text-gray-500 mb-4">
+                  <div className="mb-4 text-xs text-left text-gray-500">
                     {startDate} ~ {endDate}
                   </div>
-                  {/* <button className="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:shadow-outline-blue">
+                  {/* <button className="px-3 py-1 text-white bg-blue-500 rounded-full focus:outline-none focus:shadow-outline-blue">
                   자세히 보기
                 </button> */}
                 </div>

@@ -5,6 +5,7 @@ import { fetchInviteProject } from '../../apis/apiProject';
 import { useStatusUpdate } from '../../store/UserMain/store';
 import { FaUserCheck } from 'react-icons/fa';
 import { FaUserTimes } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 export default function UserStatusItem({ item, refetch }) {
   const { setStatusUpdateData, setUpdateDeclineStatus, statusUpdateData } =
@@ -15,6 +16,7 @@ export default function UserStatusItem({ item, refetch }) {
     {
       onSuccess: (user) => {
         console.log('Success : ', user);
+        toast.success(`${item?.project_title} 초대 승낙`);
         refetch();
         setStatusUpdateData(user);
       },
@@ -31,6 +33,7 @@ export default function UserStatusItem({ item, refetch }) {
         console.log('Success : ', user);
         refetch();
         setUpdateDeclineStatus(user);
+        toast.error(`${item?.project_title} 초대 거절`);
       },
       onError: (error) => {
         console.log('Error', error);

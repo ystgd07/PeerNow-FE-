@@ -15,9 +15,11 @@ export default function Form({ btnName, link, title, checkValid, ...props }) {
   }, []);
 
   const propsArray = Object.values(props);
+
   const testFn = () => {
     console.log('testFn');
   };
+
   return (
     <div className="w-full h-full bg-cover bg-section">
       <section className="border-2 bg-gray-50 dark:bg-gray-900">

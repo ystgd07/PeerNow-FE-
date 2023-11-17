@@ -20,7 +20,7 @@ export default function UserStatusOfPjt() {
     onError: (error) => {
       console.log('error : ', error);
     },
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
 
   return (
