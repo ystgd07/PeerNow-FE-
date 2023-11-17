@@ -13,7 +13,7 @@ export default function MypageSprint() {
         <span className="text-3xl text-gray-500 mt-3">
           <Title value={'스프린트'} />
         </span>
-        {role === 'SM' ? (
+        {role !== 'SM' ? (
           <span className="text-right mt-7">
             <Link to={'/home/sprint'} className="text-right ">
               <button className="text-right mr-1 -mb-6">
@@ -26,7 +26,20 @@ export default function MypageSprint() {
             </Link>
           </span>
         ) : (
-          ''
+          <span className="text-right mt-12">
+            <div className="text-right mr-1 -mb-6">
+              <span className={`text-lgp-1 px-4 rounded-md `}></span>
+            </div>
+          </span>
+          // <Link to={'/home/sprint'} className="text-right ">
+          //   <button className="text-right mr-1 -mb-6">
+          //     <span
+          //       className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400`}
+          //     >
+          //       스프린트 생성
+          //     </span>
+          //   </button>
+          // </Link>
         )}
       </div>
       <div className="">

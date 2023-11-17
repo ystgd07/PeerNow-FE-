@@ -28,7 +28,7 @@ export default function Gnb() {
                 <img
                   src="/gnbLogo.png"
                   alt="로고"
-                  className="h-16 w-59"
+                  className="h-12 w-47* p-1"
                   onClick={() => {
                     navigate('/home/main');
                   }}

@@ -169,6 +169,7 @@ const initialMyRole = {
     mod_date: null,
     role: '',
     status: null,
+    newaccesstoken: '',
   },
 };
 
