@@ -12,7 +12,7 @@ export default function Snb() {
       >
         <h5
           id="drawer-navigation-label"
-          className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+          className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 ml-3"
         >
           메뉴
         </h5>
@@ -25,7 +25,7 @@ export default function Snb() {
           <ul className="space-y-2 font-medium">
             {/* 나의 프로젝트 */}
             <Link to={'/home/main'}>
-              <li>
+              <li className="text-xl">
                 <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
                   <svg
                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover-text-gray-900 dark-group-hover-text-white"
@@ -43,7 +43,7 @@ export default function Snb() {
             </Link>
             {/* 백로그 */}
             <Link to={'/home/MyPage'}>
-              <li>
+              <li className="text-xl">
                 <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
                   <svg
                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover-text-gray-900 dark-group-hover-text-white"
@@ -61,7 +61,7 @@ export default function Snb() {
               </li>
             </Link>
             {/* 칸반 보드 */}
-            <Link to={'/home/kanban'}>
+            {/* <Link to={'/home/kanban'}>
               <li>
                 <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
                   <svg
@@ -76,10 +76,10 @@ export default function Snb() {
                   <span className="ml-3">칸반 보드</span>
                 </p>
               </li>
-            </Link>
+            </Link> */}
             {/* 동료 평가 */}
             <Link to={'/home/feedback'}>
-              <li>
+              <li className="text-xl">
                 <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
                   <svg
                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover-text-gray-900 dark-group-hover-text-white"

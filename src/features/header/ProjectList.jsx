@@ -12,7 +12,7 @@ export default function ProjectList({ index, pjt }) {
 
   const { selectedDtopdownOfHeader, setSelectedDtopdownOfHeader } =
     toggleDropdown((state) => state);
-  console.log('currentProjectClick', currentProjectNumber);
+
   return (
     <>
       <p

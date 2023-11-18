@@ -1,10 +1,35 @@
-import { AllBacklogOfThisPjt } from '../../store/BackLogStore/store';
+import { fetchBackLogList } from '../../apis/backLogApis';
+import {
+  AllBacklogOfThisPjt,
+  useBackLogPageRes,
+  useProjectInBackLog,
+} from '../../store/BackLogStore/store';
+import { useMutation, useQuery } from 'react-query';
+import toast from 'react-hot-toast';
 
 export default function BacklogIcon() {
   // backlogData
-  const { backlogData } = AllBacklogOfThisPjt((state) => state);
+  const { pjtData } = useProjectInBackLog((state) => state);
+  const { currentProjectNumber } = useBackLogPageRes((state) => state);
+  const { backlogData, setBacklogData } = AllBacklogOfThisPjt((state) => state);
   // 진행중인 상태의 백로그
   const filteredBacklogs = backlogData.filter((item) => item.status == 'ing');
+
+  const {
+    data: bgDataInDashBoard,
+    isLoading: bDataLoading,
+    // refetch: Backlogs,
+  } = useQuery(
+    ['fetchBackLogList', pjtData[currentProjectNumber].no],
+    () => fetchBackLogList(pjtData[currentProjectNumber].no),
+    {
+      onSuccess: (data) => {
+        toast.success('백로그를 불러왔습니다.');
+        console.log('fetchBackLogList :', data);
+        setBacklogData(data?.data?.datalist);
+      },
+    },
+  );
 
   return (
     <>

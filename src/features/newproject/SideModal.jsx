@@ -3,7 +3,7 @@ import SideModalHeader from './SideModalHeader';
 import SideModalMain from './SideModalMain';
 import { useProjectModal } from '../../store/store';
 
-export default function SideModal() {
+export default function SideModal({ sideEvent }) {
   const { pjtModal } = useProjectModal((state) => state);
   console.log('내가 혹시 범인 ??sidemodal pjtModal', pjtModal);
 
@@ -15,7 +15,7 @@ export default function SideModal() {
       `}
     >
       <SideModalHeader />
-      <SideModalMain />
+      <SideModalMain event={sideEvent} />
     </div>
   );
 }
