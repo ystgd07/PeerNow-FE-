@@ -1,15 +1,16 @@
 import {
+  AllBacklogOfThisPjt,
   UseBackLog,
   createBackLog,
   useBackLogPageRes,
   useProjectInBackLog,
 } from '../../store/BackLogStore/store';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient, useQuery } from 'react-query';
 import ModalRadio from './ModalRadio';
-import { createBackLogApi } from '../../apis/backLogApis';
+import { createBackLogApi, fetchBackLogList } from '../../apis/backLogApis';
 import ModalSearch from './ModalSearch';
 import { useBackLogPage } from '../../store/store';
-
+import toast from 'react-hot-toast';
 export default function ModalDetail() {
   const { setBackLogModalOpen } = useBackLogPage((state) => state);
 
@@ -38,7 +39,7 @@ export default function ModalDetail() {
     currentBackLogMananger,
     setCurrentBackLogManager,
   } = useBackLogPageRes((state) => state);
-
+  const { setBacklogData } = AllBacklogOfThisPjt((state) => state);
   const { pjtData } = useProjectInBackLog((state) => state);
 
   console.log('currentProjectNumber :', currentProjectNumber);
@@ -69,6 +70,7 @@ export default function ModalDetail() {
         },
       },
     );
+
   console.log('Success backLog222', createMutateOfBackLog);
 
   return (

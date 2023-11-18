@@ -1,18 +1,15 @@
-import FeedbackDetailSection from './FeedbackDetailSection';
 import FeedbackDetailTitle from './FeedbackDetailTitle';
-import PeerName from './PeerName';
+import FeedbackQuestion from './FeedbackQuestion';
 
 export default function FeedbackDetail() {
   return (
     <>
       <div className="h-[40rem] scroll overflow-y-scroll scrollBar">
         <FeedbackDetailTitle />
-        <div className="m-10 float-left">
-          <PeerName />
+        <div className="bg-white rounded-md m-5 mt-3">
+          <FeedbackQuestion />
         </div>
-        <div className="bg-white rounded-md m-1 mt-3">
-          <FeedbackDetailSection />
-        </div>
+        <div className="p-3"></div>
       </div>
     </>
   );
