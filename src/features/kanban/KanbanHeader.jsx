@@ -19,7 +19,7 @@ export default function KanbanHeader() {
     <div className="z-30 h-auto">
       <div className="container flex items-center justify-between py-4 mx-auto">
         <div className="relative group">
-          <div className="text-gray-500">현재의 스프린트</div>
+          <div className="text-gray-500 ml-3">현재의 스프린트</div>
           <button
             id="dropdownDefaultButton"
             onClick={setSelectedValidate}

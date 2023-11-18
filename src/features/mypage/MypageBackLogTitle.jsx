@@ -12,13 +12,15 @@ export default function MypageBackLogTitle() {
 
   return (
     <>
-      <span className="text-xl text-gray-500">
-        진행중인 백로그
-        <span>({inProgressBacklogCount})</span>
-      </span>
-      <Link to={'/home/backlog'}>
-        <BackLogPageBtn />
-      </Link>
+      <div className="m-1">
+        <span className="text-xl text-gray-700 m-2 font-medium">
+          진행중인 백로그
+          <span>({inProgressBacklogCount})</span>
+        </span>
+        <Link to={'/home/backlog'}>
+          <BackLogPageBtn />
+        </Link>
+      </div>
     </>
   );
 }

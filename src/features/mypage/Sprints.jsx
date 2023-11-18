@@ -35,40 +35,46 @@ export default function Sprints() {
 
   return (
     <>
-      <Link to={`/home/kanban`}>
-        <div className="gap-4 mt-3">
-          <div className="grid grid-cols-4 gap-4">
-            {datalist?.map((item, idx) => {
-              const startDate = item?.start_date.split(' ')[0];
-              const endDate = item?.end_date.split(' ')[0];
-              return (
-                <div
-                  key={idx}
-                  // className="p-4 transition-transform transform border rounded-lg shadow-md hover:scale-105"
-                  className="p-4 transition-transform transform border rounded-lg hover:scale-105"
-                  onClick={() => {
-                    setProjectNo(item?.project_no);
-                    setSprintNo(item?.no);
-                    setSprintTitle(item?.title);
-                    // setSelectedValidate();
-                  }}
-                >
-                  <div className="mb-2 text-xl font-semibold">
-                    <span className="text-gray-400">{idx + 1} </span>{' '}
-                    {item?.title}
+      {datalist ? (
+        <Link to={`/home/kanban`}>
+          <div className="gap-4 mt-3">
+            <div className="grid grid-cols-4 gap-4">
+              {datalist?.map((item, idx) => {
+                const startDate = item?.start_date.split(' ')[0];
+                const endDate = item?.end_date.split(' ')[0];
+                return (
+                  <div
+                    key={idx}
+                    // className="p-4 transition-transform transform border rounded-lg shadow-md hover:scale-105"
+                    className="p-4 transition-transform transform border rounded-lg hover:scale-105"
+                    onClick={() => {
+                      setProjectNo(item?.project_no);
+                      setSprintNo(item?.no);
+                      setSprintTitle(item?.title);
+                      // setSelectedValidate();
+                    }}
+                  >
+                    <div className="mb-2 text-xl font-semibold">
+                      <span className="text-gray-400">{idx + 1} </span>{' '}
+                      {item?.title}
+                    </div>
+                    <div className="mb-4 text-xs text-left text-gray-500">
+                      {startDate} ~ {endDate}
+                    </div>
+                    <button className="px-3 text-white bg-[#f7cc10] rounded-full float-right focus:outline-none focus:shadow-outline-blue">
+                      이동
+                    </button>
                   </div>
-                  <div className="mb-4 text-xs text-left text-gray-500">
-                    {startDate} ~ {endDate}
-                  </div>
-                  <button className="px-3 text-white bg-[#f7cc10] rounded-full float-right focus:outline-none focus:shadow-outline-blue">
-                    이동
-                  </button>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
+        </Link>
+      ) : (
+        <div className="border m-1 mt-6 rounded-lg">
+          <div className="text-center p-5">스프린트를 생성해주세요</div>
         </div>
-      </Link>
+      )}
     </>
   );
 }

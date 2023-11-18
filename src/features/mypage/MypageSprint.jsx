@@ -12,7 +12,7 @@ export default function MypageSprint() {
       {/* 스프린트 sprint */}
       <div className="rounded-md w-full mt-2 bg-white p-5 overflow-y-scroll scrollBar">
         <div className="grid grid-cols-2">
-          <span className="text-3xl text-gray-700 mt-3 ml-2">
+          <span className="text-3xl text-gray-700 mt-3 ml-2 font-medium">
             <Title value={'스프린트'} />
           </span>
           {role === 'SM' ? (
