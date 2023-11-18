@@ -78,6 +78,18 @@ export const useProjectModal = create((set) => ({
 
 export const useOpenMainPage = create((set) => ({
   openMainPage: true,
+  pjtObjInInitial: {
+    title: '',
+    detail: '',
+    peer_id: {},
+    start_date: new Date(),
+    end_date: new Date(),
+  },
+  setPjtObjInInitial: (initialObj) =>
+    set((state) => ({
+      pjtObjInInitial: initialObj,
+    })),
+
   setOpenMainPage: (openMainPage) =>
     set((state) => ({ openMainPage: !state.openMainPage })),
 }));
