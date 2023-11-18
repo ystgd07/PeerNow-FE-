@@ -8,6 +8,7 @@ const initialCreatePjt = {
     start_date: new Date(),
     end_date: new Date(),
   },
+  pjtObjFake: [],
   noRequestPeerID: [],
   userList: [],
   selectedUser: {},
@@ -138,7 +139,7 @@ export const useCreatePjtOne = create((set) => ({
   setPjtEndDate: (end_date) =>
     set((state) => ({ pjtObj: { ...state.pjtObj, end_date } })),
 
-  setPjtObj: (pjtObj) => set((state) => ({ pjtObj: initialCreatePjt.pjtObj })),
+  setPjtObj: (DatapjtObj) => set((state) => ({ pjtObj: DatapjtObj })),
 
   setPeerName: (peerName) => set((state) => ({ peerName })),
 

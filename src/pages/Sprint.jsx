@@ -19,13 +19,13 @@ export default function Sprint() {
   const navigate = useNavigate();
 
   // Header용
-  const { setPjtDetailData, setPjtData } = useProjectInBackLog(
+  const { setPjtDetailData, setPjtData, pjtData } = useProjectInBackLog(
     (state) => state,
   );
+  // 헤더 프로젝트 번호
+  const { currentProjectNumber } = useBackLogPageRes((state) => state);
 
-  //
-  const { nowNum } = PjtNumNow((state) => state);
-  const { data: PjtData, isLoading: pjtDataLoading } = useQuery(
+  const { data: PjtBacklogData, isLoading: PjtBacklogDataLoading } = useQuery(
     ['fechingPjtDataInB'],
     fetchBackLogPjtData,
     {
@@ -40,14 +40,15 @@ export default function Sprint() {
       },
     },
   );
+  console.log('cdusuajteaw[', currentProjectNumber);
 
   // 전체 백로그 불러오기
   const { backlogData, setBacklogData } = AllBacklogOfThisPjt((state) => state);
   const { data: bData, isLoading: bDataLoading } = useQuery(
-    ['fetchBackLogList', nowNum],
-    () => fetchBackLogList(nowNum),
+    ['fetchBackLogList', pjtData[currentProjectNumber].no],
+    () => fetchBackLogList(pjtData[currentProjectNumber].no),
     {
-      enabled: !!PjtData,
+      enabled: !!PjtBacklogData,
       onSuccess: (data) => {
         console.log('data :', data);
         setBacklogData(data?.data?.datalist);
