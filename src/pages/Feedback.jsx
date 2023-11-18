@@ -1,6 +1,7 @@
 import { fetchBackLogPjtData } from '../apis/backLogApis';
 import FeedbackMain from '../features/feedback/FeedbackMain';
 import { useProjectInBackLog } from '../store/BackLogStore/store';
+import Footer from '../ui/Footer';
 import Header from '../ui/Header';
 import { useQuery } from 'react-query';
 

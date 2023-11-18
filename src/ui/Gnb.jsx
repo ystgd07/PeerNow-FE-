@@ -23,7 +23,7 @@ export default function Gnb() {
               type="button"
               className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover-bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover-bg-gray-700 dark:focus:ring-gray-600"
             ></button>
-            <p className="flex md:mr-24">
+            {/* <p className="flex md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                 <img
                   src="/gnbLogo.png"
@@ -34,7 +34,7 @@ export default function Gnb() {
                   }}
                 />
               </span>
-            </p>
+            </p> */}
           </div>
           {/* 로그인 안되면 보여주면 안됨 */}
           <div className="flex items-center">

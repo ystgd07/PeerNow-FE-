@@ -6,7 +6,7 @@ export default function ScoreRadio2({ name }) {
   return (
     <div>
       <RadioGroup>
-        <Radio name={name} value="1">
+        <Radio name={name} value="1" defaultChecked>
           &nbsp;1점
         </Radio>
         <Radio name={name} value="2">

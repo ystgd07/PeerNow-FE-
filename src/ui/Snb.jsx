@@ -2,20 +2,36 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Snb() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div
         id="drawer-navigation"
-        className="relative left-0 z-20 w-1/6 h-full p-5 border-r-2 bg-slate-200 border-slate-300 "
+        className="relative left-0 z-50 w-1/6 h-full p-5 border-r bg-slate-100 border-slate-200 "
         tabIndex="1"
         aria-labelledby="drawer-navigation-label"
       >
-        <h5
-          id="drawer-navigation-label"
-          className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 ml-3"
-        >
-          메뉴
-        </h5>
+        <p className="flex md:mr-14">
+          <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+            <span
+              id="drawer-navigation-label"
+              className="text-2xl text-center font-extrabold items-center text-gray-900 uppercase dark:text-gray-400 ml-3 flex flex-row"
+            >
+              <img
+                src="/peernow.png"
+                alt="로고"
+                className="h-12 w-32"
+                onClick={() => {
+                  navigate('/home/main');
+                }}
+              />
+              <span className="ml-1">
+                PeerN<span className="text-[#f7cc10]">o</span>w
+              </span>
+            </span>
+          </span>
+        </p>
         <button
           type="button"
           aria-controls="drawer-navigation"

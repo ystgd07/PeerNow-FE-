@@ -45,7 +45,7 @@ export default function FeedbackOne() {
         className="cursor-pointer bg-[white] rounded-md shadow-md text-center py-4 justify-center p-1 w-full h-1/2 mr-3 border-2 border-stone-100 hover:bg-[#F0FFF0]"
       >
         <div className="flex justify-center items-center m-3 cursor-pointer hover:scale-110">
-          <p className="font-bold text-lg text-gray-700 ">지지적 피드백</p>
+          <p className="font-bold text-xl text-gray-700 ">지지적 피드백</p>
           <FaHeartCirclePlus className="ml-3 text-[#80E12A]" />
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function FeedbackOne() {
         className="bg-white rounded-md shadow-sm"
       >
         <div className="bg-white p-8 py-5 border border-[#80E12A] rounded-md">
-          <strong>지지적 피드백</strong>
+          <strong className="text-lg">지지적 피드백</strong>
           <div className="scroll overflow-y-scroll scrollBar">
             {myFeedbackComment?.datalist?.map((e, idx) => (
               <p className="border-b-2 m-1 py-1 flex w-[330px]" key={idx}>
@@ -66,10 +66,6 @@ export default function FeedbackOne() {
                   <FaCheck className="mr-2" />
                 </span>
                 <span className="item-center">{e?.comment1}</span>
-                {/* <span className="text-[#FF5675]">
-                        <FaCheck className="mr-2" />
-                      </span>
-                      <span className="item-center">{e?.comment2}</span> */}
               </p>
             ))}
           </div>

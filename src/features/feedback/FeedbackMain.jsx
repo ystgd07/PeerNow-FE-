@@ -14,6 +14,7 @@ import { FaHeartCirclePlus, FaHeartCircleMinus } from 'react-icons/fa6';
 import FeedbackOne from './FeedbackOne';
 import FeedbackTwo from './FeedbackTwo';
 import MyFeedback from './MyFeedback';
+import Footer from '../../ui/Footer';
 
 export default function FeedbackMain() {
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
@@ -70,6 +71,7 @@ export default function FeedbackMain() {
             <MainPeerBlock />
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );
