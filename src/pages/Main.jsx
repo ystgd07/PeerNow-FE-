@@ -19,7 +19,12 @@ export default function Main() {
   );
   const { openMainPage } = useOpenMainPage((state) => state);
   const { pjtObj, setPjtObj } = useCreatePjtOne((state) => state);
-  const { data, isLoading, refetch } = useQuery(
+
+  const {
+    data,
+    isLoading,
+    refetch: sideModalClick,
+  } = useQuery(
     ['pjtCard'],
     async () => {
       const res = await axios.get(
@@ -33,12 +38,12 @@ export default function Main() {
     {
       onSuccess: (data) => {
         console.log('undefined log : ', data);
-        setPjtObj(data?.data?.datalist);
+        // setPjtObj(data?.data?.datalist);
       },
       onError: (error) => {
         console.log('error : ', error);
       },
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
     },
   );
 
@@ -68,7 +73,7 @@ export default function Main() {
         </div>
         {/* <Skeleton></Skeleton> */}
       </div>
-      {openMainPage ? <SideModal /> : ''}
+      {openMainPage ? <SideModal sideEvent={sideModalClick} /> : ''}
     </div>
   );
 }

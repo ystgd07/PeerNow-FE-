@@ -22,7 +22,8 @@ export default function ButtonPakage({ value, event, disabled }) {
         reset();
         setPjtModalFalse();
         toast.success('프로젝트가 생성되었습니다.');
-        queryClient.invalidateQueries();
+
+        event();
       },
       onError: (error) => {
         console.log('Error', error);
