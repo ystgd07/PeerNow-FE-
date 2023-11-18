@@ -104,8 +104,9 @@ export async function fetchMyRole(currentProjectNumber) {
     `${process.env.REACT_APP_API_DOMAIN}/api/user/authority?project_no=${currentProjectNumber}`,
     { headers: { project_no: currentProjectNumber } }, // 권한받기용 헤더에 현재 프넘 보내깅깅이
   );
-  // let acc = res.headers.get('newaccesstoken');
-  // axios.defaults.headers.common['Authorization'] = `Bearer ${acc}`;
+
+  
+
 
   return res.data;
 }
