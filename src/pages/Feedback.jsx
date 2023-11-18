@@ -26,7 +26,12 @@ export default function Feedback() {
       {/* 화면 틀 */}
       <div className="w-full">
         <Header />
-        <FeedbackMain />
+        <div className="w-[98%] m-1 mt-3 bg-white rounded-md">
+          <FeedbackMain />
+        </div>
+        <div className="my-10">
+          <Footer />
+        </div>
       </div>
     </>
   );

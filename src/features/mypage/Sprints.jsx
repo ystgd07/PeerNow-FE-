@@ -60,9 +60,9 @@ export default function Sprints() {
                   <div className="mb-4 text-xs text-left text-gray-500">
                     {startDate} ~ {endDate}
                   </div>
-                  {/* <button className="px-3 py-1 text-white bg-blue-500 rounded-full focus:outline-none focus:shadow-outline-blue">
-                  자세히 보기
-                </button> */}
+                  <button className="px-3 text-white bg-[#f7cc10] rounded-full float-right focus:outline-none focus:shadow-outline-blue">
+                    이동
+                  </button>
                 </div>
               );
             })}
