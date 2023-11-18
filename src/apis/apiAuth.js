@@ -100,11 +100,13 @@ export async function logoutApi() {
 
 // 권한 받기 /api/user/authority?project_no=project_no
 export async function fetchMyRole(currentProjectNumber) {
-  console.log('currentProjectNumber', currentProjectNumber);
   const res = await axios.get(
     `${process.env.REACT_APP_API_DOMAIN}/api/user/authority?project_no=${currentProjectNumber}`,
     { headers: { project_no: currentProjectNumber } }, // 권한받기용 헤더에 현재 프넘 보내깅깅이
-  )
+  );
+
+  
+
 
   return res.data;
 }

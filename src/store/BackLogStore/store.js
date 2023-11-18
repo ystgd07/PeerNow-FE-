@@ -4,7 +4,7 @@ import { create } from 'zustand';
 const initialProjectData = {
   pjtData: [
     {
-      no: 0,
+      no: 1,
       user_id: '',
       title: '',
       detail: '',

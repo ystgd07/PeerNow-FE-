@@ -14,8 +14,8 @@ export default function Feedback() {
     fetchBackLogPjtData,
     {
       onSuccess: (data) => {
-        console.log('data :', data);
-        setPjtData(data.data.datalist);
+        console.log('fetchBackLogPjtDatadata :', data);
+        setPjtData(data?.data?.datalist);
       },
     },
   );
