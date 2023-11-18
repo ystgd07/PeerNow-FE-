@@ -72,31 +72,32 @@ export default function BacklogTbody() {
     (backlogData) => downloadBackLogFile(backlogData),
     {
       onSuccess: (data) => {
-        data.blob();
-        const blobData = new Blob([data.data]);
-        const url = window.URL.createObjectURL(blobData);
+        console.log('dataDownLoad:', data.headers.get('Content-Disposition'));
+        // data.blob();
+        // const blobData = new Blob([data.data]);
+        // const url = window.URL.createObjectURL(blobData);
 
-        const link = document.createElement('a');
-        link.href = url;
-        link.style.display = 'none';
+        // const link = document.createElement('a');
+        // link.href = url;
+        // link.style.display = 'none';
 
-        const disposition = data.headers['content-disposition'];
+        // const disposition = data.headers;
 
-        console.log('disposition', disposition);
-        const fileName = decodeURI(
-          disposition
-            .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
-            .replace(/['"]/g, ''),
-        );
-        link.download = fileName;
+        // console.log('disposition', data);
+        // const fileName = decodeURI(
+        //   disposition
+        //     .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
+        //     .replace(/['"]/g, ''),
+        // );
+        // link.download = fileName;
 
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+        // document.body.appendChild(link);
+        // link.click();
+        // link.remove();
 
-        window.URL.revokeObjectURL(url);
+        // window.URL.revokeObjectURL(url);
 
-        console.log('downLoad', data);
+        // console.log('downLoad', data);
       },
     },
   );
