@@ -8,7 +8,11 @@ import {
   useProjectInBackLog,
 } from '../../store/BackLogStore/store';
 import { FcDownload } from 'react-icons/fc';
-import { deleteBacklog, fetchBackLogList } from '../../apis/backLogApis';
+import {
+  deleteBacklog,
+  downloadBackLogFile,
+  fetchBackLogList,
+} from '../../apis/backLogApis';
 import { useMutation, useQuery } from 'react-query';
 import { useBackLogDetailPage } from '../../store/store';
 import BacklogDetailModal from './BacklogDetailModal';
@@ -63,6 +67,40 @@ export default function BacklogTbody() {
       },
     });
 
+  // 백로그 이미지 다운로드
+  const { mutate: downLoadBackLogFile, isLoading } = useMutation(
+    (backlogData) => downloadBackLogFile(backlogData),
+    {
+      onSuccess: (data) => {
+        data.blob();
+        const blobData = new Blob([data.data]);
+        const url = window.URL.createObjectURL(blobData);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.style.display = 'none';
+
+        const disposition = data.headers['content-disposition'];
+
+        console.log('disposition', disposition);
+        const fileName = decodeURI(
+          disposition
+            .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
+            .replace(/['"]/g, ''),
+        );
+        link.download = fileName;
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        window.URL.revokeObjectURL(url);
+
+        console.log('downLoad', data);
+      },
+    },
+  );
+
   return (
     <>
       {isBackLogModalOpen && <BacklogDetailModal />}
@@ -84,7 +122,10 @@ export default function BacklogTbody() {
               {item.title}
             </button>
             {backlogData?.image !== null ? (
-              <button className="ml-2">
+              <button
+                className="ml-2"
+                onClick={() => downLoadBackLogFile(backlogData[idx])}
+              >
                 <FcDownload />
               </button>
             ) : (
