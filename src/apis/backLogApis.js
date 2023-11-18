@@ -135,6 +135,6 @@ export const downloadBackLogFile = async (backlogData) => {
       withCredentials: true,
     },
   );
-
+  console.log('resisoa', res.headers['content-disposition']);
   return res;
 };

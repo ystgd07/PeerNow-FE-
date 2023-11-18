@@ -15,7 +15,7 @@ export default function SideModal({ sideEvent }) {
       `}
     >
       <SideModalHeader />
-      <SideModalMain event={sideEvent} />
+      <SideModalMain sideEvent={sideEvent} />
     </div>
   );
 }
