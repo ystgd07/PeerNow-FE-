@@ -124,3 +124,17 @@ export const deleteBacklog = async (BackNum) => {
 
   return res;
 };
+
+// 백로그 다운로드
+export const downloadBackLogFile = async (backlogData) => {
+  console.log('backlogDataOn:', backlogData);
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog/download?no=${backlogData.no}`,
+    {
+      responseType: 'blob',
+      withCredentials: true,
+    },
+  );
+
+  return res;
+};
