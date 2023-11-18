@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import PeerName from './PeerName';
 import ScoreRadio from './ScoreRadio';
 import {
   useBackLogPageRes,
@@ -27,7 +28,7 @@ export default function FeedbackQuestion() {
   } = useTogetherPeerEv((state) => state);
 
   const { peer_id, peerDatalistDto } = usePeerList((state) => state);
-  console.log('gldrnfl:::asdfasdfasdfasdf', peerDatalistDto.peer_id);
+  console.log('gldrnfl:::peerDatalistDto', peerDatalistDto.peer_id);
 
   console.log(
     'FeedbackQuestion: score1, score2, comment1, togetherPeerDto :',
@@ -71,107 +72,109 @@ export default function FeedbackQuestion() {
 
   return (
     <>
-      <div className="m-2 mx-5">
-        <div className="m-2 mb-4">
-          <p className="mb-1"> * 동료는 자신이 맡은 일을 잘 수행하였나요?</p>
-          <p>
-            {/* <ScoreRadio
-              name={'score1'}
-              value={togetherPeerDto.score1}
-              onChange={(e) => setSelectedScore1(e.target.value)}
-            /> */}
-            <ScoreRadio2 name={'score1'} value={togetherPeerDto.score1} />
-          </p>
+      <div className="border-gray-200 rounded-md border-2 -mt-5 mx-5">
+        <div className="grid grid-cols-3 mt-3">
+          <div className="col-span-1">
+            <div className="my-5 ml-10">
+              <h1 class="text-3xl font-bold text-gray-800 items-center">
+                <img
+                  // src={`data:image/*;base64,${peer_image}`}
+                  src={peerDatalistDto.peer_image}
+                  alt="평가할_동료_이미지"
+                  // className="w-12 h-12 rounded-full mr-3 items-center"
+                  className="w-40 h-40"
+                />
+                <span>
+                  {peerDatalistDto.peer_name}
+                  <span>{peerDatalistDto.peer_role}</span>
+                </span>
+              </h1>
+              <span>
+                <span>{peerDatalistDto.peer_id}</span>
+                <span>{peerDatalistDto.peer_team}</span>
+              </span>
+            </div>
+          </div>
+          <div className="col-span-2 w-full">
+            <div className="m-2 mx-5 text-lg">
+              <div className="m-2 mb-6">
+                <span className="text-gray-500 text-2xl mr-2">1번</span>
+                <span className="mb-1 font-semibold">
+                  동료는 자신이 맡은 일을 잘 수행하였나요?
+                </span>
+                <p>
+                  <ScoreRadio2 name={'score1'} value={togetherPeerDto.score1} />
+                </p>
+              </div>
+
+              <div className="m-2 mb-6">
+                <span className="text-gray-500 text-2xl mr-2">2번</span>
+                <span className="mb-1 font-semibold">
+                  동료는 기간 및 일정을 잘 지켰나요?
+                </span>
+                <p>
+                  <ScoreRadio2 name={'score2'} value={togetherPeerDto.score2} />
+                </p>
+              </div>
+
+              <div className="m-2 mb-6">
+                <span className="text-gray-500 text-2xl mr-2">3번</span>
+                <span className="mb-1 font-semibold">
+                  동료의 프로젝트 기여도는 얼마인가요?
+                </span>
+                <p>
+                  <ScoreRadio2 name={'score3'} value={togetherPeerDto.score3} />
+                </p>
+              </div>
+
+              <div className="m-2 mb-6">
+                <span className="text-gray-500 text-2xl mr-2">4번</span>
+                <span className="mb-1 font-semibold">
+                  동료와 커뮤니케이션이 잘 되었나요?
+                </span>
+                <p>
+                  <ScoreRadio2 name={'score4'} value={togetherPeerDto.score4} />
+                </p>
+              </div>
+              <div className="m-2 mb-6">
+                <span className="text-gray-500 text-2xl mr-2">5번</span>
+                <span className="mb-1 font-semibold">
+                  다음에도 이 동료와 함께 하고싶나요?
+                </span>
+                <p>
+                  <ScoreRadio2 name={'score5'} value={togetherPeerDto.score5} />
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="m-2 mb-4">
-          <p className="mb-1"> * 동료는 기간 및 일정을 잘 지켰나요?</p>
-          <p>
-            {/* <ScoreRadio
-              name={'score2'}
-              value={togetherPeerDto.score2}
+        <div className="m-2 mx-5">
+          <p className="m-5">
+            <input
+              type="text"
+              placeholder=" * 프로젝트를 진행하며 동료의 잘한 점을 칭찬해주세요!"
+              className="border-gray-200 border-2 rounded-md w-full m-1 py-4 mb-4"
+              value={togetherPeerDto.comment1}
               onChange={(e) => {
-                setSelectedScore2(e.target.value);
+                setComment1(e.target.value);
               }}
-            /> */}
-            <ScoreRadio2 name={'score2'} value={togetherPeerDto.score2} />
+            />
+            <input
+              type="text"
+              placeholder=" * 동료가 더 보안했으면 하는 점이 있다면 알려주세요!"
+              className="border-gray-200 border-2  rounded-md w-full m-1 py-4"
+              value={togetherPeerDto.comment2}
+              onChange={(e) => {
+                setComment2(e.target.value);
+              }}
+            />
           </p>
+          <div className="mb-5 text-right mr-4 -mt-2">
+            <button class="bg-[#f7cc10] text-white text-2xl font-semibold px-5 py-1.5 rounded hover:bg-[#e6bc02]">
+              <span>{isLodingPostPeerEvData ? '제출 중 ..' : '제출'}</span>
+            </button>
+          </div>
         </div>
-        <div className="m-2 mb-4">
-          <p className="mb-1"> * 동료의 프로젝트 기여도는 얼마인가요?</p>
-          <p>
-            {/* <ScoreRadio
-              name={'score3'}
-              value={togetherPeerDto.score3}
-              onChange={(e) => setSelectedScore3(e.target.value)}
-            /> */}
-            <ScoreRadio2 name={'score3'} value={togetherPeerDto.score3} />
-          </p>
-        </div>
-        <div className="m-2 mb-4">
-          <p className="mb-1"> * 동료와 커뮤니케이션이 잘 되었나요?</p>
-          <p>
-            {/* <ScoreRadio
-              name={'score4'}
-              value={togetherPeerDto.score4}
-              onChange={(e) => setSelectedScore4(e.target.value)}
-            /> */}
-            <ScoreRadio2 name={'score4'} value={togetherPeerDto.score4} />
-          </p>
-        </div>
-        <div className="m-2 mb-4">
-          <p className="mb-1"> * 다음에도 이 동료와 함께 하고싶나요?</p>
-          <p>
-            {/* <ScoreRadio
-              name={'score5'}
-              value={togetherPeerDto.score5}
-              onChange={(e) => setSelectedScore5(e.target.value)}
-            /> */}
-            <ScoreRadio2 name={'score5'} value={togetherPeerDto.score5} />
-          </p>
-        </div>
-      </div>
-      <div className="m-2 mx-5">
-        <input
-          type="text"
-          placeholder=" * 프로젝트를 진행하며 동료의 잘한 점을 칭찬해주세요!"
-          className="border-gray-200 border-2 rounded-md w-full m-1 py-4 mb-4"
-          value={togetherPeerDto.comment1}
-          onChange={(e) => {
-            setComment1(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          placeholder=" * 동료가 더 보안했으면 하는 점이 있다면 알려주세요!"
-          className="border-gray-200 border-2  rounded-md w-full m-1 py-4"
-          value={togetherPeerDto.comment2}
-          onChange={(e) => {
-            setComment2(e.target.value);
-          }}
-        />
-      </div>
-      <div className="float-right my-5 mb-10">
-        <button
-          className="text-right mr-1 -mb-6"
-          onClick={() => {
-            postPeerEvData({
-              currentProjectNumber,
-              selectPeerId,
-              togetherPeerDto,
-            });
-          }}
-        >
-          <span
-            className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400 mb-10`}
-            onClick={() => {
-              setComment1('');
-              setComment2('');
-              navigate('/home/feedback');
-            }}
-          >
-            {isLodingPostPeerEvData ? '제출 중 ..' : '제출'}
-          </span>
-        </button>
       </div>
     </>
   );

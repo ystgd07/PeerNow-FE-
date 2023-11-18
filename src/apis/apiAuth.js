@@ -103,12 +103,13 @@ export async function fetchMyRole(currentProjectNumber) {
   console.log('currentProjectNumber', currentProjectNumber);
   const res = await axios.get(
     `${process.env.REACT_APP_API_DOMAIN}/api/user/authority?project_no=${currentProjectNumber}`,
-    { headers: { project_no: currentProjectNumber } }, // 권한받기용 헤더에 현재 프넘 보내깅깅이
+    // { headers: { project_no: currentProjectNumber } }, // 권한받기용 헤더에 현재 프넘 보내깅깅이
   );
-  console.log("resheaders",res.headers)
-
-  let acc = res.headers["Newaccesstoken"];
-  axios.defaults.headers.common['Authorization'] = `Bearer ${acc}`;
+  //   .then((e) => {
+  //     let acc = e.headers['Newaccesstoken'];
+  //     axios.defaults.headers.common['Authorization'] = `Bearer ${acc}`;
+  //   });
+  // console.log('resheaders', res.headers);
 
   return res.data;
 }
