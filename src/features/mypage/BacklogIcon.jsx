@@ -4,7 +4,7 @@ export default function BacklogIcon() {
   // backlogData
   const { backlogData } = AllBacklogOfThisPjt((state) => state);
   // 진행중인 상태의 백로그
-  const filteredBacklogs = backlogData.filter((item) => item.status == 'ing');
+  const filteredBacklogs = backlogData.filter((item) => item.status === 'ing');
 
   return (
     <>
