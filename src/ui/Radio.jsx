@@ -28,7 +28,7 @@ export default function Radio({
   } = useTogetherPeerEv((state) => state);
 
   return (
-    <label className="mr-3">
+    <label className="mr-4">
       <input
         type="radio"
         value={value}

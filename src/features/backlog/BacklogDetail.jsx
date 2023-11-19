@@ -71,7 +71,7 @@ export default function BacklogDetail() {
       {
         onSuccess: (user) => {
           console.log('Success updateBacklog : ', user);
-
+          queryClient.invalidateQueries();
           toast.success('백로그가 업데이트 되었습니다');
         },
         onError: (error) => {
@@ -92,7 +92,6 @@ export default function BacklogDetail() {
             value={selectedBackObj?.title}
             onChange={(e) => setSelectedTitle(e.target.value)}
           />
-
           <input
             className="w-full p-2 mb-4 border-2 border-gray-300 rounded-md"
             value={backlogDto?.user_id}
@@ -100,7 +99,6 @@ export default function BacklogDetail() {
             onClick={() => setCurrentSearcUser(true)}
           />
           <ModalSearch visible={currentSearchUser} />
-
           <input
             name="detail"
             // onChange={(e) => setDetail(e.target.value)}

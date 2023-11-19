@@ -4,6 +4,7 @@ import { BiLineChartDown, BiSolidPieChart } from 'react-icons/bi';
 import { TiArrowBackOutline } from 'react-icons/ti';
 import { useNavigate } from 'react-router-dom';
 import { addDays, eachDayOfInterval, format } from 'date-fns';
+import Footer from '../ui/Footer';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -185,48 +186,100 @@ export default function BurnDown() {
                 // allsprintBurndownDate?.map((data) => (data.title))
                 labels: allsprintBurndownDate?.map((data) => data?.title),
 
-                datasets: [
-                  {
-                    id: 1,
-                    fill: true,
-                    label: '완료된 백로그',
-                    data: allsprintBurndownDate?.map((data) => data.done_job),
-                    backgroundColor: '#c5f2ba',
-                    borderColor: '#c5f2ba',
-                    tension: 0.5,
+                  datasets: [
+                    {
+                      id: 1,
+                      fill: true,
+                      label: '완료된 백로그',
+                      data: allsprintBurndownDate?.map((data) => data.done_job),
+                      backgroundColor: '#c5f2ba',
+                      borderColor: '#c5f2ba',
+                      tension: 0.5,
+                    },
+                    {
+                      id: 2,
+                      label: '총 백로그',
+                      data: allsprintBurndownDate?.map((data) => data.total),
+                      backgroundColor: '#ffeb9b',
+                      borderColor: '#ffeb9b',
+                      tension: 0.5,
+                    },
+                  ],
+                }}
+                options={{
+                  // maintainAspectRatio: false,
+                  maintainAspectRatio: true,
+                  scales: {
+                    x: {
+                      stacked: true,
+                      // stacked: false,
+                    },
+                    y: {
+                      // stacked: true,
+                      stacked: false,
+                    },
                   },
-                  {
-                    id: 2,
-                    label: '총 백로그',
-                    data: allsprintBurndownDate?.map((data) => data.total),
-                    backgroundColor: '#ffeb9b',
-                    borderColor: '#ffeb9b',
-                    tension: 0.5,
-                  },
-                ],
-              }}
-              options={{
-                // maintainAspectRatio: false,
-                maintainAspectRatio: true,
-                scales: {
-                  x: {
-                    stacked: true,
-                    // stacked: false,
-                  },
-                  y: {
-                    // stacked: true,
-                    stacked: false,
-                  },
-                },
-              }}
-            />
+                }}
+              />
 
             {/* 2. 스프린트 진행률 : 원형 그래프 */}
             <div className="flex flex-col items-center justify-center w-full mb-6 ml-40 mr-6 ">
               <p className="flex items-center justify-center mr-3 font-bold w-96">
                 <BiSolidPieChart className="mr-3 text-2xl" />총 백로그 진행률
               </p>
-              <Doughnut data={donutData}></Doughnut>
+            </div>
+            {/* <div className="grid grid-cols-4 gap-x-3 gap-y-5 w-full overflow-y-scroll scrollBar"> */}
+            <div className="flex gap-x-3 gap-y-5 w-full h-96 overflow-x-scroll scrollBar">
+              {filterArr?.map((e, idx) => (
+                <>
+                  <div>
+                    <Line
+                      className="mb-3"
+                      key={idx}
+                      datasetIdKey="id"
+                      responsive={false}
+                      width={1}
+                      height={1}
+                      options={{
+                        maintainAspectRatio: false,
+                      }}
+                      data={{
+                        // labels: [
+                        //   '2023-10-10',
+                        //   '2023-10-11',
+                        //   '2023-10-12',
+                        //   '2023-10-13',
+                        //   '2023-10-14',
+                        //   '2023-10-15',
+                        // ],
+                        labels: e?.map((data) => data?.today), //각 투데이
+                        datasets: [
+                          {
+                            id: 1,
+                            label: '총 백로그',
+                            data: e?.map((data) => data?.total), // 총 백로그 데이터
+                            // data: [20, 18, 14, 11, 18, 23, 17],
+                            backgroundColor: 'rgba(153,255,51,0.6)',
+                            borderColor: '#ececec',
+                            fill: true,
+                            tension: 0.5,
+                          },
+                          {
+                            id: 2,
+                            label: '완료한 백로그',
+                            data: e?.map((data) => data?.done_job), // 완료한 백로그 데이터
+                            // data: [20, 18, 14, 11, 18, 23, 17],
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                            borderColor: 'rgba(255, 99, 132, 0.6)',
+                            fill: true,
+                            tension: 0.5,
+                          },
+                        ],
+                      }}
+                    />
+                  </div>
+                </>
+              ))}
             </div>
           </div>
         </div>

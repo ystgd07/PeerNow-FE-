@@ -6,10 +6,8 @@ import MyPage from './pages/MyPage';
 import Home from './pages/Home';
 import Test from './features/newproject/Test';
 import Sprint from './pages/Sprint';
-
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-
 import Kanban from './pages/Kanban';
 import BackLog from './pages/BackLog';
 import PjtDetail from './pages/PjtDetail';

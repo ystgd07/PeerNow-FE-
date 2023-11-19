@@ -6,14 +6,14 @@ export default function FeedbackDetailTitle() {
 
   return (
     <>
-      <div className="flex flex-row m-9">
+      <div className="flex flex-row m-9 mb-8">
         <div className="mr-44">
           <h1 className="text-4xl font-bold text-slate-800">동료평가</h1>
           <p className="m-1 text-slate-500 text-lg">
-            동료평가는 익명으로 진행됩니다. 솔직한 답변 부탁드립니다.
+            모든 동료평가는 익명으로 진행되니 솔직한 답변 부탁드립니다!
           </p>
         </div>
-        <div className="ml-auto mt-11 mr-3 hover:scale-125 text-gray-800">
+        <div className="ml-auto mt-11 mr-3 hover:scale-110 text-gray-700 text-xl">
           <a
             href="javascript:window.history.back();"
             onClick={() => {

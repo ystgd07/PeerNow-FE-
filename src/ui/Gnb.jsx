@@ -11,8 +11,9 @@ export default function Gnb() {
   const { setUserImg, stateImageData } = useImage((state) => state);
   console.log('headerUserImg', headerUserImg);
   const navigate = useNavigate();
+
   return (
-    <header className="relative items-center justify-between w-full p-1 pl-5 pr-5 bg-white border-b-2 cursor-pointer border-slate-300">
+    <header className="relative items-center justify-between pl-5 pr-5 bg-white cursor-pointer mb-2">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
@@ -25,14 +26,33 @@ export default function Gnb() {
             ></button>
             <p className="flex md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                <img
-                  src="/gnbLogo.png"
-                  alt="로고"
-                  className="h-12 w-47* p-1"
-                  onClick={() => {
-                    navigate('/home/main');
-                  }}
-                />
+                <span
+                  id="drawer-navigation-label"
+                  className="text-3xl text-center font-extrabold items-center text-gray-700 uppercase dark:text-gray-400 ml-3 flex flex-row"
+                >
+                  {/* <img
+                    src="/peernow.png"
+                    alt="로고"
+                    className="h-12 w-12"
+                    onClick={() => {
+                      navigate('/home/main');
+                    }}
+                  /> */}
+                  <span className="ml-1 flex items-center">
+                    PeerN
+                    <span className="text-[#f7cc10]">
+                      <img
+                        src="/peernow.png"
+                        alt="로고"
+                        className="h-8 w-8"
+                        onClick={() => {
+                          navigate('/home/main');
+                        }}
+                      />
+                    </span>
+                    w
+                  </span>
+                </span>
               </span>
             </p>
           </div>
@@ -69,7 +89,9 @@ export default function Gnb() {
                       )}
                     </button>
                   </li>
-                  <li className="pl-3 text-xl">{userMainData.name}</li>
+                  <li className="pl-3 text-xl font-semibold text-gray-800">
+                    {userMainData.name}
+                  </li>
                 </ui>
               </div>
             </div>

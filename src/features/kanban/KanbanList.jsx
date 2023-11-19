@@ -12,9 +12,9 @@ import KanbanHeader from './KanbanHeader';
 import { fetchAllSprints } from '../../apis/sprintApis';
 import { fetchKanbanList } from '../../apis/kanbanApis';
 import { useKanbanCloums, useKanbanData } from '../../store/KanbanStore/sotre';
-import { useEffect } from 'react';
 import ContentLoader, { Instagram } from 'react-content-loader';
 import toast from 'react-hot-toast';
+import Footer from '../../ui/Footer';
 
 export default function KanbanList() {
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
@@ -75,11 +75,13 @@ export default function KanbanList() {
 
   return (
     <>
-      <div className="m-6 bg-white rounded-lg">
+      <div className="bg-white rounded-lg w-[98%] m-1 my-2 mt-3">
         {sprintKanbanData && !isSprintBacklogData ? (
           <>
             {/* 스프린트 해더 */}
-            <KanbanHeader />
+            <div className="mx-3">
+              <KanbanHeader />
+            </div>
             {/* 칸반보드 */}
             <div className="pb-5 overflow-y-scroll h-[30rem] scrollBar">
               <KanbanBorad />
@@ -88,6 +90,9 @@ export default function KanbanList() {
         ) : (
           <Instagram />
         )}
+      </div>
+      <div className="mt-10">
+        <Footer />
       </div>
     </>
   );

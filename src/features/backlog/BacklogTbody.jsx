@@ -44,7 +44,7 @@ export default function BacklogTbody() {
   const {
     data: bData,
     isLoading: bDataLoading,
-    // refetch: Backlogs,
+    refetch: Backlogs,
   } = useQuery(
     ['fetchBackLogList', pjtData[currentProjectNumber].no],
     () => fetchBackLogList(pjtData[currentProjectNumber].no),
@@ -64,6 +64,10 @@ export default function BacklogTbody() {
         console.log('deleteBacklog111');
         console.log('deleteBacklog222 :', data);
         setBacklogData(data?.data?.datalist);
+        Backlogs();
+      },
+      onError: (error) => {
+        console.log('Error', error);
       },
     });
 
@@ -170,7 +174,13 @@ export default function BacklogTbody() {
           </td>
           <td className="px-2 py-2">
             <button
-              onClick={() => deleteBacklog(item.no)}
+              onClick={(e) => {
+                e.stopPropagation();
+                // e.stopImmediatePropagation();
+                if (!isDeleteBacklogLoading) {
+                  deleteBacklog(item.no);
+                }
+              }}
               className="text-xl font-medium text-gray-400 hover:text-red-600"
             >
               <MdDelete />

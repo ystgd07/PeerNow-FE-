@@ -2,30 +2,37 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Snb() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div
         id="drawer-navigation"
-        className="relative left-0 z-20 w-1/6 h-full p-5 border-r-2 bg-slate-200 border-slate-300 "
+        // className="relative left-0 z-50 w-1/6 h-full p-5 border-r bg-slate-100 border-slate-200"
+        className="relative left-0 z-50 w-1/6 h-full p-5  rounded-xl m-2 mx-4"
         tabIndex="1"
         aria-labelledby="drawer-navigation-label"
       >
-        <h5
-          id="drawer-navigation-label"
-          className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 ml-3"
-        >
-          메뉴
-        </h5>
+        <p className="flex md:mr-14">
+          <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+            <span
+              id="drawer-navigation-label"
+              className="text-xl text-center font-semibold items-center text-gray-500 uppercase dark:text-gray-400 ml-3 flex flex-row"
+            >
+              <span className="ml-1">메뉴</span>
+            </span>
+          </span>
+        </p>
         <button
           type="button"
           aria-controls="drawer-navigation"
           className="text-gray-400 bg-transparent hover:bg-gray-200 hover-text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover-bg-gray-600 dark:hover-text-white"
         ></button>
-        <div className="py-4 overflow-y-auto cursor-pointer">
+        <div className="py-2 overflow-y-auto cursor-pointer">
           <ul className="space-y-2 font-medium">
             {/* 나의 프로젝트 */}
             <Link to={'/home/main'}>
-              <li className="text-xl">
+              <li className="text-lg">
                 <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
                   <svg
                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover-text-gray-900 dark-group-hover-text-white"
@@ -43,7 +50,7 @@ export default function Snb() {
             </Link>
             {/* 백로그 */}
             <Link to={'/home/MyPage'}>
-              <li className="text-xl">
+              <li className="text-lg">
                 <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
                   <svg
                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover-text-gray-900 dark-group-hover-text-white"
@@ -60,26 +67,9 @@ export default function Snb() {
                 </p>
               </li>
             </Link>
-            {/* 칸반 보드 */}
-            {/* <Link to={'/home/kanban'}>
-              <li>
-                <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
-                  <svg
-                    className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover-text-gray-900 dark-group-hover-text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 22 21"
-                  >
-                    <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                  </svg>
-                  <span className="ml-3">칸반 보드</span>
-                </p>
-              </li>
-            </Link> */}
             {/* 동료 평가 */}
             <Link to={'/home/feedback'}>
-              <li className="text-xl">
+              <li className="text-lg">
                 <p className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover-bg-gray-700 group hover:bg-gray-100">
                   <svg
                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover-text-gray-900 dark-group-hover-text-white"
@@ -96,6 +86,8 @@ export default function Snb() {
             </Link>
           </ul>
         </div>
+        {/*  */}
+        <div></div>
       </div>
     </>
   );

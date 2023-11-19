@@ -73,75 +73,74 @@ export default function FeedbackQuestion() {
   return (
     <>
       <div className="border-gray-200 rounded-md border-2 -mt-5 mx-5">
-        <div className="grid grid-cols-3 mt-3">
-          <div className="col-span-1">
-            <div className="my-5 ml-10">
-              <h1 class="text-3xl font-bold text-gray-800 items-center">
+        <div className="grid grid-cols-4 mt-3">
+          <div className="col-span-1 items-center text-center my-auto ml-4">
+            <div className="bg-amber-100 p-2 mx-3 rounded-3xl">
+              <span className="">평가할 동료 : </span>
+              <span className="mt-6 text-3xl font-bold ml-2 text-gray-800 text-center items-center">
+                {peerDatalistDto.peer_name}
+              </span>
+              <span></span>
+            </div>
+            <div className="my-5 flex justify-center">
+              <div>
                 <img
-                  // src={`data:image/*;base64,${peer_image}`}
                   src={peerDatalistDto.peer_image}
                   alt="평가할_동료_이미지"
-                  // className="w-12 h-12 rounded-full mr-3 items-center"
-                  className="w-40 h-40"
+                  className="w-40 h-40 text-center items-center"
                 />
-                <span>
-                  {peerDatalistDto.peer_name}
-                  <span>{peerDatalistDto.peer_role}</span>
-                </span>
-              </h1>
-              <span>
-                <span>{peerDatalistDto.peer_id}</span>
-                <span>{peerDatalistDto.peer_team}</span>
-              </span>
+              </div>
             </div>
+            <p className="text-gray-400 text-lg ml-2">
+              @ {peerDatalistDto.peer_id}
+            </p>
           </div>
-          <div className="col-span-2 w-full">
+          <div className="col-span-3 w-full mt-1 ml-2">
             <div className="m-2 mx-5 text-lg">
-              <div className="m-2 mb-6">
-                <span className="text-gray-500 text-2xl mr-2">1번</span>
+              <div className="m-2 mb-5">
+                <span className="text-gray-500 text-2xl mr-2">1.</span>
                 <span className="mb-1 font-semibold">
                   동료는 자신이 맡은 일을 잘 수행하였나요?
                 </span>
-                <p>
+                <p className="mt-1">
                   <ScoreRadio2 name={'score1'} value={togetherPeerDto.score1} />
                 </p>
               </div>
-
-              <div className="m-2 mb-6">
-                <span className="text-gray-500 text-2xl mr-2">2번</span>
+              <div className="m-2 mb-5">
+                <span className="text-gray-500 text-2xl mr-2">2.</span>
                 <span className="mb-1 font-semibold">
                   동료는 기간 및 일정을 잘 지켰나요?
                 </span>
-                <p>
+                <p className="mt-1">
                   <ScoreRadio2 name={'score2'} value={togetherPeerDto.score2} />
                 </p>
               </div>
 
-              <div className="m-2 mb-6">
-                <span className="text-gray-500 text-2xl mr-2">3번</span>
+              <div className="m-2 mb-5">
+                <span className="text-gray-500 text-2xl mr-2">3.</span>
                 <span className="mb-1 font-semibold">
                   동료의 프로젝트 기여도는 얼마인가요?
                 </span>
-                <p>
+                <p className="mt-1">
                   <ScoreRadio2 name={'score3'} value={togetherPeerDto.score3} />
                 </p>
               </div>
 
-              <div className="m-2 mb-6">
-                <span className="text-gray-500 text-2xl mr-2">4번</span>
+              <div className="m-2 mb-5">
+                <span className="text-gray-500 text-2xl mr-2">4.</span>
                 <span className="mb-1 font-semibold">
                   동료와 커뮤니케이션이 잘 되었나요?
                 </span>
-                <p>
+                <p className="mt-1">
                   <ScoreRadio2 name={'score4'} value={togetherPeerDto.score4} />
                 </p>
               </div>
-              <div className="m-2 mb-6">
-                <span className="text-gray-500 text-2xl mr-2">5번</span>
+              <div className="m-2 mb-5">
+                <span className="text-gray-500 text-2xl mr-2">5.</span>
                 <span className="mb-1 font-semibold">
                   다음에도 이 동료와 함께 하고싶나요?
                 </span>
-                <p>
+                <p className="mt-1">
                   <ScoreRadio2 name={'score5'} value={togetherPeerDto.score5} />
                 </p>
               </div>

@@ -36,9 +36,9 @@ export default function Header() {
   );
 
   return (
-    <header className="z-50 bg-white shadow-md w-full  border-black ">
+    <header className="z-50 bg-white w-[98%] rounded-md m-1 my-2">
       <div>
-        <div className="container flex items-center justify-start py-4 mx-auto">
+        <div className="container flex items-center justify-start py-2 mx-auto">
           <div className="relative group">
             <div className="mx-10 text-gray-500">프로젝트명</div>
             <button
@@ -76,7 +76,7 @@ export default function Header() {
             {selectedDtopdownOfHeader && (
               <div
                 id="dropdown"
-                className="z-50 absolute mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 duration-1000"
+                className="z-50 absolute mx-16 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 duration-1000 overflow-y-scroll scrollBar h-44"
               >
                 <ul
                   className="py-2 text-base text-gray-800 dark:text-gray-200"

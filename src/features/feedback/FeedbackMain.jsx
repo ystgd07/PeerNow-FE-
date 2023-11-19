@@ -3,17 +3,14 @@ import MainBPBlock from './MainBPBlock';
 import MainMyFBBlock from './MainMyFBBlock';
 import MainMyScoreBlock from './MainMyScoreBlock';
 import MainPeerBlock from './MainPeerBlock';
-import { Link } from 'react-router-dom';
 import {
   useBackLogPageRes,
   useProjectInBackLog,
 } from '../../store/BackLogStore/store';
 import axios from 'axios';
 import { usePeerEv } from '../../store/PeerStore/store';
-import { FaHeartCirclePlus, FaHeartCircleMinus } from 'react-icons/fa6';
-import FeedbackOne from './FeedbackOne';
-import FeedbackTwo from './FeedbackTwo';
 import MyFeedback from './MyFeedback';
+import Footer from '../../ui/Footer';
 
 export default function FeedbackMain() {
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
@@ -50,24 +47,26 @@ export default function FeedbackMain() {
 
   return (
     <>
-      <div className="h-[40rem] scroll overflow-y-scroll">
-        <div className="flex flex-col gap-4 m-5 mt-5">
-          <div className="flex flex-row items-center justify-between gap-3">
-            <div className="w-3/5 p-3 bg-white border-2 rounded-lg shadow-md border-stone-100">
-              <MainMyScoreBlock />
-            </div>
-            <div className="w-2/5 h-full">
-              <div className="">
-                {/* 피드백 덩어리들 */}
-                <MyFeedback />
+      <div>
+        <div className="h-[40rem] scroll overflow-y-scroll scrollBar">
+          <div className="flex flex-col gap-4 m-5 mt-5">
+            <div className="flex flex-row items-center justify-between gap-3">
+              <div className="w-3/5 p-3 bg-white border-2 rounded-lg shadow-md border-stone-100">
+                <MainMyScoreBlock />
               </div>
-              <div className="w-full p-3 mt-2 bg-white border-2 rounded-md shadow-md h-1/2 border-stone-100">
-                <MainBPBlock />
+              <div className="w-2/5 h-full">
+                <div className="">
+                  {/* 피드백 덩어리들 */}
+                  <MyFeedback />
+                </div>
+                <div className="w-full p-3 mt-2 bg-white border-2 rounded-md shadow-md h-1/2 border-stone-100">
+                  <MainBPBlock />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="h-auto p-3 mt-2 mb-16 bg-white border-2 rounded-md shadow-lg border-stone-100">
-            <MainPeerBlock />
+            <div className="h-auto p-3 mt-2 mb-6 bg-white border-2 rounded-md shadow-lg border-stone-100">
+              <MainPeerBlock />
+            </div>
           </div>
         </div>
       </div>
