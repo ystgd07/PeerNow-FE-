@@ -30,7 +30,9 @@ export default function DropDownUser() {
         console.log('hihihi');
       }}
     >
-      <p className="mb-3 text-xs truncate">{userMainData.mail}</p>
+      <p className="mb-3 text-base text-center items-center truncate">
+        {userMainData.mail}
+      </p>
       <div>
         <div
           className="flex flex-row-reverse items-center justify-center gap-2 p-2 cursor-pointer hover:bg-slate-100 "
@@ -40,7 +42,7 @@ export default function DropDownUser() {
             setIsOpenDropdown();
           }}
         >
-          <p className="mt-3 text-sm font-bold ">설정</p>
+          <p className="mt-2 text-sm font-bold ">설정</p>
           <GrUserSettings className="mt-3"></GrUserSettings>
         </div>
         <div
@@ -52,7 +54,7 @@ export default function DropDownUser() {
           }}
         >
           <p
-            className="mt-3 text-sm font-bold "
+            className="mt-2 text-sm font-bold "
             onClick={(e) => {
               e.stopPropagation();
               logout();

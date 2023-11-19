@@ -25,7 +25,7 @@ export default function Form({ btnName, link, title, checkValid, ...props }) {
       <section className="border-2 bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto border-2 md:h-screen lg:py-0 ">
           <img className="w-16 h-16" src="/favicon.ico" alt="logo" />
-          <span className="mb-4 text-xl font-semibold">peerNow</span>
+          <span className="mb-4 text-xl font-semibold">PeerNow</span>
 
           <div
             className={`w-full transition-all ease-in-out bg-white rounded-lg shadow ${
@@ -55,7 +55,7 @@ export default function Form({ btnName, link, title, checkValid, ...props }) {
                 <div className="flex flex-row justify-between">
                   {btnName === '로그인' && (
                     <div className="flex items-center justify-between text-red-400">
-                      <Link to="/home/main">비밀번호 찾기</Link>
+                      <button>비밀번호 찾기</button>
                     </div>
                   )}
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">

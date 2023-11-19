@@ -80,7 +80,7 @@ export default function MyPage() {
             {/* 진행중인 백로그 back log */}
             <MypageBacklog />
           </div>
-          <div className="my-10">
+          <div className="mt-10">
             <Footer />
           </div>
         </div>

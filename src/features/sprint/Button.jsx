@@ -35,7 +35,7 @@ export default function Button() {
 
   return (
     <div
-      className="bg-gray-300 rounded-lg h-auto float-right p-2 px-14 text-lg mt-2 mb-20 hover:bg-gray-400"
+      className="bg-amber-200 rounded-lg h-auto text-lg float-right p-1 px-14 font-semibold mt-2 mb-20 cursor-pointer hover:bg-amber-300"
       onClick={createSprintMutate}
       disabled={isCreateLoading}
     >

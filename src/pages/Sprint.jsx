@@ -59,24 +59,26 @@ export default function Sprint() {
   return (
     <>
       {/* 화면 틀 */}
-      <div className="w-full">
+      <div className="">
         <Header />
         {/* 제목 */}
-        <div className="mx-10">
-          <div className="flex justify-between mt-5 ml-1 text-3xl text-gray-700">
-            <Title value={'스프린트 생성'} />
-            <a
-              href="javascript:window.history.back();"
-              className="flex items-center p-1 mt-2 mr-6 text-base hover:scale-110"
-            >
-              <TiArrowBackOutline className="mr-1 cursor-pointer w-7 h-7"></TiArrowBackOutline>
-              뒤로가기
-            </a>
+        <div className="w-[98%] rounded-lg m-1 bg-white pb-20">
+          <div className="mx-10 p-1 mt-4">
+            <div className="flex justify-between mt-5 ml-1 text-3xl text-gray-700">
+              <Title value={'스프린트 생성'} />
+              <a
+                href="javascript:window.history.back();"
+                className="flex items-center p-1 mt-2 mr-3 text-base hover:scale-110"
+              >
+                <TiArrowBackOutline className="mr-1 cursor-pointer w-7 h-7"></TiArrowBackOutline>
+                뒤로가기
+              </a>
+            </div>
+            {/* 생성 페이지 */}
+            <NewSprintCreatePage />
+            {/* 생성 버튼 */}
+            <Button />
           </div>
-          {/* 생성 페이지 */}
-          <NewSprintCreatePage />
-          {/* 생성 버튼 */}
-          <Button />
         </div>
       </div>
     </>
