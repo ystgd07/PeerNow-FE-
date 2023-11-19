@@ -19,7 +19,7 @@ export default function SideModalList() {
                 <img
                   className="w-8 h-8 rounded-full"
                   // src="/img/je.jfif"
-                  src={`data:image/*;base64,${headerUserImg}`}
+                  src={`data:image/*;base64,${user.image}`}
                   alt="Neil"
                 />
               </div>
