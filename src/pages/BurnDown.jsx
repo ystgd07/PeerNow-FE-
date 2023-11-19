@@ -161,7 +161,7 @@ export default function BurnDown() {
       <div className="p-5 h-[742zpx] scroll overflow-y-scroll w-[1290px]">
         <div className="ml-10">
           <div
-            className="flex flex-row-reverse items-center text-gray-600 mr-3"
+            className="flex flex-row-reverse items-center mr-3 text-gray-600"
             onClick={() => navigate(-1)}
           >
             <p className="p-1 mt-2 font-bold hover:scale-105">뒤로가기</p>
@@ -222,8 +222,8 @@ export default function BurnDown() {
             />
 
             {/* 2. 스프린트 진행률 : 원형 그래프 */}
-            <div className="flex flex-col mr-6 items-center justify-center w-full mb-6 ml-10">
-              <p className="flex items-center justify-center  mr-3 font-bold w-96">
+            <div className="flex flex-col items-center justify-center w-full mb-6 ml-10 mr-6">
+              <p className="flex items-center justify-center mr-3 font-bold w-96">
                 <BiSolidPieChart className="mr-3 text-2xl" />총 백로그 진행률
               </p>
               <Doughnut data={donutData}></Doughnut>
@@ -235,11 +235,11 @@ export default function BurnDown() {
           <div className="mt-1 mb-3 text-xl font-bold">
             <p>스프린트별 번다운 차트</p>
           </div>
-          {/* <div className="grid grid-cols-4 gap-x-3 gap-y-5 w-full overflow-y-scroll scrollBar"> */}
-          <div className="flex gap-x-3 gap-y-5 w-full h-96 overflow-x-scroll scrollBar">
+          {/* <div className="grid w-full grid-cols-4 overflow-y-scroll gap-x-3 gap-y-5 scrollBar"> */}
+          <div className="flex w-full overflow-x-scroll gap-x-3 gap-y-5 h-96 scrollBar ">
             {filterArr?.map((e, idx) => (
               <>
-                <div>
+                <div className="w-full h-80">
                   <Line
                     className="mb-3"
                     key={idx}
