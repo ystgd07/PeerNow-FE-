@@ -157,10 +157,22 @@ export default function BurnDown() {
   // filterArr?.map((e, idx) => {
   //   console.log('fiterArrTitle', e[0].title);
   // });
+
+  // totalData & totalDataLength
+  const totalData = filterArr?.map((data) => data?.total) || [];
+  const totalDataLength = totalData.length;
+  console.log('totalDataLength', totalDataLength);
+  for (let i = Math.max(0, totalData.length - 1); i >= 0; i--) {
+    totalData[i] = 0;
+  }
+  // for (let i = Math.max(0, totalData.length - 1); i >= totalDataLength; i--) {
+  //   totalData[i] = 0;
+  // }
+
   return (
     <>
       <div className="w-[98%]">
-        <div className="p-5 h-[742zpx] scroll overflow-y-scroll rounded-lg m-1 my-2 bg-white scrollBar">
+        <div className="p-4 h-[742zpx] scroll overflow-y-scroll rounded-lg m-1 my-3 bg-white scrollBar">
           <div className="ml-10 ">
             <div
               className="flex flex-row-reverse items-center mr-3 text-gray-600"
@@ -172,9 +184,9 @@ export default function BurnDown() {
             {/*  1. 최근 일주일 치 번다운 차트 - 오늘 날짜 기준 */}
             <div className="flex flex-row items-center mt-2 mb-3 text-xl font-bold">
               <BiLineChartDown className="text-4xl text-slate-600"></BiLineChartDown>
-              <p className="ml-3 ">총 스프린트 진행률</p>
+              <p className="ml-3 text-2xl text-gray-800">총 스프린트 진행률</p>
             </div>
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-gray-400 my-1">
               🕒 최근 업데이트 일 : {today}일 기준
             </div>
             <div className="flex flex-row w-3/5 h-96 mb-7">
@@ -225,7 +237,7 @@ export default function BurnDown() {
 
               {/* 2. 스프린트 진행률 : 원형 그래프 */}
               <div className="flex flex-col items-center justify-center w-full mb-6 ml-10 mr-6">
-                <p className="flex items-center justify-center mr-3 font-bold w-96">
+                <p className="flex items-center justify-center mr-3 font-bold w-96 text-2xl text-gray-800 m-2">
                   <BiSolidPieChart className="mr-3 text-2xl" />총 백로그 진행률
                 </p>
                 <Doughnut data={donutData}></Doughnut>
@@ -233,8 +245,8 @@ export default function BurnDown() {
             </div>
           </div>
           {/* 3. 날짜에 맞는 백로그 갯수 fetchOneBurndown*/}
-          <div className="ml-10">
-            <div className="mt-1 mb-3 text-xl font-bold">
+          <div className="ml-10 pt-3">
+            <div className="mt-3 mb-3 font-bold text-2xl text-gray-800 ml-3">
               <p>스프린트별 번다운 차트</p>
             </div>
             {/* <div className="grid w-full grid-cols-4 overflow-y-scroll gap-x-3 gap-y-5 scrollBar"> */}
@@ -253,21 +265,22 @@ export default function BurnDown() {
                         maintainAspectRatio: false,
                       }}
                       data={{
-                        // labels: [
-                        //   '2023-10-10',
-                        //   '2023-10-11',
-                        //   '2023-10-12',
-                        //   '2023-10-13',
-                        //   '2023-10-14',
-                        //   '2023-10-15',
-                        // ],
                         labels: e?.map((data) => data?.today), //각 투데이
                         datasets: [
+                          // {
+                          //   id: 1,
+                          //   label: '총 백로그',
+                          //   data: e?.map((data) => data?.total), // 총 백로그 데이터
+                          //   backgroundColor: 'rgba(153,255,51,0.6)',
+                          //   borderColor: '#ececec',
+                          //   fill: true,
+                          //   tension: 0.5,
+                          // },
                           {
                             id: 1,
                             label: '총 백로그',
-                            data: e?.map((data) => data?.total), // 총 백로그 데이터
-                            // data: [20, 18, 14, 11, 18, 23, 17],
+                            data: e?.map((data) => data?.total),
+                            // data: [20, 18, 15, 12, 9, 6, 0],
                             backgroundColor: 'rgba(153,255,51,0.6)',
                             borderColor: '#ececec',
                             fill: true,
@@ -276,8 +289,7 @@ export default function BurnDown() {
                           {
                             id: 2,
                             label: '완료한 백로그',
-                            data: e?.map((data) => data?.done_job), // 완료한 백로그 데이터
-                            // data: [20, 18, 14, 11, 18, 23, 17],
+                            data: e?.map((data) => data?.task), // task
                             backgroundColor: 'rgba(255, 99, 132, 0.6)',
                             borderColor: 'rgba(255, 99, 132, 0.6)',
                             fill: true,
@@ -291,6 +303,9 @@ export default function BurnDown() {
               ))}
             </div>
           </div>
+        </div>
+        <div className="mt-10">
+          <Footer />
         </div>
       </div>
     </>

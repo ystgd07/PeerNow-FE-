@@ -29,7 +29,7 @@ export default function Feedback() {
         <div className="w-[98%] m-1 mt-3 bg-white rounded-md">
           <FeedbackMain />
         </div>
-        <div className="my-10">
+        <div className="mt-10">
           <Footer />
         </div>
       </div>
