@@ -4,7 +4,6 @@ import { BiLineChartDown, BiSolidPieChart } from 'react-icons/bi';
 import { TiArrowBackOutline } from 'react-icons/ti';
 import { useNavigate } from 'react-router-dom';
 import { addDays, eachDayOfInterval, format } from 'date-fns';
-import Footer from '../ui/Footer';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -159,7 +158,6 @@ export default function BurnDown() {
   // });
   return (
     <>
-<<<<<<< Updated upstream
       <div className="p-5 h-[742zpx] scroll overflow-y-scroll w-[1290px]">
         <div className="ml-10">
           <div
@@ -186,156 +184,52 @@ export default function BurnDown() {
               data={{
                 // allsprintBurndownDate?.map((data) => (data.title))
                 labels: allsprintBurndownDate?.map((data) => data?.title),
-=======
-      <div className="w-[98%]">
-        <div className="p-5 h-[742zpx] scroll overflow-y-scroll rounded-lg m-1 my-2 bg-white scrollBar">
-          <div className="ml-10 ">
-            <span className="hover:scale-110">
-              <div
-                className="flex flex-row-reverse items-center text-gray-600 mr-3"
-                onClick={() => navigate(-1)}
-              >
-                <p className="p-1 mt-2 font-bold ">뒤로가기</p>
-                <TiArrowBackOutline className="cursor-pointer w-7 h-7"></TiArrowBackOutline>
-              </div>
-            </span>
-            {/*  1. 최근 일주일 치 번다운 차트 - 오늘 날짜 기준 */}
-            <div className="flex flex-row items-center mt-2 mb-3 text-xl font-bold">
-              <BiLineChartDown className="text-4xl text-slate-700"></BiLineChartDown>
-              <p className="ml-3 text-2xl text-gray-800">총 스프린트 진행률</p>
-            </div>
-            <div className="text-sm text-gray-400">
-              🕒 최근 업데이트 일 : {today}일 기준
-            </div>
-            <div className="flex flex-row w-3/5 h-96 mb-7">
-              <Bar
-                datasetIdKey="id"
-                responsive={false}
-                width={400}
-                height={300}
-                data={{
-                  // allsprintBurndownDate?.map((data) => (data.title))
-                  labels: allsprintBurndownDate?.map((data) => data?.title),
->>>>>>> Stashed changes
 
-                  datasets: [
-                    {
-                      id: 1,
-                      fill: true,
-                      label: '완료된 백로그',
-                      data: allsprintBurndownDate?.map((data) => data.done_job),
-                      backgroundColor: '#c5f2ba',
-                      borderColor: '#c5f2ba',
-                      tension: 0.5,
-                    },
-                    {
-                      id: 2,
-                      label: '총 백로그',
-                      data: allsprintBurndownDate?.map((data) => data.total),
-                      backgroundColor: '#ffeb9b',
-                      borderColor: '#ffeb9b',
-                      tension: 0.5,
-                    },
-                  ],
-                }}
-                options={{
-                  // maintainAspectRatio: false,
-                  maintainAspectRatio: true,
-                  scales: {
-                    x: {
-                      stacked: true,
-                      // stacked: false,
-                    },
-                    y: {
-                      // stacked: true,
-                      stacked: false,
-                    },
+                datasets: [
+                  {
+                    id: 1,
+                    fill: true,
+                    label: '완료된 백로그',
+                    data: allsprintBurndownDate?.map((data) => data.done_job),
+                    backgroundColor: '#c5f2ba',
+                    borderColor: '#c5f2ba',
+                    tension: 0.5,
                   },
-                }}
-              />
+                  {
+                    id: 2,
+                    label: '총 백로그',
+                    data: allsprintBurndownDate?.map((data) => data.total),
+                    backgroundColor: '#ffeb9b',
+                    borderColor: '#ffeb9b',
+                    tension: 0.5,
+                  },
+                ],
+              }}
+              options={{
+                // maintainAspectRatio: false,
+                maintainAspectRatio: true,
+                scales: {
+                  x: {
+                    stacked: true,
+                    // stacked: false,
+                  },
+                  y: {
+                    // stacked: true,
+                    stacked: false,
+                  },
+                },
+              }}
+            />
 
-<<<<<<< Updated upstream
             {/* 2. 스프린트 진행률 : 원형 그래프 */}
             <div className="flex flex-col items-center justify-center w-full mb-6 ml-40 mr-6 ">
               <p className="flex items-center justify-center mr-3 font-bold w-96">
                 <BiSolidPieChart className="mr-3 text-2xl" />총 백로그 진행률
-=======
-              {/* 2. 스프린트 진행률 : 원형 그래프 */}
-              <div className="flex flex-col mr-6 items-center justify-center w-full mb-6 ml-10">
-                <p className="flex items-center justify-center  mr-3 font-bold w-96">
-                  <BiSolidPieChart className="mr-3 text-2xl text-gray-700" />
-                  <span className="text-2xl text-gray-800">
-                    총 백로그 진행률
-                  </span>
-                </p>
-                <Doughnut data={donutData}></Doughnut>
-              </div>
-            </div>
-          </div>
-          {/* 3. 날짜에 맞는 백로그 갯수 fetchOneBurndown*/}
-          <div className="ml-10">
-            <div className="mt-1 mb-3 text-xl font-bold">
-              <p className="text-2xl ml-2 text-gray-800">
-                스프린트별 번다운 차트
->>>>>>> Stashed changes
               </p>
-            </div>
-            {/* <div className="grid grid-cols-4 gap-x-3 gap-y-5 w-full overflow-y-scroll scrollBar"> */}
-            <div className="flex gap-x-3 gap-y-5 w-full h-96 overflow-x-scroll scrollBar">
-              {filterArr?.map((e, idx) => (
-                <>
-                  <div>
-                    <Line
-                      className="mb-3"
-                      key={idx}
-                      datasetIdKey="id"
-                      responsive={false}
-                      width={1}
-                      height={1}
-                      options={{
-                        maintainAspectRatio: false,
-                      }}
-                      data={{
-                        // labels: [
-                        //   '2023-10-10',
-                        //   '2023-10-11',
-                        //   '2023-10-12',
-                        //   '2023-10-13',
-                        //   '2023-10-14',
-                        //   '2023-10-15',
-                        // ],
-                        labels: e?.map((data) => data?.today), //각 투데이
-                        datasets: [
-                          {
-                            id: 1,
-                            label: '총 백로그',
-                            data: e?.map((data) => data?.total), // 총 백로그 데이터
-                            // data: [20, 18, 14, 11, 18, 23, 17],
-                            backgroundColor: 'rgba(153,255,51,0.6)',
-                            borderColor: '#ececec',
-                            fill: true,
-                            tension: 0.5,
-                          },
-                          {
-                            id: 2,
-                            label: '완료한 백로그',
-                            data: e?.map((data) => data?.done_job), // 완료한 백로그 데이터
-                            // data: [20, 18, 14, 11, 18, 23, 17],
-                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                            borderColor: 'rgba(255, 99, 132, 0.6)',
-                            fill: true,
-                            tension: 0.5,
-                          },
-                        ],
-                      }}
-                    />
-                  </div>
-                </>
-              ))}
+              <Doughnut data={donutData}></Doughnut>
             </div>
           </div>
         </div>
-<<<<<<< Updated upstream
         {/* 3. 날짜에 맞는 백로그 갯수 fetchOneBurndown*/}
         <div className="ml-10">
           <div className="mt-1 mb-3 text-xl font-bold">
@@ -394,10 +288,6 @@ export default function BurnDown() {
               </>
             ))}
           </div>
-=======
-        <div className="mt-10">
-          <Footer />
->>>>>>> Stashed changes
         </div>
       </div>
     </>
