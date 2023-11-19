@@ -9,6 +9,7 @@ import {
 import { useQuery } from 'react-query';
 import { fetchBackLogPjtData } from '../apis/backLogApis';
 import axios from 'axios';
+import Footer from '../ui/Footer';
 
 export default function BackLog() {
   const { isBackLogModalOpen } = useBackLogPage((state) => state);
@@ -59,8 +60,15 @@ export default function BackLog() {
       <div className="w-full h-auto">
         <Header />
         {/* 2 currentPjtNum이 변경되면 BackLogList를 재랜더링 */}
-        <BacklogList />
-        {isBackLogModalOpen && <BacklogModal />}
+        <div className="w-[98%] rounded-lg m-1 my-2 bg-white">
+          <div className="p-3">
+            <BacklogList />
+            {isBackLogModalOpen && <BacklogModal />}
+          </div>
+        </div>
+        <div className="mt-10">
+          <Footer />
+        </div>
       </div>
     </>
   );
