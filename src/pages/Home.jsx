@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <>
       <Gnb />
-      <div className="relative flex flex-row h-screen">
+      <div className="relative flex flex-row h-screen ">
         <Snb />
 
         <div className={`flex flex-row  w-full ${openMypage ? '' : ''} `}>
