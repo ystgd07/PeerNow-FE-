@@ -222,7 +222,7 @@ export default function BurnDown() {
             />
 
             {/* 2. 스프린트 진행률 : 원형 그래프 */}
-            <div className="flex flex-col items-center justify-center w-full mb-6 ml-10 mr-6">
+            <div className="flex flex-col items-center justify-center w-full mb-6 ml-40 mr-6 ">
               <p className="flex items-center justify-center mr-3 font-bold w-96">
                 <BiSolidPieChart className="mr-3 text-2xl" />총 백로그 진행률
               </p>
