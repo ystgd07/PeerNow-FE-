@@ -10,13 +10,13 @@ export default function CreateButton({
   return (
     <>
       <button
-        className="text-right mr-1 -mb-6"
+        className="text-right mr-1 mb-2"
         onClick={() => {
           event(backlogdto, backFileDto);
         }}
       >
         <span
-          className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400 ${option}`}
+          className={`text-lg bg-amber-200 p-2 font-medium px-4 rounded-md hover:bg-amber-300 ${option}`}
         >
           {value}
         </span>

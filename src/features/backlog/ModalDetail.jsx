@@ -122,7 +122,6 @@ export default function ModalDetail() {
               onClick={() => {
                 console.log('check file111: ', backFileDto);
                 console.log('currentProjectNumber1 :', currentProjectNumber);
-
                 createMutateOfBackLog(
                   backlogDto,
                   backFileDto,

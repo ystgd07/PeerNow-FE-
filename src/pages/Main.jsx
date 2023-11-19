@@ -12,6 +12,7 @@ import axios from 'axios';
 import ContentLoader, { Instagram } from 'react-content-loader';
 import SideModal from '../features/newproject/SideModal';
 import toast, { Toaster } from 'react-hot-toast';
+import Footer from '../ui/Footer';
 
 export default function Main() {
   const { setPjtModalFalse, setPjtModalData } = useProjectModal(
@@ -50,32 +51,36 @@ export default function Main() {
   );
 
   return (
-    <div className={`relative flex flex-row justify-center ml-5 w-full`}>
-      <div className={`flex flex-col`}>
-        <Title />
-        <div
-          className="flex flex-col items-center justify-center"
-          onClick={setPjtModalFalse}
-        >
-          {data !== undefined ? (
-            <div className="flex rl">
-              <div className="flex flex-col gap-3 p-6 overflow-y-scroll border-2 rounded-lg shadow-lg h-pjtCardSection border-slate-200 bg-slate-50 scrollbar-thumb-amber-400 scrollbar-thumb-rounded-full scrollbar-track-slate-50 scrollbar-thin ">
-                {!isLoading &&
-                  pjtObjInInitial?.map((res, idx) => (
-                    <MyProjectCard res={res} key={idx} />
-                  ))}
-              </div>
-              <PjtInfo />
+    <>
+      <div className="w-[98%] rounded-lg m-1 my-2 bg-white">
+        <div className={`relative flex flex-row justify-center ml-5 w-full`}>
+          <div className={`flex flex-col`}>
+            <Title />
+            <div
+              className="flex flex-col items-center justify-center"
+              onClick={setPjtModalFalse}
+            >
+              {data !== undefined ? (
+                <div className="flex rl">
+                  <div className="flex flex-col gap-3 p-6 overflow-y-scroll border-2 rounded-lg shadow-lg h-pjtCardSection border-slate-200 bg-slate-50 scrollbar-thumb-amber-400 scrollbar-thumb-rounded-full scrollbar-track-slate-50 scrollbar-thin ">
+                    {!isLoading &&
+                      pjtObjInInitial?.map((res, idx) => (
+                        <MyProjectCard res={res} key={idx} />
+                      ))}
+                  </div>
+                  <PjtInfo />
+                </div>
+              ) : (
+                <div className="h-64 w-96">
+                  <Instagram />
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="h-64 w-96">
-              <Instagram />
-            </div>
-          )}
+            {/* <Skeleton></Skeleton> */}
+          </div>
+          {openMainPage ? <SideModal sideEvent={sideModalClick} /> : ''}
         </div>
-        {/* <Skeleton></Skeleton> */}
       </div>
-      {openMainPage ? <SideModal sideEvent={sideModalClick} /> : ''}
-    </div>
+    </>
   );
 }

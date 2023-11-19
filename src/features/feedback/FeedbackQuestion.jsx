@@ -5,7 +5,7 @@ import {
   useBackLogPageRes,
   useProjectInBackLog,
 } from '../../store/BackLogStore/store';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { postEvData } from '../../apis/apiPeer';
 import ScoreRadio2 from './ScoreRadio2';
 import {
@@ -34,7 +34,7 @@ export default function FeedbackQuestion() {
     'FeedbackQuestion: score1, score2, comment1, togetherPeerDto :',
     togetherPeerDto,
   );
-
+  const queryClient = useQueryClient();
   const { currentProjectNumber } = useBackLogPageRes((state) => state);
   const { pjtData } = useProjectInBackLog((state) => state);
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ export default function FeedbackQuestion() {
   console.log('selectPeerIdselectPeerId :', peerDatalistDto.peer_id);
   const { mutate: postPeerEvData, isLoading: isLodingPostPeerEvData } =
     useMutation(
-      ({ currentProjectNumber, peer_id, togetherPeerDto }) =>
+      ({ currentProjectNumber, peerDatalistDto, togetherPeerDto }) =>
         postEvData(
           pjtData[currentProjectNumber].no,
           peerDatalistDto.peer_id,
@@ -63,9 +63,6 @@ export default function FeedbackQuestion() {
         },
         onError: (error) => {
           console.log('Error', error);
-          setComment1('');
-          setComment2('');
-          navigate('/home/feedback');
         },
       },
     );
@@ -169,7 +166,16 @@ export default function FeedbackQuestion() {
             />
           </p>
           <div className="mb-5 text-right mr-4 -mt-2">
-            <button class="bg-[#f7cc10] text-white text-2xl font-semibold px-5 py-1.5 rounded hover:bg-[#e6bc02]">
+            <button
+              class="bg-[#f7cc10] text-white text-2xl font-semibold px-5 py-1.5 rounded hover:bg-[#e6bc02]"
+              onClick={() => {
+                postPeerEvData({
+                  currentProjectNumber,
+                  peerDatalistDto,
+                  togetherPeerDto,
+                });
+              }}
+            >
               <span>{isLodingPostPeerEvData ? '제출 중 ..' : '제출'}</span>
             </button>
           </div>
