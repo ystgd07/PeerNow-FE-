@@ -12,7 +12,6 @@ import KanbanHeader from './KanbanHeader';
 import { fetchAllSprints } from '../../apis/sprintApis';
 import { fetchKanbanList } from '../../apis/kanbanApis';
 import { useKanbanCloums, useKanbanData } from '../../store/KanbanStore/sotre';
-import { useEffect } from 'react';
 import ContentLoader, { Instagram } from 'react-content-loader';
 import toast from 'react-hot-toast';
 import Footer from '../../ui/Footer';

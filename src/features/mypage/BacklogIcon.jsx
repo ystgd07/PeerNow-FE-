@@ -34,26 +34,24 @@ export default function BacklogIcon() {
 
   return (
     <>
-      <div>
-        {filteredBacklogs.map((item, index) => (
-          <p
-            key={index}
-            className="py-2 text-center border border-gray-300 rounded-md"
-          >
-            <div className="flex justify-center">
-              <span className="">
-                <img
-                  // src={item.image}
-                  src={`data:image/*;base64,${item?.image}`}
-                  alt={`백로그_담당자_이미지_${index}`}
-                  className="w-6 h-6 rounded-full"
-                />
-              </span>
-              <span className="ml-1">{item.title}</span>
-            </div>
-          </p>
-        ))}
-      </div>
+      {filteredBacklogs.map((item, index) => (
+        <p
+          key={index}
+          className="py-2 text-center border border-gray-300 rounded-md"
+        >
+          <div className="flex justify-center">
+            <span className="">
+              <img
+                // src={item.image}
+                src={`data:image/*;base64,${item?.image}`}
+                alt={`백로그_담당자_이미지_${index}`}
+                className="w-6 h-6 rounded-full"
+              />
+            </span>
+            <span className="ml-1">{item.title}</span>
+          </div>
+        </p>
+      ))}
     </>
   );
 }

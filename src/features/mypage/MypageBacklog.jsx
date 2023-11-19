@@ -1,3 +1,4 @@
+import { log } from 'debug/src/browser';
 import { AllBacklogOfThisPjt } from '../../store/BackLogStore/store';
 import BacklogIcon from './BacklogIcon';
 import MypageBackLogTitle from './MypageBackLogTitle';
@@ -7,6 +8,11 @@ export default function MypageBacklog() {
   // 진행중인 상태의 백로그
   const filteredBacklogs = backlogData.filter((item) => item.status === 'ing');
   const inProgressBacklogCount = filteredBacklogs.length;
+
+  console.log('진행중인백로그:전체:', backlogData);
+  console.log('진행중인백로그:backlogData.status:', backlogData.status);
+  console.log('진행중인백로그:ing:', filteredBacklogs);
+  console.log('진행중인백로그:개수:', inProgressBacklogCount);
 
   return (
     <>

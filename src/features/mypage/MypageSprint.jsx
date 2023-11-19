@@ -17,10 +17,10 @@ export default function MypageSprint() {
           </span>
           {role === 'SM' ? (
             <span className="text-right mt-7">
-              <Link to={'/home/sprint'} className="text-right ">
-                <button className="text-right mr-1 -mb-6">
+              <Link to={'/home/sprint'} className="text-right">
+                <button className="text-right mr-1 -mt-4 mb-1">
                   <span
-                    className={`text-lg bg-gray-300 p-1 px-4 rounded-md hover:bg-gray-400`}
+                    className={`text-lg bg-amber-200 p-2 font-medium px-4 rounded-md hover:bg-amber-300`}
                   >
                     스프린트 생성
                   </span>
