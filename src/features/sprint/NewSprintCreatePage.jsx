@@ -85,78 +85,50 @@ export default function NewSprintCreatePage() {
     <>
       <div className="bg-white rounded-lg w-full h-auto my-2 p-5">
         <div className="flex gpa-3 flex-col">
-          <span className="col-span-2">
-            <Input
-              value={' * 무엇을 해야합니까'}
-              onChange={(e) => setTitle(e.target.value)}
-            />
+          <span className="grid grid-cols-3">
+            <span className="">
+              <Input
+                value={' * 무엇을 해야합니까'}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </span>
+            <div className="flex w-full">
+              <div className="w-1/2 mr-4">
+                <DatePicker
+                  minDate={new Date()}
+                  maxDate={sixMonthsLater}
+                  locale={ko}
+                  selected={
+                    sprintDto.start_date ? new Date(sprintDto.start_date) : null
+                  }
+                  onChange={handleStartDateChange}
+                  dateFormat="yyyy.MM.dd"
+                  // isClearable
+                  placeholderText=" * 시작 시간을 설정해주세요"
+                  className="border-gray-300 rounded-md border-2 w-96 custom-datepicker"
+                />
+              </div>
+              <span className="w-1/2">
+                <DatePicker
+                  minDate={
+                    sprintDto.start_date
+                      ? new Date(sprintDto.start_date)
+                      : new Date()
+                  }
+                  maxDate={sixMonthsLater}
+                  locale={ko}
+                  selected={
+                    sprintDto.end_date ? new Date(sprintDto.end_date) : null
+                  }
+                  onChange={handleEndDateChange}
+                  dateFormat="yyyy.MM.dd"
+                  // isClearable
+                  placeholderText=" * 종료 기간을 설정해주세요"
+                  className="border-gray-300 rounded-md border-2 w-96 custom-datepicker"
+                />
+              </span>
+            </div>
           </span>
-          {/* <div className="flex w-full  ">
-            <div className="w-1/2 mr-4">
-              <DatePicker
-                minDate={new Date()}
-                maxDate={sixMonthsLater}
-                locale={ko}
-                selected={new Date(sprintDto.start_date)}
-                onChange={handleStartDateChange}
-                dateFormat="yyyy.MM.dd"
-                // isClearable
-                placeholderText=" * 시작 시간을 설정해주세요"
-                className="border-gray-300 rounded-md border-2 w-96 custom-datepicker"
-              />
-            </div>
-            <div className="w-1/2">
-              {}
-              <DatePicker
-                minDate={sprintDto.start_date || new Date()}
-                maxDate={sixMonthsLater}
-                locale={ko}
-                selected={new Date(sprintDto.end_date)}
-                onChange={handleEndDateChange}
-                dateFormat="yyyy.MM.dd"
-                // isClearable
-                placeholderText=" * 종료 기간을 설정해주세요"
-                className="border-gray-300 rounded-md border-2 w-96 custom-datepicker"
-              />
-            </div>
-          </div> */}
-          <div className="flex w-full">
-            <div className="w-1/2 mr-4">
-              <DatePicker
-                minDate={new Date()}
-                maxDate={sixMonthsLater}
-                locale={ko}
-                selected={
-                  sprintDto.start_date ? new Date(sprintDto.start_date) : null
-                }
-                onChange={handleStartDateChange}
-                dateFormat="yyyy.MM.dd"
-                // isClearable
-                placeholderText=" * 시작 시간을 설정해주세요"
-                className="border-gray-300 rounded-md border-2 w-96 custom-datepicker"
-              />
-            </div>
-            <div className="w-1/2">
-              <DatePicker
-                minDate={
-                  sprintDto.start_date
-                    ? new Date(sprintDto.start_date)
-                    : new Date()
-                }
-                maxDate={sixMonthsLater}
-                locale={ko}
-                selected={
-                  sprintDto.end_date ? new Date(sprintDto.end_date) : null
-                }
-                onChange={handleEndDateChange}
-                dateFormat="yyyy.MM.dd"
-                // isClearable
-                placeholderText=" * 종료 기간을 설정해주세요"
-                className="border-gray-300 rounded-md border-2 w-96 custom-datepicker"
-              />
-            </div>
-          </div>
-
           <span className="col-span-2">
             <Input
               value={'  설명을 입력하실 수 있습니다'}

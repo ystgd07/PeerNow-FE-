@@ -55,9 +55,7 @@ export default function ModalDetail() {
       {
         onSuccess: (user) => {
           console.log('Success backLog111 : ', user);
-          queryClient.invalidateQueries(
-            'queryClient.invalidateQueries : createMutateOfBackLog',
-          );
+          queryClient.invalidateQueries('fetchBackLogList');
           setBackLogModalOpen();
           setStatus('todo');
           setTitle('');

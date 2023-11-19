@@ -103,7 +103,7 @@ export const updateBacklogData = async (
   );
 
   const res = await axios.put(
-    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog?no=${backNum}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog/modify?no=${backNum}`,
     formData,
     {
       withCredentials: true,
@@ -116,7 +116,7 @@ export const updateBacklogData = async (
 export const deleteBacklog = async (BackNum) => {
   console.log('deleteBacklog333');
   const res = await axios.delete(
-    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog?no=${BackNum}`,
+    `${process.env.REACT_APP_API_DOMAIN}/api/project/backlog/delete?no=${BackNum}`,
     {
       withCredentials: true,
     },

@@ -16,6 +16,7 @@ import {
   useProjectInBackLog,
 } from '../store/BackLogStore/store';
 import toast from 'react-hot-toast';
+import Footer from '../ui/Footer';
 
 export default function MyPage() {
   // Header용
@@ -68,8 +69,8 @@ export default function MyPage() {
       {/* 화면 틀 */}
       <div className="w-full">
         <Header />
-        <div className="overflow-y-scroll h-[40rem]">
-          <div className="grid grid-cols-2 gap-4 m-5 mx-10 mt-3">
+        <div className="w-full">
+          <div className="grid grid-cols-2 gap-4 m-1.5 w-[98%]">
             {/* 스프린트 sprint */}
             <div className="col-span-2">
               <MypageSprint />
@@ -79,7 +80,9 @@ export default function MyPage() {
             {/* 진행중인 백로그 back log */}
             <MypageBacklog />
           </div>
-          <div className="p-5"></div>
+          <div className="my-10">
+            <Footer />
+          </div>
         </div>
       </div>
     </>

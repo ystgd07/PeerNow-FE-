@@ -63,11 +63,11 @@ export default function Sprint() {
         <Header />
         {/* 제목 */}
         <div className="mx-10">
-          <div className="flex justify-between mt-4 text-3xl text-gray-500">
+          <div className="flex justify-between mt-5 ml-1 text-3xl text-gray-700">
             <Title value={'스프린트 생성'} />
             <a
               href="javascript:window.history.back();"
-              className="flex items-center p-1 mt-2 mr-6 text-base hover:scale-105"
+              className="flex items-center p-1 mt-2 mr-6 text-base hover:scale-110"
             >
               <TiArrowBackOutline className="mr-1 cursor-pointer w-7 h-7"></TiArrowBackOutline>
               뒤로가기
