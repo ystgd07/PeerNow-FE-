@@ -19,11 +19,11 @@ export default function ButtonPakage({ value, event, disabled }) {
       onSuccess: (user) => {
         console.log('Success : ', user);
         setPjtObj();
+        queryClient.invalidateQueries('pjtCard');
         reset();
+        event();
         setPjtModalFalse();
         toast.success('프로젝트가 생성되었습니다.');
-
-        event();
       },
       onError: (error) => {
         console.log('Error', error);

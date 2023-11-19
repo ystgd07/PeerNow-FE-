@@ -8,6 +8,7 @@ export default function SideModalList() {
   const { userMainData, setIsOpenDropdown, headerUserImg } = useUserMain(
     (state) => state,
   );
+  console.log('noRequestPeerID', noRequestPeerID);
   return (
     <>
       <li className="py-3 list-none sm:py-4">

@@ -72,7 +72,8 @@ export default function BacklogTbody() {
     (backlogData) => downloadBackLogFile(backlogData),
     {
       onSuccess: (data) => {
-        data.blob();
+        console.log('dataDownLoad:', data.headers['content-disposition'], data);
+        // data.blob();
         const blobData = new Blob([data.data]);
         const url = window.URL.createObjectURL(blobData);
 
@@ -81,8 +82,8 @@ export default function BacklogTbody() {
         link.style.display = 'none';
 
         const disposition = data.headers['content-disposition'];
+        console.log('disposition1', disposition);
 
-        console.log('disposition', disposition);
         const fileName = decodeURI(
           disposition
             .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
@@ -94,9 +95,9 @@ export default function BacklogTbody() {
         link.click();
         link.remove();
 
-        window.URL.revokeObjectURL(url);
+        // window.URL.revokeObjectURL(url);
 
-        console.log('downLoad', data);
+        // console.log('downLoad', data);
       },
     },
   );

@@ -46,7 +46,6 @@ export default function Main() {
       onError: (error) => {
         console.log('error : ', error);
       },
-      refetchOnWindowFocus: true,
     },
   );
 

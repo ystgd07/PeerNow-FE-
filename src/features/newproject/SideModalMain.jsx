@@ -7,7 +7,7 @@ import SideModalList from './SideModalList';
 import SideModalSearchResult from './SideModalSearchResult';
 import InputSearch from '../../ui/InputSearch';
 
-export default function SideModalMain({ event }) {
+export default function SideModalMain({ sideEvent }) {
   const { pjtObj, setIsValidPjt1, isValidPjt1, isValidPjt2 } = useCreatePjtOne(
     (state) => state,
   );
@@ -58,7 +58,7 @@ export default function SideModalMain({ event }) {
             <ButtonPakage value={'이전'} event={setPrevPage} disabled={false} />
 
             {isValidPjt2 ? (
-              <ButtonPakage value={'제출'} disabled={false} event={event} />
+              <ButtonPakage value={'제출'} disabled={false} event={sideEvent} />
             ) : (
               <ButtonPakage value={'제출'} disabled={true} />
             )}

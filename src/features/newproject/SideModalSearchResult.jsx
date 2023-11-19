@@ -29,7 +29,7 @@ export default function SideModalSearchResult() {
     {
       enabled: !!peerName,
       onSuccess: (data) => {
-        console.log('undefined log : ', data);
+        console.log('imgdataplease ', data);
       },
       onError: (error) => {
         console.log('error : ', error);
