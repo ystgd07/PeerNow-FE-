@@ -15,7 +15,7 @@
     </tr>
   </tbody>
 </table>
-<img src="https://www.canva.com/design/DAF02c9HVog/SAA2L5xvtK3uemQ7CaQHww/watch?utm_content=DAF02c9HVog&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel">
+<img src="https://github.com/n0hack/readme-template/assets/112933943/5e39ccca-699f-4c53-9328-f9baef9d2973">
 </img>
 
 ## 🔧기술스택
