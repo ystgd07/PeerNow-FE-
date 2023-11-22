@@ -27,6 +27,8 @@
  ![image](https://github.com/ystgd07/testReact2/assets/112933943/d19322cf-abc0-43ce-b222-40fa3a424fb2)
 
 ### 🌐INFRA
+<h3> 3tier Architecture
+</h3>
  ![image](https://github.com/ystgd07/testReact2/assets/112933943/2009523c-7321-486c-9d87-20e804e5d74c)
 ![image](https://github.com/ystgd07/testReact2/assets/112933943/0483480f-212a-427a-8a50-505fa7bf84a0)
 
