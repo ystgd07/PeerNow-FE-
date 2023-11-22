@@ -49,11 +49,16 @@
 ## 트러블 슈팅 & 기술적 도전
 
 ![image](https://github.com/ystgd07/testReact2/assets/112933943/7aa3a789-06eb-483a-8a70-8188ff0e68fa)
+
+
+
 <h3>redux의 복잡한 보일러플레이트를 해결하기 위한 zustand 라이브러리 사용</h3>
 <p>기존에 사용하던 redux 라이브러리는 사용시 팀과의 협업에 불편함이 있었음.</p>
 <p>동일한 전역상태관리 동작방식을 갖고있는 zustand 라이브러리를 사용하여 보다 편한 상태구성을 하여 프론트엔드에서 생산성을 높일 수 있었음.</p>
 
 ![image](https://github.com/ystgd07/testReact2/assets/112933943/15ecee3c-f336-4bb8-b538-065ff066a31d)
+
+
 <h3>클라이언트 상태와 서버상태를 분리하기 위한 react-query 도입</h3>
 <p> useEffect 와 zustand 만으로 클라이언트 상태와 서버상태를 분리하기 힘들었고, 트러블 슈팅시 매우 힘들것이라 예상함.</p>
 <p> react-query 도입으로 서버상태와 클라이언트 상태를 효율적으로 분리하고 관리하였습니다.</p>
