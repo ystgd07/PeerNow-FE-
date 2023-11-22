@@ -6,10 +6,8 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="![현언냐](https://github.com/ystgd07/testReact2/assets/134909932/15787986-051f-43c9-bb10-196e40925954)" width="100px;" alt="팀원소개"/><br /><sub><b>BE : 최현희(팀장)</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="![정현욱](https://github.com/ystgd07/testReact2/assets/134909932/b604c5c1-f9c7-4102-afa5-563bbf0896bf)" width="100px;" alt="팀원소개"/><br /><sub><b>BE : 정현욱</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="![양성수](https://github.com/ystgd07/testReact2/assets/134909932/1e63d620-482f-4003-b7d7-253d1c5c95fe)" width="100px;" alt="팀원소개"/><br /><sub><b>FE & INFRA : 양성수</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="![이슬비 취업](https://github.com/ystgd07/testReact2/assets/134909932/85e99ef7-4891-4808-8474-25e6b4017091)" width="100px;" alt="팀원소개"/><br /><sub><b>FE & INFRA : 이슬비</b></sub></a><br /></td>
+      <td align="center"><a href="![양성수](https://github.com/ystgd07/testReact2/assets/134909932/1e63d620-482f-4003-b7d7-253d1c5c95fe)"><img src="" width="100px;" alt="팀원소개"/><br /><sub><b>FE & INFRA : 양성수</b></sub></a><br /></td>
+      <td align="center"><a href="![이슬비 취업](https://github.com/ystgd07/testReact2/assets/134909932/85e99ef7-4891-4808-8474-25e6b4017091)"><img src="" width="100px;" alt="팀원소개"/><br /><sub><b>FE & INFRA : 이슬비</b></sub></a><br /></td>
     </tr>
   </tbody>
 </table>
@@ -17,9 +15,7 @@
 
 ## 🔧기술스택
 ### 🎨Frond-end
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"><img src="https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=Css&logoColor=white"><img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=purple"><img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white">
-### 🌱Back-end
-<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=green"><img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=yellow">
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"><img src="https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=Css&logoColor=white"><img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=purple"><img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white"><img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=green"><img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=yellow">
 ### 🌐INFRA
 
 ### `npm start`
