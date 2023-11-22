@@ -1,49 +1,35 @@
+# 💻 PeerNow - FE
+![제목을 입력해주세요_-001 (1)](https://github.com/ystgd07/testReact2/assets/134909932/1c474c4c-a9e3-4f80-b7ce-29f366eeb72a)
+프로젝트 관리 웹
 
-<p align="justify">
-프로젝트 개요/동기
-</p>
+## ⏰프로젝트 기간
+<b>2023.10.23 ~ 2023.11.20</b>
+최종 merge : 2023.11.22()
 
-<p align="center">
-GIF Images
-</p>
+## 👨‍👩‍👧‍👦팀원소개
+<table>
+  <tbody>
+    <tr>
+      <td align="center">![양성수](https://github.com/ystgd07/testReact2/assets/134909932/1e63d620-482f-4003-b7d7-253d1c5c95fe)<br /><sub><b>FE & INFRA : 양성수</b></sub><br /></td>
+      <td align="center">![이슬비 취업](https://github.com/ystgd07/testReact2/assets/134909932/85e99ef7-4891-4808-8474-25e6b4017091)"><br /><sub><b>FE & INFRA : 이슬비</b></sub><br /></td>
+    </tr>
+  </tbody>
+</table>
 
-<br>
 
-## 기술 스택
+## 🔧기술스택
+### 🎨Frond-end
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"><img src="https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=Css&logoColor=white"><img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=purple"><img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white"><img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=green"><img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=yellow">
+### 🌐INFRA
 
-| JavaScript | TypeScript |  React   |  Node   |
-| :--------: | :--------: | :------: | :-----: |
-|   ![js]    |   ![ts]    | ![react] | ![node] |
+## 💡주요기능
+#### 기능1
+#### 기능2
+#### 기능3
+#### 기능4
 
-<br>
+## 화면 설계
 
-## 구현 기능
+## 인프라 아키텍처
 
-### 기능 1
-
-### 기능 2
-
-### 기능 3
-
-### 기능 4
-
-<br>
-
-## 배운 점 & 아쉬운 점
-
-<p align="justify">
-
-</p>
-
-<br>
-
-## 라이센스
-
-MIT &copy; [NoHack](mailto:lbjp114@gmail.com)
-
-<!-- Stack Icon Refernces -->
-
-[js]: /images/stack/javascript.svg
-[ts]: /images/stack/typescript.svg
-[react]: /images/stack/react.svg
-[node]: /images/stack/node.svg
+## 트러블 슈팅 & 기술적 도전
