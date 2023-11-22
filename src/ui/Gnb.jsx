@@ -1,37 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useImage, useUserMain } from '../store/UserMain/store';
+import { GrUserSettings } from 'react-icons/gr';
+import { RiLogoutBoxRLine } from 'react-icons/ri';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Gnb() {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const toggleDropdown = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
-
-  const closeDropdown = () => {
-    setIsDropdownVisible(false);
-  };
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        closeDropdown();
-      }
-    }
-
-    if (isDropdownVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isDropdownVisible]);
+  const { userMainData, setIsOpenDropdown, headerUserImg } = useUserMain(
+    (state) => state,
+  );
+  const { setUserImg, stateImageData } = useImage((state) => state);
+  console.log('headerUserImg', headerUserImg);
+  const navigate = useNavigate();
 
   return (
-    <header className="w-full bg-white pl-5 pr-5 p-1 justify-between items-center drop-shadow relative">
+    <header className="relative items-center justify-between pl-5 pr-5 bg-white cursor-pointer mb-2">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
@@ -41,81 +23,76 @@ export default function Gnb() {
               aria-controls="logo-sidebar"
               type="button"
               className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover-bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover-bg-gray-700 dark:focus:ring-gray-600"
-              onClick={toggleDropdown}
             ></button>
-            <a href="#" className="flex ml-2 md:mr-24">
+            <p className="flex md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                <img src="/logo1.png" alt="로고" className="w-44 h-16" />
-                {/* 
-                  일반회원 : <img src="/logo1.png" alt="로고" className="w-44 h-16" />
-                  프리미엄 회원 : <img src="/logo2.png" alt="로고" className="w-44 h-16" /> 
-                 */}
+                <span
+                  id="drawer-navigation-label"
+                  className="text-3xl text-center font-extrabold items-center text-gray-700 uppercase dark:text-gray-400 ml-3 flex flex-row"
+                >
+                  {/* <img
+                    src="/peernow.png"
+                    alt="로고"
+                    className="h-12 w-12"
+                    onClick={() => {
+                      navigate('/home/main');
+                    }}
+                  /> */}
+                  <span className="ml-1 flex items-center">
+                    PeerN
+                    <span className="text-[#f7cc10]">
+                      <img
+                        src="/peernow.png"
+                        alt="로고"
+                        className="h-8 w-8"
+                        onClick={() => {
+                          navigate('/home/main');
+                        }}
+                      />
+                    </span>
+                    w
+                  </span>
+                </span>
               </span>
-            </a>
+            </p>
           </div>
           {/* 로그인 안되면 보여주면 안됨 */}
           <div className="flex items-center">
             <div className="flex items-center ml-3">
-              <div ref={dropdownRef}>
-                <ui className="list-none flex items-center mr-3">
+              <div
+                onClick={() => {
+                  setIsOpenDropdown();
+                }}
+              >
+                <ui className="flex items-center mr-3 list-none">
                   <li>
                     <button
                       type="button"
                       className="flex text-sm bg-gray-800 rounded-full focus-ring-4 focus-ring-gray-300"
                       aria-expanded="false"
-                      onClick={toggleDropdown}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="w-11 h-11 rounded-full hover:bg-gray-400 focus:ring-3 focus:ring-gray-300 font-medium"
-                        src="testImg.jpg"
-                        alt="user photo"
-                      />
+                      {stateImageData.userImg !== '' ? (
+                        <img
+                          className="font-medium rounded-full w-11 h-11 hover:bg-gray-400 focus:ring-3 focus:ring-gray-300"
+                          // src="testImg.jpg"
+                          src={stateImageData.userImg}
+                          alt="user photo"
+                        />
+                      ) : (
+                        <img
+                          className="font-medium rounded-full w-11 h-11 hover:bg-gray-400 focus:ring-3 focus:ring-gray-300"
+                          // src="testImg.jpg"
+                          src={`data:image/*;base64,${headerUserImg}`}
+                          alt="user photo"
+                        />
+                      )}
                     </button>
                   </li>
-                  <li className="pl-3 text-xl">이슬비</li>
+                  <li className="pl-3 text-xl font-semibold text-gray-800">
+                    {userMainData.name}
+                  </li>
                 </ui>
-                {isDropdownVisible && (
-                  <div
-                    className="z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow fixed right-2 top-16"
-                    id="dropdown-user"
-                  >
-                    <div className="px-4 py-3" role="none">
-                      <p
-                        className="text-gray-400 text-sm dark:text-white"
-                        role="none"
-                      >
-                        BTC 개발자반 3팀
-                      </p>
-                      <p
-                        className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
-                        role="none"
-                      >
-                        iolagvi28@gmail.com
-                      </p>
-                    </div>
-                    <ul className="py-1" role="none">
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover-bg-gray-600 dark:hover-text-white"
-                          role="menuitem"
-                        >
-                          설정
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover-bg-gray-600 dark:hover-text-white"
-                          role="menuitem"
-                        >
-                          로그아웃
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                )}
               </div>
             </div>
           </div>

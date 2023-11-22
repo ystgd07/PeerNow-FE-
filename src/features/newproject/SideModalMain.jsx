@@ -1,44 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ButtonPakage from '../../ui/ButtonPakage';
+import Input from '../../ui/Input';
+import CalendarUI from '../../ui/CalendarUI';
+import { useCreatePjtOne } from '../../store/store';
+import SideModalList from './SideModalList';
+import SideModalSearchResult from './SideModalSearchResult';
+import InputSearch from '../../ui/InputSearch';
 
-export default function SideModalMain() {
+export default function SideModalMain({ sideEvent }) {
+  const { pjtObj, setIsValidPjt1, isValidPjt1, isValidPjt2 } = useCreatePjtOne(
+    (state) => state,
+  );
+
+  const { page, setNextPage, setPrevPage, setPerrIdOfPjtObj } = useCreatePjtOne(
+    (state) => state,
+  );
+
   return (
     <div>
-      <form>
-        <div className="mb-6">
-          <input
-            type="email"
-            id="email"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="* 프로젝트 이름은 무엇입니까?"
-            required
+      {page === 1 ? (
+        <form>
+          <Input
+            content={'*프로젝트 이름을 입력해 주세요.'}
+            title={'프로젝트 제목'}
           />
-        </div>
-        <div className="mb-6">
-          <input
-            type="password"
-            id="password"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-200 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="프로젝트에 대한 설명을 적으세요."
-            required
-          />
-        </div>
-        <div className="mb-6">
-          <input
-            type="password"
-            id="repeat-password"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="*기간을 설정해주세요."
-            required
-          />
-        </div>
 
-        <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Register new account
-        </button>
-      </form>
+          <Input
+            content={'프로젝트에 대한 설명을 적어주세요.'}
+            title={'프로젝트 설명'}
+          />
+
+          <CalendarUI title={'프로젝트 시작'} titleColor={'text-green-500'} />
+          <CalendarUI title={'프로젝트 종료'} titleColor={'text-red-500'} />
+
+          {isValidPjt1 ? (
+            <ButtonPakage
+              value={'다음'}
+              event={() => {
+                setNextPage();
+                setPerrIdOfPjtObj();
+              }}
+              disabled={false}
+            />
+          ) : (
+            <ButtonPakage value={'다음'} disabled={true} />
+          )}
+        </form>
+      ) : (
+        <form className="relative">
+          <InputSearch
+            content={'팀원의 성함을 입력해주세요.'}
+            title={'팀원 선택'}
+          />
+          <SideModalSearchResult />
+          <SideModalList />
+          <div className="flex flex-row gap-2">
+            <ButtonPakage value={'이전'} event={setPrevPage} disabled={false} />
+
+            {isValidPjt2 ? (
+              <ButtonPakage value={'제출'} disabled={false} event={sideEvent} />
+            ) : (
+              <ButtonPakage value={'제출'} disabled={true} />
+            )}
+          </div>
+        </form>
+      )}
     </div>
   );
 }
