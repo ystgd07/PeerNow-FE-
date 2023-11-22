@@ -31,7 +31,9 @@
 
 ![image](https://github.com/ystgd07/testReact2/assets/112933943/2009523c-7321-486c-9d87-20e804e5d74c)
 
-<h3> CI/CD 무중단배포 파이프라인</h3>
+<h3>CI/CD 무중단배포 파이프라인</h3>
+
+
 ![image](https://github.com/ystgd07/testReact2/assets/112933943/0483480f-212a-427a-8a50-505fa7bf84a0)
 
 ## 💡주요기능
