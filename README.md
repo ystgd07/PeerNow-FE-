@@ -6,8 +6,8 @@
 <table>
   <tbody>
     <tr>
-      <td align="center">[양성수](https://github.com/ystgd07/testReact2/assets/134909932/1e63d620-482f-4003-b7d7-253d1c5c95fe)<br /><sub><b>FE & INFRA : 양성수</b></sub><br /></td>
-      <td align="center">[이슬비 취업](https://github.com/ystgd07/testReact2/assets/134909932/85e99ef7-4891-4808-8474-25e6b4017091)"><br /><sub><b>FE & INFRA : 이슬비</b></sub><br /></td>
+      <td align="center">![양성수](https://github.com/ystgd07/testReact2/assets/134909932/1e63d620-482f-4003-b7d7-253d1c5c95fe)<br /><sub><b>FE & INFRA : 양성수</b></sub><br /></td>
+      <td align="center">![이슬비 취업](https://github.com/ystgd07/testReact2/assets/134909932/85e99ef7-4891-4808-8474-25e6b4017091)"><br /><sub><b>FE & INFRA : 이슬비</b></sub><br /></td>
     </tr>
   </tbody>
 </table>
