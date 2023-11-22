@@ -15,7 +15,8 @@
     </tr>
   </tbody>
 </table>
-<img src="https://www.canva.com/design/DAF02c9HVog/SAA2L5xvtK3uemQ7CaQHww/watch?utm_content=DAF02c9HVog&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel"/>
+<img src="https://www.canva.com/design/DAF02c9HVog/SAA2L5xvtK3uemQ7CaQHww/watch?utm_content=DAF02c9HVog&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel">
+</img>
 
 ## 🔧기술스택
 ### 🎨Frond-end
